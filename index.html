@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Головна - Самопізнання через Архетипи | Я є</title>
+    <meta name="description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.">
+    <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Головна - Самопізнання через Архетипи | Я є">
+    <meta property="og:description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        nav { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+            color: white; 
+            padding: 1rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+        }
+        nav .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        nav h1 { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+        }
+        .menu-toggle { 
+            display: none; /* За замовчуванням прихований на великих екранах */
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            color: white; 
+        }
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 1rem; 
+            margin: 0; /* Видаляємо дефолтний margin */
+            padding: 0; /* Видаляємо дефолтний padding */
+        }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.5rem 0; /* Збільшимо клікабельну область */
+            display: block; /* Щоб padding працював коректно */
+        }
+        nav a:hover, nav a:focus { 
+            text-decoration: underline; 
+        }
+        .bg-gradient-to-r { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+        }
+        .text-white { color: white; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .text-center { text-align: center; }
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+            padding: 0 1rem; /* Додаємо горизонтальний padding для контейнерів */
+            box-sizing: border-box; /* Включаємо padding в ширину елемента */
+        }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-5xl { font-size: 3rem; }
+        .md\:text-6xl { font-size: 3.75rem; }
+        .font-bold { font-weight: bold; }
+        .font-lora { font-family: 'Lora', serif; }
+        .mb-4 { margin-bottom: 1rem; }
+        .text-xl { font-size: 1.25rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .bg-gray-50 { background-color: var(--gray-50); }
+        .bg-white { background-color: var(--white); }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .max-w-full { max-width: 100%; }
+        .h-auto { height: auto; }
+        h2 { font-size: 1.875rem; } /* Додаємо дефолтний стиль для h2 */
+        .text-3xl { font-size: 1.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        ol { list-style-type: decimal; padding-left: 1.5rem; }
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .inline-block { display: inline-block; }
+        .button { /* Узагальнений клас для кнопок */
+            display: inline-block;
+            background: var(--button-bg);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* Додаємо плавність переходу */
+        }
+        .button:hover, .button:focus { 
+            background: var(--button-hover); 
+            outline: none; /* Прибираємо стандартний outline, якщо його замінено фокусом */
+        }
+
+        footer { 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 1.5rem 1rem; /* Збільшуємо padding для футера */
+            text-align: center; 
+        }
+        footer a { 
+            color: #FFD700; 
+            text-decoration: underline; 
+        }
+        .footer-note { /* Окремий клас для примітки у футері */
+            font-size: 0.875rem; 
+            margin-top: 0.5rem;
+        }
+
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul { 
+                display: none; /* Заховати список за замовчуванням на мобільних */
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+                padding: 1rem; 
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Додаємо тінь для відкритого меню */
+            }
+            nav ul.active { display: flex; } /* Показати, коли active */
+            nav .container { flex-direction: column; align-items: flex-start; }
+            
+            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-5xl { font-size: 2rem; }
+            .md\:text-6xl { font-size: 2.5rem; }
+            .text-xl { font-size: 1rem; }
+            .max-w-3xl { max-width: 100%; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            h2.text-3xl { font-size: 1.5rem; }
+            .text-lg { font-size: 1rem; }
+            .button { padding-left: 1.5rem; padding-right: 1.5rem; } /* Зменшуємо padding кнопок */
+            .container { padding: 0 1rem; }
+            .buttons { text-align: center; } /* Центруємо кнопки на мобільних */
+        }
+
+        @media (max-width: 480px) {
+            .text-5xl { font-size: 1.5rem; }
+            .md\:text-6xl { font-size: 2rem; } /* Якщо для 480px все ще потрібен md:text-6xl */
+            h2.text-3xl { font-size: 1.25rem; }
+            .button { padding-left: 1rem; padding-right: 1rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            .text-5xl { font-size: 1.2rem; }
+            h2.text-3xl { font-size: 1rem; }
+            .container { padding: 0 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <script type="module">
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Плавна прокрутка для якірних посилань
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = document.querySelector(anchor.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    });
+
+                    // Меню-гамбургер
+                    const menuToggle = document.createElement('button');
+                    menuToggle.className = 'menu-toggle';
+                    menuToggle.setAttribute('aria-label', 'Переключити меню навігації');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.innerHTML = '☰';
+
+                    const navContainer = document.querySelector('nav .container');
+                    const navUl = document.querySelector('nav ul');
+
+                    if (navContainer && navUl) {
+                        // Вставляємо кнопку-перемикач перед списком навігації
+                        navContainer.insertBefore(menuToggle, navUl);
+
+                        menuToggle.addEventListener('click', () => {
+                            // Перемикаємо клас 'active' для показу/приховування меню
+                            const isExpanded = navUl.classList.toggle('active');
+                            // Оновлюємо атрибут aria-expanded для доступності
+                            menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                        });
+
+                        // Обробка клавіатурних подій для кнопки меню (Enter/Space)
+                        menuToggle.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                menuToggle.click(); // Імітуємо клік
+                            }
+                        });
+
+                        // Додаємо tabindex для всіх посилань у навігації для кращої доступності
+                        navUl.querySelectorAll('a').forEach(link => {
+                            link.setAttribute('tabindex', '0');
+                        });
+                    }
+                });
+            </script>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+        <div class="container mx-auto">
+            <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">Я є.</h1>
+            <p class="text-xl max-w-3xl mx-auto mb-6">Ти те, що вже є.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 text-center">
+        <div class="container mx-auto">
+            <img src="images/campfire.JPG" alt="Зображення вогнища 'campfire', що символізує тепло і внутрішню гармонію" class="mx-auto mb-6 max-w-full h-auto">
+            <p class="text-lg max-w-2xl mx-auto">Вогнище — місце, де оживає твоя суть, де ти можеш зупинитися і почути себе.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold font-lora mb-6">Про що це?</h2>
+            <p class="text-lg mb-4">Ми не вигадуємо архетипи — ми їх відкриваємо.</p>
+            <p class="text-lg mb-4">Вони не приходять ззовні, їх не дарують, не вигадують і не призначають. Архетип — це не роль, це суть. Це не щось, що потрібно отримати — це те, що вже було з тобою від самого початку.</p>
+            <p class="text-lg mb-4">Як куб у кубі — вони вже були вкладені одне в одного.</p>
+            <p class="text-lg mb-4">Ми просто знімаємо зайве.</p>
+            <p class="text-lg mb-4">Просто витираємо пил.</p>
+            <p class="text-lg mb-4">Просто нагадуємо, що ти завжди це знав.</p>
+            <p class="text-lg mb-4">Ми не даємо тобі нове ім’я. Ми допомагаємо тобі вперше його почути.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-3xl font-bold font-lora mb-6 text-center">Маніфест проєкту «Архетип»</h2>
+            <ol class="space-y-4 text-lg">
+                <li><strong>Ми не вигадуємо — ми відкриваємо.</strong> Архетип — не прикраса, не модна етикетка і не роль. Це внутрішній код, суть, що існує незалежно від віри в неї. Ти не стаєш архетипом — ти згадуєш, що ним завжди був.</li>
+                <li><strong>Ніякої системи — лише напрям.</strong> Тут немає жорстких типологій, табличок і номерів. Є напрям — в себе. А далі — ти, твоя правда і твоє відлуння.</li>
+                <li><strong>Ми не призначаємо, не оцінюємо і не формуємо.</strong> Ми не кажемо, ким бути. Ми ставимо запитання, що відкривають двері. Ми не роздаємо ролі — ми вказуємо на дзеркало.</li>
+                <li><strong>Шлях — це не досягнення. Це зняття зайвого.</strong> Твоє життя — не про додавання, а про роздягання. Відкидай те, що не твоє. Архетип відкривається не тоді, коли ти вичитав усе, а тоді, коли визнав — це я.</li>
+                <li><strong>Ми не навчаємо — ми підтримуємо.</strong> У цій спільноті немає вчителів і учнів. Є ті, хто пам’ятає, і ті, хто згадує. Є ті, хто боїться — і ті, хто поруч.</li>
+                <li><strong>Ми не даємо імен — ми нагадуємо.</strong> Твій архетип — це не назва. Це голос. Це спокій. Це впевненість, яка не потребує доказів.</li>
+                <li><strong>Той, хто знайшов себе — більше не шукає дозволу.</strong> Цей проєкт — не пошук відповіді. Це дозвіл собі бути.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-3xl font-bold font-lora mb-6 text-center">Для кого цей проєкт</h2>
+            <p class="text-lg mb-4">Цей проєкт — для тих, хто втомився грати ролі, хто відчуває, що живе «не своїм» життям, і не може пояснити чому, але знає: щось не так.</p>
+            <p class="text-lg mb-4">Для тих, хто вже бачив багато систем, курсів і порад, але відчув, що відповіді немає зовні.</p>
+            <p class="text-lg mb-4">Бо вона — всередині.</p>
+            <p class="text-lg mb-4">Бо вона — у тиші.</p>
+            <p class="text-lg mb-4">Бо вона — в тому, ким ти був ще до того, як тебе навчили ким бути.</p>
+            <p class="text-lg mb-4">Тут немає шляху для всіх. Є шлях — свій.</p>
+            <p class="text-lg mb-4">Тут не обіцяють зміни. Тут пропонують згадати.</p>
+            <p class="text-lg mb-4">Бо справжнє вже є. Просто заховане.</p>
+            <p class="text-lg mb-4">Це проєкт для тих, хто не боїться зустрітися з собою. Навіть якщо цей «хтось» — незручний, різкий, мовчазний чи надто живий.</p>
+            <p class="text-lg mb-4">Це проєкт для тебе. Якщо ти готовий перестати ховатися.</p>
+            <div class="buttons text-center">
+                <a href="tools.html" class="mt-6 button">Почати шлях</a>
+                <a href="contact.html" class="mt-4 button">Задати питання</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Я є. Усі права захищено.</p>
+        <p class="footer-note">З душею рекомендуємо: 
+            <a href="https://t.me/CRPT_shroomery" target="_blank" rel="noopener noreferrer">Карпатська Грибниця</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прайс - Самопізнання через Архетипи | Я є</title>
+    <meta name="description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
+    <meta name="keywords" content="прайс, самопізнання, архетипи, консультації, гайди, знижки">
+    <meta name="robots" content="index, follow">   
+    <meta property="og:title" content="Прайс - Самопізнання через Архетипи | Я є">
+    <meta property="og:description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --darkslategray: #2F4F4F;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Додано базовий колір тексту */
+        }
+        
+        /* Загальні стилі контейнера */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem; /* Додано горизонтальний відступ для контейнерів */
+            width: 100%;
+        }
+
+        /* Навігація */
+        nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0; /* Змінено padding, щоб він застосовувався до контейнера */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0; /* Прибрано зайвий відступ */
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem; /* Додано padding для зручності натискання */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0; /* Прибрано зайвий відступ */
+            padding: 0; /* Прибрано зайвий відступ */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0; /* Додано padding для кращої клікабельності */
+            display: block; /* Зроблено посиланням блочний елемент для кращого padding */
+        }
+
+        nav a:hover, nav a:focus {
+            text-decoration: underline;
+        }
+
+        /* Секції */
+        .section {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        /* Фон та колір тексту */
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        /* Відступи */
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+
+        /* Вирівнювання тексту */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+
+        /* Анімація */
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Розміри тексту */
+        .text-4xl { font-size: 2.25rem; }
+        .md\:text-5xl { font-size: 3rem; } /* Це спрацює на розмірі >= md */
+        .text-lg { font-size: 1.125rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-sm { font-size: 0.875rem; }
+
+        /* Вага шрифту */
+        .font-bold { font-weight: bold; }
+        .font-semibold { font-weight: 600; }
+
+        /* Ширина елементів */
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        .max-w-600 { max-width: 600px; } /* Використання px для фіксованої ширини */
+
+        /* Інші стилі */
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-indigo-900 { background: var(--primary-color); }
+        .p-4 { padding: 1rem; }
+        .inline-block { display: inline-block; }
+        .bg-indigo-600 { background: var(--button-bg); }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .rounded-full { border-radius: 9999px; }
+        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
+        .price-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .price-section p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+        .price-section ul {
+            padding-left: 1.5rem; /* Додано відступ для списків */
+            list-style: disc; /* Додано маркери для списків */
+        }
+        .price-section li {
+            margin-bottom: 0.5rem; /* Додано відступ між елементами списку */
+        }
+        .buttons {
+            display: flex; /* Використання flexbox для кнопок */
+            flex-wrap: wrap; /* Дозволяє кнопкам переноситися на новий рядок */
+            justify-content: center; /* Вирівнювання кнопок по центру */
+            gap: 1rem; /* Відступ між кнопками */
+            margin-top: 2rem; /* Відступ зверху */
+        }
+        .buttons a {
+            text-decoration: none; /* Прибрано підкреслення у посилань-кнопок */
+        }
+        .text-yellow-400 { color: #facc15; } /* Приклад кольору для посилання у футері */
+        .underline { text-decoration: underline; }
+
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+            }
+            nav ul.active { display: flex; }
+            nav .container { flex-direction: column; align-items: flex-start; }
+            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 2rem; }
+            .md\:text-5xl { font-size: 2.5rem; }
+            .text-lg { font-size: 1rem; }
+            .max-w-2xl { max-width: 100%; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .px-8 { padding-left: 1rem; padding-right: 1rem; }
+            .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+            .container { padding: 0 1rem; }
+            .max-w-600 { max-width: 100%; }
+            .price-section { max-width: 100%; }
+            .buttons { justify-content: center; } /* Вирівнювання кнопок по центру на мобільних */
+        }
+
+        @media (max-width: 480px) {
+            .text-4xl { font-size: 1.5rem; }
+            .md\:text-5xl { font-size: 2rem; }
+            .text-3xl { font-size: 1.25rem; }
+            .text-2xl { font-size: 1rem; }
+            .px-8 { padding-left: 0.5rem; padding-right: 0.5rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            .text-4xl { font-size: 1.2rem; }
+            .text-3xl { font-size: 1rem; }
+            .text-2xl { font-size: 0.875rem; }
+            .container { padding: 0 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white py-20 text-center animate-fade-in">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">Прайс</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-6">Якщо коротко і чесно</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto max-w-3xl">
+            <div class="price-section">
+                <p class="text-lg mb-4">Це не супермаркет і не шоу.<br>Тут ти не купуєш “продукт” — ти заходиш у простір, де можна глянути в себе.<br>Без води, без унітазів з золота, але з душею і змістом.</p>
+
+                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">💬 Що ти отримаєш у Telegram-каналі</h3>
+                <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                    <li>щотижневі практики</li>
+                    <li>доступ до інструментів</li>
+                    <li>підтримку й спілкування, коли це справді потрібно</li>
+                    <li>місце, де можна не прикидатися</li>
+                </ul>
+                <p class="text-lg mb-4"><strong>300 грн/місяць</strong></p>
+
+                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🧰 Окремі інструменти</h3>
+                <p class="text-lg mb-4">гайди-листи, тести, методики</p>
+                <p class="text-lg mb-4"><strong>200 грн одноразово</strong></p>
+
+                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">👥 Індивідуальні консультації</h3>
+                <p class="text-lg mb-4">одна година щирої розмови, без “псевдопсихології”, з реальністю і теплом</p>
+                <p class="text-lg mb-4"><strong>800 грн/година</strong></p>
+
+                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🎖️ Знижки — бо є речі, що важливіші за гроші</h3>
+                <p class="text-lg mb-4">Я не міністерство, але розумію ціну людського вкладу. Тому:</p>
+                <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                    <li>Військовим — 40% знижка</li>
+                    <li>Вчителям — 30% знижка</li>
+                    <li>Пенсіонерам — 30% (якщо такі справді з’являться — буду приємно здивований)</li>
+                </ul>
+                <p class="text-lg mb-4">Якщо ти один з них — просто напиши мені.<br>Документально нічого не треба, вірю на слово.<br>Хто бреше — той і без знижки собі знайде карму.</p>
+
+                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">📩 Якщо є питання — пиши</h3>
+                <p class="text-lg mb-4">Я людина. Не чат-бот.<br>Відповім, поясню, домовимось. Все по-людськи.</p>
+
+                <div class="buttons">
+                    <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Почати шлях</a>
+                    <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Задати питання</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-indigo-900 text-white p-4 text-center">
+        <p>© 2025 Я є. Усі права захищено.</p>
+        <p class="mt-2 text-sm">З душею рекомендуємо:
+            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank">Карпатська Грибниця</a>
+        </p>
+    </footer>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Плавний скролінг для якірних посилань
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Меню-гамбургер
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+
+            if (menuToggle && navUl) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                });
+
+                menuToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        menuToggle.click();
+                    }
+                });
+
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.setAttribute('tabindex', '0');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Системні файли Windows і macOS
+Thumbs.db
+.DS_Store
+
+# Логи, тимчасові файли
+*.log
+*.tmp
+
+# Папки IDE
+.vscode/
+.idea/
+
+# Якщо колись будеш використовувати Node.js або щось подібне
+node_modules/
+dist/
+build/
+
+# Git файли, що не потрібні для відображення
+.git/
+
+# Кеш або резервні файли
+*.bak
+*.swp
+
+# Якщо VS Code створив налаштування
+*.code-workspace

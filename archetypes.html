@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про Архетипи - Самопізнання з Я є</title>
+    <meta name="description" content="Дізнайтесь про архетипи та їх значення для самопізнання на проєкті Я є.">
+    <meta name="keywords" content="архетипи, самопізнання, психологія, внутрішня суть, лідер, маг, воїн">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Про Архетипи - Я є">
+    <meta property="og:description" content="Дізнайтесь про архетипи та їх значення для самопізнання.">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        nav { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+            color: white; 
+            padding: 1rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+        }
+        nav .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        nav h1 { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+        }
+        .menu-toggle { 
+            display: none; /* За замовчуванням прихований на великих екранах */
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            color: white; 
+        }
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 1rem; 
+            margin: 0; /* Видаляємо дефолтний margin */
+            padding: 0; /* Видаляємо дефолтний padding */
+        }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            padding: 0.5rem 0; /* Збільшимо клікабельну область */
+            display: block; /* Щоб padding працював коректно */
+        }
+        nav a:hover, nav a:focus { 
+            text-decoration: underline; 
+        }
+        .section { 
+            padding: 4rem 1rem; 
+            text-align: center; 
+        }
+        .bg-gradient-to-r { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+        }
+        .text-white { color: white; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .text-center { text-align: center; }
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+            padding: 0 1rem; /* Додаємо горизонтальний padding для контейнерів */
+            box-sizing: border-box; /* Включаємо padding в ширину елемента */
+        }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .text-4xl { font-size: 2.25rem; }
+        .md\:text-5xl { font-size: 3rem; }
+        .font-bold { font-weight: bold; }
+        .font-lora { font-family: 'Lora', serif; } 
+        .mb-4 { margin-bottom: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .bg-gray-50 { background-color: var(--gray-50); } 
+        .bg-white { background-color: var(--white); } 
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .max-w-full { max-width: 100%; }
+        .h-auto { height: auto; }
+        h2 { font-size: 1.875rem; } 
+        .text-3xl { font-size: 1.875rem; }
+        .text-2xl { font-size: 1.5rem; }
+        ol { list-style-type: decimal; padding-left: 1.5rem; }
+        .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .inline-block { display: inline-block; }
+        .button { /* Узагальнений клас для кнопок */
+            display: inline-block;
+            background: var(--button-bg);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: background-color 0.3s ease; 
+        }
+        .button:hover, .button:focus { 
+            background: var(--button-hover); 
+            outline: none; 
+        }
+
+        footer { 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 1.5rem 1rem; 
+            text-align: center; 
+        }
+        footer a { 
+            color: #FFD700; 
+            text-decoration: underline; 
+        }
+        .footer-note { 
+            font-size: 0.875rem; 
+            margin-top: 0.5rem;
+        }
+
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+                padding: 1rem; 
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+            }
+            nav ul.active { display: flex; } 
+            nav .container { flex-direction: column; align-items: flex-start; }
+            
+            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 2rem; }
+            .md\:text-5xl { font-size: 2.5rem; }
+            .text-lg { font-size: 1rem; }
+            .max-w-2xl { max-width: 100%; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            h2.text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .button { padding-left: 1.5rem; padding-right: 1.5rem; } 
+            .container { padding: 0 1rem; }
+            .buttons { text-align: center; } 
+        }
+
+        @media (max-width: 480px) {
+            .text-4xl { font-size: 1.5rem; }
+            .md\:text-5xl { font-size: 2rem; } 
+            h2.text-3xl { font-size: 1.25rem; }
+            .text-2xl { font-size: 1rem; }
+            .button { padding-left: 1rem; padding-right: 1rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            .text-4xl { font-size: 1.2rem; }
+            h2.text-3xl { font-size: 1rem; }
+            .text-2xl { font-size: 0.875rem; }
+            .container { padding: 0 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <script type="module">
+                document.addEventListener('DOMContentLoaded', () => {
+                    // Плавна прокрутка для якірних посилань
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = document.querySelector(anchor.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    });
+
+                    // Меню-гамбургер
+                    const menuToggle = document.createElement('button');
+                    menuToggle.className = 'menu-toggle';
+                    menuToggle.setAttribute('aria-label', 'Переключити меню навігації');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.innerHTML = '☰';
+
+                    const navContainer = document.querySelector('nav .container');
+                    const navUl = document.querySelector('nav ul');
+
+                    if (navContainer && navUl) {
+                        navContainer.insertBefore(menuToggle, navUl);
+
+                        menuToggle.addEventListener('click', () => {
+                            const isExpanded = navUl.classList.toggle('active');
+                            menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                        });
+
+                        menuToggle.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                menuToggle.click();
+                            }
+                        });
+
+                        navUl.querySelectorAll('a').forEach(link => {
+                            link.setAttribute('tabindex', '0');
+                        });
+                    }
+                });
+            </script>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">Що таке архетипи?</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-6">Архетипи — це глибинні патерни, які допомагають нам розуміти наші внутрішні сили, стратегії поведінки та способи взаємодії з навколишнім світом.</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 text-center">
+        <div class="container mx-auto">
+            <img src="images/mezhovyk.jpg" alt="Зображення 'Межовик', що символізує перетин або межу" class="mx-auto mb-6 max-w-full h-auto">
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto max-w-3xl">
+            <h2 class="text-3xl font-bold font-lora mb-6 text-center">Основні архетипи: Розкриття сил всередині себе</h2>
+            <p class="text-lg mb-4">Архетипи — це глибинні патерни, які допомагають нам розуміти наші внутрішні сили, стратегії поведінки та способи взаємодії з навколишнім світом. Кожен з нас несе в собі ці архетипи, і вони виявляються в різних ситуаціях. Досліджуючи їх, ми можемо не лише краще розуміти себе, а й набувати більшої гнучкості у своїх реакціях та рішеннях.</p>
+            <ol class="space-y-8 text-lg">
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Лідер</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Воля, рішучість, відвага.</p>
+                    <p class="text-lg mb-2">Лідер — це архетип, що прагне діяти, впливати на навколишній світ і вести за собою інших. Лідери — це природжені організатори та натхненники, здатні втілювати зміни. Вони не бояться відповідальності і часто мають сильне почуття мети. Лідер може надихати на великі досягнення, однак важливо, щоб він не забував про свою відповідальність перед іншими.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Маг</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Мудрість, інтуїція, трансформація.</p>
+                    <p class="text-lg mb-2">Маг — це архетип, який шукає глибоке розуміння і шукає способи змінювати світ навколо себе через знання і трансформацію. Вони інтуїтивно відчувають можливості для змін і завжди прагнуть до нових ідей. Маги часто не обмежуються звичними рамками і шукають шлях до глибинних змін як для себе, так і для інших.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Воїн</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Сила духу, рішучість, дисципліна.</p>
+                    <p class="text-lg mb-2">Воїн — це архетип, що символізує здатність боротися, захищати і долати труднощі. Він розуміє важливість дисципліни і самовіддачі в досягненні своїх цілей. Воїни часто пов'язані з боротьбою за справедливість, захистом тих, хто слабший, і здатністю зберігати стійкість перед труднощами. Однак важливо не забувати про баланс між боротьбою і внутрішнім миром.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Любовник</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Емоції, пристрасть, глибокі зв’язки.</p>
+                    <p class="text-lg mb-2">Любовник — це архетип, що втілює силу емоцій, пристрасті та глибинних зв’язків з іншими людьми. Це архетип близькості, емпатії і готовності відкритися перед іншими. Любовники прагнуть гармонії у стосунках і здатні до глибоких і тривалих зв’язків. Вони також часто шукають сенс і глибину в емоційних переживаннях, важливо лише не впасти в залежність від зовнішніх факторів.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Дитина</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Безтурботність, радість, невинність.</p>
+                    <p class="text-lg mb-2">Дитина — це архетип, що символізує почуття захоплення світом, інтуїцію і чистоту погляду на речі. Вона відкривається всьому новому і вірить в можливості без обмежень. Дитина часто має здатність адаптуватися до нових ситуацій, не зважаючи на труднощі. Однак, вона може іноді бути надто наївною і потребує мудрості для справжньої життєвої зрілості.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Мудрець</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Розум, знання, спостережливість.</p>
+                    <p class="text-lg mb-2">Мудрець — це архетип, який захоплюється глибокими істинами і має здатність бачити далеко вперед. Це не лише інтелектуальна сила, а й здатність до спокійного розуміння світу. Мудрець шукає сенс в житті і має здатність знаходити рішення там, де інші бачать лише проблему. Важливо не впасти в ізоляцію і не втратити зв’язок з реальним світом.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Творець</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Креативність, інновації, майстерність.</p>
+                    <p class="text-lg mb-2">Творець — це архетип, що рухається вперед через інновації і самовираження. Творці завжди шукають нові шляхи для самовираження та створення нового. Вони можуть бути художниками, вченими, інженерами — будь-якими людьми, чия діяльність пов'язана з інноваціями і перетворенням світу. Важливо не забувати про баланс між креативом і рутиною.</p>
+                </li>
+                <li>
+                    <h3 class="text-2xl font-semibold font-lora mb-2">Тінь</h3>
+                    <p class="text-lg mb-2"><strong>Сила:</strong> Темна сторона, потиск обмежень, неусвідомлені аспекти.</p>
+                    <p class="text-lg mb-2">Тінь — це архетип, що відповідає за наші неусвідомлені та часто незручні для нас частини. Це можуть бути страхи, недоліки або навіть темні риси, які ми прагнемо не визнавати. Важливо не ігнорувати тінь, бо це може призвести до внутрішніх конфліктів. Прийняття тіні дозволяє нам стати цілісними і здобути глибше розуміння себе.</p>
+                </li>
+            </ol>
+            <p class="text-lg mt-4">Ці архетипи не є статичними. Вони динамічні й взаємодіють один з одним у кожній людині. Через процес пізнання та самовідкриття ми можемо розвивати свої архетипи, пристосовуючи їх до нових життєвих ситуацій. Це дозволяє не тільки глибше зрозуміти себе, але й відкриває нові можливості для особистого росту і взаємодії з навколишнім світом.</p>
+            <div class="buttons text-center">
+                <a href="tools.html" class="mt-6 button">Спробувати інструменти</a>
+                <a href="contact.html" class="mt-4 button">Задати питання</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Я є. Усі права захищено.</p>
+        <p class="footer-note">З душею рекомендуємо: 
+            <a href="https://t.me/CRPT_shroomery" target="_blank" rel="noopener noreferrer">Карпатська Грибниця</a>
+        </p>
+    </footer>
+</body>
+</html>

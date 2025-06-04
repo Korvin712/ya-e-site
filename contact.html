@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - Зв’яжіться з Я є для Самопізнання</title>
+    <meta name="description" content="Зв’яжіться з проєктом Я є для консультацій та підтримки у самопізнанні. Telegram, email та закритий канал доступні тут.">
+    <meta name="keywords" content="контакти, самопізнання, консультації, telegram, архетипи, підтримка">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Контакти - Зв’яжіться з Я є для Самопізнання">
+    <meta property="og:description" content="Зв’яжіться з проєктом Я є для консультацій та підтримки у самопізнанні. Telegram, email та закритий канал доступні тут.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --darkslategray: #2F4F4F;
+            --gray-50: #f9fafb;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; /* Додано базовий колір тексту */
+        }
+
+        /* Загальні стилі контейнера */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem; /* Додано горизонтальний відступ для контейнерів */
+            width: 100%;
+        }
+
+        /* Навігація */
+        nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0; /* Змінено padding, щоб він застосовувався до контейнера */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0; /* Прибрано зайвий відступ */
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem; /* Додано padding для зручності натискання */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0; /* Прибрано зайвий відступ */
+            padding: 0; /* Прибрано зайвий відступ */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0; /* Додано padding для кращої клікабельності */
+            display: block; /* Зроблено посиланням блочний елемент для кращого padding */
+        }
+
+        nav a:hover, nav a:focus {
+            text-decoration: underline;
+        }
+
+        /* Секції */
+        .section {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        /* Фон та колір тексту */
+        .bg-gray-50 {
+            background-color: var(--gray-50);
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        /* Відступи */
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-2 { margin-top: 0.5rem; }
+
+        /* Вирівнювання тексту */
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+
+        /* Анімація */
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Розміри тексту */
+        .text-4xl { font-size: 2.25rem; }
+        .md\:text-5xl { font-size: 3rem; } /* Це спрацює на розмірі >= md */
+        .text-lg { font-size: 1.125rem; }
+        .text-sm { font-size: 0.875rem; }
+
+        /* Вага шрифту */
+        .font-bold { font-weight: bold; }
+        .font-lora { font-family: 'Arial', sans-serif; } /* Змінено на Arial для узгодженості */
+
+        /* Ширина елементів */
+        .max-w-2xl { max-width: 42rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* Футер */
+        .bg-indigo-900 { background: var(--primary-color); }
+        .p-4 { padding: 1rem; }
+        .text-yellow-400 { color: #facc15; } /* Приклад кольору для посилання у футері */
+        .underline { text-decoration: underline; }
+
+        /* Загальні стилі посилань в секції контенту */
+        .contact-content a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Медіа-запити для адаптивності */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+            }
+            nav ul.active { display: flex; }
+            nav .container { flex-direction: column; align-items: flex-start; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 2rem; }
+            .md\:text-5xl { font-size: 2.5rem; }
+            .text-lg { font-size: 1rem; }
+            .max-w-2xl { max-width: 100%; }
+            .container { padding: 0 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .text-4xl { font-size: 1.5rem; }
+            .md\:text-5xl { font-size: 2rem; }
+            .text-lg { font-size: 1rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            .text-4xl { font-size: 1.2rem; }
+            .container { padding: 0 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gray-50 py-16">
+        <div class="container mx-auto max-w-2xl text-center animate-fade-in contact-content">
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-6">Контакти</h2>
+            <p class="text-lg mb-4">Не соромся. Проходь. Тут свої.</p>
+            <p class="text-lg mb-4">Напряму до мене — без посередників і форм з 2004 року:</p>
+            <p class="text-lg mb-4">Електронна пошта: <a href="mailto:korvin71@meta.ua">korvin71@meta.ua</a></p>
+            <p class="text-lg mb-4">Закритий канал: <a href="https://t.me/+mlK1hJzQynZhNDNi">Я Є — Приватна територія</a></p>
+            <p class="text-lg mb-4">Viber: <a href="https://invite.viber.com/?g2=AQAwUFfdXXe5AFS7oDnJs7%2FZ02KSLEr2CevCII2NO3%2FmWWvi%2F15POQq%2FwleRwAjh">Я Є — Viber-спільнота</a></p>
+            <p class="text-lg mb-4">Якщо не відповів — значить читаю. Якщо довго не відповідаю — значить думаю. Якщо зовсім не відповів — можливо, ти не з того всесвіту. Але спробуй ще раз.</p>
+
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mt-8 mb-6">Акція для перших 100 учасників Telegram-каналу “Я є”</h2>
+            <p class="text-lg mb-4">Ще немає контенту. Ще тихо. Але вже є простір.</p>
+            <p class="text-lg mb-4">І саме ви можете стати тими, хто буде в його основі.</p>
+            <p class="text-lg mb-4">Перші 100 — вхід безкоштовний.</p>
+            <p class="text-lg mb-4">Без зобов’язань. Просто присутність.</p>
+            <p class="text-lg mb-4">Бо це не про оплату — це про людей, які відчули.</p>
+            <p class="text-lg mb-4">Згодом доступ буде платним, бо в канал вкладатиметься енергія, час і практика.</p>
+            <p class="text-lg mb-4">Але ви — перші.</p>
+            <p class="text-lg mb-4">І я це пам’ятаю.</p>
+            <p class="text-lg mb-4">Приєднуйся до каналу: <a href="https://t.me/+mlK1hJzQynZhNDNi">Я Є — Приватна територія</a></p>
+        </div>
+    </section>
+
+    <footer class="bg-indigo-900 text-white p-4 text-center">
+        <p>© 2025 Я є. Усі права захищено.</p>
+        <p class="mt-2 text-sm">З душею рекомендуємо:
+            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank">Карпатська Грибниця</a>
+        </p>
+    </footer>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Плавний скролінг для якірних посилань
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Меню-гамбургер
+            const menuToggle = document.createElement('button');
+            menuToggle.className = 'menu-toggle';
+            menuToggle.setAttribute('aria-label', 'Переключити меню навігації');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.innerHTML = '☰';
+            const navContainer = document.querySelector('nav .container');
+            const navUl = document.querySelector('nav ul');
+            if (navContainer && navUl) {
+                navContainer.insertBefore(menuToggle, navUl);
+
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                });
+
+                menuToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        menuToggle.click();
+                    }
+                });
+
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.setAttribute('tabindex', '0');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

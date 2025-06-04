@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Як з усім цим жити далі? | Я є</title>
+    <meta name="description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
+    <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст, як жити далі">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Як з усім цим жити далі? | Я є">
+    <meta property="og:description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
+    <meta property="og:type" content="website">
+    <!-- Додаємо бібліотеку SheetJS для роботи зі скриптом -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;  
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                alert("Помилка при обробці файлу: " + e.message);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+    </script>
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Hamburger menu
+            const menuToggle = document.createElement('button');
+            menuToggle.className = 'menu-toggle';
+            menuToggle.setAttribute('aria-label', 'Переключити меню навігації');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.innerHTML = '☰';
+            const navContainer = document.querySelector('nav .container');
+            const navUl = document.querySelector('nav ul');
+            if (navContainer && navUl) {
+                navContainer.insertBefore(menuToggle, navUl);
+
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                });
+
+                menuToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        menuToggle.click();
+                    }
+                });
+            }
+
+            // Accordion functionality
+            const accordionItems = document.querySelectorAll('.accordion-header');
+            accordionItems.forEach(item => {
+                item.setAttribute('aria-expanded', 'false');
+                item.setAttribute('role', 'button');
+                const content = item.nextElementSibling;
+                content.setAttribute('aria-hidden', 'true');
+
+                item.addEventListener('click', () => {
+                    const isActive = content.classList.contains('active');
+                    document.querySelectorAll('.accordion-content').forEach(content => {
+                        content.classList.remove('active');
+                        content.setAttribute('aria-hidden', 'true');
+                        content.previousElementSibling.setAttribute('aria-expanded', 'false');
+                        const icon = content.previousElementSibling.querySelector('.accordion-icon');
+                        if (icon) icon.textContent = '+';
+                    });
+
+                    if (!isActive) {
+                        content.classList.add('active');
+                        content.setAttribute('aria-hidden', 'false');
+                        item.setAttribute('aria-expanded', 'true');
+                        const icon = item.querySelector('.accordion-icon');
+                        if (icon) icon.textContent = '−';
+                    }
+                });
+
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        item.click();
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --darkslategray: #2F4F4F;
+        }
+
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        nav { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+            color: white; 
+            padding: 1rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+        }
+        nav .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        nav h1 { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+        }
+        .menu-toggle { 
+            display: none; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            background: none; 
+            border: none; 
+            color: white; 
+        }
+        nav ul { 
+            list-style: none; 
+            display: flex; 
+            gap: 1rem; 
+        }
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+        }
+        nav a:hover, nav a:focus { 
+            text-decoration: underline; 
+        }
+        .section { 
+            padding: 4rem 1rem; 
+            text-align: center; 
+        }
+        .bg-gradient-to-r { 
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+        }
+        .from-indigo-800 { background: var(--primary-color); }
+        .to-purple-900 { background: var(--secondary-color); }
+        .text-white { color: white; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .text-center { text-align: center; }
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        h1 { font-size: 2.5rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .md\:text-5xl { font-size: 3rem; }
+        .font-bold { font-weight: bold; }
+        .font-lora { font-family: 'Arial', sans-serif; }
+        .mb-4 { margin-bottom: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-white { background-color: white; }
+        .max-w-full { max-width: 100%; }
+        .h-auto { height: auto; }
+        h2 { font-size: 1.875rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-2xl { font-size: 1.5rem; }
+        ol, ul { list-style-type: decimal; padding-left: 1.5rem; }
+        ul { list-style-type: disc; }
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+        .bg-indigo-900 { background: var(--primary-color); }
+        .p-4 { padding: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .inline-block { display: inline-block; }
+        .bg-indigo-600 { background: var(--button-bg); }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .rounded-full { border-radius: 9999px; }
+        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
+        .max-w-600 { max-width: 600px; }
+        .text-left { text-align: left; }
+        .accordion-item { 
+            border-bottom: 1px solid #ddd; 
+            margin-bottom: 1rem; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        .accordion-header { 
+            padding: 1rem; 
+            background: #f1f1f1; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .accordion-header:hover { 
+            background: #e1e1e1; 
+        }
+        .accordion-content { 
+            display: none; 
+            padding: 1rem; 
+            background: #fff; 
+        }
+        .accordion-content.active { 
+            display: block; 
+        }
+        .accordion-icon { 
+            font-size: 1.2rem; 
+        }
+        .subtitle { 
+            font-size: 1.25rem; 
+            font-style: italic; 
+            margin-bottom: 2rem; 
+        }
+        .text-darkslategray { color: #2F4F4F; }
+        footer { 
+            background: var(--primary-color); 
+            color: white; 
+            padding: 1rem; 
+            text-align: center; 
+        }
+        .footer-small { font-size: 0.875rem; }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+                padding: 1rem; 
+            }
+            nav ul.active { display: flex; }
+            nav .container { flex-direction: column; align-items: flex-start; }
+            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
+            .text-4xl { font-size: 2rem; }
+            .md\:text-5xl { font-size: 2.5rem; }
+            .text-lg { font-size: 1rem; }
+            .max-w-2xl { max-width: 100%; }
+            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
+            h2.text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .px-8 { padding-left: 1rem; padding-right: 1rem; }
+            .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+            .container { padding: 0 1rem; }
+            .max-w-600 { max-width: 100%; }
+            .accordion-item { max-width: 100%; }
+            .subtitle { font-size: 1rem; }
+            .buttons { text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .text-4xl { font-size: 1.5rem; }
+            .md\:text-5xl { font-size: 2rem; }
+            h2.text-3xl { font-size: 1.25rem; }
+            .text-2xl { font-size: 1rem; }
+            .px-8 { padding-left: 0.5rem; padding-right: 0.5rem; }
+            .container { padding: 0 0.5rem; }
+            .subtitle { font-size: 0.875rem; }
+            .buttons { text-align: center; }
+        }
+
+        @media (max-width: 320px) {
+            .text-4xl { font-size: 1.2rem; }
+            h2.text-3xl { font-size: 1rem; }
+            .text-2xl { font-size: 0.875rem; }
+            .container { padding: 0 0.25rem; }
+            .subtitle { font-size: 0.75rem; }
+            .buttons { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white py-20 text-center animate-fade-in">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">Як з усім цим жити далі?</h2>
+            <p class="text-lg max-w-2xl mx-auto mb-6 subtitle">Тут — думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"</p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto max-w-3xl">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">🔍 Визначив архетип. І що тепер?</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4">Дізнатись — це не те саме, що зрозуміти. А зрозуміти — не те саме, що діяти.</p>
+                    <p class="text-lg mb-4"><strong>📌 Ти вже знаєш свій архетип?</strong><br>Чудово. Ти пройшов один із найважливіших кроків — зустріч із собою справжнім. Не з соціальною маскою. Не з тією версією, яку про тебе створили інші. А з тією частиною, яка була в тобі завжди.<br>Це може бути Вовк. Мандрівник. Маг. Кішка. Трікстер. Герой. А, може, навіть Криса.<br>Ким би ти себе не впізнав — тіло не бреше. І коли з’являється реакція — мурашки, тиск у грудях, трепет — це знак. Це воно.<br>Але… що далі?</p>
+                    <p class="text-lg mb-4"><strong>❗ Просто знати — нічого не змінює</strong><br>Світ повен людей, які щось знають.<br>Хтось знає свою тінь. Хтось — астрологічну карту. Хтось — свій тип за Майєрс-Бріґґс.<br>І що з того?<br>Ніяке знання не змінить твоє життя, якщо з ним нічого не робити.<br>Це як знайти ліхтар — і не ввімкнути.<br>Можеш носити його в кишені роками. І все життя — плутатись у темряві.</p>
+                    <p class="text-lg mb-4"><strong>🧭 Архетип — це не ярлик. Це напрямок.</strong><br>Архетип — не табличка «я такий».<br>Це компас. Він не дає відповіді. Він ставить питання. Відкриває двері.<br>Але заходити через ці двері — будеш тільки ти сам.</p>  
+                    <p class="text-lg mb-4"><strong>🛠️ Що є на цьому сайті?</strong><br>Для кожного архетипу ми створили гайди. Не просто “опис”, а:<br>· що в тобі сильне, і як це активувати;<br>· які пастки тебе чекають на шляху;<br>· що робити, щоб не загрузнути в теорії;<br>· які конкретні дії тебе включають;<br>· як звучить твій шлях.<br>Ці гайди — це перехід від знання до практики.</p>
+                    <p class="text-lg mb-4"><strong>🗝️ Для кого це все?</strong><br>Для тих, хто готовий рухатись далі.<br>Не просто “читати цікаве”. А пробувати. Відчувати. Робити.<br>Тому доступ до гайдів — у закритому Telegram-каналі. Не для обмеження. А для концентрації. Для тих, хто дозрів.</p>
+                    <p class="text-lg mb-4"><strong>🔥 Якщо ти ще питаєш “що далі?”</strong><br>Зроби дію. Маленьку, але свою.<br>Прочитай гайд. Випиши собі одне питання звідти.<br>Виконуй одну рекомендацію. Не все одразу. Одну.<br>Цього вистачить, щоб розпочати рух.</p>
+                    <p class="text-lg mb-4">Бо інакше архетип так і залишиться просто словом.<br>А твоя суть — так і не прокинеться.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">👁 Архетипи в повсякденному: вони ближчі, ніж здається</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4"><strong>🤔 Думаєш, архетипи — це щось для кабінетних психологів, фентезійних персонажів чи духовних гуру?</strong><br>Ні.<br>Архетипи — це повсякденність у найчистішому вигляді.<br>Це ти, коли приймаєш рішення. Коли жартуєш. Коли зриваєшся. Коли підтримуєш. Коли тікаєш.<br>Архетип — це не те, у що треба “вірити”.<br>Це те, що працює, навіть коли ти про нього не знаєш.</p>
+                    <p class="text-lg mb-4"><strong>🧍‍♂️ Вранці: хто тебе будить?</strong><br>· Якщо зриваєшся з ліжка зі словами “світ чекає, а я його лопатою” — це Герой.<br>· Якщо думаєш “що за абсурд знову в цьому житті?” — Трікстер усміхається.<br>· Якщо повільно відкриваєш одне око і шепочеш “хочу тиші й кави” — вітаю, Кішка прокидається.</p>
+                    <p class="text-lg mb-4"><strong>☕ Під час розмов з людьми:</strong><br>· Ти слухаєш, приймаєш, даєш пораду — Опікун.<br>· Витягуєш суть, відкидаєш воду — Мудрець.<br>· Піджартовуєш, провокуєш, але не зламіно — Трікстер знову в грі.<br>· Тебе дратує чужа безпорадність, і хочеться все вирішити самому — Герой перевтомлений.</p>
+                    <p class="text-lg mb-4"><strong>🧱 На роботі чи вдома:</strong><br>· Якщо тебе знову використовують, і ти мовчки терпиш — Опікун у тіні.<br>· Якщо хочеш усе спалити й виїхати в Карпати — Бунтар нервово курить у кутку.<br>· Якщо зробив каву, вдягнув навушники і зник — Мандрівник в офісному тілі.<br>· Якщо знову вирішив подивитися відео про зміст життя і третє око — Маг наближається.</p>
+                    <p class="text-lg mb-4"><strong>💬 У діалогах:</strong><br>· “Я знаю, як буде краще.” — це Мудрець, що трохи загрався.<br>· “Я ж тобі казав, а ти…” — це Тінь Опікуна + шматочок Криси.<br>· “А давай уявимо, що ми вже на даху світу і танцюємо?” — Любовник у чистому вигляді.<br>· “Не чіпайте мене, я просто хочу бути.” — Кішка. Завжди.</p>
+                    <p class="text-lg mb-4"><strong>📌 А тепер найголовніше:</strong><br>Ці прояви — не “ролі” і не “характер”. Це архетипи.<br>І вони не фіксовані. Ти можеш бути Героєм зранку, Мудрецем у розмові, Трікстером у коментарях і Кішкою ввечері з чашкою чаю.<br>Це нормально.</p>
+                    <p class="text-lg mb-4"><strong>🎯 Навіщо це знати?</strong><br>Бо як тільки ти усвідомлюєш, хто зараз діє у тобі — зникає автоматизм.<br>Ти вже не “просто зірвався”. Ти бачиш: “це мною зараз керує Бунтар. Чому? Що його зачепило?”<br>І в цьому моменті — свобода.<br>Бо якщо бачиш, то можеш обирати.</p>
+                    <p class="text-lg mb-4"><strong>🛠 Як почати?</strong><br>1. Спостерігай. Без оцінок. Просто зафіксуй: “Ого, це був Маг, точно”.<br>2. Читай гайд. У нас є гайд для кожного архетипу — не для прикрас, а для дій.<br>3. Дозволь собі бути різним. Людина — це не один архетип. Це ціла зграя. В тобі.<br>4. Не ліпи з себе “ідеального”. Навіть Трікстер іноді падає в калюжу. І сміється з цього.</p>
+                    <p class="text-lg mb-4"><strong>💬 Висновок</strong><br>Архетип — це не щось “велике й важливе”. Це щось дуже звичне, але невидиме.<br>Це те, що керує твоїм “так” і “ні”, твоїми рішеннями, реакціями, вчинками.<br>І тільки ти сам можеш це усвідомити — і почати з цим працювати.<br>Бо справжній шлях — не в тому, щоб “стати кимось”.<br>А в тому, щоб згадати, ким ти вже є.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">“Подивитись на себе” — чому для одних це страх, а для інших відкриття?</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4">Може здатися, що побачити себе справжнього — це щось просте.</p>
+                    <p class="text-lg mb-4">Що тут такого? Глянути в дзеркало, побачити, хто ти є — і все.</p>
+                    <p class="text-lg mb-4">Та ні, друже. Для багатьох це страшніше, ніж смерть.</p>
+                    <p class="text-lg mb-4">Бо що саме ти побачиш?</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Не красиву маску.</li>
+                        <li>Не “я — батько, працівник, громадянин”.</li>
+                        <li>А отого внутрішнього — забутого, недоглянутого, справжнього.</li>
+                    </ul>
+                    <p class="text-lg mb-4">І там не завжди світло.</p>
+                    <p class="text-lg mb-4">Для більшості — це табу.</p>
+                    <p class="text-lg mb-4">Вони відчувають:</p>
+                    <p class="text-lg mb-4">“Якщо я гляну в себе — побачу біль, злість, сором, страх. Те, що я ховав усе життя.”</p>
+                    <p class="text-lg mb-4">І вони мають рацію.</p>
+                    <p class="text-lg mb-4">Бо себе не обдуриш. Там усе чесно.</p>
+                    <p class="text-lg mb-4">І саме тому більшість — ті самі “нормальні”, “успішні”, “стабільні” — воліють не глянути.</p>
+                    <p class="text-lg mb-4">А що буде, якщо все ж глянути?</p>
+                    <p class="text-lg mb-4">Спочатку — холодок.</p>
+                    <p class="text-lg mb-4">Потім — сумнів, страх, нудота.</p>
+                    <p class="text-lg mb-4">А потім — свобода.</p>
+                    <p class="text-lg mb-4">Бо ти вже не втрачаєш сили, щоб утримувати фальш.</p>
+                    <p class="text-lg mb-4">І тоді з’являється цікавість.</p>
+                    <p class="text-lg mb-4">Така, як у дитини, але глибше:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>“А хто я ще?”</li>
+                        <li>“А що ще в мені є?”</li>
+                        <li>“А чому я саме такий?”</li>
+                        <li>“А якщо я можу змінюватись — то ким я хочу бути?”</li>
+                    </ul>
+                    <p class="text-lg mb-4">І отут починається шлях.</p>
+                    <p class="text-lg mb-4">Хтось не пройде. І це теж нормально.</p>
+                    <p class="text-lg mb-4">Вони будуть жити у своїх масках, у своїх “я серйознішими речами займаюсь”.</p>
+                    <p class="text-lg mb-4">Але ті, хто зробив перший крок — вже не повернуться назад.</p>
+                    <p class="text-lg mb-4">Бо справжнє — воно цікавіше, навіть коли болить.</p>
+                    <p class="text-lg mb-4">Це не для всіх. І слава Богу.</p>
+                    <p class="text-lg mb-4">Це не конкурс.</p>
+                    <p class="text-lg mb-4">Це не “просвітленість” чи “модний розвиток”.</p>
+                    <p class="text-lg mb-4">Це просто вибір: жити з собою — чи поруч із собою.</p>
+                    <p class="text-lg mb-4">Якщо тобі цікаво — вітаю.</p>
+                    <p class="text-lg mb-4">Якщо лячно — теж добре. Страх — це теж реакція.</p>
+                    <p class="text-lg mb-4">Але якщо не відчуваєш взагалі нічого — то може, саме час заглянути вглиб.</p>
+                    <p class="text-lg mb-4">“Я є” — саме про це.</p>
+                    <p class="text-lg mb-4">Про тишу, правду, внутрішній дотик до себе.</p>
+                    <p class="text-lg mb-4">Не швидко. Не з гарантією. Але — по-справжньому.</p>
+                    <p class="text-lg mb-4">Про дім.</p>
+                    <p class="text-lg mb-4">Усередина — не завжди світло. Але і не порожньо.</p>
+                    <p class="text-lg mb-4">Уяви собі старий покинутий будинок.</p>
+                    <p class="text-lg mb-4">Зовні — облуплені стіни, тріщини, пил, порожні вікна.</p>
+                    <p class="text-lg mb-4">Багато хто навіть боїться туди заходити:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>"Там темно",</li>
+                        <li>"Там може бути небезпечно",</li>
+                        <li>"Краще триматися подалі".</li>
+                    </ul>
+                    <p class="text-lg mb-4">Але той, хто заходить — обережно, зі світильником у руках — бачить:</p>
+                    <p class="text-lg mb-4">Так, там є сміття, поламані меблі, павутиння.</p>
+                    <p class="text-lg mb-4">Але також — міцні стіни, сильний фундамент, і заховані скарби.</p>
+                    <p class="text-lg mb-4">Трохи терпіння, трохи зусиль — і дім очищується.</p>
+                    <p class="text-lg mb-4">Він стає не просто житлом.</p>
+                    <p class="text-lg mb-4">Він стає фортецею. Місцем сили.</p>
+                    <p class="text-lg mb-4">Очищення себе — це так само.</p>
+                    <p class="text-lg mb-4">Ти заходиш у цей дім. У себе.</p>
+                    <p class="text-lg mb-4">На перших кроках пил здіймається клубами.</p>
+                    <p class="text-lg mb-4">Все здається ще гіршим, ніж було зовні.</p>
+                    <p class="text-lg mb-4">Але ти вже не лякаєшся —</p>
+                    <p class="text-lg mb-4">Ти знаєш: це просто пил. Не чудовиська.</p>
+                    <p class="text-lg mb-4">І починаєш з малого:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Тут прибрав,</li>
+                        <li>Там роздивився,</li>
+                        <li>Десь викинув,</li>
+                        <li>Щось залишив.</li>
+                    </ul>
+                    <p class="text-lg mb-4">Те, що більше не твоє — з вдячністю відпускаєш.</p>
+                    <p class="text-lg mb-4">Те, що справді твоє — очищаєш, лагодиш, повертаєш на місце.</p>
+                    <p class="text-lg mb-4">З кожним днем — більше світла.</p>
+                    <p class="text-lg mb-4">Тріщини на стінах вже не сором. Вони — частина краси.</p>
+                    <p class="text-lg mb-4">Цей дім — не ідеальний. Але живий.</p>
+                    <p class="text-lg mb-4">І найголовніше — твій.</p>
+                    <p class="text-lg mb-4">Ти більше не гість у собі.</p>
+                    <p class="text-lg mb-4">Ти — господар.</p>
+                    <p class="text-lg mb-4">Коли ти очищуєш дім — і внутрішнє світло з’являється.</p>
+                    <p class="text-lg mb-4">А потім — крізь вікна починає проникати і зовнішнє.</p>
+                    <p class="text-lg mb-4">Ти виходиш на поріг.</p>
+                    <p class="text-lg mb-4">Дивишся навколо.</p>
+                    <p class="text-lg mb-4">Є інші домівки.</p>
+                    <p class="text-lg mb-4">Деякі теж покинуті.</p>
+                    <p class="text-lg mb-4">Деякі — темні.</p>
+                    <p class="text-lg mb-4">А в деяких уже блимає світло.</p>
+                    <p class="text-lg mb-4">І тоді приходить найважливіше розуміння:</p>
+                    <p class="text-lg mb-4">Ти — не один.</p>
+                    <p class="text-lg mb-4">І ти більше не мусиш нікого рятувати.</p>
+                    <p class="text-lg mb-4">Ти просто є.</p>
+                    <p class="text-lg mb-4">Живий.</p>
+                    <p class="text-lg mb-4">Справжній.</p>
+                    <p class="text-lg mb-4">Той, хто пройшов через темряву — і залишився собою.</p>
+                    <p class="text-lg mb-4">І це — найбільше, що може зробити людина.</p>
+                    <p class="text-lg mb-4">Бути світлом, яке нічого не нав’язує, але яке видно навіть у найгустішій темряві.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">Навіщо знати свій архетип?</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4"><em>Дата: 19 травня 2025</em></p>
+                    <p class="text-lg mb-4">Це питання часто виникає одразу після першого знайомства з архетипами.</p>
+                    <p class="text-lg mb-4">“Ну добре, я Вовк... чи Опікун... чи Мандрівник. І що з того?”<br>“Це як знак зодіаку?”<br>“Це щось для розваги?”<br>“А мені воно треба взагалі?”</p>
+                    <p class="text-lg mb-4">І відповідь тут проста: якщо не хочеш — не треба. Але якщо хочеш жити глибше — архетип може стати ключем.</p>
+                    <p class="text-lg mb-4">Архетип — це не кліше, не коробка, не діагноз. Це наче внутрішній двигун, який давно працює — просто ти не знаєш, як він виглядає і що саме він тягне. Ти відчуваєш, що щось у тобі постійно діє, щось штовхає тебе до певних вчинків, відгукується на певні теми, людей, ситуації. І коли ти раптом бачиш свій архетип — багато що стає на місце. Це як назвати власний стиль життя, свою внутрішню мову.</p>
+                    <p class="text-lg mb-4">І тоді:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Стає зрозуміло, чому ти дієш саме так.</li>
+                        <li>Зникає почуття "зі мною щось не так".</li>
+                        <li>З’являється повага до себе. Не гординя, а спокійна гідність.</li>
+                    </ul>
+                    <p class="text-lg mb-4">Це не обгортка — це твоє ядро. Ти можеш бути Піклувальником — і більше не соромитись того, що тобі важливо піклуватися. Ти можеш бути Бунтарем — і нарешти зрозуміти, чому тебе харить "нормальне життя". Ти можеш бути Любовником — і не лякатися своєї чуттєвості, а почати давати їй місце. А може, ти Вовк — і тобі просто треба вийти з клітки. І тоді не треба вигадувати собі “мотивацію” — вона вже є. Ти просто дозволяєш собі бути собою.</p>
+                    <p class="text-lg mb-4">Це не “виправдання” — це усвідомлення. Ти не кажеш: “Я Воїн, тому я грубий.” Але можеш сказати: “Я Воїн. І тепер розумію, як направити силу — не руйнувати, а творити.”</p>
+                    <p class="text-lg mb-4">А ще архетип пояснює твої конфлікти. Бо іноді сваришся не тому, що хтось поганий — а тому, що у вас різні архетипи, різні мови, різні болі. Вона — Маг, а ти — Лідер. І ви не вороги. Просто бачите світ по-різному.</p>
+                    <p class="text-lg mb-4">І найголовніше: архетип — це не ярлик. Це компас. Коли ти загублений, коли не знаєш, куди рухатись, коли відчуваєш себе не тим і не там — архетип може бути тією точкою, з якої починається повернення додому. Це не про ідеальність. Це про чесність із собою.</p>
+                    <p class="text-lg mb-4">Тому, якщо коротко: Навіщо знати свій архетип?</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Щоб зрозуміти себе.</li>
+                        <li>Щоб більше не витрачати енергію на боротьбу з власною природою.</li>
+                        <li>Щоб знайти свій шлях — а не копіювати чужий.</li>
+                        <li>Щоб поважати себе. І тих, хто інший.</li>
+                        <li>Щоб перестати ховатися. І нарешти жити.</li>
+                    </ul>
+                    <p class="text-lg mb-4">Це не обов’язково. Але якщо відгукується — значить, пора.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">Найсмішніша трагедія людства — пам’ять у тіні</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4"><em>Дата: 20 травня 2025</em></p>
+                    <p class="text-lg mb-4"><strong>Свідомість — як той чувак без пам’яті, що живе серед архіву</strong></p>
+                    <p class="text-lg mb-4">Уяви собі три персонажі:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li><strong>Тіло</strong> — старий дід, що пам’ятає все. І не просто пам’ятає, а ще й бурчить: “А пам’ятаєш 1997-го, як ти сказав ‘так нічого’ замість ‘ні, мені боляче’? От тому в тебе тут і смикає.”</li>
+                        <li><strong>Підсвідомість</strong> — архіваріус, що сидить у темряві, курить в кутку і час від часу шепоче: “А ось це тобі ще з минулого життя... не подякуєш.”</li>
+                        <li>І, нарешті, <strong>Свідомість</strong> — такий собі Вася з амнезією. Він бігає по цьому складу, дивиться по сторонах і кричить: “А чого мені так погано? Що це за запах? Чому мені хочеться плакати, коли йде дощ і пахне яблуками?!”</li>
+                    </ul>
+                    <p class="text-lg mb-4">___________________________</p>
+                    <p class="text-lg mb-4"><strong>Абсурд вищої проби</strong></p>
+                    <p class="text-lg mb-4">Ми щодня приймаємо рішення, живемо, кохаємо, працюємо — не маючи повного доступу до того, хто ми є насправді.</p>
+                    <p class="text-lg mb-4">А тіло, як вірний пес, терпить: “Ну нічого, він ще дійде. Ми ще почекаємо. Он уже мурашки побігли — може, згадає щось.”</p>
+                    <p class="text-lg mb-4">І підсвідомість зітхає: “Добре, ще один сон йому підкину. Може, хоч натяк зрозуміє.”</p>
+                    <p class="text-lg mb-4">___________________________</p>
+                    <p class="text-lg mb-4"><strong>Найсмішніше й найстрашніше одночасно</strong></p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Ти можеш не пам’ятати, чому тебе бісить, коли тебе перебивають.</li>
+                        <li>Не знати, чому після певного запаху хочеться втекти.</li>
+                        <li>Не розуміти, чому поруч з однією людиною тобі погано, хоча вона усміхається.</li>
+                    </ul>
+                    <p class="text-lg mb-4">Але тіло знає.</p>
+                    <p class="text-lg mb-4">І підсвідомість штовхає.</p>
+                    <p class="text-lg mb-4">А ти, бідолашний Вася-Свідомість, стоїш посеред усього цього і питаєш: “Я що, знову щось не так зробив?”</p>
+                    <p class="text-lg mb-4">___________________________</p>
+                    <p class="text-lg mb-4"><strong>То як же жити в цьому божевіллі?</strong></p>
+                    <ol class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li><strong>Не панікувати.</strong><br>Ти не глючиш — ти просто почав слухати. А це вже 90% справи.</li>
+                        <li><strong>Довіряти тілу.</strong><br>Якщо щось реагує — не ігноруй. Це не “дурниця”, це пошта з глибини.</li>
+                        <li><strong>Спостерігай.</strong><br>Питай себе: “Що зараз у мені говорить? Це я — чи архів?”</li>
+                        <li><strong>Не поспішай.</strong><br>Це не sprint, це життя. І воно все одно підкине нові загадки.</li>
+                    </ol>
+                    <p class="text-lg mb-4">___________________________</p>
+                    <p class="text-lg mb-4"><strong>Висновок простий, як дріт:</strong></p>
+                    <p class="text-lg mb-4">Свідомість — не керівник.</p>
+                    <p class="text-lg mb-4">Вона — перекладач між світами.</p>
+                    <p class="text-lg mb-4">І коли ти починаєш з нею працювати, як з інструментом, а не як з центром всесвіту — о, тоді починається найцікавіше.</p>
+                    <p class="text-lg mb-4">Бо відкривається дверцята.</p>
+                    <p class="text-lg mb-4">І ти вже не Вася, а хтось, хто пам’ятає більше, ніж учора.</p>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <h3 class="text-2xl font-semibold font-lora text-darkslategray">Чому люди обирають страждання замість змін?</h3>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="text-lg mb-4"><em>Дата: 24 травня 2025</em></p>
+                    <p class="text-lg mb-4">Це не просто психологія.</p>
+                    <p class="text-lg mb-4">Це вже філософія болю з елементами трагедії і театру абсурду.</p>
+                    <p class="text-lg mb-4">Бо, здавалося б, усе просто:</p>
+                    <p class="text-lg mb-4">Страждаєш — змінюй.</p>
+                    <p class="text-lg mb-4">Погано живеш — дій.</p>
+                    <p class="text-lg mb-4">Нещасний — шукай вихід.</p>
+                    <p class="text-lg mb-4">Але ні.</p>
+                    <p class="text-lg mb-4">Багато хто воліє залишатися у знайомому болі, ніж ступити у невідоме — навіть якщо там краще.</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>Чому так?</strong></p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>1. Страждання — знайоме. А зміни — страшні</strong></p>
+                    <p class="text-lg mb-4">Краще знайоме болото, ніж невідомий берег.</p>
+                    <p class="text-lg mb-4">Людина роками живе в болі, але навчилась в ньому виживати.</p>
+                    <p class="text-lg mb-4">А зміни — це відповідальність, вибір, нова роль.</p>
+                    <p class="text-lg mb-4">А це вже страшно.</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>2. Страждання — це виправдання</strong></p>
+                    <p class="text-lg mb-4">“Я б і зробив, та ж бачиш — не час, не ті умови…”</p>
+                    <p class="text-lg mb-4">Коли ти страждаєш — ти вже ніби дієш, хоча насправді просто терпиш.</p>
+                    <p class="text-lg mb-4">Це така внутрішня індульгенція:</p>
+                    <p class="text-lg mb-4">“Я страждаю — значить, намагаюсь.”</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>3. Страждання — це соціальна валюта</strong></p>
+                    <p class="text-lg mb-4">“У всіх важко, нічого страшного. Потерпи.”</p>
+                    <p class="text-lg mb-4">Коли тобі боляче — тебе жаліють. Підтримують. Не чіпають.</p>
+                    <p class="text-lg mb-4">А от як тільки ти починаєш змінюватися —</p>
+                    <p class="text-lg mb-4">тебе або не розуміють, або бояться, або знецінюють:</p>
+                    <p class="text-lg mb-4">“Що це ти такий особливий став?”</p>
+                    <p class="text-lg mb-4">“Іди працюй, не вигадуй.”</p>
+                    <p class="text-lg mb-4">“Не грайся з долею.”</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>4. Страждання — це ідентичність</strong></p>
+                    <p class="text-lg mb-4">“Я — жертва, мученик, той, кому не щастить.”</p>
+                    <p class="text-lg mb-4">Це роль. Образ. Захисна маска.</p>
+                    <p class="text-lg mb-4">І навіть якщо вона болюча — вона зрозуміла й звична.</p>
+                    <p class="text-lg mb-4">Без неї — порожнеча.</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>5. І головне: “Я не вартий кращого”</strong></p>
+                    <p class="text-lg mb-4">“У мене не вийде. Це не для мене. Таке не буває зі мною.”</p>
+                    <p class="text-lg mb-4">Це найглибше.</p>
+                    <p class="text-lg mb-4">Це не думка — це переконання.</p>
+                    <p class="text-lg mb-4">Сформоване ще з дитинства, з досвіду, з чужих слів:</p>
+                    <p class="text-lg mb-4">“Ти нічого не досягнеш.”</p>
+                    <p class="text-lg mb-4">“Це не для тебе.”</p>
+                    <p class="text-lg mb-4">“Заспокойся, мрійник.”</p>
+                    <p class="text-lg mb-4">І от людина виросла — а переконання залишились.</p>
+                    <p class="text-lg mb-4">І вона не дозволяє собі вилізти з ями. Бо вірить, що яма — її місце.</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>То що з цим робити?</strong></p>
+                    <p class="text-lg mb-4">Не боротися з усім одразу.</p>
+                    <p class="text-lg mb-4">Не знищувати свою стару роль.</p>
+                    <p class="text-lg mb-4">Не кричати “треба все змінити!”</p>
+                    <p class="text-lg mb-4">Почати з малого:</p>
+                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+                        <li>Почути себе.</li>
+                        <p class="text-lg mb-4">Де тобі боляче? Де ти вже не можеш? Де ти втомився мовчати?</p>
+                        <li>Сказати собі правду.</li>
+                        <p class="text-lg mb-4">Не світові. Не іншим. Лише собі.</p>
+                        <li>Дозволити собі хоча б уявити інший варіант.</li>
+                        <p class="text-lg mb-4">Не досконалий. Просто інший. Де трохи легше. Де трохи вільніше.</p>
+                        <li>Зробити маленький рух.</li>
+                        <p class="text-lg mb-4">Один. Будь-який. Але в напрямку світла, а не гниття.</p>
+                    </ul>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>І не чекати підтримки</strong></p>
+                    <p class="text-lg mb-4">Бо підтримка прийде потім. Або не прийде.</p>
+                    <p class="text-lg mb-4">І це нормально.</p>
+                    <p class="text-lg mb-4">Бо це твій вибір. Твій рух. Твоя сила.</p>
+                    <p class="text-lg mb-4">________________________________________</p>
+                    <p class="text-lg mb-4"><strong>А найголовніше:</strong></p>
+                    <p class="text-lg mb-4">Ти вже не той, хто просто терпить.</p>
+                    <p class="text-lg mb-4">Ти — той, хто бачить, відчуває і шукає.</p>
+                    <p class="text-lg mb-4">А це вже дуже багато.</p>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <a href="tools.html" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Почати шлях</a>
+                <a href="contact.html" class="mt-4 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Задати питання</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Я є. Усі права захищено.</p>
+        <p class="mt-2 footer-small">З душею рекомендуємо: 
+            <a href="https://t.me/CRPT_shroomery" style="color: #FFD700; text-decoration: underline;" target="_blank">    
+                Карпатська Грибниця
+            </a>
+        </p>
+    </footer>
+</body>
+</html>
