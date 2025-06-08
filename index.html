@@ -10,11 +10,8 @@
     <meta property="og:title" content="Головна - Самопізнання через Архетипи | Я є">
     <meta property="og:description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.">
     <meta property="og:type" content="website">
-
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
-
     <style>
         :root {
             --primary-color: #4b0082;
@@ -25,69 +22,74 @@
             --white: #ffffff;
         }
 
-        body { 
-            font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            padding: 0; 
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
-        nav { 
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
-            color: white; 
-            padding: 1rem; 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
+
+        nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
-        nav .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        nav h1 { 
-            font-size: 1.5rem; 
-            font-weight: bold; 
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-        .menu-toggle { 
-            display: none; /* За замовчуванням прихований на великих екранах */
-            font-size: 1.5rem; 
-            cursor: pointer; 
-            background: none; 
-            border: none; 
-            color: white; 
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--white);
         }
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 1rem; 
-            margin: 0; /* Видаляємо дефолтний margin */
-            padding: 0; /* Видаляємо дефолтний padding */
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
         }
-        nav a { 
-            color: white; 
-            text-decoration: none; 
-            padding: 0.5rem 0; /* Збільшимо клікабельну область */
-            display: block; /* Щоб padding працював коректно */
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
         }
-        nav a:hover, nav a:focus { 
-            text-decoration: underline; 
+
+        nav a:hover,
+        nav a:focus {
+            text-decoration: underline;
         }
-        .bg-gradient-to-r { 
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
+
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
-        .text-white { color: white; }
+
+        .text-white { color: var(--white); }
         .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
         .text-center { text-align: center; }
         .animate-fade-in { animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .container { 
-            max-width: 1200px; 
-            margin: 0 auto; 
-            width: 100%; 
-            padding: 0 1rem; /* Додаємо горизонтальний padding для контейнерів */
-            box-sizing: border-box; /* Включаємо padding в ширину елемента */
-        }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 1rem; box-sizing: border-box; }
         .mx-auto { margin-left: auto; margin-right: auto; }
         .text-5xl { font-size: 3rem; }
         .md\:text-6xl { font-size: 3.75rem; }
@@ -100,66 +102,63 @@
         .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
         .bg-gray-50 { background-color: var(--gray-50); }
         .bg-white { background-color: var(--white); }
-        img { 
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-        }
+        img { max-width: 100%; height: auto; display: block; }
         .max-w-full { max-width: 100%; }
         .h-auto { height: auto; }
-        h2 { font-size: 1.875rem; } /* Додаємо дефолтний стиль для h2 */
+        h2 { font-size: 1.875rem; }
         .text-3xl { font-size: 1.875rem; }
         .text-lg { font-size: 1.125rem; }
         ol { list-style-type: decimal; padding-left: 1.5rem; }
         .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
         .mt-6 { margin-top: 1.5rem; }
         .inline-block { display: inline-block; }
-        .button { /* Узагальнений клас для кнопок */
+        .button {
             display: inline-block;
             background: var(--button-bg);
             color: var(--white);
             padding: 0.75rem 2rem;
             border-radius: 9999px;
             text-decoration: none;
-            transition: background-color 0.3s ease; /* Додаємо плавність переходу */
+            transition: background-color 0.3s ease;
         }
-        .button:hover, .button:focus { 
-            background: var(--button-hover); 
-            outline: none; /* Прибираємо стандартний outline, якщо його замінено фокусом */
+        .button:hover,
+        .button:focus {
+            background: var(--button-hover);
+            outline: none;
         }
 
-        footer { 
-            background: var(--primary-color); 
-            color: white; 
-            padding: 1.5rem 1rem; /* Збільшуємо padding для футера */
-            text-align: center; 
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem 1rem;
+            text-align: center;
         }
-        footer a { 
-            color: #FFD700; 
-            text-decoration: underline; 
+
+        footer a {
+            color: #FFD700;
+            text-decoration: underline;
         }
-        .footer-note { /* Окремий клас для примітки у футері */
-            font-size: 0.875rem; 
+
+        .footer-note {
+            font-size: 0.875rem;
             margin-top: 0.5rem;
         }
 
-        /* Медіа-запити для адаптивності */
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
-            nav ul { 
-                display: none; /* Заховати список за замовчуванням на мобільних */
-                flex-direction: column; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                width: 100%; 
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); 
-                padding: 1rem; 
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Додаємо тінь для відкритого меню */
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             }
-            nav ul.active { display: flex; } /* Показати, коли active */
+            nav ul.active { display: flex; }
             nav .container { flex-direction: column; align-items: flex-start; }
-            
             .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
             .text-5xl { font-size: 2rem; }
             .md\:text-6xl { font-size: 2.5rem; }
@@ -168,16 +167,16 @@
             .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
             h2.text-3xl { font-size: 1.5rem; }
             .text-lg { font-size: 1rem; }
-            .button { padding-left: 1.5rem; padding-right: 1.5rem; } /* Зменшуємо padding кнопок */
+            .button { padding: 0.5rem 1.5rem; }
             .container { padding: 0 1rem; }
-            .buttons { text-align: center; } /* Центруємо кнопки на мобільних */
+            .buttons { text-align: center; }
         }
 
         @media (max-width: 480px) {
             .text-5xl { font-size: 1.5rem; }
-            .md\:text-6xl { font-size: 2rem; } /* Якщо для 480px все ще потрібен md:text-6xl */
+            .md\:text-6xl { font-size: 2rem; }
             h2.text-3xl { font-size: 1.25rem; }
-            .button { padding-left: 1rem; padding-right: 1rem; }
+            .button { padding: 0.5rem 1rem; }
             .container { padding: 0 0.5rem; }
         }
 
@@ -189,58 +188,10 @@
     </style>
 </head>
 <body>
-    <nav>
+    <nav role="navigation">
         <div class="container">
             <h1>Я є</h1>
-            <script type="module">
-                document.addEventListener('DOMContentLoaded', () => {
-                    // Плавна прокрутка для якірних посилань
-                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                        anchor.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const target = document.querySelector(anchor.getAttribute('href'));
-                            if (target) {
-                                target.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        });
-                    });
-
-                    // Меню-гамбургер
-                    const menuToggle = document.createElement('button');
-                    menuToggle.className = 'menu-toggle';
-                    menuToggle.setAttribute('aria-label', 'Переключити меню навігації');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.innerHTML = '☰';
-
-                    const navContainer = document.querySelector('nav .container');
-                    const navUl = document.querySelector('nav ul');
-
-                    if (navContainer && navUl) {
-                        // Вставляємо кнопку-перемикач перед списком навігації
-                        navContainer.insertBefore(menuToggle, navUl);
-
-                        menuToggle.addEventListener('click', () => {
-                            // Перемикаємо клас 'active' для показу/приховування меню
-                            const isExpanded = navUl.classList.toggle('active');
-                            // Оновлюємо атрибут aria-expanded для доступності
-                            menuToggle.setAttribute('aria-expanded', isExpanded.toString());
-                        });
-
-                        // Обробка клавіатурних подій для кнопки меню (Enter/Space)
-                        menuToggle.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                menuToggle.click(); // Імітуємо клік
-                            }
-                        });
-
-                        // Додаємо tabindex для всіх посилань у навігації для кращої доступності
-                        navUl.querySelectorAll('a').forEach(link => {
-                            link.setAttribute('tabindex', '0');
-                        });
-                    }
-                });
-            </script>
+            <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
             <ul>
                 <li><a href="index.html">Головна</a></li>
                 <li><a href="archetypes.html">Про архетипи</a></li>
@@ -251,6 +202,44 @@
                 <li><a href="price.html">Прайс</a></li>
                 <li><a href="contact.html">Контакти</a></li>
             </ul>
+            <script type="module">
+                document.addEventListener('DOMContentLoaded', () => {
+                    const menuToggle = document.querySelector('.menu-toggle');
+                    const navUl = document.querySelector('nav ul');
+
+                    if (menuToggle && navUl) {
+                        menuToggle.addEventListener('click', () => {
+                            const isExpanded = navUl.classList.toggle('active');
+                            menuToggle.setAttribute('aria-expanded', isExpanded);
+                        });
+
+                        menuToggle.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                menuToggle.click();
+                            }
+                        });
+
+                        navUl.querySelectorAll('a').forEach(link => {
+                            link.setAttribute('tabindex', '0');
+                        });
+
+                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                            anchor.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                const target = document.querySelector(anchor.getAttribute('href'));
+                                if (target) {
+                                    target.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            });
+                        });
+                    }
+                });
+            </script>
+            <noscript>
+                <style>nav ul { display: flex !important; }</style>
+                <p style="color: var(--white); padding: 1rem;">Меню доступне лише з увімкненим JavaScript.</p>
+            </noscript>
         </div>
     </nav>
 
@@ -309,9 +298,9 @@
             <p class="text-lg mb-4">Бо справжнє вже є. Просто заховане.</p>
             <p class="text-lg mb-4">Це проєкт для тих, хто не боїться зустрітися з собою. Навіть якщо цей «хтось» — незручний, різкий, мовчазний чи надто живий.</p>
             <p class="text-lg mb-4">Це проєкт для тебе. Якщо ти готовий перестати ховатися.</p>
-            <div class="buttons text-center">
-                <a href="tools.html" class="mt-6 button">Почати шлях</a>
-                <a href="contact.html" class="mt-4 button">Задати питання</a>
+            <div class="buttons text-center mt-6">
+                <a href="tools.html" class="button">Почати шлях</a>
+                <a href="contact.html" class="button mt-4">Задати питання</a>
             </div>
         </div>
     </section>
