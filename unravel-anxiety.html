@@ -8,32 +8,111 @@
     <meta property="og:title" id="ogTitle" content="Розплутувач тривожного клубка">
     <style>
         :root {
-            --primary: #1e3a8a;
-            --accent: #f97316;
-            --background: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1f2937;
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --darkslategray: #2F4F4F;
+            --gray-50: #f9fafb;
         }
 
         body {
-            font-family: 'Inter', Arial, sans-serif;
-            background: var(--background);
-            color: var(--text);
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 1rem;
+            padding: 0;
+            color: #333;
+            background-color: var(--gray-50);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         .container {
-            max-width: 750px;
-            margin: auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            width: 100%;
             flex: 1;
         }
 
+        nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        nav a:hover, nav a:focus {
+            text-decoration: underline;
+        }
+
+        .language-switcher {
+            text-align: right;
+            margin: 1rem 0;
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 0 0.3rem;
+            transition: background 0.2s ease;
+        }
+
+        .language-switcher button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .language-switcher button:hover {
+            background: #e0e7ff;
+        }
+
         h1 {
-            color: var(--primary);
+            color: var(--primary-color);
             text-align: center;
             font-size: 2.3rem;
             margin-bottom: 0.5rem;
@@ -46,30 +125,8 @@
             margin-bottom: 2rem;
         }
 
-        .language-switcher {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .language-switcher button {
-            background: none;
-            border: none;
-            color: var(--primary);
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            margin: 0 0.3rem;
-            transition: background 0.2s ease;
-        }
-
-        .language-switcher button.active {
-            background: var(--primary);
-            color: white;
-        }
-
         .stage {
-            background: var(--card-bg);
+            background-color: #fff;
             padding: 1.8rem;
             margin-bottom: 1.5rem;
             border-radius: 12px;
@@ -85,11 +142,11 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: var(--accent);
+            background: var(--secondary-color); /* Змінено на secondary для узгодженості */
         }
 
         .stage h2 {
-            color: var(--primary);
+            color: var(--primary-color);
             font-size: 1.4rem;
             margin-bottom: 1rem;
             font-weight: 600;
@@ -99,7 +156,7 @@
             display: block;
             font-weight: 500;
             margin-bottom: 0.6rem;
-            color: var(--text);
+            color: #333;
         }
 
         input[type="text"],
@@ -118,7 +175,7 @@
         textarea:focus,
         select:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--primary-color);
         }
 
         textarea {
@@ -135,18 +192,18 @@
 
         input[type="range"] {
             flex: 1;
-            accent-color: var(--accent);
+            accent-color: var(--secondary-color); /* Змінено на secondary для узгодженості */
         }
 
         .slider-value {
-            color: var(--primary);
+            color: var(--primary-color);
             font-weight: 600;
             min-width: 2rem;
             text-align: right;
         }
 
         button {
-            background: var(--primary);
+            background: var(--button-bg);
             color: white;
             padding: 0.9rem 2.5rem;
             border: none;
@@ -159,15 +216,15 @@
         }
 
         button:hover {
-            background: #1e40af;
+            background: var(--button-hover);
             transform: translateY(-2px);
         }
 
         .output {
-            background: var(--card-bg);
+            background: #fff;
             padding: 2rem;
             border-radius: 12px;
-            border-left: 5px solid var(--accent);
+            border-left: 5px solid var(--secondary-color); /* Змінено на secondary для узгодженості */
             margin-top: 2rem;
             display: none;
             animation: slideIn 0.5s ease;
@@ -179,7 +236,7 @@
         }
 
         .output h2 {
-            color: var(--primary);
+            color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.6rem;
         }
@@ -189,7 +246,7 @@
         }
 
         .output-section h3 {
-            color: var(--accent);
+            color: var(--secondary-color); /* Змінено на secondary для узгодженості */
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
@@ -219,7 +276,7 @@
 
         .suggestions li::before {
             content: "✨";
-            color: var(--accent);
+            color: var(--secondary-color); /* Змінено на secondary для узгодженості */
         }
 
         footer {
@@ -230,22 +287,40 @@
             padding-bottom: 1rem;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 0.5rem; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+            }
+            nav ul.active { display: flex; }
+            nav .container { flex-direction: column; align-items: flex-start; }
+            .language-switcher { text-align: center; }
             h1 { font-size: 1.9rem; }
             .stage { padding: 1.2rem; }
             button { padding: 0.7rem 1.5rem; font-size: 1rem; }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 480px) {
             h1 { font-size: 1.6rem; }
             .stage { padding: 1rem; }
             button { padding: 0.6rem 1rem; font-size: 0.9rem; }
             .slider-container { flex-direction: column; align-items: flex-start; }
             .slider-value { margin-top: 0.5rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            h1 { font-size: 1.2rem; }
+            .container { padding: 0 0.25rem; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -253,7 +328,7 @@
             <button id="enBtn" aria-label="Switch to English">English</button>
             <button id="ukBtn" aria-label="Switch to Ukrainian" class="active">Українська</button>
         </div>
-        <nav role="navigation">
+        <nav>
             <div class="container">
                 <h1>Я є</h1>
                 <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
@@ -377,7 +452,7 @@
             },
             uk: {
                 title: "Розплутувач тривожного клубка",
-                subtitle: "Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з'ясуй причини та отримай поради, як розплутати цей клубок.",
+                subtitle: "Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради, як розплутати цей клубок.",
                 step1: "1. Що за клубок?",
                 step1desc: "Опиши думку, яка тебе турбує. Наприклад: «Я можу провалитися» або «Мене не зрозуміють».",
                 thoughtLabel: "Твоя тривожна думка:",
@@ -639,6 +714,29 @@
             elements.output.style.display = 'block';
             elements.output.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Menu toggle script
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+            if (menuToggle && navUl) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                });
+
+                menuToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        menuToggle.click();
+                    }
+                });
+
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.setAttribute('tabindex', '0');
+                });
+            }
+        });
     </script>
 </body>
 </html>

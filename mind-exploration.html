@@ -7,45 +7,78 @@
     <meta name="description" id="description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.">
     <meta property="og:title" id="ogTitle" content="Мисленне Дослідження">
     <style>
+        :root {
+            --primary-color: #4b0082;
+            --secondary-color: #800080;
+            --button-bg: #4c1d95;
+            --button-hover: #5b21b6;
+            --darkslategray: #2F4F4F;
+            --gray-50: #f9fafb;
+        }
+
         body {
-            font-family: 'Inter', Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 1rem;
-            max-width: 800px;
-            margin: auto;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
             color: #333;
+            background-color: var(--gray-50);
         }
 
-        h1 {
-            color: #4b0082;
-            text-align: center;
-            font-size: 2.3rem;
-            margin-bottom: 0.5rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            width: 100%;
         }
 
-        .step {
-            background-color: #fff;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
-        .step h2 {
-            color: #800080;
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .step p {
-            margin: 0.5rem 0;
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: #888;
-            font-size: 0.9rem;
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            display: block;
+        }
+
+        nav a:hover, nav a:focus {
+            text-decoration: underline;
         }
 
         .lang-switcher {
@@ -61,7 +94,7 @@
         .lang-switcher button {
             background: none;
             border: 1px solid #d1d5db;
-            color: #4b0082;
+            color: var(--primary-color);
             font-size: 1rem;
             cursor: pointer;
             padding: 0.3rem 0.6rem;
@@ -70,7 +103,7 @@
         }
 
         .lang-switcher button.active {
-            background: #4b0082;
+            background: var(--primary-color);
             color: white;
         }
 
@@ -78,18 +111,68 @@
             background: #e0e7ff;
         }
 
-        @media (max-width: 600px) {
-            body { padding: 0.5rem; }
-            h1 { font-size: 1.9rem; }
-            .step { padding: 1rem; }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
         }
 
-        @media (max-width: 400px) {
-            h1 { font-size: 1.6rem; }
-            .step { padding: 0.8rem; }
+        .step {
+            background-color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step h2 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .step p {
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+            }
+            nav ul.active { display: flex; }
+            nav .container { flex-direction: column; align-items: flex-start; }
+            h1 { font-size: 1.9rem; }
+            .step { padding: 1rem; }
             .lang-switcher { text-align: center; }
             .lang-switcher span { display: block; margin-bottom: 0.5rem; }
             .lang-switcher button { margin: 0 0.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.6rem; }
+            .step { padding: 0.8rem; }
+            .container { padding: 0 0.5rem; }
+        }
+
+        @media (max-width: 320px) {
+            h1 { font-size: 1.2rem; }
+            .container { padding: 0 0.25rem; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -100,32 +183,34 @@
         <button id="ukBtn" aria-label="Switch to Ukrainian" class="active">Українська</button>
         <button id="enBtn" aria-label="Switch to English">English</button>
     </div>
-    <nav role="navigation">
+    <nav>
+        <div class="container">
+            <h1>Я є</h1>
+            <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="archetypes.html">Про архетипи</a></li>
+                <li><a href="about.html">Про мене</a></li>
+                <li><a href="tools.html">Інструменти</a></li>
+                <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
+                <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
+                <li><a href="blog.html">Як жити далі?</a></li>
+                <li><a href="humor.html">Гумор</a></li>
+                <li><a href="price.html">Прайс</a></li>
+                <li><a href="contact.html">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>Я є</h1>
-        <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
-        <ul>
-            <li><a href="index.html">Головна</a></li>
-            <li><a href="archetypes.html">Про архетипи</a></li>
-            <li><a href="about.html">Про мене</a></li>
-            <li><a href="tools.html">Інструменти</a></li>
-            <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
-            <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
-            <li><a href="blog.html">Як жити далі?</a></li>
-            <li><a href="humor.html">Гумор</a></li>
-            <li><a href="price.html">Прайс</a></li>
-            <li><a href="contact.html">Контакти</a></li>
-        </ul>
+        <h1 id="title">Мисленне Дослідження: Визначення Власної Думки</h1>
+
+        <div id="steps"></div>
+
+        <footer id="footer">
+            Створено для дослідження мислення. Якщо ти дійшов сюди — вітаю, ти вже не просто мислиш, а спостерігаєш за мисленням.
+        </footer>
     </div>
-</nav>
-
-    <h1 id="title">Мисленне Дослідження: Визначення Власної Думки</h1>
-
-    <div id="steps"></div>
-
-    <footer id="footer">
-        Створено для дослідження мислення. Якщо ти дійшов сюди — вітаю, ти вже не просто мислиш, а спостерігаєш за мисленням.
-    </footer>
 
     <script>
         // Language content
@@ -209,6 +294,29 @@
         document.addEventListener('DOMContentLoaded', () => {
             const preferredLanguage = localStorage.getItem('preferredLanguage') || 'uk';
             switchLanguage(preferredLanguage);
+        });
+
+        // Menu toggle script
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+            if (menuToggle && navUl) {
+                menuToggle.addEventListener('click', () => {
+                    const isExpanded = navUl.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                });
+
+                menuToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        menuToggle.click();
+                    }
+                });
+
+                navUl.querySelectorAll('a').forEach(link => {
+                    link.setAttribute('tabindex', '0');
+                });
+            }
         });
     </script>
 </body>
