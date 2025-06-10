@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxiety Unraveler / Розплутувач тривожного клубка</title>
+    <meta name="description" id="description" content="Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з'ясуй причини та отримай поради, як розплутати цей клубок.">
+    <meta property="og:title" id="ogTitle" content="Розплутувач тривожного клубка">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #f97316;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            flex: 1;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #4b5563;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .language-switcher {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 0 0.3rem;
+            transition: background 0.2s ease;
+        }
+
+        .language-switcher button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .stage {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .stage h2 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            color: var(--text);
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f9fafb;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            accent-color: var(--accent);
+        }
+
+        .slider-value {
+            color: var(--primary);
+            font-weight: 600;
+            min-width: 2rem;
+            text-align: right;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: block;
+            margin: 2rem auto;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #1e40af;
+            transform: translateY(-2px);
+        }
+
+        .output {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+            margin-top: 2rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .output h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .output-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .output-section h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .output-section p {
+            margin: 0.5rem 0;
+        }
+
+        .suggestions {
+            background: #fef3c7;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestions li {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .suggestions li::before {
+            content: "✨";
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+            padding-bottom: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 0.5rem; }
+            h1 { font-size: 1.9rem; }
+            .stage { padding: 1.2rem; }
+            button { padding: 0.7rem 1.5rem; font-size: 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 1.6rem; }
+            .stage { padding: 1rem; }
+            button { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .slider-container { flex-direction: column; align-items: flex-start; }
+            .slider-value { margin-top: 0.5rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="language-switcher">
+            <button id="enBtn" aria-label="Switch to English">English</button>
+            <button id="ukBtn" aria-label="Switch to Ukrainian" class="active">Українська</button>
+        </div>
+        <nav role="navigation">
+            <div class="container">
+                <h1>Я є</h1>
+                <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="archetypes.html">Про архетипи</a></li>
+                    <li><a href="about.html">Про мене</a></li>
+                    <li><a href="tools.html">Інструменти</a></li>
+                    <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
+                    <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
+                    <li><a href="blog.html">Як жити далі?</a></li>
+                    <li><a href="humor.html">Гумор</a></li>
+                    <li><a href="price.html">Прайс</a></li>
+                    <li><a href="contact.html">Контакти</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <h1 id="title">Розплутувач тривожного клубка</h1>
+        <div class="subtitle" id="subtitle">
+            Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради, як розплутати цей клубок.
+        </div>
+
+        <form id="anxietyForm">
+            <div class="stage">
+                <h2 id="step1">1. Що за клубок?</h2>
+                <p id="step1desc">Опиши думку, яка тебе турбує. Наприклад: «Я можу провалитися» або «Мене не зрозуміють».</p>
+                <label for="thought" id="thoughtLabel">Твоя тривожна думка:</label>
+                <input type="text" id="thought" name="thought" placeholder="Що тебе турбує?" required>
+            </div>
+
+            <div class="stage">
+                <h2 id="step2">2. Наскільки туго затягнуто?</h2>
+                <p id="step2desc">Оціни, наскільки сильно ця думка викликає тривогу (0 — зовсім не турбує, 10 — нестерпно).</p>
+                <div class="slider-container">
+                    <input type="range" id="intensity" name="intensity" min="0" max="10" value="0">
+                    <span class="slider-value" id="intensityValue">0</span>
+                </div>
+            </div>
+
+            <div class="stage">
+                <h2 id="step3">3. Де почався цей клубок?</h2>
+                <p id="step3desc">Що могло запустити цю думку? Це може бути подія, розмова, спогад чи навіть неясне відчуття.</p>
+                <label for="trigger" id="triggerLabel">Тригер думки:</label>
+                <textarea id="trigger" name="trigger" placeholder="Що могло спричинити цю думку?"></textarea>
+            </div>
+
+            <div class="stage">
+                <h2 id="step4">4. Як це відчувається?</h2>
+                <p id="step4desc">Коли ти думаєш про цю думку, що відбувається в тілі? Напруга, важкість, тепло, холод?</p>
+                <label for="feelings" id="feelingsLabel">Фізичні відчуття:</label>
+                <textarea id="feelings" name="feelings" placeholder="Опиши, що відчуваєш фізично"></textarea>
+            </div>
+
+            <div class="stage">
+                <h2 id="step5">5. Як це змінює твій шлях?</h2>
+                <p id="step5desc">Як ця думка впливає на твої рішення чи дії? Ти щось робиш інакше чи уникаєш певних ситуацій?</p>
+                <label for="behavior" id="behaviorLabel">Зміни в поведінці:</label>
+                <textarea id="behavior" name="behavior" placeholder="Як думка впливає на твої дії?"></textarea>
+            </div>
+
+            <div class="stage">
+                <h2 id="step6">6. Чи міцна ця нитка?</h2>
+                <p id="step6desc">Наскільки ця думка здається правдивою? Чи є ситуації, коли вона не працює?</p>
+                <label for="reality" id="realityLabel">Реальність думки:</label>
+                <textarea id="reality" name="reality" placeholder="Чи є підстави вірити цій думці?"></textarea>
+            </div>
+
+            <div class="stage">
+                <h2 id="step7">7. Що живить цю тривогу?</h2>
+                <p id="step7desc">Які емоції чи потреби стоять за цією думкою? Наприклад, страх невдачі, потреба в безпеці чи визнанні.</p>
+                <label for="emotions" id="emotionsLabel">Основні емоції/потреби:</label>
+                <textarea id="emotions" name="emotions" placeholder="Які емоції чи потреби можуть стояти за думкою?"></textarea>
+            </div>
+
+            <button type="button" onclick="unravelAnxiety()" id="unravelBtn">Розплутати клубок</button>
+        </form>
+
+        <div class="output" id="output"></div>
+    </div>
+
+    <footer id="footer">
+        Створено, щоб допомогти тобі розібратися з тривогами. Ти сильніший, ніж твій клубок!
+    </footer>
+
+    <script>
+        // Language content
+        const content = {
+            en: {
+                title: "Anxiety Unraveler",
+                subtitle: "Your guide through anxious thoughts. Identify what's bothering you, understand the causes, and get advice on how to unravel this tangled ball.",
+                step1: "1. What's the tangle?",
+                step1desc: "Describe the thought that's bothering you. For example: 'I might fail' or 'They won't understand me.'",
+                thoughtLabel: "Your anxious thought:",
+                thoughtPlaceholder: "What's bothering you?",
+                step2: "2. How tight is the knot?",
+                step2desc: "Rate how strongly this thought causes anxiety (0 - not at all, 10 - unbearable).",
+                step3: "3. Where did this tangle begin?",
+                step3desc: "What might have triggered this thought? It could be an event, conversation, memory, or even a vague feeling.",
+                triggerLabel: "Thought trigger:",
+                triggerPlaceholder: "What might have caused this thought?",
+                step4: "4. How does it feel?",
+                step4desc: "When you think about this thought, what happens in your body? Tension, heaviness, warmth, cold?",
+                feelingsLabel: "Physical sensations:",
+                feelingsPlaceholder: "Describe what you feel physically",
+                step5: "5. How does it change your path?",
+                step5desc: "How does this thought affect your decisions or actions? Do you do something differently or avoid certain situations?",
+                behaviorLabel: "Behavior changes:",
+                behaviorPlaceholder: "How does the thought affect your actions?",
+                step6: "6. How strong is this thread?",
+                step6desc: "How true does this thought seem? Are there situations where it doesn't hold?",
+                realityLabel: "Thought reality:",
+                realityPlaceholder: "Are there reasons to believe this thought?",
+                step7: "7. What feeds this anxiety?",
+                step7desc: "What emotions or needs are behind this thought? For example, fear of failure, need for safety or recognition.",
+                emotionsLabel: "Core emotions/needs:",
+                emotionsPlaceholder: "What emotions or needs might be behind the thought?",
+                unravelBtn: "Unravel the tangle",
+                outputTitle: "Your unraveled tangle",
+                footer: "Created to help you work through anxieties. You're stronger than your tangled thoughts!"
+            },
+            uk: {
+                title: "Розплутувач тривожного клубка",
+                subtitle: "Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з'ясуй причини та отримай поради, як розплутати цей клубок.",
+                step1: "1. Що за клубок?",
+                step1desc: "Опиши думку, яка тебе турбує. Наприклад: «Я можу провалитися» або «Мене не зрозуміють».",
+                thoughtLabel: "Твоя тривожна думка:",
+                thoughtPlaceholder: "Що тебе турбує?",
+                step2: "2. Наскільки туго затягнуто?",
+                step2desc: "Оціни, наскільки сильно ця думка викликає тривогу (0 — зовсім не турбує, 10 — нестерпно).",
+                step3: "3. Де почався цей клубок?",
+                step3desc: "Що могло запустити цю думку? Це може бути подія, розмова, спогад чи навіть неясне відчуття.",
+                triggerLabel: "Тригер думки:",
+                triggerPlaceholder: "Що могло спричинити цю думку?",
+                step4: "4. Як це відчувається?",
+                step4desc: "Коли ти думаєш про цю думку, що відбувається в тілі? Напруга, важкість, тепло, холод?",
+                feelingsLabel: "Фізичні відчуття:",
+                feelingsPlaceholder: "Опиши, що відчуваєш фізично",
+                step5: "5. Як це змінює твій шлях?",
+                step5desc: "Як ця думка впливає на твої рішення чи дії? Ти щось робиш інакше чи уникаєш певних ситуацій?",
+                behaviorLabel: "Зміни в поведінці:",
+                behaviorPlaceholder: "Як думка впливає на твої дії?",
+                step6: "6. Чи міцна ця нитка?",
+                step6desc: "Наскільки ця думка здається правдивою? Чи є ситуації, коли вона не працює?",
+                realityLabel: "Реальність думки:",
+                realityPlaceholder: "Чи є підстави вірити цій думці?",
+                step7: "7. Що живить цю тривогу?",
+                step7desc: "Які емоції чи потреби стоять за цією думкою? Наприклад, страх невдачі, потреба в безпеці чи визнанні.",
+                emotionsLabel: "Основні емоції/потреби:",
+                emotionsPlaceholder: "Які емоції чи потреби можуть стояти за думкою?",
+                unravelBtn: "Розплутати клубок",
+                outputTitle: "Твій розплутаний клубок",
+                footer: "Створено, щоб допомогти тобі розібратися з тривогами. Ти сильніший, ніж твій клубок!"
+            }
+        };
+
+        // Cached DOM elements
+        const elements = {
+            title: document.getElementById('title'),
+            subtitle: document.getElementById('subtitle'),
+            step1: document.getElementById('step1'),
+            step1desc: document.getElementById('step1desc'),
+            thoughtLabel: document.getElementById('thoughtLabel'),
+            thought: document.getElementById('thought'),
+            step2: document.getElementById('step2'),
+            step2desc: document.getElementById('step2desc'),
+            step3: document.getElementById('step3'),
+            step3desc: document.getElementById('step3desc'),
+            triggerLabel: document.getElementById('triggerLabel'),
+            trigger: document.getElementById('trigger'),
+            step4: document.getElementById('step4'),
+            step4desc: document.getElementById('step4desc'),
+            feelingsLabel: document.getElementById('feelingsLabel'),
+            feelings: document.getElementById('feelings'),
+            step5: document.getElementById('step5'),
+            step5desc: document.getElementById('step5desc'),
+            behaviorLabel: document.getElementById('behaviorLabel'),
+            behavior: document.getElementById('behavior'),
+            step6: document.getElementById('step6'),
+            step6desc: document.getElementById('step6desc'),
+            realityLabel: document.getElementById('realityLabel'),
+            reality: document.getElementById('reality'),
+            step7: document.getElementById('step7'),
+            step7desc: document.getElementById('step7desc'),
+            emotionsLabel: document.getElementById('emotionsLabel'),
+            emotions: document.getElementById('emotions'),
+            unravelBtn: document.getElementById('unravelBtn'),
+            footer: document.getElementById('footer'),
+            description: document.getElementById('description'),
+            ogTitle: document.getElementById('ogTitle'),
+            output: document.getElementById('output')
+        };
+
+        // Error handling for missing elements
+        function checkElements() {
+            for (let key in elements) {
+                if (!elements[key]) {
+                    console.error(`Element with id "${key}" not found in the DOM`);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            if (!checkElements()) return;
+
+            const langContent = content[lang];
+            elements.title.textContent = langContent.title;
+            elements.subtitle.textContent = langContent.subtitle;
+            elements.step1.textContent = langContent.step1;
+            elements.step1desc.textContent = langContent.step1desc;
+            elements.thoughtLabel.textContent = langContent.thoughtLabel;
+            elements.thought.placeholder = langContent.thoughtPlaceholder;
+            elements.step2.textContent = langContent.step2;
+            elements.step2desc.textContent = langContent.step2desc;
+            elements.step3.textContent = langContent.step3;
+            elements.step3desc.textContent = langContent.step3desc;
+            elements.triggerLabel.textContent = langContent.triggerLabel;
+            elements.trigger.placeholder = langContent.triggerPlaceholder;
+            elements.step4.textContent = langContent.step4;
+            elements.step4desc.textContent = langContent.step4desc;
+            elements.feelingsLabel.textContent = langContent.feelingsLabel;
+            elements.feelings.placeholder = langContent.feelingsPlaceholder;
+            elements.step5.textContent = langContent.step5;
+            elements.step5desc.textContent = langContent.step5desc;
+            elements.behaviorLabel.textContent = langContent.behaviorLabel;
+            elements.behavior.placeholder = langContent.behaviorPlaceholder;
+            elements.step6.textContent = langContent.step6;
+            elements.step6desc.textContent = langContent.step6desc;
+            elements.realityLabel.textContent = langContent.realityLabel;
+            elements.reality.placeholder = langContent.realityPlaceholder;
+            elements.step7.textContent = langContent.step7;
+            elements.step7desc.textContent = langContent.step7desc;
+            elements.emotionsLabel.textContent = langContent.emotionsLabel;
+            elements.emotions.placeholder = langContent.emotionsPlaceholder;
+            elements.unravelBtn.textContent = langContent.unravelBtn;
+            elements.footer.textContent = langContent.footer;
+            elements.description.content = langContent.subtitle;
+            elements.ogTitle.content = langContent.title;
+
+            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                btn.classList.toggle('active', btn.id === `${lang}Btn`);
+            });
+
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Event listeners
+        document.getElementById('enBtn')?.addEventListener('click', () => switchLanguage('en'));
+        document.getElementById('ukBtn')?.addEventListener('click', () => switchLanguage('uk'));
+
+        // Set default language to Ukrainian
+        document.addEventListener('DOMContentLoaded', () => {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'uk';
+            switchLanguage(preferredLanguage);
+        });
+
+        // Update slider value display
+        document.getElementById('intensity')?.addEventListener('input', function() {
+            const intensityValue = document.getElementById('intensityValue');
+            if (intensityValue) intensityValue.textContent = this.value;
+        });
+
+        function unravelAnxiety() {
+            if (!checkElements()) return;
+
+            const currentLang = document.getElementById('ukBtn')?.classList.contains('active') ? 'uk' : 'en';
+            const langContent = content[currentLang];
+
+            const thought = elements.thought.value.trim();
+            const intensity = parseInt(elements.intensity.value);
+            const trigger = elements.trigger.value.trim() || (currentLang === 'en' ? 'Not specified' : 'Не вказано');
+            const feelings = elements.feelings.value.trim() || (currentLang === 'en' ? 'Not specified' : 'Не вказано');
+            const behavior = elements.behavior.value.trim() || (currentLang === 'en' ? 'Not specified' : 'Не вказано');
+            const reality = elements.reality.value.trim() || (currentLang === 'en' ? 'Not specified' : 'Не вказано');
+            const emotions = elements.emotions.value.trim() || (currentLang === 'en' ? 'Not specified' : 'Не вказано');
+
+            if (!thought) {
+                alert(currentLang === 'en' ? 'Please enter your anxious thought!' : 'Будь ласка, вкажи свою тривожну думку!');
+                return;
+            }
+
+            let output = `<h2>${langContent.outputTitle}</h2>`;
+            output += '<div class="output-section">';
+            output += `<p><strong>${currentLang === 'en' ? 'Your thought:' : 'Твоя думка:'}</strong> ${thought}</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Anxiety intensity:' : 'Інтенсивність тривоги:'}</strong> ${intensity}/10</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Trigger:' : 'Тригер:'}</strong> ${trigger}</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Physical sensations:' : 'Фізичні відчуття:'}</strong> ${feelings}</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Behavior changes:' : 'Зміни в поведінці:'}</strong> ${behavior}</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Thought reality:' : 'Реальність думки:'}</strong> ${reality}</p>`;
+            output += `<p><strong>${currentLang === 'en' ? 'Emotions and needs:' : 'Емоції та потреби:'}</strong> ${emotions}</p>`;
+            output += '</div>';
+
+            let suggestions = `<div class="suggestions"><h3>${currentLang === 'en' ? 'Practical steps' : 'Практичні кроки'}</h3><ul>`;
+
+            if (intensity <= 3) {
+                suggestions += currentLang === 'en'
+                    ? '<li>Your anxiety is mild. Try writing this thought in a notebook and come back to it in a day. Does it seem as important? If not, write what changed.</li>'
+                    : '<li>Твоя тривога легка. Спробуй записати цю думку в зошит і повертайся до неї через день. Чи здається вона такою ж важливою? Якщо ні, напиши, що змінилось.</li>';
+            } else if (intensity <= 7) {
+                suggestions += currentLang === 'en'
+                    ? '<li>Anxiety is noticeable. Take 5 minutes to write down 3 things you can do right now to feel better (e.g., drink water, listen to a favorite song, take 10 deep breaths).</li>'
+                    : '<li>Тривога відчутна. Виділи 5 хвилин, щоб записати 3 речі, які ти можеш зробити прямо зараз, щоб відчути себе краще (наприклад, попити води, послухати улюблену пісню, зробити 10 глибоких вдихів).</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>Anxiety is strong. Take a sheet of paper and write this thought in big letters. Then tear the paper into small pieces and throw it away - this will help you feel like you\'re letting go of its weight.</li>'
+                    : '<li>Тривога сильна. Візьми аркуш паперу і напиши цю думку великими літерами. Потім розірви аркуш на дрібні шматочки і викинь — це допоможе відчути, що ти відпускаєш її вагу.</li>';
+            }
+
+            if (trigger.toLowerCase().includes('event') || trigger.toLowerCase().includes('conversation') || 
+                trigger.toLowerCase().includes('memory') || trigger.toLowerCase().includes('подія') || 
+                trigger.toLowerCase().includes('розмова') || trigger.toLowerCase().includes('спогад')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>Your thought is connected to a specific situation. Write a short story (3-5 sentences) about this event, but with a positive ending. For example, imagine everything ended well.</li>'
+                    : '<li>Твоя думка пов\'язана з конкретною ситуацією. Напиши коротку історію (3-5 речень) про цю подію, але з позитивним фіналом. Наприклад, уяви, що все закінчилось добре.</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>Trigger unclear? During the day, note in your phone when this thought appears (time and situation). In 2-3 days you\'ll see what triggers it.</li>'
+                    : '<li>Тригер неясний? Протягом дня записуй у телефон, коли ця думка з\'являється (час і ситуація). За 2-3 дні ти побачиш, що її викликає.</li>';
+            }
+
+            if (feelings.toLowerCase().includes('tension') || feelings.toLowerCase().includes('heaviness') || 
+                feelings.toLowerCase().includes('heartbeat') || feelings.toLowerCase().includes('напруга') || 
+                feelings.toLowerCase().includes('важкість') || feelings.toLowerCase().includes('серцебиття')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>Your body signals tension. Do a simple exercise: clench your fists tightly for 5 seconds, then relax them and shake your hands. Repeat 3 times to relieve tension.</li>'
+                    : '<li>Твоє тіло сигналізує про напругу. Зроби просту вправу: стисни кулаки сильно на 5 секунд, потім розслаб їх і потряси руками. Повтори 3 рази, щоб зняти напругу.</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>Body calm? Try a simple experiment: close your eyes, imagine this thought as a cloud and blow on it to make it fly away. Do this 3 times.</li>'
+                    : '<li>Тіло спокійне? Спробуй легкий експеримент: закрий очі, уяви цю думку як хмаринку і подуй на неї, щоб вона полетіла. Зроби це 3 рази.</li>';
+            }
+
+            if (behavior.toLowerCase().includes('avoid') || behavior.toLowerCase().includes('stop') || 
+                behavior.toLowerCase().includes('уникаю') || behavior.toLowerCase().includes('зупиняю')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>You avoid certain actions. Choose one small action you\'re afraid to take and break it into 3 tiny steps. Do the first step today (e.g., if avoiding a conversation, write a message).</li>'
+                    : '<li>Ти уникаєш певних дій. Вибери одну маленьку дію, яку боїшся зробити, і розбий її на 3 крихітні кроки. Зроби перший крок сьогодні (наприклад, якщо уникаєш розмови, напиши повідомлення).</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>Your behavior changes because of the thought. Imagine you\'re a movie hero who isn\'t afraid of this thought. What would you do? Write one step and try it tomorrow.</li>'
+                    : '<li>Твоя поведінка змінюється через думку. Уяви, що ти герой фільму, який не боїться цієї думки. Що б ти зробив? Напиши один крок і спробуй його завтра.</li>';
+            }
+
+            if (reality.toLowerCase().includes('doesn\'t work') || reality.toLowerCase().includes('disprove') || 
+                reality.toLowerCase().includes('не працює') || reality.toLowerCase().includes('спростовують')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>You see the thought isn\'t always true. Write 3 situations when it didn\'t come true, and keep this list in your phone to reread when the thought returns.</li>'
+                    : '<li>Ти бачиш, що думка не завжди правдива. Напиши 3 ситуації, коли вона не справджувалась, і тримай цей список у телефоні, щоб перечитувати, коли думка повертається.</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>The thought seems true? Write an opposite thought (e.g., instead of "I\'ll fail" - "I can succeed") and repeat it 5 times daily in front of a mirror.</li>'
+                    : '<li>Думка здається правдивою? Напиши протилежну думку (наприклад, замість «Я провалюсь» — «Я можу досягти успіху») і щодня повторюй її 5 разів перед дзеркалом.</li>';
+            }
+
+            if (emotions.toLowerCase().includes('fear') || emotions.toLowerCase().includes('insecurity') || 
+                emotions.toLowerCase().includes('страх') || emotions.toLowerCase().includes('невпевненість')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>Anxiety is connected to fear or insecurity. Write yourself a letter with 5 sentences why you\'re awesome, and reread it when you doubt yourself.</li>'
+                    : '<li>Тривога пов\'язана зі страхом чи невпевненістю. Напиши собі лист із 5 реченнями, чому ти крутий(крута), і перечитуй його, коли сумніваєшся в собі.</li>';
+            } else if (emotions.toLowerCase().includes('safety') || emotions.toLowerCase().includes('recognition') || 
+                      emotions.toLowerCase().includes('безпека') || emotions.toLowerCase().includes('визнання')) {
+                suggestions += currentLang === 'en'
+                    ? '<li>You need safety or recognition. Do something nice for yourself today (e.g., cook a favorite meal or watch a movie) and say to yourself: "I deserve this."</li>'
+                    : '<li>Тобі потрібна безпека чи визнання. Зроби щось приємне для себе сьогодні (наприклад, приготуй улюблену страву чи подивись фільм) і скажи собі: «Я цього вартий(варта)».</li>';
+            } else {
+                suggestions += currentLang === 'en'
+                    ? '<li>Emotions unclear? Make a list of 5 things that make you happy. Do at least one of them daily to support yourself.</li>'
+                    : '<li>Емоції неясні? Склади список із 5 речей, які роблять тебе щасливим(щасливою). Щодня роби хоча б одну з них, щоб підтримувати себе.</li>';
+            }
+
+            suggestions += currentLang === 'en'
+                ? '<li>To prevent anxiety from accumulating, keep a thought journal. Every evening, write down one anxious thought and one positive moment of the day.</li>'
+                : '<li>Щоб тривога не накопичувалась, заведи зошит для думок. Кожного вечора записуй одну тривожну думку і один позитивний момент дня.</li>';
+            
+            suggestions += '</ul></div>';
+
+            output += suggestions;
+
+            elements.output.innerHTML = output;
+            elements.output.style.display = 'block';
+            elements.output.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
