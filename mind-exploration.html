@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мисленне Дослідження / Thought Investigation</title>
+    <meta name="description" id="description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.">
+    <meta property="og:title" id="ogTitle" content="Мисленне Дослідження">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            max-width: 800px;
+            margin: auto;
+            color: #333;
+        }
+
+        h1 {
+            color: #4b0082;
+            text-align: center;
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step {
+            background-color: #fff;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step h2 {
+            color: #800080;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .step p {
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+
+        .lang-switcher span {
+            margin-right: 0.5rem;
+            color: #4b5563;
+        }
+
+        .lang-switcher button {
+            background: none;
+            border: 1px solid #d1d5db;
+            color: #4b0082;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .lang-switcher button.active {
+            background: #4b0082;
+            color: white;
+        }
+
+        .lang-switcher button:hover {
+            background: #e0e7ff;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 0.5rem; }
+            h1 { font-size: 1.9rem; }
+            .step { padding: 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 1.6rem; }
+            .step { padding: 0.8rem; }
+            .lang-switcher { text-align: center; }
+            .lang-switcher span { display: block; margin-bottom: 0.5rem; }
+            .lang-switcher button { margin: 0 0.2rem; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="lang-switcher">
+        <span>Мова / Language:</span>
+        <button id="ukBtn" aria-label="Switch to Ukrainian" class="active">Українська</button>
+        <button id="enBtn" aria-label="Switch to English">English</button>
+    </div>
+    <nav role="navigation">
+    <div class="container">
+        <h1>Я є</h1>
+        <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
+        <ul>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="archetypes.html">Про архетипи</a></li>
+            <li><a href="about.html">Про мене</a></li>
+            <li><a href="tools.html">Інструменти</a></li>
+            <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
+            <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
+            <li><a href="blog.html">Як жити далі?</a></li>
+            <li><a href="humor.html">Гумор</a></li>
+            <li><a href="price.html">Прайс</a></li>
+            <li><a href="contact.html">Контакти</a></li>
+        </ul>
+    </div>
+</nav>
+
+    <h1 id="title">Мисленне Дослідження: Визначення Власної Думки</h1>
+
+    <div id="steps"></div>
+
+    <footer id="footer">
+        Створено для дослідження мислення. Якщо ти дійшов сюди — вітаю, ти вже не просто мислиш, а спостерігаєш за мисленням.
+    </footer>
+
+    <script>
+        // Language content
+        const content = {
+            uk: {
+                title: "Мисленне Дослідження: Визначення Власної Думки",
+                steps: [
+                    { title: "Крок 1: Злови думку", text: "Яка саме думка тебе зараз непокоїть або цікавить? Напиши її. Зазвичай вона звучить як фраза в голові. Наприклад: «Я маю все контролювати», або «Люди не змінюються»." },
+                    { title: "Крок 2: Де ти це вперше почув?", text: "Спробуй пригадати, коли ти вперше зіштовхнувся з цією думкою. Чи це твої батьки так казали? Вчитель? Хтось із авторитетів? ЗМІ? Якщо нічого не згадується — нічого страшного. Але якщо згадується — це вже зачіпка." },
+                    { title: "Крок 3: Що каже тіло?", text: "Подумай про цю думку і прислухайся до тіла. Чи з'являється напруга, стискання в грудях, холод у животі? Якщо тіло пручається — можливо, ця думка не твоя. Якщо спокій — то, можливо, вона твоя. Але це не гарантія." },
+                    { title: "Крок 4: Вплив на дії", text: "Які твої дії базуються на цій думці? Що ти робиш або не робиш через неї? Якби цієї думки не існувало — що б ти робив інакше?" },
+                    { title: "Крок 5: Перевірка логіки", text: "Чи витримує думка логічну перевірку? Наприклад, якщо вона стосується людей, запитай себе: чи завжди так? Чи є винятки? Якщо думка універсальна — це підозріло. Життя рідко буває чорно-білим." },
+                    { title: "Крок 6: Твоя відповідь", text: "На цьому етапі ти можеш відповісти собі чесно: ця думка — справді моя, тому що вона виросла з мого досвіду, відгукується в мені, і я готовий її нести. <br>Або: ця думка — не моя, просто дуже добре замаскувалась. Дякую, що була, але далі я сам." }
+                ],
+                footer: "Створено для дослідження мислення. Якщо ти дійшов сюди — вітаю, ти вже не просто мислиш, а спостерігаєш за мисленням."
+            },
+            en: {
+                title: "Thought Investigation: Defining Your Own Belief",
+                steps: [
+                    { title: "Step 1: Catch the Thought", text: "What exact thought is bothering or interesting you right now? Write it down. It usually sounds like a phrase in your head. For example: “I must control everything” or “People never change.”" },
+                    { title: "Step 2: Where did you first hear it?", text: "Try to remember when you first encountered this thought. Did your parents say it? A teacher? Some authority figure? Media? If nothing comes to mind — that’s okay. But if it does — that’s a clue." },
+                    { title: "Step 3: What does the body say?", text: "Think about the thought and listen to your body. Do you feel tension, chest tightness, cold in the stomach? If the body resists — maybe this thought isn’t yours. If there’s peace — maybe it is. But it’s not a guarantee." },
+                    { title: "Step 4: Influence on Actions", text: "What actions of yours are based on this thought? What do you do or avoid because of it? If this thought didn’t exist — what would you do differently?" },
+                    { title: "Step 5: Logic Check", text: "Does the thought pass a logic check? For example, if it’s about people, ask: is it always true? Are there exceptions? If the thought is universal — that’s suspicious. Life is rarely black and white." },
+                    { title: "Step 6: Your Answer", text: "At this point, you can answer yourself honestly: this thought is truly mine, because it grew from my experience, resonates with me, and I’m ready to carry it. <br>Or: this thought is not mine — it was just very well disguised. Thank you for being here, but now I’ll go on my own." }
+                ],
+                footer: "Created for thought exploration. If you made it this far — congrats, you’re not just thinking, you’re observing thinking."
+            }
+        };
+
+        // Cached DOM elements
+        const elements = {
+            title: document.getElementById('title'),
+            steps: document.getElementById('steps'),
+            footer: document.getElementById('footer'),
+            description: document.getElementById('description'),
+            ogTitle: document.getElementById('ogTitle')
+        };
+
+        // Error handling for missing elements
+        function checkElements() {
+            for (let key in elements) {
+                if (!elements[key]) {
+                    console.error(`Element with id "${key}" not found in the DOM`);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            if (!checkElements()) return;
+
+            document.documentElement.lang = lang;
+            const langContent = content[lang];
+            elements.title.textContent = langContent.title;
+            elements.steps.innerHTML = '';
+            langContent.steps.forEach(step => {
+                const div = document.createElement('div');
+                div.className = 'step';
+                div.innerHTML = `<h2>${step.title}</h2><p>${step.text}</p>`;
+                elements.steps.appendChild(div);
+            });
+            elements.footer.textContent = langContent.footer;
+            elements.description.content = langContent.title + " - " + langContent.steps[0].text.split('.')[0] + ".";
+            elements.ogTitle.content = langContent.title;
+
+            document.querySelectorAll('.lang-switcher button').forEach(btn => {
+                btn.classList.toggle('active', btn.id === `${lang}Btn`);
+            });
+
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Event listeners
+        document.getElementById('ukBtn')?.addEventListener('click', () => switchLanguage('uk'));
+        document.getElementById('enBtn')?.addEventListener('click', () => switchLanguage('en'));
+
+        // Set default language to Ukrainian
+        document.addEventListener('DOMContentLoaded', () => {
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'uk';
+            switchLanguage(preferredLanguage);
+        });
+    </script>
+</body>
+</html>
