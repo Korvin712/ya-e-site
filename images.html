@@ -79,7 +79,68 @@
         nav a:focus {
             text-decoration: underline;
         }
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--white);
+}
 
+.logo-link:hover .logo-text,
+.logo-link:focus .logo-text {
+  text-decoration: underline;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .logo-link {
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .logo-img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-link {
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo-text {
+    font-size: 0.9rem;
+  }
+
+  .logo-img {
+    width: 20px;
+    height: 20px;
+  }
+}
         .bg-gradient-to-r {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
@@ -189,8 +250,11 @@
 </head>
 <body>
     <nav role="navigation">
-        <div class="container">
-            <h1>Я є</h1>
+  <div class="container logo-wrap">
+    <a href="index.html" class="logo-link">
+      <img src="images/favicon-v2.png" alt="Я є" class="logo-img">
+      <span class="logo-text">Я є</span>
+    </a>
             <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
             <ul>
                 <li><a href="index.html">Головна</a></li>
