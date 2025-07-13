@@ -1,540 +1,862 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Розплутувач тривожного клубка</title>
-    <style>
-        :root {
-            --primary-color: #4b0082;
-            --secondary-color: #800080;
-            --button-bg: #4c1d95;
-            --button-hover: #5b21b6;
-            --darkslategray: #2F4F4F;
-            --gray-50: #f9fafb;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <span class="lang-section lang-uk active">Розплутувач тривожного клубка</span>
+    <span class="lang-section lang-en">Anxiety Knot Unraveler</span>
+  </title>
+  <meta name="description" content="Інструмент для розплутування тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради.">
+  <meta name="keywords" content="тривога, самопізнання, психологія, розплутування, anxiety, self-knowledge, psychology, unraveling">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Розплутувач тривожного клубка">
+  <meta property="og:description" content="Інструмент для розплутування тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/favicon-v2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            background-color: var(--gray-50);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+  <style>
+    :root {
+      --primary-color: #4b0082;
+      --secondary-color: #800080;
+      --button-bg: #4c1d95;
+      --button-hover: #5b21b6;
+      --gray-50: #f9fafb;
+      --white: #ffffff;
+      --lang-toggle-bg: #ffffff;
+      --lang-toggle-text: #000000;
+      --lang-toggle-border: #ff0000;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            width: 100%;
-            flex: 1;
-        }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-        nav {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    body {
+      font-family: 'Lora', serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: var(--white);
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem; /* Додано падінг */
-            max-width: 1200px; /* Узгоджено з зовнішнім контейнером */
-            margin: 0 auto; /* Центрування */
-        }
+    nav {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        nav h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: white;
-            padding: 0.5rem;
-        }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--white);
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 0;
-            display: block;
-        }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.5rem;
+      display: block;
+      font-size: 0.9375rem;
+    }
 
-        nav a:hover, nav a:focus {
-            text-decoration: underline;
-        }
+    nav a:hover,
+    nav a:focus {
+      text-decoration: underline;
+    }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            font-size: 2.3rem;
-            margin-bottom: 0.5rem;
-        }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
 
-        .subtitle {
-            text-align: center;
-            color: #4b5563;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
+    .logo-img {
+      width: 32px;
+      height: 32px;
+    }
 
-        .stage {
-            background-color: #fff;
-            padding: 1.8rem;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
+    .lang-toggle {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--lang-toggle-text);
+      background: var(--lang-toggle-bg);
+      border: 2px solid var(--lang-toggle-border);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-size: 1.125rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        .stage::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--secondary-color);
-        }
+    .lang-toggle:hover,
+    .lang-toggle:focus {
+      background: #e0e0e0;
+      transform: scale(1.05);
+    }
 
-        .stage h2 {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
+    .lang-section { display: none; }
+    .lang-section.active { display: inline-block; }
 
-        label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.6rem;
-            color: #333;
-        }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a {
+        font-size: 0.875rem;
+      }
+      .logo-link {
+        font-size: 1.25rem;
+      }
+      .logo-img {
+        width: 28px;
+        height: 28px;
+      }
+      .lang-toggle {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
 
-        input[type="text"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 1rem;
-            background: #f9fafb;
-            transition: border-color 0.2s ease;
-        }
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.8125rem;
+      }
+      .logo-link {
+        font-size: 1.125rem;
+      }
+      .logo-img {
+        width: 24px;
+        height: 24px;
+      }
+      .lang-toggle {
+        font-size: 0.875rem;
+      }
+    }
 
-        input[type="text"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
+    @media (max-width: 320px) {
+      nav a {
+        font-size: 0.75rem;
+      }
+      .logo-link {
+        font-size: 1rem;
+      }
+      .logo-img {
+        width: 20px;
+        height: 20px;
+      }
+      .lang-toggle {
+        font-size: 0.8125rem;
+        padding: 0.3rem 0.6rem;
+      }
+    }
 
-        textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
 
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-white { color: var(--white); }
+    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
 
-        input[type="range"] {
-            flex: 1;
-            accent-color: var(--secondary-color);
-        }
+    .text-5xl { font-size: 3rem; }
+    @media (min-width: 768px) {
+      .md\:text-6xl { font-size: 3.75rem; }
+    }
+    .text-3xl { font-size: 1.875rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .text-xl { font-size: 1.25rem; }
+    .text-lg { font-size: 1.125rem; }
+    .font-bold { font-weight: bold; }
+    .font-semibold { font-weight: 600; }
+    .font-lora { font-family: 'Lora', serif; }
 
-        .slider-value {
-            color: var(--primary-color);
-            font-weight: 600;
-            min-width: 2rem;
-            text-align: right;
-        }
+    .bg-white { background-color: var(--white); }
+    .bg-gray-50 { background-color: var(--gray-50); }
+    .bg-gradient-to-r {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
 
-        button {
-            background: var(--button-bg);
-            color: white;
-            padding: 0.9rem 2.5rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            display: block;
-            margin: 2rem auto;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
+    h1 {
+      color: var(--primary-color);
+      font-size: 2.3rem;
+      margin-bottom: 0.5rem;
+    }
 
-        button:hover {
-            background: var(--button-hover);
-            transform: translateY(-2px);
-        }
+    .subtitle {
+      color: #4b5563;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
 
-        .output {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 5px solid var(--secondary-color);
-            margin-top: 2rem;
-            display: none;
-            animation: slideIn 0.5s ease;
-        }
+    .stage {
+      background-color: #fff;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
 
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+    .stage::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--secondary-color);
+    }
 
-        .output h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.6rem;
-        }
+    .stage h2 {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
 
-        .output-section {
-            margin-bottom: 1.5rem;
-        }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #333;
+    }
 
-        .output-section h3 {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f9fafb;
+      transition: border-color 0.2s ease;
+    }
 
-        .output-section p {
-            margin: 0.5rem 0;
-        }
+    input[type="text"]:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
 
-        .suggestions {
-            background: #fef3c7;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-        }
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
 
-        .suggestions ul {
-            list-style: none;
-            padding: 0;
-        }
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
 
-        .suggestions li {
-            margin: 0.5rem 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--secondary-color);
+    }
 
-        .suggestions li::before {
-            content: "✨";
-            color: var(--secondary-color);
-        }
+    .slider-value {
+      color: var(--primary-color);
+      font-weight: 600;
+      min-width: 2rem;
+      text-align: right;
+    }
 
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            color: #6b7280;
-            font-size: 0.9rem;
-            padding-bottom: 1rem;
-        }
+    button {
+      background: var(--button-bg);
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
 
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 1rem;
-            }
-            nav ul.active { display: flex; }
-            nav .container { flex-direction: column; align-items: flex-start; }
-            body { padding: 1rem; }
-            h1 { font-size: 1.9rem; }
-            .stage { padding: 1.2rem; }
-        }
+    button:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+    }
 
-        @media (max-width: 480px) {
-            h1 { font-size: 1.6rem; }
-            .stage { padding: 1rem; }
-            button { padding: 0.6rem 1rem; font-size: 0.9rem; }
-            .slider-container { flex-direction: column; align-items: flex-start; }
-            .slider-value { margin-top: 0.5rem; }
-            .container { padding: 0 0.5rem; }
-        }
+    .output {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 5px solid var(--secondary-color);
+      margin-top: 2rem;
+      display: none;
+      animation: slideIn 0.5s ease;
+    }
 
-        @media (max-width: 320px) {
-            h1 { font-size: 1.2rem; }
-            .container { padding: 0 0.25rem; }
-        }
-    </style>
+    @keyframes slideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .output h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .output-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .output-section h3 {
+      color: var(--secondary-color);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .output-section p {
+      margin: 0.5rem 0;
+    }
+
+    .suggestions {
+      background: #fef3c7;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    .suggestions ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .suggestions li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .suggestions li::before {
+      content: "✨";
+      color: var(--secondary-color);
+    }
+
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    .footer-note {
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body>
+  <nav role="navigation">
     <div class="container">
-        <nav>
-                <h1>Я є</h1>
-                <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
-                <ul>
-                    <li><a href="index.html">Головна</a></li>
-                    <li><a href="archetypes.html">Про архетипи</a></li>
-                    <li><a href="about.html">Про мене</a></li>
-                    <li><a href="tools.html">Інструменти</a></li>
-                    <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
-                    <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
-                    <li><a href="blog.html">Як жити далі?</a></li>
-                    <li><a href="humor.html">Гумор</a></li>
-                    <li><a href="price.html">Прайс</a></li>
-                    <li><a href="contact.html">Контакти</a></li>
-                </ul>
-            </div>
-        </nav>
+      <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <span class="logo-text">
+          <span class="lang-section lang-uk active">Я є</span>
+          <span class="lang-section lang-en">I Am</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+      <ul>
+        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Anxiety Knot Unraveler</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <h1>Розплутувач тривожного клубка</h1>
-        <div class="subtitle">
-            Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради, як розплутати цей клубок.
+  <section class="bg-gradient-to-r text-white py-20 text-center">
+    <div class="container">
+      <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">
+        <span class="lang-section lang-uk active">Розплутувач тривожного клубка</span>
+        <span class="lang-section lang-en">Anxiety Knot Unraveler</span>
+      </h1>
+      <p class="text-lg max-w-2xl mx-auto mb-6 subtitle">
+        <span class="lang-section lang-uk active">Твій провідник у світ тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради, як розплутати цей клубок.</span>
+        <span class="lang-section lang-en">Your guide through the world of anxious thoughts. Identify what’s troubling you, uncover the reasons, and get tips to unravel this knot.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container max-w-3xl">
+      <form id="anxietyForm">
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">1. Що за клубок?</span>
+            <span class="lang-section lang-en">1. What’s the Knot?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Опиши думку, яка тебе турбує. Наприклад: «Я можу провалитися» або «Мене не зрозуміють».</span>
+            <span class="lang-section lang-en">Describe the thought that’s troubling you. For example: “I might fail” or “People won’t understand me.”</span>
+          </p>
+          <label for="thought">
+            <span class="lang-section lang-uk active">Твоя тривожна думка:</span>
+            <span class="lang-section lang-en">Your anxious thought:</span>
+          </label>
+          <input type="text" id="thought" name="thought" placeholder="Що тебе турбує? / What’s troubling you?" required>
         </div>
 
-        <form id="anxietyForm">
-            <div class="stage">
-                <h2>1. Що за клубок?</h2>
-                <p>Опиши думку, яка тебе турбує. Наприклад: «Я можу провалитися» або «Мене не зрозуміють».</p>
-                <label for="thought">Твоя тривожна думка:</label>
-                <input type="text" id="thought" name="thought" placeholder="Що тебе турбує?" required>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">2. Наскільки туго затягнуто?</span>
+            <span class="lang-section lang-en">2. How Tight Is It?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Оціни, наскільки сильно ця думка викликає тривогу (0 — зовсім не турбує, 10 — нестерпно).</span>
+            <span class="lang-section lang-en">Rate how strongly this thought causes anxiety (0 — not troubling at all, 10 — unbearable).</span>
+          </p>
+          <div class="slider-container">
+            <input type="range" id="intensity" name="intensity" min="0" max="10" value="0">
+            <span class="slider-value" id="intensityValue">0</span>
+          </div>
+        </div>
 
-            <div class="stage">
-                <h2>2. Наскільки туго затягнуто?</h2>
-                <p>Оціни, наскільки сильно ця думка викликає тривогу (0 — зовсім не турбує, 10 — нестерпно).</p>
-                <div class="slider-container">
-                    <input type="range" id="intensity" name="intensity" min="0" max="10" value="0">
-                    <span class="slider-value" id="intensityValue">0</span>
-                </div>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">3. Де почався цей клубок?</span>
+            <span class="lang-section lang-en">3. Where Did This Knot Start?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Що могло запустити цю думку? Це може бути подія, розмова, спогад чи навіть неясне відчуття.</span>
+            <span class="lang-section lang-en">What might have triggered this thought? It could be an event, conversation, memory, or even a vague feeling.</span>
+          </p>
+          <label for="trigger">
+            <span class="lang-section lang-uk active">Тригер думки:</span>
+            <span class="lang-section lang-en">Thought trigger:</span>
+          </label>
+          <textarea id="trigger" name="trigger" placeholder="Що могло спричинити цю думку? / What might have caused this thought?"></textarea>
+        </div>
 
-            <div class="stage">
-                <h2>3. Де почався цей клубок?</h2>
-                <p>Що могло запустити цю думку? Це може бути подія, розмова, спогад чи навіть неясне відчуття.</p>
-                <label for="trigger">Тригер думки:</label>
-                <textarea id="trigger" name="trigger" placeholder="Що могло спричинити цю думку?"></textarea>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">4. Як це відчувається?</span>
+            <span class="lang-section lang-en">4. How Does It Feel?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Коли ти думаєш про цю думку, що відбувається в тілі? Напруга, важкість, тепло, холод?</span>
+            <span class="lang-section lang-en">When you think about this thought, what happens in your body? Tension, heaviness, warmth, coldness?</span>
+          </p>
+          <label for="feelings">
+            <span class="lang-section lang-uk active">Фізичні відчуття:</span>
+            <span class="lang-section lang-en">Physical sensations:</span>
+          </label>
+          <textarea id="feelings" name="feelings" placeholder="Опиши, що відчуваєш фізично / Describe what you feel physically"></textarea>
+        </div>
 
-            <div class="stage">
-                <h2>4. Як це відчувається?</h2>
-                <p>Коли ти думаєш про цю думку, що відбувається в тілі? Напруга, важкість, тепло, холод?</p>
-                <label for="feelings">Фізичні відчуття:</label>
-                <textarea id="feelings" name="feelings" placeholder="Опиши, що відчуваєш фізично"></textarea>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">5. Як це змінює твій шлях?</span>
+            <span class="lang-section lang-en">5. How Does It Change Your Path?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Як ця думка впливає на твої рішення чи дії? Ти щось робиш інакше чи уникаєш певних ситуацій?</span>
+            <span class="lang-section lang-en">How does this thought affect your decisions or actions? Do you do something differently or avoid certain situations?</span>
+          </p>
+          <label for="behavior">
+            <span class="lang-section lang-uk active">Зміни в поведінці:</span>
+            <span class="lang-section lang-en">Changes in behavior:</span>
+          </label>
+          <textarea id="behavior" name="behavior" placeholder="Як думка впливає на твої дії? / How does the thought affect your actions?"></textarea>
+        </div>
 
-            <div class="stage">
-                <h2>5. Як це змінює твій шлях?</h2>
-                <p>Як ця думка впливає на твої рішення чи дії? Ти щось робиш інакше чи уникаєш певних ситуацій?</p>
-                <label for="behavior">Зміни в поведінці:</label>
-                <textarea id="behavior" name="behavior" placeholder="Як думка впливає на твої дії?"></textarea>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">6. Чи міцна ця нитка?</span>
+            <span class="lang-section lang-en">6. Is This Thread Strong?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Наскільки ця думка здається правдивою? Чи є ситуації, коли вона не працює?</span>
+            <span class="lang-section lang-en">How true does this thought seem? Are there situations where it doesn’t hold up?</span>
+          </p>
+          <label for="reality">
+            <span class="lang-section lang-uk active">Реальність думки:</span>
+            <span class="lang-section lang-en">Reality of the thought:</span>
+          </label>
+          <textarea id="reality" name="reality" placeholder="Чи є підстави вірити цій думці? / Are there reasons to believe this thought?"></textarea>
+        </div>
 
-            <div class="stage">
-                <h2>6. Чи міцна ця нитка?</h2>
-                <p>Наскільки ця думка здається правдивою? Чи є ситуації, коли вона не працює?</p>
-                <label for="reality">Реальність думки:</label>
-                <textarea id="reality" name="reality" placeholder="Чи є підстави вірити цій думці?"></textarea>
-            </div>
+        <div class="stage">
+          <h2 class="text-2xl font-semibold">
+            <span class="lang-section lang-uk active">7. Що живить цю тривогу?</span>
+            <span class="lang-section lang-en">7. What Fuels This Anxiety?</span>
+          </h2>
+          <p>
+            <span class="lang-section lang-uk active">Які емоції чи потреби стоять за цією думкою? Наприклад, страх невдачі, потреба в безпеці чи визнанні.</span>
+            <span class="lang-section lang-en">What emotions or needs are behind this thought? For example, fear of failure, need for safety, or recognition.</span>
+          </p>
+          <label for="emotions">
+            <span class="lang-section lang-uk active">Основні емоції/потреби:</span>
+            <span class="lang-section lang-en">Core emotions/needs:</span>
+          </label>
+          <textarea id="emotions" name="emotions" placeholder="Які емоції чи потреби можуть стояти за думкою? / What emotions or needs might be behind the thought?"></textarea>
+        </div>
 
-            <div class="stage">
-                <h2>7. Що живить цю тривогу?</h2>
-                <p>Які емоції чи потреби стоять за цією думкою? Наприклад, страх невдачі, потреба в безпеці чи визнанні.</p>
-                <label for="emotions">Основні емоції/потреби:</label>
-                <textarea id="emotions" name="emotions" placeholder="Які емоції чи потреби можуть стояти за думкою?"></textarea>
-            </div>
+        <button type="button" onclick="unravelAnxiety()">
+          <span class="lang-section lang-uk active">Розплутати клубок</span>
+          <span class="lang-section lang-en">Unravel the Knot</span>
+        </button>
+      </form>
 
-            <button type="button" onclick="unravelAnxiety()">Розплутати клубок</button>
-        </form>
-
-        <div class="output" id="output"></div>
+      <div class="output" id="output"></div>
     </div>
+  </section>
 
-    <footer>
-        Створено, щоб допомогти тобі розібратися з тривогами. Ти сильніший, ніж твій клубок!
-    </footer>
+  <footer>
+    <div class="container">
+      <p>
+        <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
+        <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+      </p>
+      <p class="footer-note">
+        <span class="lang-section lang-uk active">Створено, щоб допомогти тобі розібратися з тривогами. Ти сильніший, ніж твій клубок!</span>
+        <span class="lang-section lang-en">Created to help you tackle your anxieties. You’re stronger than your knot!</span>
+      </p>
+    </div>
+  </footer>
 
-    <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded, initializing navigation...');
+      const savedLang = localStorage.getItem('lang') || 'uk';
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
+      document.documentElement.lang = savedLang;
+      const langToggle = document.querySelector('.lang-toggle');
+      if (langToggle) {
+        langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      } else {
+        console.error('Language toggle button not found!');
+      }
+      updateMetaTags(savedLang);
 
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-
-        // Оновлення значення слайдера
-        document.getElementById('intensity').addEventListener('input', function() {
-            document.getElementById('intensityValue').textContent = this.value;
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.querySelector('nav ul');
+      if (menuToggle && navUl) {
+        console.log('Menu toggle and nav ul found, setting up click handler');
+        menuToggle.addEventListener('click', () => {
+          const isExpanded = navUl.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', isExpanded);
+          menuToggle.textContent = isExpanded ? '✕' : '☰';
+          console.log('Menu toggled, isExpanded:', isExpanded);
         });
-
-        function unravelAnxiety() {
-            const thought = document.getElementById('thought').value.trim();
-            const intensity = parseInt(document.getElementById('intensity').value);
-            const trigger = document.getElementById('trigger').value.trim() || 'Не вказано';
-            const feelings = document.getElementById('feelings').value.trim() || 'Не вказано';
-            const behavior = document.getElementById('behavior').value.trim() || 'Не вказано';
-            const reality = document.getElementById('reality').value.trim() || 'Не вказано';
-            const emotions = document.getElementById('emotions').value.trim() || 'Не вказано';
-
-            if (!thought) {
-                alert('Будь ласка, вкажи свою тривожну думку!');
-                return;
-            }
-
-            let output = '<h2>Твій розплутаний клубок</h2>';
-            output += '<div class="output-section">';
-            output += `<p><strong>Твоя думка:</strong> ${thought}</p>`;
-            output += `<p><strong>Інтенсивність тривоги:</strong> ${intensity}/10</p>`;
-            output += `<p><strong>Тригер:</strong> ${trigger}</p>`;
-            output += `<p><strong>Фізичні відчуття:</strong> ${feelings}</p>`;
-            output += `<p><strong>Зміни в поведінці:</strong> ${behavior}</p>`;
-            output += `<p><strong>Реальність думки:</strong> ${reality}</p>`;
-            output += `<p><strong>Емоції та потреби:</strong> ${emotions}</p>`;
-            output += '</div>';
-
-            // Генерація практичних рекомендацій
-            let suggestions = '<div class="suggestions"><h3>Практичні кроки</h3><ul>';
-
-            // На основі інтенсивності
-            if (intensity <= 3) {
-                suggestions += '<li>Твоя тривога легка. Спробуй записати цю думку в зошит і повертайся до неї через день. Чи здається вона такою ж важливою? Якщо ні, напиши, що змінилось.</li>';
-            } else if (intensity <= 7) {
-                suggestions += '<li>Тривога відчутна. Виділи 5 хвилин, щоб записати 3 речі, які ти можеш зробити прямо зараз, щоб відчути себе краще (наприклад, попити води, послухати улюблену пісню, зробити 10 глибоких вдихів).</li>';
-            } else {
-                suggestions += '<li>Тривога сильна. Візьми аркуш паперу і напиши цю думку великими літерами. Потім розірви аркуш на дрібні шматочки і викинь — це допоможе відчути, що ти відпускаєш її вагу.</li>';
-            }
-
-            // На основі тригера
-            if (trigger.toLowerCase().includes('подія') || trigger.toLowerCase().includes('розмова') || trigger.toLowerCase().includes('спогад')) {
-                suggestions += '<li>Твоя думка пов’язана з конкретною ситуацією. Напиши коротку історію (3-5 речень) про цю подію, але з позитивним фіналом. Наприклад, уяви, що все закінчилось добре.</li>';
-            } else {
-                suggestions += '<li>Тригер неясний? Протягом дня записуй у телефон, коли ця думка з’являється (час і ситуація). За 2-3 дні ти побачиш, що її викликає.</li>';
-            }
-
-            // На основі фізичних відчуттів
-            if (feelings.toLowerCase().includes('напруга') || feelings.toLowerCase().includes('важкість') || feelings.toLowerCase().includes('серцебиття')) {
-                suggestions += '<li>Твоє тіло сигналізує про напругу. Зроби просту вправу: стисни кулаки сильно на 5 секунд, потім розслаб їх і потряси руками. Повтори 3 рази, щоб зняти напругу.</li>';
-            } else {
-                suggestions += '<li>Тіло спокійне? Спробуй легкий експеримент: закрий очі, уяви цю думку як хмаринку і подуй на неї, щоб вона полетіла. Зроби це 3 рази.</li>';
-            }
-
-            // На основі поведінки
-            if (behavior.toLowerCase().includes('уникаю') || behavior.toLowerCase().includes('зупиняю')) {
-                suggestions += '<li>Ти уникаєш певних дій. Вибери одну маленьку дію, яку боїшся зробити, і розбий її на 3 крихітні кроки. Зроби перший крок сьогодні (наприклад, якщо уникаєш розмови, напиши повідомлення).</li>';
-            } else {
-                suggestions += '<li>Твоя поведінка змінюється через думку. Уяви, що ти герой фільму, який не боїться цієї думки. Що б ти зробив? Напиши один крок і спробуй його завтра.</li>';
-            }
-
-            // На основі реальності
-            if (reality.toLowerCase().includes('не працює') || reality.toLowerCase().includes('спростовують')) {
-                suggestions += '<li>Ти бачиш, що думка не завжди правдива. Напиши 3 ситуації, коли вона не справджувалась, і тримай цей список у телефоні, щоб перечитувати, коли думка повертається.</li>';
-            } else {
-                suggestions += '<li>Думка здається правдивою? Напиши протилежну думку (наприклад, замість «Я провалюсь» — «Я можу досягти успіху») і щодня повторюй її 5 разів перед дзеркалом.</li>';
-            }
-
-            // На основі емоцій
-            if (emotions.toLowerCase().includes('страх') || emotions.toLowerCase().includes('невпевненість')) {
-                suggestions += '<li>Тривога пов’язана зі страхом чи невпевненістю. Напиши собі лист із 5 реченнями, чому ти крута, і перечитуй його, коли сумніваєшся в собі.</li>';
-            } else if (emotions.toLowerCase().includes('безпека') || emotions.toLowerCase().includes('визнання')) {
-                suggestions += '<li>Тобі потрібна безпека чи визнання. Зроби щось приємне для себе сьогодні (наприклад, приготуй улюблену страву чи подивись фільм) і скажи собі: «Я цього варта».</li>';
-            } else {
-                suggestions += '<li>Емоції неясні? Склади список із 5 речей, які роблять тебе щасливою. Щодня роби хоча б одну з них, щоб підтримувати себе.</li>';
-            }
-
-            suggestions += '<li>Щоб тривога не накопичувалась, заведи зошит для думок. Кожного вечора записуй одну тривожну думку і один позитивний момент дня.</li>';
-            suggestions += '</ul></div>';
-
-            output += suggestions;
-
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = output;
-            outputDiv.style.display = 'block';
-            outputDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Menu toggle script
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('nav ul');
-            if (menuToggle && navUl) {
-                menuToggle.addEventListener('click', () => {
-                    const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
-                });
-
-                menuToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        menuToggle.click();
-                    }
-                });
-
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.setAttribute('tabindex', '0');
-                });
-            }
+        menuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            menuToggle.click();
+            console.log('Menu toggled via keyboard:', e.key);
+          }
         });
-    </script>
+        navUl.querySelectorAll('a').forEach(link => {
+          link.setAttribute('tabindex', '0');
+        });
+      } else {
+        console.error('Menu toggle or nav ul not found!');
+      }
+
+      document.getElementById('intensity').addEventListener('input', function() {
+        document.getElementById('intensityValue').textContent = this.value;
+      });
+    });
+
+    function toggleLang() {
+      const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      const newLang = isUkrainian ? 'en' : 'uk';
+      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
+      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      document.documentElement.lang = newLang;
+      localStorage.setItem('lang', newLang);
+      updateMetaTags(newLang);
+      console.log(`Language switched to ${newLang.toUpperCase()}`);
+    }
+
+    function updateMetaTags(lang) {
+      if (lang === 'en') {
+        document.querySelector('meta[property="og:title"]').content = 'Anxiety Knot Unraveler';
+        document.querySelector('meta[property="og:description"]').content = 'A tool for unraveling anxious thoughts. Identify what’s troubling you, uncover the reasons, and get tips.';
+        document.querySelector('meta[name="description"]').content = 'A tool for unraveling anxious thoughts. Identify what’s troubling you, uncover the reasons, and get tips.';
+      } else {
+        document.querySelector('meta[property="og:title"]').content = 'Розплутувач тривожного клубка';
+        document.querySelector('meta[property="og:description"]').content = 'Інструмент для розплутування тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради.';
+        document.querySelector('meta[name="description"]').content = 'Інструмент для розплутування тривожних думок. Визнач, що тебе турбує, з’ясуй причини та отримай поради.';
+      }
+    }
+
+    function unravelAnxiety() {
+      const lang = document.querySelector('.lang-uk').classList.contains('active') ? 'uk' : 'en';
+      const thought = document.getElementById('thought').value.trim();
+      const intensity = parseInt(document.getElementById('intensity').value);
+      const trigger = document.getElementById('trigger').value.trim() || (lang === 'uk' ? 'Не вказано' : 'Not specified');
+      const feelings = document.getElementById('feelings').value.trim() || (lang === 'uk' ? 'Не вказано' : 'Not specified');
+      const behavior = document.getElementById('behavior').value.trim() || (lang === 'uk' ? 'Не вказано' : 'Not specified');
+      const reality = document.getElementById('reality').value.trim() || (lang === 'uk' ? 'Не вказано' : 'Not specified');
+      const emotions = document.getElementById('emotions').value.trim() || (lang === 'uk' ? 'Не вказано' : 'Not specified');
+
+      if (!thought) {
+        alert(lang === 'uk' ? 'Будь ласка, вкажи свою тривожну думку!' : 'Please enter your anxious thought!');
+        return;
+      }
+
+      let output = `
+        <h2>
+          <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твій розплутаний клубок</span>
+          <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your Unraveled Knot</span>
+        </h2>
+        <div class="output-section">
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твоя думка:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your thought:</span>
+          </strong> ${thought}</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Інтенсивність тривоги:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Anxiety intensity:</span>
+          </strong> ${intensity}/10</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тригер:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Trigger:</span>
+          </strong> ${trigger}</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Фізичні відчуття:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Physical sensations:</span>
+          </strong> ${feelings}</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Зміни в поведінці:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Changes in behavior:</span>
+          </strong> ${behavior}</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Реальність думки:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Reality of the thought:</span>
+          </strong> ${reality}</p>
+          <p><strong>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Емоції та потреби:</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Emotions and needs:</span>
+          </strong> ${emotions}</p>
+        </div>
+      `;
+
+      let suggestions = `
+        <div class="suggestions">
+          <h3>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Практичні кроки</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Practical Steps</span>
+          </h3>
+          <ul>
+      `;
+
+      if (intensity <= 3) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твоя тривога легка. Спробуй записати цю думку в зошит і повертайся до неї через день. Чи здається вона такою ж важливою? Якщо ні, напиши, що змінилось.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your anxiety is mild. Try writing this thought in a notebook and revisit it in a day. Does it still seem as important? If not, write down what changed.</span>
+          </li>
+        `;
+      } else if (intensity <= 7) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тривога відчутна. Виділи 5 хвилин, щоб записати 3 речі, які ти можеш зробити прямо зараз, щоб відчути себе краще (наприклад, попити води, послухати улюблену пісню, зробити 10 глибоких вдихів).</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your anxiety is noticeable. Take 5 minutes to write down 3 things you can do right now to feel better (e.g., drink water, listen to a favorite song, take 10 deep breaths).</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тривога сильна. Візьми аркуш паперу і напиши цю думку великими літерами. Потім розірви аркуш на дрібні шматочки і викинь — це допоможе відчути, що ти відпускаєш її вагу.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your anxiety is strong. Take a sheet of paper and write this thought in big letters. Then tear it into tiny pieces and throw it away — this can help you feel like you’re letting go of its weight.</span>
+          </li>
+        `;
+      }
+
+      if (trigger.toLowerCase().includes('подія') || trigger.toLowerCase().includes('розмова') || trigger.toLowerCase().includes('спогад') ||
+          trigger.toLowerCase().includes('event') || trigger.toLowerCase().includes('conversation') || trigger.toLowerCase().includes('memory')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твоя думка пов’язана з конкретною ситуацією. Напиши коротку історію (3-5 речень) про цю подію, але з позитивним фіналом. Наприклад, уяви, що все закінчилось добре.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your thought is tied to a specific situation. Write a short story (3-5 sentences) about this event, but with a positive ending. For example, imagine it all turned out well.</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тригер неясний? Протягом дня записуй у телефон, коли ця думка з’являється (час і ситуація). За 2-3 дні ти побачиш, що її викликає.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Unclear trigger? Throughout the day, note in your phone when this thought appears (time and situation). In 2-3 days, you’ll see what triggers it.</span>
+          </li>
+        `;
+      }
+
+      if (feelings.toLowerCase().includes('напруга') || feelings.toLowerCase().includes('важкість') || feelings.toLowerCase().includes('серцебиття') ||
+          feelings.toLowerCase().includes('tension') || feelings.toLowerCase().includes('heaviness') || feelings.toLowerCase().includes('heart pounding')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твоє тіло сигналізує про напругу. Зроби просту вправу: стисни кулаки сильно на 5 секунд, потім розслаб їх і потряси руками. Повтори 3 рази, щоб зняти напругу.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your body is signaling tension. Do a simple exercise: clench your fists tightly for 5 seconds, then relax and shake your hands. Repeat 3 times to release tension.</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тіло спокійне? Спробуй легкий експеримент: закрий очі, уяви цю думку як хмаринку і подуй на неї, щоб вона полетіла. Зроби це 3 рази.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Body calm? Try a simple experiment: close your eyes, imagine this thought as a cloud, and blow it away. Do this 3 times.</span>
+          </li>
+        `;
+      }
+
+      if (behavior.toLowerCase().includes('уникаю') || behavior.toLowerCase().includes('зупиняю') ||
+          behavior.toLowerCase().includes('avoid') || behavior.toLowerCase().includes('stop')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Ти уникаєш певних дій. Вибери одну маленьку дію, яку боїшся зробити, і розбий її на 3 крихітні кроки. Зроби перший крок сьогодні (наприклад, якщо уникаєш розмови, напиши повідомлення).</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">You’re avoiding certain actions. Pick one small action you’re afraid to take and break it into 3 tiny steps. Take the first step today (e.g., if you avoid a conversation, write a message).</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Твоя поведінка змінюється через думку. Уяви, що ти герой фільму, який не боїться цієї думки. Що б ти зробив? Напиши один крок і спробуй його завтра.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your behavior changes because of this thought. Imagine you’re a movie hero who isn’t afraid of this thought. What would you do? Write one step and try it tomorrow.</span>
+          </li>
+        `;
+      }
+
+      if (reality.toLowerCase().includes('не працює') || reality.toLowerCase().includes('спростовують') ||
+          reality.toLowerCase().includes('doesn’t hold') || reality.toLowerCase().includes('contradict')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Ти бачиш, що думка не завжди правдива. Напиши 3 ситуації, коли вона не справджувалась, і тримай цей список у телефоні, щоб перечитувати, коли думка повертається.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">You see that the thought isn’t always true. Write down 3 situations where it didn’t hold up and keep this list on your phone to reread when the thought returns.</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Думка здається правдивою? Напиши протилежну думку (наприклад, замість «Я провалюсь» — «Я можу досягти успіху») і щодня повторюй її 5 разів перед дзеркалом.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">The thought seems true? Write the opposite thought (e.g., instead of “I’ll fail” — “I can succeed”) and repeat it 5 times daily in front of a mirror.</span>
+          </li>
+        `;
+      }
+
+      if (emotions.toLowerCase().includes('страх') || emotions.toLowerCase().includes('невпевненість') ||
+          emotions.toLowerCase().includes('fear') || emotions.toLowerCase().includes('insecurity')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тривога пов’язана зі страхом чи невпевненістю. Напиши собі лист із 5 реченнями, чому ти крута, і перечитуй його, коли сумніваєшся в собі.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Your anxiety is tied to fear or insecurity. Write yourself a letter with 5 sentences about why you’re awesome and reread it when you doubt yourself.</span>
+          </li>
+        `;
+      } else if (emotions.toLowerCase().includes('безпека') || emotions.toLowerCase().includes('визнання') ||
+                 emotions.toLowerCase().includes('safety') || emotions.toLowerCase().includes('recognition')) {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Тобі потрібна безпека чи визнання. Зроби щось приємне для себе сьогодні (наприклад, приготуй улюблену страву чи подивись фільм) і скажи собі: «Я цього варта».</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">You need safety or recognition. Do something nice for yourself today (e.g., cook a favorite meal or watch a movie) and tell yourself: “I’m worth it.”</span>
+          </li>
+        `;
+      } else {
+        suggestions += `
+          <li>
+            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Емоції неясні? Склади список із 5 речей, які роблять тебе щасливою. Щодня роби хоча б одну з них, щоб підтримувати себе.</span>
+            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Emotions unclear? Make a list of 5 things that make you happy. Do at least one each day to support yourself.</span>
+          </li>
+        `;
+      }
+
+      suggestions += `
+        <li>
+          <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Щоб тривога не накопичувалась, заведи зошит для думок. Кожного вечора записуй одну тривожну думку і один позитивний момент дня.</span>
+          <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">To keep anxiety from building up, start a thought journal. Every evening, write down one anxious thought and one positive moment of the day.</span>
+        </li>
+      `;
+
+      suggestions += '</ul></div>';
+
+      output += suggestions;
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = output;
+      outputDiv.style.display = 'block';
+      outputDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
