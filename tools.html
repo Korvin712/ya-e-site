@@ -306,21 +306,6 @@
       margin-top: 0.5rem;
     }
 
-    .hedgehog-img {
-      width: 100px;
-      height: auto;
-      margin: 1rem auto 0;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .hedgehog-img { width: 80px; }
-    }
-
-    @media (max-width: 480px) {
-      .hedgehog-img { width: 60px; }
-    }
-
     ol { list-style-type: decimal; padding-left: 1.5rem; }
     .list-decimal { list-style-type: decimal; }
     .list-inside { list-style-position: inside; }
@@ -330,6 +315,9 @@
     .max-w-2xl { max-width: 42rem; }
     .max-w-3xl { max-width: 48rem; }
     img { max-width: 100%; height: auto; display: block; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .h-auto { height: auto; }
+    .max-w-full { max-width: 100%; }
   </style>
 </head>
 <body>
@@ -518,7 +506,6 @@
         localStorage.setItem('lang', 'uk');
         updateMetaTags('uk');
       }
-      // Reload active accordion content if open
       const activeItem = document.querySelector('.accordion-item.accordion-active');
       if (activeItem) {
         activeItem.dataset.loaded = 'false';
@@ -685,8 +672,12 @@
           <div class="accordion-content"></div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <h2 class="text-3xl font-bold font-lora mt-8 mb-6 text-center">
+  <section class="py-16 bg-white">
+    <div class="container max-w-3xl">
+      <h2 class="text-3xl font-bold font-lora mb-6 text-center">
         <span class="lang-section lang-uk active">Інструмент: Твоя казка</span>
         <span class="lang-section lang-en">Tool: Your Fairy Tale</span>
       </h2>
@@ -730,6 +721,18 @@
           <span class="lang-section lang-en">Once you’ve created your fairy tale, look at it as a tool for reflection. What do the characters, setting, or events represent in your life? What can you learn from it?</span>
         </p>
       </div>
+      <div class="buttons">
+        <a href="contact.html" class="button">
+          <span class="lang-section lang-uk active">Задати питання</span>
+          <span class="lang-section lang-en">Ask a Question</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50 text-center">
+    <div class="container mx-auto">
+      <img src="images/hedgehog.jpg" alt="Їжачок, що символізує допитливість і заземленість / Hedgehog symbolizing curiosity and groundedness" class="mx-auto mb-6 max-w-full h-auto" loading="lazy">
     </div>
   </section>
 
@@ -743,7 +746,6 @@
         <span class="lang-section lang-uk active">Створено з любов’ю до самопізнання.</span>
         <span class="lang-section lang-en">Created with love for self-knowledge.</span>
       </p>
-      <img src="images/hedgehog.jpg" alt="Їжак в аметистовому намисті / Hedgehog in amethyst necklace" class="hedgehog-img" loading="lazy">
     </div>
   </footer>
 </body>
