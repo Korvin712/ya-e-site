@@ -374,24 +374,31 @@
         let postsData = [];
 
         function loadJSONData(filename, callback) {
-            fetch(filename)
+            console.log('Починаємо завантаження JSON:', filename);
+            fetch(filename, { cache: 'no-store' })
                 .then(response => {
+                    console.log('Статус відповіді:', response.status, response.statusText, response.url);
                     if (!response.ok) {
-                        throw new Error('Не вдалося завантажити JSON-файл');
+                        throw new Error(`Помилка завантаження JSON: ${response.status} ${response.statusText}`);
                     }
                     return response.json();
                 })
                 .then(data => {
-                    postsData = data.posts || [];
+                    console.log('Дані JSON отримані:', data);
+                    if (!data.posts) {
+                        throw new Error('Неправильна структура JSON: ключ "posts" відсутній');
+                    }
+                    postsData = data.posts;
                     callback(postsData);
                 })
                 .catch(error => {
-                    console.error('Помилка при завантаженні JSON:', error);
-                    alert('Не вдалося завантажити пости. Спробуйте пізніше.');
+                    console.error('Помилка при завантаженні JSON:', error.message);
+                    alert(`Не вдалося завантажити пости: ${error.message}. Перевірте, чи доступний файл posts.json.`);
                 });
         }
 
         function renderPosts(posts, lang) {
+            console.log('Рендеримо пости для мови:', lang);
             const accordionContainer = document.querySelector('.container.max-w-3xl');
             const existingAccordions = accordionContainer.querySelectorAll('.accordion-item.dynamic');
             existingAccordions.forEach(item => item.remove());
@@ -451,6 +458,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM завантажено, ініціалізація...');
             const savedLang = localStorage.getItem('lang') || 'uk';
             document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
@@ -458,11 +466,19 @@
             const langToggle = document.querySelector('.lang-toggle');
             if (langToggle) {
                 langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
+            } else {
+                console.error('Кнопка перемикання мови не знайдена!');
             }
             updateMetaTags(savedLang);
 
-            loadJSONData('posts.json', (posts) => {
+            // Спробуємо спочатку відносний шлях, потім кореневий
+            loadJSONData('./posts.json', (posts) => {
                 renderPosts(posts, savedLang);
+            }).catch(() => {
+                console.log('Спроба з ./posts.json не вдалася, пробуємо /posts.json');
+                loadJSONData('/posts.json', (posts) => {
+                    renderPosts(posts, savedLang);
+                });
             });
 
             const menuToggle = document.querySelector('.menu-toggle');
