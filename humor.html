@@ -3,57 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гумор - Самопізнання через Архетипи | Я є</title>
+    <title>
+        <span class="lang-section lang-uk active">Гумор - Шукач Архетипів | Я є</span>
+        <span class="lang-section lang-en">Humor - Seeker of Archetypes | I Am</span>
+    </title>
     <meta name="description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
-    <meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія">
+    <meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія, humor, archetypes, self-discovery, jokes, irony">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Гумор - Самопізнання через Архетипи | Я є">
+    <meta property="og:title" content="Гумор - Шукач Архетипів | Я є">
     <meta property="og:description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
     <meta property="og:type" content="website">
+    <link rel="icon" href="images/favicon-v2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #4b0082;
             --secondary-color: #800080;
             --button-bg: #4c1d95;
             --button-hover: #5b21b6;
-            --darkslategray: #2F4F4F;
+            --gray-50: #f9fafb;
+            --white: #ffffff;
+            --lang-toggle-bg: #ffffff;
+            --lang-toggle-text: #000000;
+            --lang-toggle-border: #ff0000;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Lora', serif;
             margin: 0;
             padding: 0;
-            color: #333; /* Додано базовий колір тексту */
-        }
-        
-        /* Загальні стилі контейнера */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem; /* Додано горизонтальний відступ для контейнерів */
-            width: 100%;
+            line-height: 1.6;
+            background: var(--white);
+            color: #111;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* Навігація */
         nav {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 1rem 0; /* Змінено padding, щоб він застосовувався до контейнера */
+            color: var(--white);
+            padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 10;
         }
 
         nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        nav h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0; /* Прибрано зайвий відступ */
         }
 
         .menu-toggle {
@@ -62,45 +68,164 @@
             cursor: pointer;
             background: none;
             border: none;
-            color: white;
-            padding: 0.5rem; /* Додано padding для зручності натискання */
+            color: var(--white);
         }
 
         nav ul {
             list-style: none;
             display: flex;
             gap: 1rem;
-            margin: 0; /* Прибрано зайвий відступ */
-            padding: 0; /* Прибрано зайвий відступ */
+            margin: 0;
+            padding: 0;
         }
 
         nav a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            padding: 0.5rem 0; /* Додано padding для кращої клікабельності */
-            display: block; /* Зроблено посиланням блочний елемент для кращого padding */
+            padding: 0.5rem;
+            display: block;
+            font-size: 0.9375rem;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
-        nav a:hover, nav a:focus {
+        nav a:hover,
+        nav a:focus {
+            color: #FFD700;
+            transform: scale(1.05);
+        }
+
+        nav a.active {
+            color: #FFD700;
             text-decoration: underline;
         }
 
-        /* Секції */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .lang-toggle {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--lang-toggle-text);
+            background: var(--lang-toggle-bg);
+            border: 2px solid var(--lang-toggle-border);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-size: 1.125rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .lang-toggle:hover,
+        .lang-toggle:focus {
+            background: #e0e0e0;
+            transform: scale(1.05);
+        }
+
+        .lang-section { display: none; }
+        .lang-section.active { display: inline-block; }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            nav .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav a {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+            .logo-link {
+                font-size: 1.25rem;
+            }
+            .logo-img {
+                width: 28px;
+                height: 28px;
+            }
+            .lang-toggle {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                font-size: 0.9375rem;
+            }
+            .logo-link {
+                font-size: 1.125rem;
+            }
+            .logo-img {
+                width: 24px;
+                height: 24px;
+            }
+            .lang-toggle {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            nav a {
+                font-size: 0.875rem;
+            }
+            .logo-link {
+                font-size: 1rem;
+            }
+            .logo-img {
+                width: 20px;
+                height: 20px;
+            }
+            .lang-toggle {
+                font-size: 0.8125rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+
         .section {
             padding: 4rem 1rem;
             text-align: center;
         }
 
-        /* Фон та колір тексту */
         .bg-gradient-to-r {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
 
-        .text-white {
-            color: white;
-        }
-
-        /* Відступи */
+        .text-white { color: var(--white); }
         .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
         .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
         .mb-4 { margin-bottom: 1rem; }
@@ -111,35 +236,28 @@
         .mt-8 { margin-top: 2rem; }
         .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
 
-        /* Вирівнювання тексту */
         .text-center { text-align: center; }
         .text-left { text-align: left; }
 
-        /* Анімація */
-        .animate-fade-in { animation: fadeIn 1s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Розміри тексту */
         .text-4xl { font-size: 2.25rem; }
-        .md\:text-5xl { font-size: 3rem; } /* Це спрацює на розмірі >= md */
+        @media (min-width: 768px) {
+            .md\:text-5xl { font-size: 3rem; }
+        }
         .text-lg { font-size: 1.125rem; }
         .text-3xl { font-size: 1.875rem; }
         .text-2xl { font-size: 1.5rem; }
         .text-sm { font-size: 0.875rem; }
 
-        /* Вага шрифту */
         .font-bold { font-weight: bold; }
         .font-semibold { font-weight: 600; }
+        .font-lora { font-family: 'Lora', serif; }
 
-        /* Ширина елементів */
         .max-w-2xl { max-width: 42rem; }
         .max-w-3xl { max-width: 48rem; }
-        .max-w-600 { max-width: 600px; } /* Використання px для фіксованої ширини */
+        .max-w-600 { max-width: 600px; }
 
-        /* Інші стилі */
         .mx-auto { margin-left: auto; margin-right: auto; }
-        .bg-gray-50 { background-color: #f9fafb; }
-        .bg-indigo-900 { background: var(--primary-color); }
+        .bg-gray-50 { background-color: var(--gray-50); }
         .p-4 { padding: 1rem; }
         .inline-block { display: inline-block; }
         .bg-indigo-600 { background: var(--button-bg); }
@@ -147,6 +265,7 @@
         .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
         .rounded-full { border-radius: 9999px; }
         .hover\:bg-indigo-700:hover { background: var(--button-hover); }
+
         .humor-section {
             max-width: 800px;
             margin: 0 auto;
@@ -157,39 +276,49 @@
             line-height: 1.6;
         }
         .humor-section ul {
-            padding-left: 1.5rem; /* Додано відступ для списків */
+            padding-left: 1.5rem;
         }
         .humor-section li {
-            margin-bottom: 0.5rem; /* Додано відступ між елементами списку */
+            margin-bottom: 0.5rem;
         }
         .buttons {
-            display: flex; /* Використання flexbox для кнопок */
-            flex-wrap: wrap; /* Дозволяє кнопкам переноситися на новий рядок */
-            justify-content: center; /* Вирівнювання кнопок по центру */
-            gap: 1rem; /* Відступ між кнопками */
-            margin-top: 2rem; /* Відступ зверху */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
         .buttons a {
-            text-decoration: none; /* Прибрано підкреслення у посилань-кнопок */
+            text-decoration: none;
         }
-        .text-yellow-400 { color: #facc15; } /* Приклад кольору для посилання у футері */
+        .text-yellow-400 { color: #FFD700; }
         .underline { text-decoration: underline; }
 
-        /* Медіа-запити для адаптивності */
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in { animation: fadeIn 1s ease-in; }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: #FFD700;
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 1rem;
-            }
-            nav ul.active { display: flex; }
-            nav .container { flex-direction: column; align-items: flex-start; }
             .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
             .text-4xl { font-size: 2rem; }
             .md\:text-5xl { font-size: 2.5rem; }
@@ -203,7 +332,7 @@
             .container { padding: 0 1rem; }
             .max-w-600 { max-width: 100%; }
             .humor-section { max-width: 100%; }
-            .buttons { justify-content: center; } /* Вирівнювання кнопок по центру на мобільних */
+            .buttons { justify-content: center; }
         }
 
         @media (max-width: 480px) {
@@ -224,106 +353,186 @@
     </style>
 </head>
 <body>
-    <nav>
+    <nav role="navigation">
         <div class="container">
-            <h1>Я є</h1>
-            <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
+            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+                <span class="logo-text">
+                    <span class="lang-section lang-uk active">Я є</span>
+                    <span class="lang-section lang-en">I Am</span>
+                </span>
+            </a>
+            <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
             <ul>
-                <li><a href="index.html">Головна</a></li>
-                <li><a href="archetypes.html">Про архетипи</a></li>
-                <li><a href="about.html">Про мене</a></li>
-                <li><a href="tools.html">Інструменти</a></li>
-                <li><a href="mind-exploration.html">Мисленне Дослідження</a></li>
-                <li><a href="unravel-anxiety.html">Розплутування Тривоги</a></li>
-                <li><a href="blog.html">Як жити далі?</a></li>
-                <li><a href="humor.html">Гумор</a></li>
-                <li><a href="price.html">Прайс</a></li>
-                <li><a href="contact.html">Контакти</a></li>
+                <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+                <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+                <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+                <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+                <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
+                <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
+                <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+                <li><a href="humor.html" class="active"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+                <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+                <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white py-20 text-center animate-fade-in">
-        <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">Гумор</h2>
-            <p class="text-lg max-w-2xl mx-auto mb-6">Ну бо скільки можна серйозно?</p>  
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+        <div class="container">
+            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
+                <span class="lang-section lang-uk active">Гумор</span>
+                <span class="lang-section lang-en">Humor</span>
+            </h2>
+            <p class="text-lg max-w-2xl mx-auto mb-6">
+                <span class="lang-section lang-uk active">Ну бо скільки можна серйозно?</span>
+                <span class="lang-section lang-en">Because how much seriousness can one take?</span>
+            </p>
         </div>
     </section>
 
     <section class="py-16 bg-gray-50">
-        <div class="container mx-auto max-w-3xl">
+        <div class="container max-w-3xl">
             <div class="humor-section">
-                <p class="text-lg mb-4">Світ складний, внутрішній шлях ще складніший.<br>А якщо без гумору — то або в дурку, або в TikTok.<br>Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</p>
-
-                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 Анекдоти з життя (і не тільки)</h3>
-                <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                    <li>— Сину, ким ти хочеш стати, коли виростеш?<br>— Самопізнаним.<br>— Господи, краще б алкоголіком…</li>
-                    <li>— Мамо, я змерз чи хочу їсти?<br>— Що?<br>— Ярослав питає… Опікун включилася.</li>
-                    <li>— Слухай, а ти хто за архетипом?<br>— Я кішка.<br>— Чому?<br>— Не знаю, йди геть.</li>
-                    <li>— Я в архетипах розбираюсь!<br>— Ну давай, хто я?<br>— А ти Кріса.<br>— Я шо?!<br>— Той, що вижив.</li>
-                    <li>Дві бабки дивляться телевізор.<br>Ведучий каже: “Такий-то завів блог у Твіттері.”<br>Одна бабка недочула:<br>— Що він сказав?<br>— Та каже, завів блох у світері… наркоман, мабуть.</li>
-                    <li>Студенти філософського вимірюють стовп.<br>Один лізе вгору з рулеткою.<br>Йде інженер, витягує стовп з ями, кладе на землю, міряє — 5 метрів.<br>Студенти:<br>— Ну от… Довжину він нам сказав, а висоту як ми тепер дізнаємось?</li>
-                </ul>
-
-                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Внутрішній голос:</h3>
-                <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                    <li>— А раптом у тебе нічого не вийде?<br>— Та я не раптом, я стабільно!</li>
-                    <li>— Сьогодні ми працюємо над внутрішньою дитиною.<br>— Моя знову хоче піцу й ображається, якщо її не похвалити.</li>
-                </ul>
-
-                <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Маєш свій прикол?</h3>
-                <p class="text-lg mb-4">Пиши — вставимо.<br>Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</p>
-
+                <div class="lang-section lang-uk active">
+                    <p class="text-lg mb-4">Світ складний, внутрішній шлях ще складніший.<br>А якщо без гумору — то або в дурку, або в TikTok.<br>Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</p>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 Анекдоти з життя (і не тільки)</h3>
+                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+                        <li>— Сину, ким ти хочеш стати, коли виростеш?<br>— Самопізнаним.<br>— Господи, краще б алкоголіком…</li>
+                        <li>— Мамо, я змерз чи хочу їсти?<br>— Що?<br>— Ярослав питає… Опікун включилася.</li>
+                        <li>— Слухай, а ти хто за архетипом?<br>— Я кішка.<br>— Чому?<br>— Не знаю, йди геть.</li>
+                        <li>— Я в архетипах розбираюсь!<br>— Ну давай, хто я?<br>— А ти Кріса.<br>— Я шо?!<br>— Той, що вижив.</li>
+                        <li>Дві бабки дивляться телевізор.<br>Ведучий каже: “Такий-то завів блог у Твіттері.”<br>Одна бабка недочула:<br>— Що він сказав?<br>— Та каже, завів блох у світері… наркоман, мабуть.</li>
+                        <li>Студенти філософського вимірюють стовп.<br>Один лізе вгору з рулеткою.<br>Йде інженер, витягує стовп з ями, кладе на землю, міряє — 5 метрів.<br>Студенти:<br>— Ну от… Довжину він нам сказав, а висоту як ми тепер дізнаємось?</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Внутрішній голос:</h3>
+                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+                        <li>— А раптом у тебе нічого не вийде?<br>— Та я не раптом, я стабільно!</li>
+                        <li>— Сьогодні ми працюємо над внутрішньою дитиною.<br>— Моя знову хоче піцу й ображається, якщо її не похвалити.</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Маєш свій прикол?</h3>
+                    <p class="text-lg mb-4">Пиши — вставимо.<br>Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</p>
+                </div>
+                <div class="lang-section lang-en">
+                    <p class="text-lg mb-4">The world’s a mess, and the inner journey? Even messier.<br>Without humor — well, it’s either a mental ward or TikTok.<br>We chose the third option: laugh. Sometimes at ourselves. Mostly at ourselves.</p>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 True-life jokes (and some that just feel true)</h3>
+                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+                        <li>— Son, what do you want to be when you grow up?<br>— Self-aware.<br>— Oh God, better if you’d just become an alcoholic…</li>
+                        <li>— Mom, am I cold or hungry?<br>— What??<br>— Yaroslav’s asking… The caregiver mode just kicked in.</li>
+                        <li>— Hey, what’s your archetype?<br>— I’m a cat.<br>— Why?<br>— I don’t know. Go away.</li>
+                        <li>— I know all about archetypes!<br>— Oh yeah? Who am I then?<br>— You’re Kris.<br>— I’m WHAT?!<br>— The one who survived.</li>
+                        <li>Two grannies are watching TV.<br>The host says: “So-and-so just started a blog on Twitter.”<br>One granny mishears:<br>— What did he say?<br>— Says he got fleas in his sweater… must be a junkie.</li>
+                        <li>Philosophy students are measuring a pole.<br>One climbs up with a measuring tape.<br>An engineer walks by, pulls the pole out, lays it on the ground, measures: 5 meters.<br>Students:<br>— Great… He gave us the length, but how the hell do we find out the height now?!</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Inner voice moments</h3>
+                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+                        <li>— What if nothing works out for you?<br>— Oh, it’s not “what if.” It’s consistent.</li>
+                        <li>— Today, we work on our inner child.<br>— Mine wants pizza again and gets mad if you don’t compliment her.</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Got a good one?</h3>
+                    <p class="text-lg mb-4">Send it in — we’ll add it.<br>Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</p>
+                </div>
                 <div class="buttons">
-                    <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Почати шлях</a>
-                    <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">Задати питання</a>
+                    <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+                        <span class="lang-section lang-uk active">Почати шлях</span>
+                        <span class="lang-section lang-en">Start Your Journey</span>
+                    </a>
+                    <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+                        <span class="lang-section lang-uk active">Задати питання</span>
+                        <span class="lang-section lang-en">Ask a Question</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-indigo-900 text-white p-4 text-center">
-        <p>© 2025 Я є. Усі права захищено.</p>
-        <p class="mt-2 text-sm">З душею рекомендуємо:
-            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank">Карпатська Грибниця</a>
+    <footer>
+        <p>
+            <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
+            <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+        </p>
+        <p class="text-sm">
+            <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
+            <span class="lang-section lang-en">Warmly recommended:</span>
+            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
+                <span class="lang-section lang-uk active">Карпатська Грибниця</span>
+                <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
+            </a>
         </p>
     </footer>
 
-    <script type="module">
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Плавний скролінг для якірних посилань
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
+            console.log('DOM loaded, initializing navigation...');
+            const savedLang = localStorage.getItem('lang') || 'uk';
+            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
+            document.documentElement.lang = savedLang;
+            const langToggle = document.querySelector('.lang-toggle');
+            if (langToggle) {
+                langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
+            } else {
+                console.error('Language toggle button not found!');
+            }
+            updateMetaTags(savedLang);
 
-            // Меню-гамбургер
             const menuToggle = document.querySelector('.menu-toggle');
             const navUl = document.querySelector('nav ul');
-
             if (menuToggle && navUl) {
+                console.log('Menu toggle and nav ul found, setting up click handler');
                 menuToggle.addEventListener('click', () => {
                     const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded.toString());
+                    menuToggle.setAttribute('aria-expanded', isExpanded);
+                    menuToggle.textContent = isExpanded ? '✕' : '☰';
+                    console.log('Menu toggled, isExpanded:', isExpanded);
                 });
-
                 menuToggle.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         menuToggle.click();
+                        console.log('Menu toggled via keyboard:', e.key);
                     }
                 });
-
                 navUl.querySelectorAll('a').forEach(link => {
                     link.setAttribute('tabindex', '0');
                 });
+            } else {
+                console.error('Menu toggle or nav ul not found!');
             }
+
+            // Highlight active page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            navUl.querySelectorAll('a').forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
         });
+
+        function toggleLang() {
+            const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
+            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+            const newLang = isUkrainian ? 'en' : 'uk';
+            document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
+            document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
+            document.documentElement.lang = newLang;
+            localStorage.setItem('lang', newLang);
+            updateMetaTags(newLang);
+            console.log(`Language switched to ${newLang.toUpperCase()}`);
+        }
+
+        function updateMetaTags(lang) {
+            if (lang === 'en') {
+                document.querySelector('meta[property="og:title"]').content = 'Humor - Seeker of Archetypes | I Am';
+                document.querySelector('meta[property="og:description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+                document.querySelector('meta[name="description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+            } else {
+                document.querySelector('meta[property="og:title"]').content = 'Гумор - Шукач Архетипів | Я є';
+                document.querySelector('meta[property="og:description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+                document.querySelector('meta[name="description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+            }
+        }
     </script>
 </body>
 </html>
