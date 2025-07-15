@@ -488,11 +488,13 @@
                     const isExpanded = navUl.classList.toggle('active');
                     menuToggle.setAttribute('aria-expanded', isExpanded);
                     menuToggle.textContent = isExpanded ? '✕' : '☰';
+                    console.log('Меню переключено, стан:', isExpanded);
                 });
                 menuToggle.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         menuToggle.click();
+                        console.log('Меню переключено клавіатурою:', e.key);
                     }
                 });
                 navUl.querySelectorAll('a').forEach(link => {
