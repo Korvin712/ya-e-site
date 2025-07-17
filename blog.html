@@ -499,15 +499,11 @@
             }
             updateMetaTags(savedLang);
 
-            // Спробуємо спочатку відносний шлях, потім кореневий
             loadJSONData('./posts.json', (posts) => {
                 renderPosts(posts, savedLang);
-            }).catch(() => {
-                console.log('Спроба з ./posts.json не вдалася, пробуємо /posts.json');
-                loadJSONData('/posts.json', (posts) => {
-                    renderPosts(posts, savedLang);
-                });
             });
+            // Немає потреби в .catch() тут, оскільки loadJSONData вже обробляє помилки всередині
+            // Якщо loadJSONData не знайде файл, воно виведе помилку в консоль і сповіщення користувачу.
 
             // **********************************************
             // ОНОВЛЕНИЙ JAVASCRIPT ДЛЯ МЕНЮ (як на сторінці Інструменти)
