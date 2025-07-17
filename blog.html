@@ -325,8 +325,7 @@
                 <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
             </div>
             <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-            <ul>
-                <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+            <ul id="main-nav-menu"> <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
                 <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
                 <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
                 <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
@@ -433,7 +432,7 @@
                             <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Date: ${post.date || 'No date'}</span>
                         </em></p>
                         <div class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">${post.content_uk || ''}</div>
-                        <div class="lang-section lang-en${lang === 'en' ? ' active' : ''}">${post.content_en || ''}</div>
+                        <div class="lang-section lang-en${lang === 'en' ? ' ' : ''}">${post.content_en || ''}</div>
                     </div>
                 `;
                 accordionContainer.insertBefore(accordionItem, accordionContainer.querySelector('.buttons'));
@@ -495,11 +494,18 @@
                 });
             });
 
+            // **********************************************
+            // ОНОВЛЕНИЙ JAVASCRIPT ДЛЯ МЕНЮ
+            // **********************************************
             const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('nav ul');
+            // Тепер шукаємо ul за ідентифікатором, а не за сусіднім елементом
+            const navUl = document.getElementById('main-nav-menu'); 
+            
             if (menuToggle && navUl) {
                 menuToggle.addEventListener('click', () => {
+                    // Переключаємо клас 'active' для navUl
                     const isExpanded = navUl.classList.toggle('active');
+                    // Оновлюємо атрибути aria та текст кнопки
                     menuToggle.setAttribute('aria-expanded', isExpanded);
                     menuToggle.textContent = isExpanded ? '✕' : '☰';
                     console.log('Меню переключено, стан:', isExpanded);
@@ -511,10 +517,14 @@
                         console.log('Меню переключено клавіатурою:', e.key);
                     }
                 });
+                // Забезпечуємо, що елементи меню доступні для фокусування
                 navUl.querySelectorAll('a').forEach(link => {
                     link.setAttribute('tabindex', '0');
                 });
+            } else {
+                console.error('Не знайдено кнопку меню або список навігації!');
             }
+            // **********************************************
 
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             navUl.querySelectorAll('a').forEach(link => {
