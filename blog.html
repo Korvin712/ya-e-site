@@ -27,7 +27,7 @@
             --lang-toggle-bg: #ffffff;
             --lang-toggle-text: #000000;
             --lang-toggle-border: #ff0000;
-            --darkslategray: #2F4F4F;
+            --darkslategray: #2F4F4F; /* Додав цей колір, якщо він використовується в блозі */
         }
 
         *, *::before, *::after {
@@ -41,9 +41,9 @@
             line-height: 1.6;
             background: var(--white);
             color: #111;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            display: flex; /* Додав, щоб футер був внизу */
+            flex-direction: column; /* Додав, щоб футер був внизу */
+            min-height: 100vh; /* Додав, щоб футер був внизу */
         }
 
         nav {
@@ -61,17 +61,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* Додав flex-wrap для кращої адаптивності */
-        }
-
-        .header-left { /* Новий клас для лівої частини шапки: логотип + кнопка мови */
-            display: flex;
-            align-items: center;
-            gap: 1rem; /* Відстань між лого та кнопкою мови */
+            /* На сторінці "Інструменти" немає flex-wrap, видалив і тут */
         }
 
         .menu-toggle {
-            display: none; /* За замовчуванням прихована на десктопі */
+            display: none;
             font-size: 1.5rem;
             cursor: pointer;
             background: none;
@@ -93,15 +87,15 @@
             padding: 0.5rem;
             display: block;
             font-size: 0.9375rem;
-            transition: color 0.2s ease, transform 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease; /* Зберіг анімацію, як на попередній версії блогу */
         }
 
         nav a:hover,
         nav a:focus {
-            color: #FFD700;
-            transform: scale(1.05);
+            color: #FFD700; /* Колір при наведенні, як на попередній версії блогу */
+            transform: scale(1.05); /* Анімація при наведенні, як на попередній версії блогу */
+            text-decoration: underline; /* Додав, як на сторінці Інструменти */
         }
-
         nav a.active {
             color: #FFD700;
             text-decoration: underline;
@@ -144,12 +138,15 @@
         .lang-section { display: none; }
         .lang-section.active { display: inline-block; }
 
-        .section {
-            padding: 4rem 1rem;
-            text-align: center;
+        /* Загальні стилі, що використовуються на обох сторінках */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .bg-gray-50 { background-color: var(--gray-50); }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
         .text-white { color: var(--white); }
         .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
         .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
@@ -157,18 +154,28 @@
         .mb-6 { margin-bottom: 1.5rem; }
         .mt-4 { margin-top: 1rem; }
         .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
 
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-
-        .text-4xl { font-size: 2.25rem; }
-        .md\:text-5xl { font-size: 3rem; }
+        .text-4xl { font-size: 2.25rem; } /* Використовував 4xl на блозі */
+        .md\:text-5xl { font-size: 3rem; } /* Використовував 5xl на блозі */
         .text-lg { font-size: 1.125rem; }
         .text-2xl { font-size: 1.5rem; }
         .text-sm { font-size: 0.875rem; }
-
         .font-bold { font-weight: bold; }
+        .font-semibold { font-weight: 600; }
         .font-lora { font-family: 'Lora', serif; }
+
+        .bg-gray-50 { background-color: var(--gray-50); }
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        .inline-block { display: inline-block; }
+        .bg-indigo-600 { background: var(--button-bg); }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .rounded-full { border-radius: 9999px; }
+        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
 
         .max-w-2xl { max-width: 42rem; }
         .max-w-3xl { max-width: 48rem; }
@@ -177,6 +184,7 @@
         .animate-fade-in { animation: fadeIn 1s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+        /* Стилі для акордеону (з блогу) */
         .accordion-item {
             border-bottom: 1px solid #ddd;
             margin-bottom: 1rem;
@@ -211,27 +219,19 @@
         .accordion-icon {
             font-size: 1.2rem;
         }
-
         .subtitle {
             font-size: 1.25rem;
             font-style: italic;
             margin-bottom: 2rem;
         }
-
         .text-darkslategray { color: var(--darkslategray); }
-
-        .inline-block { display: inline-block; }
-        .bg-indigo-600 { background: var(--button-bg); }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .rounded-full { border-radius: 9999px; }
-        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
 
         footer {
             background: var(--primary-color);
             color: var(--white);
             padding: 1.5rem 1rem;
             text-align: center;
+            margin-top: auto; /* Щоб футер завжди був внизу */
         }
 
         footer a {
@@ -239,17 +239,11 @@
             text-decoration: underline;
         }
 
-        /* Адаптивність для мобільних пристроїв */
+        /* Адаптивність для мобільних пристроїв (оновлено на основі сторінки Інструменти) */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; } /* Показати кнопку-гамбургер */
-            nav .container {
-                flex-direction: row; /* Залишити елементи шапки в рядку */
-                justify-content: space-between; /* Розмістити їх по краях */
-            }
-            .header-left {
-                flex-grow: 1; /* Дозволити зайняти доступний простір */
-                justify-content: flex-start; /* Вирівняти вміст до лівого краю */
-                gap: 0.5rem; /* Зменшити відступ для мобільної версії */
+            .menu-toggle {
+                display: block; /* Показати кнопку-гамбургер */
+                order: 1; /* Змінити порядок, щоб кнопка була після лого */
             }
             nav ul {
                 display: none;
@@ -259,23 +253,45 @@
                 left: 0;
                 width: 100%;
                 background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 1rem;
+                padding: 0.5rem; /* Зменшив паддінг, як на Інструментах */
                 box-shadow: 0 4px 8px rgba(0,0,0,0.2);
                 animation: slideIn 0.3s ease;
+                /* Змінив порядок, щоб меню займало всю ширину під шапкою */
+                order: 4; /* Розміщуємо його після інших елементів */
             }
-            nav ul.active { display: flex; }
-            nav a { font-size: 1rem; padding: 0.75rem; }
-            .logo-link { font-size: 1.25rem; }
-            .logo-img { width: 28px; height: 28px; }
-            .lang-toggle { font-size: 1rem; padding: 0.4rem 0.8rem; }
+            nav ul.active {
+                display: flex;
+            }
+            nav .container {
+                flex-direction: column; /* Елементи шапки у колонку, як на Інструментах */
+                align-items: flex-start; /* Вирівняти до лівого краю, як на Інструментах */
+                padding: 0.5rem;
+            }
+            .logo-link {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem; /* Відступ під логотипом */
+                order: 0; /* Перший елемент */
+            }
+            .logo-img {
+                width: 28px;
+                height: 28px;
+            }
+            .lang-toggle {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+                margin-top: 0.5rem; /* Відступ зверху */
+                order: 2; /* Другий елемент, після кнопки меню */
+                align-self: flex-end; /* Вирівняти праворуч, якщо потрібно */
+            }
+            /* Скориговано розміри шрифтів та паддінги для мобільної версії */
+            nav a { font-size: 0.875rem; padding: 0.25rem; }
             .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
             .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
             .text-4xl { font-size: 2rem; }
             .md\:text-5xl { font-size: 2.5rem; }
             .text-lg { font-size: 1rem; }
             .text-2xl { font-size: 1.25rem; }
-            .max-w-2xl { max-width: 100%; }
-            .max-w-3xl { max-width: 100%; }
+            .max-w-2xl, .max-w-3xl { max-width: 100%; }
             .subtitle { font-size: 1rem; }
             .px-8 { padding-left: 1rem; padding-right: 1rem; }
             .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
@@ -284,10 +300,10 @@
         }
 
         @media (max-width: 480px) {
-            nav a { font-size: 0.9375rem; }
-            .logo-link { font-size: 1.125rem; }
+            nav a { font-size: 0.75rem; }
+            .logo-link { font-size: 1rem; }
             .logo-img { width: 24px; height: 24px; }
-            .lang-toggle { font-size: 0.875rem; }
+            .lang-toggle { font-size: 0.875rem; padding: 0.3rem 0.6rem; }
             .text-4xl { font-size: 1.5rem; }
             .md\:text-5xl { font-size: 2rem; }
             .text-2xl { font-size: 1rem; }
@@ -296,10 +312,10 @@
         }
 
         @media (max-width: 320px) {
-            nav a { font-size: 0.875rem; }
-            .logo-link { font-size: 1rem; }
+            nav a { font-size: 0.625rem; }
+            .logo-link { font-size: 0.875rem; }
             .logo-img { width: 20px; height: 20px; }
-            .lang-toggle { font-size: 0.8125rem; padding: 0.3rem 0.6rem; }
+            .lang-toggle { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
             .text-4xl { font-size: 1.2rem; }
             .text-2xl { font-size: 0.875rem; }
             .container { padding: 0 0.25rem; }
@@ -315,16 +331,15 @@
 <body>
     <nav role="navigation">
         <div class="container">
-            <div class="header-left"> <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-                    <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
-                    <span class="logo-text">
-                        <span class="lang-section lang-uk active">Я є</span>
-                        <span class="lang-section lang-en">I Am</span>
-                    </span>
-                </a>
-                <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-            </div>
+            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+                <span class="logo-text">
+                    <span class="lang-section lang-uk active">Я є</span>
+                    <span class="lang-section lang-en">I Am</span>
+                </span>
+            </a>
             <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
             <ul id="main-nav-menu"> <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
                 <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
                 <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
@@ -382,7 +397,7 @@
         </p>
     </footer>
 
-    <script>
+    <script defer>
         let postsData = [];
 
         function loadJSONData(filename, callback) {
@@ -432,7 +447,7 @@
                             <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Date: ${post.date || 'No date'}</span>
                         </em></p>
                         <div class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">${post.content_uk || ''}</div>
-                        <div class="lang-section lang-en${lang === 'en' ? ' ' : ''}">${post.content_en || ''}</div>
+                        <div class="lang-section lang-en${lang === 'en' ? ' active' : ''}">${post.content_en || ''}</div>
                     </div>
                 `;
                 accordionContainer.insertBefore(accordionItem, accordionContainer.querySelector('.buttons'));
@@ -471,7 +486,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM завантажено, ініціалізація...');
+            console.log('DOM loaded, initializing navigation...');
             const savedLang = localStorage.getItem('lang') || 'uk';
             document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
@@ -480,7 +495,7 @@
             if (langToggle) {
                 langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
             } else {
-                console.error('Кнопка перемикання мови не знайдена!');
+                console.error('Language toggle button not found!');
             }
             updateMetaTags(savedLang);
 
@@ -495,34 +510,31 @@
             });
 
             // **********************************************
-            // ОНОВЛЕНИЙ JAVASCRIPT ДЛЯ МЕНЮ
+            // ОНОВЛЕНИЙ JAVASCRIPT ДЛЯ МЕНЮ (як на сторінці Інструменти)
             // **********************************************
             const menuToggle = document.querySelector('.menu-toggle');
-            // Тепер шукаємо ul за ідентифікатором, а не за сусіднім елементом
-            const navUl = document.getElementById('main-nav-menu'); 
-            
+            const navUl = document.querySelector('nav ul'); // Знову шукаємо за тегом, як на Інструментах
+
             if (menuToggle && navUl) {
+                console.log('Menu toggle and nav ul found, setting up click handler');
                 menuToggle.addEventListener('click', () => {
-                    // Переключаємо клас 'active' для navUl
                     const isExpanded = navUl.classList.toggle('active');
-                    // Оновлюємо атрибути aria та текст кнопки
                     menuToggle.setAttribute('aria-expanded', isExpanded);
                     menuToggle.textContent = isExpanded ? '✕' : '☰';
-                    console.log('Меню переключено, стан:', isExpanded);
+                    console.log('Menu toggled, isExpanded:', isExpanded);
                 });
                 menuToggle.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         menuToggle.click();
-                        console.log('Меню переключено клавіатурою:', e.key);
+                        console.log('Menu toggled via keyboard:', e.key);
                     }
                 });
-                // Забезпечуємо, що елементи меню доступні для фокусування
                 navUl.querySelectorAll('a').forEach(link => {
                     link.setAttribute('tabindex', '0');
                 });
             } else {
-                console.error('Не знайдено кнопку меню або список навігації!');
+                console.error('Menu toggle or nav ul not found!');
             }
             // **********************************************
 
