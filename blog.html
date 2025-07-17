@@ -61,10 +61,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Додав flex-wrap для кращої адаптивності */
+        }
+
+        .header-left { /* Новий клас для лівої частини шапки: логотип + кнопка мови */
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Відстань між лого та кнопкою мови */
         }
 
         .menu-toggle {
-            display: none;
+            display: none; /* За замовчуванням прихована на десктопі */
             font-size: 1.5rem;
             cursor: pointer;
             background: none;
@@ -232,8 +239,18 @@
             text-decoration: underline;
         }
 
+        /* Адаптивність для мобільних пристроїв */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
+            .menu-toggle { display: block; } /* Показати кнопку-гамбургер */
+            nav .container {
+                flex-direction: row; /* Залишити елементи шапки в рядку */
+                justify-content: space-between; /* Розмістити їх по краях */
+            }
+            .header-left {
+                flex-grow: 1; /* Дозволити зайняти доступний простір */
+                justify-content: flex-start; /* Вирівняти вміст до лівого краю */
+                gap: 0.5rem; /* Зменшити відступ для мобільної версії */
+            }
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -247,10 +264,6 @@
                 animation: slideIn 0.3s ease;
             }
             nav ul.active { display: flex; }
-            nav .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
             nav a { font-size: 1rem; padding: 0.75rem; }
             .logo-link { font-size: 1.25rem; }
             .logo-img { width: 28px; height: 28px; }
@@ -302,15 +315,16 @@
 <body>
     <nav role="navigation">
         <div class="container">
-            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
-                <span class="logo-text">
-                    <span class="lang-section lang-uk active">Я є</span>
-                    <span class="lang-section lang-en">I Am</span>
-                </span>
-            </a>
+            <div class="header-left"> <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+                    <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+                    <span class="logo-text">
+                        <span class="lang-section lang-uk active">Я є</span>
+                        <span class="lang-section lang-en">I Am</span>
+                    </span>
+                </a>
+                <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+            </div>
             <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
             <ul>
                 <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
                 <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
@@ -341,7 +355,6 @@
 
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto max-w-3xl">
-            <!-- Динамічні акордеони додаються тут через JavaScript -->
             <div class="buttons">
                 <a href="tools.html" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
                     <span class="lang-section lang-uk active">Почати шлях</span>
@@ -386,7 +399,7 @@
                 .then(data => {
                     console.log('Дані JSON отримані:', data);
                     if (!data.posts) {
-                        throw new Error('Неправильна структура JSON: ключ "posts" відсутній');
+                        throw new Error('Неправильна структура JSON: ключ \"posts\" відсутній');
                     }
                     postsData = data.posts;
                     callback(postsData);
@@ -452,6 +465,7 @@
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         item.click();
+                        console.log('Меню переключено клавіатурою:', e.key);
                     }
                 });
             });
@@ -509,7 +523,7 @@
                 }
             });
 
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
                     const target = document.querySelector(anchor.getAttribute('href'));
@@ -534,13 +548,13 @@
 
         function updateMetaTags(lang) {
             if (lang === 'en') {
-                document.querySelector('meta[property="og:title"]').content = 'How to Live with All This? | I Am';
-                document.querySelector('meta[property="og:description"]').content = 'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
-                document.querySelector('meta[name="description"]').content = 'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
+                document.querySelector('meta[property=\"og:title\"]').content = 'How to Live with All This? | I Am';
+                document.querySelector('meta[property=\"og:description\"]').content = 'Here are thoughts, texts, and tips for those who can no longer live \"as before.\" The archetype pulses, the body speaks, and the mind asks: \"What now?\"';
+                document.querySelector('meta[name=\"description\"]').content = 'Here are thoughts, texts, and tips for those who can no longer live \"as before.\" The archetype pulses, the body speaks, and the mind asks: \"What now?\"';
             } else {
-                document.querySelector('meta[property="og:title"]').content = 'Як з усім цим жити далі? | Я є';
-                document.querySelector('meta[property="og:description"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
-                document.querySelector('meta[name="description"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
+                document.querySelector('meta[property=\"og:title\"]').content = 'Як з усім цим жити далі? | Я є';
+                document.querySelector('meta[property=\"og:description\"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити \"як раніше\". Архетип пульсує, тіло говорить, а розум питає: \"І що тепер?\"';
+                document.querySelector('meta[name=\"description\"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити \"як раніше\". Архетип пульсує, тіло говорить, а розум питає: \"І що тепер?\"';
             }
         }
     </script>
