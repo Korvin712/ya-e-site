@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <span class="lang-section lang-uk active">Головна - Самопізнання через Архетипи | Я є</span>
-    <span class="lang-section lang-en">Home - Self-Discovery through Archetypes | I Am</span>
-  </title>
-  <meta name="description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.">
-  <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст, self-discovery, archetypes, psychology, personal growth">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Головна - Самопізнання через Архетипи | Я є">
-  <meta property="og:description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="images/favicon-v2.png">
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Головна — Самопізнання через Архетипи | Я є</title>
+  <meta name="description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання." />
+  <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст, self-discovery, archetypes, psychology, personal growth" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Головна — Самопізнання через Архетипи | Я є" />
+  <meta property="og:description" content="Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="uk_UA" />
+
+  <link rel="canonical" href="/index.html" />
+  <link rel="icon" href="images/favicon-v2.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <style>
     :root {
@@ -29,9 +36,7 @@
       --lang-toggle-border: #ff0000;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
 
     body {
       font-family: 'Lora', serif;
@@ -88,16 +93,8 @@
       transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    nav a:hover,
-    nav a:focus {
-      color: #FFD700;
-      transform: scale(1.05);
-    }
-
-    nav a.active {
-      color: #FFD700;
-      text-decoration: underline;
-    }
+    nav a:hover, nav a:focus { color: #FFD700; transform: scale(1.05); }
+    nav a.active { color: #FFD700; text-decoration: underline; }
 
     .logo-link {
       display: flex;
@@ -109,10 +106,7 @@
       font-size: 1.5rem;
     }
 
-    .logo-img {
-      width: 32px;
-      height: 32px;
-    }
+    .logo-img { width: 32px; height: 32px; }
 
     .lang-toggle {
       cursor: pointer;
@@ -127,19 +121,13 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
-    .lang-toggle:hover,
-    .lang-toggle:focus {
-      background: #e0e0e0;
-      transform: scale(1.05);
-    }
+    .lang-toggle:hover, .lang-toggle:focus { background: #e0e0e0; transform: scale(1.05); }
 
     .lang-section { display: none; }
     .lang-section.active { display: inline-block; }
 
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
+      .menu-toggle { display: block; }
       nav ul {
         display: none;
         flex-direction: column;
@@ -153,34 +141,13 @@
         animation: slideIn 0.3s ease;
         gap: 0.5rem;
       }
-      nav ul.active {
-        display: flex;
-      }
-      nav .container {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem;
-      }
-      nav a {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      .logo-link {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-      }
-      .logo-img {
-        width: 28px;
-        height: 28px;
-      }
-      .lang-toggle {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-        margin-top: 0.5rem;
-      }
-      .container {
-        padding: 0.5rem;
-      }
+      nav ul.active { display: flex; }
+      nav .container { flex-direction: column; align-items: flex-start; padding: 0.5rem; }
+      nav a { font-size: 1rem; padding: 0.5rem; }
+      .logo-link { font-size: 1.25rem; margin-bottom: 0.5rem; }
+      .logo-img { width: 28px; height: 28px; }
+      .lang-toggle { font-size: 1rem; padding: 0.4rem 0.8rem; margin-top: 0.5rem; }
+      .container { padding: 0.5rem; }
       .py-20 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
       .text-5xl { font-size: 1.75rem; }
       .md\:text-6xl { font-size: 2rem; }
@@ -190,84 +157,39 @@
       .text-3xl { font-size: 1.25rem; }
       .text-lg { font-size: 0.875rem; }
       .button { padding: 0.5rem 1.5rem; font-size: 0.875rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 100%;
-      }
+      img { max-width: 100%; height: auto; width: 100%; }
     }
 
     @media (max-width: 480px) {
-      nav .container {
-        padding: 0.25rem;
-      }
-      nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
-      }
-      .logo-link {
-        font-size: 1rem;
-      }
-      .logo-img {
-        width: 24px;
-        height: 24px;
-      }
-      .lang-toggle {
-        font-size: 0.875rem;
-        padding: 0.3rem 0.6rem;
-      }
+      nav .container { padding: 0.25rem; }
+      nav a { font-size: 0.875rem; padding: 0.25rem; }
+      .logo-link { font-size: 1rem; }
+      .logo-img { width: 24px; height: 24px; }
+      .lang-toggle { font-size: 0.875rem; padding: 0.3rem 0.6rem; }
       .text-5xl { font-size: 1.5rem; }
       .md\:text-6xl { font-size: 1.75rem; }
       .text-3xl { font-size: 1.125rem; }
       .button { padding: 0.4rem 1rem; font-size: 0.75rem; }
       .container { padding: 0.25rem; }
+      img { max-width: 100%; height: auto; width: 90%; margin: 0 auto; }
       .py-20 { padding-top: 1rem; padding-bottom: 1rem; }
       .py-16 { padding-top: 1rem; padding-bottom: 1rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 90%;
-        margin: 0 auto;
-      }
     }
 
     @media (max-width: 320px) {
-      nav .container {
-        padding: 0.1rem;
-      }
-      nav a {
-        font-size: 0.75rem;
-        padding: 0.2rem;
-      }
-      .logo-link {
-        font-size: 0.875rem;
-      }
-      .logo-img {
-        width: 20px;
-        height: 20px;
-      }
-      .lang-toggle {
-        font-size: 0.75rem;
-        padding: 0.2rem 0.4rem;
-      }
+      nav .container { padding: 0.1rem; }
+      nav a { font-size: 0.75rem; padding: 0.2rem; }
+      .logo-link { font-size: 0.875rem; }
+      .logo-img { width: 20px; height: 20px; }
+      .lang-toggle { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
       .text-5xl { font-size: 1.25rem; }
       .text-3xl { font-size: 1rem; }
       .button { padding: 0.3rem 0.8rem; font-size: 0.625rem; }
       .container { padding: 0.1rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 85%;
-        margin: 0 auto;
-      }
+      img { max-width: 100%; height: auto; width: 85%; margin: 0 auto; }
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      flex: 1;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; flex: 1; }
 
     .text-center { text-align: center; }
     .text-white { color: var(--white); }
@@ -278,9 +200,7 @@
     .mt-6 { margin-top: 1.5rem; }
 
     .text-5xl { font-size: 3rem; }
-    @media (min-width: 768px) {
-      .md\:text-6xl { font-size: 3.75rem; }
-    }
+    @media (min-width: 768px) { .md\:text-6xl { font-size: 3.75rem; } }
     .text-3xl { font-size: 1.875rem; }
     .text-xl { font-size: 1.25rem; }
     .text-lg { font-size: 1.125rem; }
@@ -290,9 +210,7 @@
 
     .bg-white { background-color: var(--white); }
     .bg-gray-50 { background-color: var(--gray-50); }
-    .bg-gradient-to-r {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    }
+    .bg-gradient-to-r { background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); }
 
     .button {
       display: inline-block;
@@ -303,58 +221,42 @@
       text-decoration: none;
       transition: background-color 0.3s ease;
     }
+    .button:hover, .button:focus { background: var(--button-hover); outline: none; }
 
-    .button:hover,
-    .button:focus {
-      background: var(--button-hover);
-      outline: none;
-    }
+    @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate-fade-in { animation: fadeIn 1s ease-in; }
 
-    @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    footer { background: var(--primary-color); color: var(--white); padding: 1.5rem 1rem; text-align: center; }
+    footer a { color: #FFD700; text-decoration: underline; }
+    .footer-note { font-size: 0.875rem; margin-top: 0.5rem; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    /* Доступність */
+    :focus-visible { outline: 2px dashed #FFD700; outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
-
-    .animate-fade-in {
-      animation: fadeIn 1s ease-in;
-    }
-
-    footer {
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 1.5rem 1rem;
-      text-align: center;
-    }
-
-    footer a {
-      color: #FFD700;
-      text-decoration: underline;
-    }
-
-    .footer-note {
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-    }
+      /* Доступність: skip-link */
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { left: 1rem; top: 1rem; width: auto; height: auto; background: #000; color: #fff; padding: 0.5rem 1rem; border-radius: 6px; z-index: 100; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Перейти до основного вмісту</a>
   <nav role="navigation">
     <div class="container">
       <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img" width="32" height="32" decoding="async" />
         <span class="logo-text">
           <span class="lang-section lang-uk active">Я є</span>
           <span class="lang-section lang-en">I Am</span>
         </span>
       </a>
-      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-      <ul>
+
+      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <button type="button" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</button>
+
+      <ul id="primary-nav">
         <li><a href="index.html" class="active"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
         <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
         <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
@@ -369,77 +271,91 @@
     </div>
   </nav>
 
+  <main id="main-content">
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing navigation...');
-      const savedLang = localStorage.getItem('lang') || 'uk';
+    function setLangSections(lang) {
       document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-      document.documentElement.lang = savedLang;
-      const langToggle = document.querySelector('.lang-toggle');
-      if (langToggle) {
-        langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      } else {
-        console.error('Language toggle button not found!');
-      }
-      updateMetaTags(savedLang);
+      document.querySelectorAll(`.lang-${lang}`).forEach(el => el.classList.add('active'));
+      document.documentElement.lang = lang;
+    }
 
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navUl = document.querySelector('nav ul');
-      if (menuToggle && navUl) {
-        console.log('Menu toggle and nav ul found, setting up click handler');
-        menuToggle.addEventListener('click', () => {
-          const isExpanded = navUl.classList.toggle('active');
-          menuToggle.setAttribute('aria-expanded', isExpanded);
-          menuToggle.textContent = isExpanded ? '✕' : '☰';
-          console.log('Menu toggled, isExpanded:', isExpanded);
-        });
-        menuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            menuToggle.click();
-            console.log('Menu toggled via keyboard:', e.key);
-          }
-        });
-        navUl.querySelectorAll('a').forEach(link => {
-          link.setAttribute('tabindex', '0');
-        });
-      } else {
-        console.error('Menu toggle or nav ul not found!');
-      }
-
-      // Highlight active page
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      navUl.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    function toggleLang() {
-      const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      const newLang = isUkrainian ? 'en' : 'uk';
-      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      document.documentElement.lang = newLang;
-      localStorage.setItem('lang', newLang);
-      updateMetaTags(newLang);
-      console.log(`Language switched to ${newLang.toUpperCase()}`);
+    function updateTitle(lang) {
+      document.title = (lang === 'en')
+        ? 'Home — Self-Discovery through Archetypes | I Am'
+        : 'Головна — Самопізнання через Архетипи | Я є';
     }
 
     function updateMetaTags(lang) {
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const desc = document.querySelector('meta[name="description"]');
+      if (!ogTitle || !ogDesc || !desc) return;
+
       if (lang === 'en') {
-        document.querySelector('meta[property="og:title"]').content = 'Home - Self-Discovery through Archetypes | I Am';
-        document.querySelector('meta[property="og:description"]').content = 'The I Am website — self-discovery through archetypes. Tools, blog, and consultations for your inner growth.';
-        document.querySelector('meta[name="description"]').content = 'The I Am website — self-discovery through archetypes. Tools, blog, and consultations for your inner growth.';
+        ogTitle.content = 'Home — Self-Discovery through Archetypes | I Am';
+        ogDesc.content = 'The I Am website — self-discovery through archetypes. Tools, blog, and consultations for your inner growth.';
+        desc.content = 'The I Am website — self-discovery through archetypes. Tools, blog, and consultations for your inner growth.';
       } else {
-        document.querySelector('meta[property="og:title"]').content = 'Головна - Самопізнання через Архетипи | Я є';
-        document.querySelector('meta[property="og:description"]').content = 'Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.';
-        document.querySelector('meta[name="description"]').content = 'Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.';
+        ogTitle.content = 'Головна — Самопізнання через Архетипи | Я є';
+        ogDesc.content = 'Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.';
+        desc.content = 'Сайт Я є — самопізнання через архетипи. Інструменти, блог та консультації для твого внутрішнього зростання.';
       }
     }
+
+    function toggleLang() {
+      const isUkrainian = document.documentElement.lang === 'uk';
+      const newLang = isUkrainian ? 'en' : 'uk';
+      setLangSections(newLang);
+      updateTitle(newLang);
+      updateMetaTags(newLang);
+      const langToggleBtn = document.querySelector('.lang-toggle');
+      if (langToggleBtn) {
+        langToggleBtn.textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
+        langToggleBtn.setAttribute('aria-pressed', newLang === 'uk' ? 'false' : 'true');
+      }
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) ogLocale.content = (newLang === 'en') ? 'en_US' : 'uk_UA';
+      localStorage.setItem('lang', newLang);
+      console.log(`Language switched to ${newLang.toUpperCase()}`);
+    }`);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'uk';
+      setLangSections(savedLang);
+      updateTitle(savedLang);
+      updateMetaTags(savedLang);
+      // оновлюємо og:locale відповідно до мови
+      const ogLocale = document.querySelector('meta[property="og:locale"]');
+      if (ogLocale) ogLocale.content = (savedLang === 'en') ? 'en_US' : 'uk_UA';
+
+      const langToggleBtn = document.querySelector('.lang-toggle');
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', toggleLang);
+      }
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.getElementById('primary-nav');
+      if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+          const isExpanded = navUl.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', String(isExpanded));
+          menuToggle.textContent = isExpanded ? '✕' : '☰';
+        });
+        menuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); menuToggle.click(); }
+        });
+        // Highlight active page safely
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        navUl.querySelectorAll('a').forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          }
+        });
+      }
+    });
   </script>
 
   <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
@@ -457,7 +373,7 @@
 
   <section class="py-16 bg-gray-50 text-center">
     <div class="container">
-      <img src="images/campfire.jpg" alt="Зображення вогнища / Campfire image" class="mx-auto mb-6 max-w-full h-auto" loading="lazy">
+      <img src="images/campfire.jpg"$1 decoding="async">
       <p class="text-lg max-w-2xl mx-auto">
         <span class="lang-section lang-uk active">Вогнище — місце, де оживає твоя суть, де ти можеш зупинитися і почути себе.</span>
         <span class="lang-section lang-en">The Hearth is the place where your essence awakens, where you can stop and hear yourself.</span>
@@ -562,6 +478,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <p>
       <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
@@ -576,5 +494,11 @@
       </a>
     </p>
   </footer>
+
+  <noscript>
+    <div class="container" style="padding:1rem; max-width:1200px; margin:0 auto;">
+      <p>JavaScript вимкнено. Перемикання мов працює лише з увімкненим JavaScript.</p>
+    </div>
+  </noscript>
 </body>
 </html>
