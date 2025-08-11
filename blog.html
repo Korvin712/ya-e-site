@@ -10,55 +10,71 @@
   <meta property="og:title" content="Як з усім цим жити далі? | Я є">
   <meta property="og:description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
   <meta property="og:type" content="website">
-
-  <link rel="icon" href="images/favicon-v2.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="images/favicon-v2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --primary-color:#4b0082;--secondary-color:#800080;--button-bg:#4c1d95;--button-hover:#5b21b6;
-      --gray-50:#f9fafb;--white:#fff;--lang-toggle-bg:#fff;--lang-toggle-text:#000;--lang-toggle-border:#ff0000;
-      --darkslategray:#2F4F4F
+      --primary-color:#4b0082; --secondary-color:#800080;
+      --button-bg:#4c1d95; --button-hover:#5b21b6;
+      --gray-50:#f9fafb; --white:#fff;
+      --lang-toggle-bg:#fff; --lang-toggle-text:#000; --lang-toggle-border:#f00;
+      --darkslategray:#2F4F4F;
     }
     *,*::before,*::after{box-sizing:border-box}
-    body{font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;min-height:100vh;display:flex;flex-direction:column}
+    body{font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;display:flex;flex-direction:column;min-height:100vh}
+
+    /* NAV */
     nav{background:linear-gradient(to right,var(--primary-color),var(--secondary-color));color:var(--white);padding:1rem;position:sticky;top:0;z-index:10}
     nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
-    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
-    nav a{color:var(--white);text-decoration:none;padding:.5rem;display:block;font-size:.9375rem;transition:color .2s ease,transform .2s ease}
-    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05);text-decoration:underline}
-    nav a.active{color:#FFD700;text-decoration:underline}
     .logo-link{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--white);font-weight:bold;font-size:1.5rem}
     .logo-img{width:32px;height:32px}
-    .lang-toggle{cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;font-size:1.125rem;transition:background-color .3s ease,transform .2s ease}
+    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
+    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
+    nav a{color:var(--white);text-decoration:none;padding:.5rem;display:block;font-size:.9375rem;transition:color .2s,transform .2s}
+    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05);text-decoration:underline}
+    nav a.active{color:#FFD700;text-decoration:underline}
+    .lang-toggle{cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;font-size:1.125rem;transition:background-color .3s,transform .2s}
     .lang-toggle:hover,.lang-toggle:focus{background:#e0e0e0;transform:scale(1.05)}
-    .lang-section{display:none}
-    .lang-section.active{display:inline}
+
+    /* UTILS */
     .container{max-width:1200px;margin:0 auto;padding:0 1rem}
-    .text-center{text-align:center}.text-white{color:var(--white)}.py-20{padding:5rem 0}.py-16{padding:4rem 0}
-    .mb-4{margin-bottom:1rem}.mt-6{margin-top:1.5rem}.mt-4{margin-top:1rem}
-    .text-4xl{font-size:2.25rem}.md\:text-5xl{font-size:3rem}.text-lg{font-size:1.125rem}.text-2xl{font-size:1.5rem}.text-sm{font-size:.875rem}
-    .font-bold{font-weight:700}.font-semibold{font-weight:600}.font-lora{font-family:'Lora',serif}
+    .text-center{text-align:center}.text-white{color:var(--white)}
+    .py-20{padding-top:5rem;padding-bottom:5rem}
+    .py-16{padding-top:4rem;padding-bottom:4rem}
+    .mb-4{margin-bottom:1rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
+    .text-4xl{font-size:2.25rem}.md\:text-5xl{font-size:3rem}
+    .text-lg{font-size:1.125rem}.text-2xl{font-size:1.5rem}.text-sm{font-size:.875rem}
+    .font-bold{font-weight:bold}.font-lora{font-family:'Lora',serif}
     .bg-gray-50{background-color:var(--gray-50)}
     .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
-    .inline-block{display:inline-block}.bg-indigo-600{background:var(--button-bg)}.px-8{padding:0 2rem}.py-3{padding:.75rem 0}.rounded-full{border-radius:9999px}.hover\:bg-indigo-700:hover{background:var(--button-hover)}
+    .inline-block{display:inline-block}.rounded-full{border-radius:9999px}
+    .px-8{padding-left:2rem;padding-right:2rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}
+    .bg-indigo-600{background:var(--button-bg)} .bg-indigo-600:hover{background:var(--button-hover)}
     .max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.mx-auto{margin-left:auto;margin-right:auto}
     .animate-fade-in{animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-    /* Accordion */
-    .accordion-item{border-bottom:1px solid #ddd;margin-bottom:1rem;max-width:800px;margin-left:auto;margin-right:auto}
+    /* LANG VISIBILITY */
+    .lang-section{display:none}.lang-section.active{display:inline}
+
+    /* HERO */
+    .subtitle{font-size:1.25rem;font-style:italic;margin-bottom:2rem}
+
+    /* ACCORDION */
+    .accordion-wrap{max-width:48rem;margin:0 auto}
+    .accordion-item{border-bottom:1px solid #ddd;margin-bottom:1rem}
     .accordion-header{padding:1rem;background:#f1f1f1;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
     .accordion-header:hover{background:#e1e1e1}
+    .accordion-header h3{margin:0;font-size:1.25rem;color:var(--darkslategray)}
+    .accordion-icon{font-size:1.2rem;line-height:1}
     .accordion-content{display:none;padding:1rem;background:#fff}
-    .accordion-content.active{display:block}
-    .accordion-icon{font-size:1.2rem}
-    .subtitle{font-size:1.25rem;font-style:italic;margin-bottom:2rem}
-    .text-darkslategray{color:var(--darkslategray)}
+    .accordion-content.open{display:block}
 
+    /* FOOTER */
     footer{background:var(--primary-color);color:var(--white);padding:1.5rem 1rem;text-align:center;margin-top:auto}
     footer a{color:#FFD700;text-decoration:underline}
 
+    /* RESPONSIVE */
     @media (max-width:768px){
       .menu-toggle{display:block}
       nav .container{flex-direction:column;align-items:flex-start;padding:.5rem}
@@ -68,29 +84,28 @@
       .logo-img{width:28px;height:28px}
       .lang-toggle{font-size:1rem;padding:.4rem .8rem;margin-top:.5rem;align-self:flex-end}
       nav a{font-size:.875rem;padding:.25rem}
-      .py-20,.py-16{padding:2rem 0}
-      .text-4xl{font-size:2rem}.md\:text-5xl{font-size:2.5rem}.text-lg{font-size:1rem}.text-2xl{font-size:1.25rem}
-      .max-w-2xl,.max-w-3xl{max-width:100%}
+      .py-20,.py-16{padding-top:2rem;padding-bottom:2rem}
+      .text-4xl{font-size:2rem}.md\:text-5xl{font-size:2.5rem}
       .subtitle{font-size:1rem}
-      .px-8{padding:0 1rem}.py-3{padding:.5rem 0}
-      .accordion-item{max-width:100%}
+      .px-8{padding-left:1rem;padding-right:1rem}.py-3{padding-top:.5rem;padding-bottom:.5rem}
     }
     @media (max-width:480px){
-      nav a{font-size:.75rem}.logo-link{font-size:1rem}.logo-img{width:24px;height:24px}
+      nav a{font-size:.75rem}
+      .logo-link{font-size:1rem}.logo-img{width:24px;height:24px}
       .lang-toggle{font-size:.875rem;padding:.3rem .6rem}
-      .text-4xl{font-size:1.5rem}.md\:text-5xl{font-size:2rem}.text-2xl{font-size:1rem}
-      .container{padding:0 .5rem}.subtitle{font-size:.875rem}
+      .text-4xl{font-size:1.5rem}.md\:text-5xl{font-size:2rem}.subtitle{font-size:.875rem}
     }
     @media (max-width:320px){
-      nav a{font-size:.625rem}.logo-link{font-size:.875rem}.logo-img{width:20px;height:20px}
+      nav a{font-size:.625rem}
+      .logo-link{font-size:.875rem}.logo-img{width:20px;height:20px}
       .lang-toggle{font-size:.75rem;padding:.2rem .4rem}
-      .text-4xl{font-size:1.2rem}.text-2xl{font-size:.875rem}
-      .container{padding:0 .25rem}.subtitle{font-size:.75rem}
+      .text-4xl{font-size:1.2rem}
     }
     @keyframes slideIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
   </style>
 </head>
 <body>
+  <!-- NAV -->
   <nav role="navigation">
     <div class="container">
       <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
@@ -101,8 +116,8 @@
         </span>
       </a>
       <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-      <ul id="main-nav-menu">
+      <a href="#" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+      <ul>
         <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
         <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
         <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
@@ -117,6 +132,7 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="py-20 text-white text-center animate-fade-in bg-gradient-to-r">
     <div class="container mx-auto">
       <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
@@ -130,16 +146,17 @@
     </div>
   </section>
 
+  <!-- POSTS + BUTTONS -->
   <section class="py-16 bg-gray-50">
     <div class="container mx-auto max-w-3xl">
-      <div id="posts-anchor"></div>
+      <div id="posts" class="accordion-wrap"></div>
 
-      <div class="buttons text-center">
-        <a href="tools.html" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+      <div class="buttons text-center mt-6">
+        <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full"> 
           <span class="lang-section lang-uk active">Почати шлях</span>
           <span class="lang-section lang-en">Start the Journey</span>
         </a>
-        <a href="contact.html" class="mt-4 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+        <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full mt-4">
           <span class="lang-section lang-uk active">Задати питання</span>
           <span class="lang-section lang-en">Ask a Question</span>
         </a>
@@ -147,6 +164,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <p>
       <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
@@ -162,160 +180,159 @@
     </p>
   </footer>
 
-  <script defer>
+  <script>
     let postsData = [];
 
-    function setDocumentTitle(lang){
-      document.title = (lang==='en')
-        ? 'How to Live with All This? | I Am'
-        : 'Як з усім цим жити далі? | Я є';
-    }
-
-    function updateMetaTags(lang){
-      if(lang==='en'){
-        document.querySelector('meta[property="og:title"]').content = 'How to Live with All This? | I Am';
-        document.querySelector('meta[property="og:description"]').content =
-          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
-        document.querySelector('meta[name="description"]').content =
-          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
-      }else{
+    // ---------- Helpers ----------
+    function setLang(lang){
+      document.querySelectorAll('.lang-section').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.lang-' + lang).forEach(el=>el.classList.add('active'));
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+      document.querySelector('.lang-toggle').textContent = (lang==='uk') ? 'UA / EN' : 'EN / UA';
+      // Title + meta
+      if(lang==='uk'){
+        document.title = 'Як з усім цим жити далі? | Я є';
         document.querySelector('meta[property="og:title"]').content = 'Як з усім цим жити далі? | Я є';
         document.querySelector('meta[property="og:description"]').content =
           'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
         document.querySelector('meta[name="description"]').content =
           'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
+      }else{
+        document.title = 'How to Live with All This? | I Am';
+        document.querySelector('meta[property="og:title"]').content = 'How to Live with All This? | I Am';
+        document.querySelector('meta[property="og:description"]').content =
+          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
+        document.querySelector('meta[name="description"]').content =
+          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
       }
     }
 
-    async function loadJSONData(filename){
-      try{
-        const res = await fetch(filename,{cache:'no-store'});
-        if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        const data = await res.json();
-        if(!data.posts) throw new Error('Bad JSON structure: "posts" key missing');
-        postsData = data.posts;
-        return postsData;
-      }catch(err){
-        console.error('posts.json load error:', err);
-        return null;
-      }
+    function toggleLang(){
+      const isUkrainian = document.documentElement.lang === 'uk';
+      const newLang = isUkrainian ? 'en' : 'uk';
+      setLang(newLang);
+      renderPosts(postsData, newLang);
     }
 
-    function renderPosts(posts, lang){
-      const container = document.querySelector('.container.max-w-3xl');
-      // wipe dynamic items
-      container.querySelectorAll('.accordion-item.dynamic').forEach(n=>n.remove());
-      // remove empty message if exists
-      const prevEmpty = document.getElementById('empty-posts-msg');
-      if(prevEmpty) prevEmpty.remove();
-
-      if(!posts || posts.length===0){
-        const msg = document.createElement('p');
-        msg.id = 'empty-posts-msg';
-        msg.className = 'text-center text-lg';
-        msg.innerHTML = (lang==='en')
-          ? 'No posts yet. Come back a bit later.'
-          : 'Постів поки немає. Завітай трохи згодом.';
-        container.insertBefore(msg, container.querySelector('.buttons'));
-        return;
-      }
-
-      posts.forEach(post=>{
-        const item = document.createElement('div');
-        item.className = 'accordion-item dynamic';
-        item.innerHTML = `
-          <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
-            <h3 class="text-2xl font-semibold font-lora text-darkslategray" style="margin:0">
-              <span class="lang-section lang-uk${lang==='uk'?' active':''}">${post.title_uk || 'Без заголовку'}</span>
-              <span class="lang-section lang-en${lang==='en'?' active':''}">${post.title_en || 'No title'}</span>
-            </h3>
-            <span class="accordion-icon">+</span>
-          </div>
-          <div class="accordion-content" aria-hidden="true">
-            <p class="text-lg mb-4"><em>
-              <span class="lang-section lang-uk${lang==='uk'?' active':''}">Дата: ${post.date || 'Немає дати'}</span>
-              <span class="lang-section lang-en${lang==='en'?' active':''}">Date: ${post.date || 'No date'}</span>
-            </em></p>
-            <div class="lang-section lang-uk${lang==='uk'?' active':''}">${post.content_uk || ''}</div>
-            <div class="lang-section lang-en${lang==='en'?' active':''}">${post.content_en || ''}</div>
-          </div>
-        `;
-        container.insertBefore(item, container.querySelector('.buttons'));
-      });
-
-      // bind toggles
-      container.querySelectorAll('.accordion-item.dynamic .accordion-header').forEach(header=>{
-        header.addEventListener('click', ()=>toggleAccordion(header));
+    // ---------- Accordion ----------
+    function bindAccordion(container){
+      const headers = container.querySelectorAll('.accordion-header');
+      headers.forEach(header=>{
+        header.addEventListener('click', ()=>handleAccordion(header, container));
         header.addEventListener('keydown', (e)=>{
           if(e.key==='Enter' || e.key===' '){ e.preventDefault(); header.click(); }
         });
       });
     }
 
-    function toggleAccordion(header){
+    function handleAccordion(header, container){
       const content = header.nextElementSibling;
-      const container = document.querySelector('.container.max-w-3xl');
-      // close others
-      container.querySelectorAll('.accordion-content').forEach(c=>{
-        c.classList.remove('active'); c.setAttribute('aria-hidden','true');
+      const isOpen = content.classList.contains('open');
+
+      // якщо відкрито — закриваємо
+      if(isOpen){
+        content.classList.remove('open');
+        content.setAttribute('aria-hidden','true');
+        header.setAttribute('aria-expanded','false');
+        const ic = header.querySelector('.accordion-icon'); if(ic) ic.textContent = '+';
+        return;
+      }
+
+      // закриваємо інші
+      container.querySelectorAll('.accordion-content.open').forEach(c=>{
+        c.classList.remove('open');
+        c.setAttribute('aria-hidden','true');
         const h = c.previousElementSibling;
-        if(h){ h.setAttribute('aria-expanded','false'); const ic = h.querySelector('.accordion-icon'); if(ic) ic.textContent='+'; }
+        if(h){
+          h.setAttribute('aria-expanded','false');
+          const ic = h.querySelector('.accordion-icon'); if(ic) ic.textContent = '+';
+        }
       });
-      // open this
-      content.classList.add('active'); content.setAttribute('aria-hidden','false');
+
+      // відкриваємо поточний
+      content.classList.add('open');
+      content.setAttribute('aria-hidden','false');
       header.setAttribute('aria-expanded','true');
-      const icon = header.querySelector('.accordion-icon'); if(icon) icon.textContent='−';
+      const icon = header.querySelector('.accordion-icon'); if(icon) icon.textContent = '−';
     }
 
-    function initMenu(){
+    // ---------- Render ----------
+    function renderPosts(posts, lang){
+      const wrap = document.getElementById('posts');
+      wrap.innerHTML = ''; // чистимо
+
+      posts.forEach(post=>{
+        const item = document.createElement('div');
+        item.className = 'accordion-item';
+        item.innerHTML = `
+          <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <h3 class="font-lora">
+              <span class="lang-section lang-uk ${lang==='uk'?'active':''}">${post.title_uk || 'Без заголовку'}</span>
+              <span class="lang-section lang-en ${lang==='en'?'active':''}">${post.title_en || 'No title'}</span>
+            </h3>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content" aria-hidden="true">
+            <p class="text-lg mb-4"><em>
+              <span class="lang-section lang-uk ${lang==='uk'?'active':''}">Дата: ${post.date || 'Немає дати'}</span>
+              <span class="lang-section lang-en ${lang==='en'?'active':''}">Date: ${post.date || 'No date'}</span>
+            </em></p>
+            <div class="lang-section lang-uk ${lang==='uk'?'active':''}">${post.content_uk || ''}</div>
+            <div class="lang-section lang-en ${lang==='en'?'active':''}">${post.content_en || ''}</div>
+          </div>
+        `;
+        wrap.appendChild(item);
+      });
+
+      bindAccordion(wrap);
+    }
+
+    // ---------- Boot ----------
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // мова
+      const savedLang = localStorage.getItem('lang') || 'uk';
+      setLang(savedLang);
+
+      // меню
       const menuToggle = document.querySelector('.menu-toggle');
       const navUl = document.querySelector('nav ul');
-      if(!menuToggle || !navUl) return;
-      menuToggle.addEventListener('click', ()=>{
-        const isExpanded = navUl.classList.toggle('active');
-        menuToggle.setAttribute('aria-expanded', isExpanded);
-        menuToggle.textContent = isExpanded ? '✕' : '☰';
-      });
-      menuToggle.addEventListener('keydown', (e)=>{
-        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); menuToggle.click(); }
-      });
-      navUl.querySelectorAll('a').forEach(link=>link.setAttribute('tabindex','0'));
+      if(menuToggle && navUl){
+        menuToggle.addEventListener('click', ()=>{
+          const isExpanded = navUl.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', isExpanded);
+          menuToggle.textContent = isExpanded ? '✕' : '☰';
+        });
+        menuToggle.addEventListener('keydown', (e)=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); menuToggle.click(); }
+        });
+        navUl.querySelectorAll('a').forEach(a=>a.setAttribute('tabindex','0'));
+      }
 
-      const currentPage = location.pathname.split('/').pop() || 'index.html';
+      // активне посилання
+      const currentPage = (window.location.pathname.split('/').pop() || 'index.html');
       navUl.querySelectorAll('a').forEach(link=>{
         if(link.getAttribute('href')===currentPage){ link.classList.add('active'); }
       });
-    }
 
-    function applyLang(lang){
-      document.querySelectorAll('.lang-section').forEach(el=>el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
-      document.documentElement.lang = lang;
-      const toggle = document.querySelector('.lang-toggle');
-      if(toggle) toggle.textContent = (lang==='uk') ? 'UA / EN' : 'EN / UA';
-      setDocumentTitle(lang);
-      updateMetaTags(lang);
-      renderPosts(postsData, lang);
-    }
+      // перемикач мови
+      document.querySelector('.lang-toggle').addEventListener('click', (e)=>{ e.preventDefault(); toggleLang(); });
 
-    function initLang(){
-      const saved = localStorage.getItem('lang') || 'uk';
-      applyLang(saved);
-    }
-
-    function toggleLang(){
-      const isUkr = document.querySelector('.lang-uk')?.classList.contains('active');
-      const newLang = isUkr ? 'en' : 'uk';
-      localStorage.setItem('lang', newLang);
-      applyLang(newLang);
-    }
-    window.toggleLang = toggleLang; // для href onclick
-
-    document.addEventListener('DOMContentLoaded', async ()=>{
-      initMenu();
-      initLang();
-      const posts = await loadJSONData('./posts.json');
-      renderPosts(posts || [], document.documentElement.lang || 'uk');
+      // завантаження постів
+      fetch('./posts.json',{cache:'no-store'})
+        .then(r=>{
+          if(!r.ok) throw new Error(`Помилка завантаження JSON: ${r.status} ${r.statusText}`);
+          return r.json();
+        })
+        .then(data=>{
+          if(!data.posts) throw new Error('Неправильна структура JSON: ключ "posts" відсутній');
+          postsData = data.posts;
+          renderPosts(postsData, document.documentElement.lang);
+        })
+        .catch(err=>{
+          console.error(err);
+          alert(`Не вдалося завантажити пости: ${err.message}. Перевірте, чи доступний файл posts.json.`);
+        });
     });
   </script>
 </body>
