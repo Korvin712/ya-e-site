@@ -1,580 +1,322 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <span class="lang-section lang-uk active">Як з усім цим жити далі? | Я є</span>
-        <span class="lang-section lang-en">How to Live with All This? | I Am</span>
-    </title>
-    <meta name="description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
-    <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст, як жити далі, self-discovery, archetypes, psychology, inner growth, how to live on">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Як з усім цим жити далі? | Я є">
-    <meta property="og:description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="images/favicon-v2.png">
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Як з усім цим жити далі? | Я є</title>
+  <meta name="description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
+  <meta name="keywords" content="самопізнання, архетипи, психологія, внутрішній ріст, як жити далі, self-discovery, archetypes, psychology, inner growth, how to live on">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Як з усім цим жити далі? | Я є">
+  <meta property="og:description" content="Думки, тексти і підказки для тих, хто вже не може жити 'як раніше'. Архетип пульсує, тіло говорить, а розум питає: 'І що тепер?'">
+  <meta property="og:type" content="website">
 
-    <style>
-        :root {
-            --primary-color: #4b0082;
-            --secondary-color: #800080;
-            --button-bg: #4c1d95;
-            --button-hover: #5b21b6;
-            --gray-50: #f9fafb;
-            --white: #ffffff;
-            --lang-toggle-bg: #ffffff;
-            --lang-toggle-text: #000000;
-            --lang-toggle-border: #ff0000;
-            --darkslategray: #2F4F4F; /* Додав цей колір, якщо він використовується в блозі */
-        }
+  <link rel="icon" href="images/favicon-v2.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet"/>
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+  <style>
+    :root{
+      --primary-color:#4b0082;--secondary-color:#800080;--button-bg:#4c1d95;--button-hover:#5b21b6;
+      --gray-50:#f9fafb;--white:#fff;--lang-toggle-bg:#fff;--lang-toggle-text:#000;--lang-toggle-border:#ff0000;
+      --darkslategray:#2F4F4F
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;min-height:100vh;display:flex;flex-direction:column}
+    nav{background:linear-gradient(to right,var(--primary-color),var(--secondary-color));color:var(--white);padding:1rem;position:sticky;top:0;z-index:10}
+    nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
+    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
+    nav a{color:var(--white);text-decoration:none;padding:.5rem;display:block;font-size:.9375rem;transition:color .2s ease,transform .2s ease}
+    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05);text-decoration:underline}
+    nav a.active{color:#FFD700;text-decoration:underline}
+    .logo-link{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--white);font-weight:bold;font-size:1.5rem}
+    .logo-img{width:32px;height:32px}
+    .lang-toggle{cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;font-size:1.125rem;transition:background-color .3s ease,transform .2s ease}
+    .lang-toggle:hover,.lang-toggle:focus{background:#e0e0e0;transform:scale(1.05)}
+    .lang-section{display:none}
+    .lang-section.active{display:inline}
+    .container{max-width:1200px;margin:0 auto;padding:0 1rem}
+    .text-center{text-align:center}.text-white{color:var(--white)}.py-20{padding:5rem 0}.py-16{padding:4rem 0}
+    .mb-4{margin-bottom:1rem}.mt-6{margin-top:1.5rem}.mt-4{margin-top:1rem}
+    .text-4xl{font-size:2.25rem}.md\:text-5xl{font-size:3rem}.text-lg{font-size:1.125rem}.text-2xl{font-size:1.5rem}.text-sm{font-size:.875rem}
+    .font-bold{font-weight:700}.font-semibold{font-weight:600}.font-lora{font-family:'Lora',serif}
+    .bg-gray-50{background-color:var(--gray-50)}
+    .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
+    .inline-block{display:inline-block}.bg-indigo-600{background:var(--button-bg)}.px-8{padding:0 2rem}.py-3{padding:.75rem 0}.rounded-full{border-radius:9999px}.hover\:bg-indigo-700:hover{background:var(--button-hover)}
+    .max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.mx-auto{margin-left:auto;margin-right:auto}
+    .animate-fade-in{animation:fadeIn 1s ease-in}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-        body {
-            font-family: 'Lora', serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background: var(--white);
-            color: #111;
-            display: flex; /* Додав, щоб футер був внизу */
-            flex-direction: column; /* Додав, щоб футер був внизу */
-            min-height: 100vh; /* Додав, щоб футер був внизу */
-        }
+    /* Accordion */
+    .accordion-item{border-bottom:1px solid #ddd;margin-bottom:1rem;max-width:800px;margin-left:auto;margin-right:auto}
+    .accordion-header{padding:1rem;background:#f1f1f1;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .accordion-header:hover{background:#e1e1e1}
+    .accordion-content{display:none;padding:1rem;background:#fff}
+    .accordion-content.active{display:block}
+    .accordion-icon{font-size:1.2rem}
+    .subtitle{font-size:1.25rem;font-style:italic;margin-bottom:2rem}
+    .text-darkslategray{color:var(--darkslategray)}
 
-        nav {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    footer{background:var(--primary-color);color:var(--white);padding:1.5rem 1rem;text-align:center;margin-top:auto}
+    footer a{color:#FFD700;text-decoration:underline}
 
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            /* На сторінці "Інструменти" немає flex-wrap, видалив і тут */
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--white);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            padding: 0.5rem;
-            display: block;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease, transform 0.2s ease; /* Зберіг анімацію, як на попередній версії блогу */
-        }
-
-        nav a:hover,
-        nav a:focus {
-            color: #FFD700; /* Колір при наведенні, як на попередній версії блогу */
-            transform: scale(1.05); /* Анімація при наведенні, як на попередній версії блогу */
-            text-decoration: underline; /* Додав, як на сторінці Інструменти */
-        }
-        nav a.active {
-            color: #FFD700;
-            text-decoration: underline;
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .logo-img {
-            width: 32px;
-            height: 32px;
-        }
-
-        .lang-toggle {
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--lang-toggle-text);
-            background: var(--lang-toggle-bg);
-            border: 2px solid var(--lang-toggle-border);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-size: 1.125rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .lang-toggle:hover,
-        .lang-toggle:focus {
-            background: #e0e0e0;
-            transform: scale(1.05);
-        }
-
-        .lang-section { display: none; }
-        .lang-section.active { display: inline-block; }
-
-        /* Загальні стилі, що використовуються на обох сторінках */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-        .text-white { color: var(--white); }
-        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
-
-        .text-4xl { font-size: 2.25rem; } /* Використовував 4xl на блозі */
-        .md\:text-5xl { font-size: 3rem; } /* Використовував 5xl на блозі */
-        .text-lg { font-size: 1.125rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-sm { font-size: 0.875rem; }
-        .font-bold { font-weight: bold; }
-        .font-semibold { font-weight: 600; }
-        .font-lora { font-family: 'Lora', serif; }
-
-        .bg-gray-50 { background-color: var(--gray-50); }
-        .bg-gradient-to-r {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        }
-
-        .inline-block { display: inline-block; }
-        .bg-indigo-600 { background: var(--button-bg); }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .rounded-full { border-radius: 9999px; }
-        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
-
-        .max-w-2xl { max-width: 42rem; }
-        .max-w-3xl { max-width: 48rem; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-
-        .animate-fade-in { animation: fadeIn 1s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Стилі для акордеону (з блогу) */
-        .accordion-item {
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .accordion-header {
-            padding: 1rem;
-            background: #f1f1f1;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .accordion-header:hover {
-            background: #e1e1e1;
-        }
-
-        .accordion-content {
-            display: none;
-            padding: 1rem;
-            background: #fff;
-        }
-
-        .accordion-content.active {
-            display: block;
-        }
-
-        .accordion-icon {
-            font-size: 1.2rem;
-        }
-        .subtitle {
-            font-size: 1.25rem;
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-        .text-darkslategray { color: var(--darkslategray); }
-
-        footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1.5rem 1rem;
-            text-align: center;
-            margin-top: auto; /* Щоб футер завжди був внизу */
-        }
-
-        footer a {
-            color: #FFD700;
-            text-decoration: underline;
-        }
-
-        /* Адаптивність для мобільних пристроїв (оновлено на основі сторінки Інструменти) */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block; /* Показати кнопку-гамбургер */
-                order: 1; /* Змінити порядок, щоб кнопка була після лого */
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 0.5rem; /* Зменшив паддінг, як на Інструментах */
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                animation: slideIn 0.3s ease;
-                /* Змінив порядок, щоб меню займало всю ширину під шапкою */
-                order: 4; /* Розміщуємо його після інших елементів */
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav .container {
-                flex-direction: column; /* Елементи шапки у колонку, як на Інструментах */
-                align-items: flex-start; /* Вирівняти до лівого краю, як на Інструментах */
-                padding: 0.5rem;
-            }
-            .logo-link {
-                font-size: 1.25rem;
-                margin-bottom: 0.5rem; /* Відступ під логотипом */
-                order: 0; /* Перший елемент */
-            }
-            .logo-img {
-                width: 28px;
-                height: 28px;
-            }
-            .lang-toggle {
-                font-size: 1rem;
-                padding: 0.4rem 0.8rem;
-                margin-top: 0.5rem; /* Відступ зверху */
-                order: 2; /* Другий елемент, після кнопки меню */
-                align-self: flex-end; /* Вирівняти праворуч, якщо потрібно */
-            }
-            /* Скориговано розміри шрифтів та паддінги для мобільної версії */
-            nav a { font-size: 0.875rem; padding: 0.25rem; }
-            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
-            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
-            .text-4xl { font-size: 2rem; }
-            .md\:text-5xl { font-size: 2.5rem; }
-            .text-lg { font-size: 1rem; }
-            .text-2xl { font-size: 1.25rem; }
-            .max-w-2xl, .max-w-3xl { max-width: 100%; }
-            .subtitle { font-size: 1rem; }
-            .px-8 { padding-left: 1rem; padding-right: 1rem; }
-            .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-            .container { padding: 0 1rem; }
-            .accordion-item { max-width: 100%; }
-        }
-
-        @media (max-width: 480px) {
-            nav a { font-size: 0.75rem; }
-            .logo-link { font-size: 1rem; }
-            .logo-img { width: 24px; height: 24px; }
-            .lang-toggle { font-size: 0.875rem; padding: 0.3rem 0.6rem; }
-            .text-4xl { font-size: 1.5rem; }
-            .md\:text-5xl { font-size: 2rem; }
-            .text-2xl { font-size: 1rem; }
-            .container { padding: 0 0.5rem; }
-            .subtitle { font-size: 0.875rem; }
-        }
-
-        @media (max-width: 320px) {
-            nav a { font-size: 0.625rem; }
-            .logo-link { font-size: 0.875rem; }
-            .logo-img { width: 20px; height: 20px; }
-            .lang-toggle { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
-            .text-4xl { font-size: 1.2rem; }
-            .text-2xl { font-size: 0.875rem; }
-            .container { padding: 0 0.25rem; }
-            .subtitle { font-size: 0.75rem; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    </style>
+    @media (max-width:768px){
+      .menu-toggle{display:block}
+      nav .container{flex-direction:column;align-items:flex-start;padding:.5rem}
+      nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:linear-gradient(to right,var(--primary-color),var(--secondary-color));padding:.5rem;box-shadow:0 4px 8px rgba(0,0,0,.2);animation:slideIn .3s ease}
+      nav ul.active{display:flex}
+      .logo-link{font-size:1.25rem;margin-bottom:.5rem}
+      .logo-img{width:28px;height:28px}
+      .lang-toggle{font-size:1rem;padding:.4rem .8rem;margin-top:.5rem;align-self:flex-end}
+      nav a{font-size:.875rem;padding:.25rem}
+      .py-20,.py-16{padding:2rem 0}
+      .text-4xl{font-size:2rem}.md\:text-5xl{font-size:2.5rem}.text-lg{font-size:1rem}.text-2xl{font-size:1.25rem}
+      .max-w-2xl,.max-w-3xl{max-width:100%}
+      .subtitle{font-size:1rem}
+      .px-8{padding:0 1rem}.py-3{padding:.5rem 0}
+      .accordion-item{max-width:100%}
+    }
+    @media (max-width:480px){
+      nav a{font-size:.75rem}.logo-link{font-size:1rem}.logo-img{width:24px;height:24px}
+      .lang-toggle{font-size:.875rem;padding:.3rem .6rem}
+      .text-4xl{font-size:1.5rem}.md\:text-5xl{font-size:2rem}.text-2xl{font-size:1rem}
+      .container{padding:0 .5rem}.subtitle{font-size:.875rem}
+    }
+    @media (max-width:320px){
+      nav a{font-size:.625rem}.logo-link{font-size:.875rem}.logo-img{width:20px;height:20px}
+      .lang-toggle{font-size:.75rem;padding:.2rem .4rem}
+      .text-4xl{font-size:1.2rem}.text-2xl{font-size:.875rem}
+      .container{padding:0 .25rem}.subtitle{font-size:.75rem}
+    }
+    @keyframes slideIn{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+  </style>
 </head>
 <body>
-    <nav role="navigation">
-        <div class="container">
-            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
-                <span class="logo-text">
-                    <span class="lang-section lang-uk active">Я є</span>
-                    <span class="lang-section lang-en">I Am</span>
-                </span>
-            </a>
-            <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-            <ul id="main-nav-menu"> <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-                <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-                <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-                <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-                <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
-                <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
-                <li><a href="blog.html" class="active"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-                <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-                <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-                <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
-            </ul>
-        </div>
-    </nav>
+  <nav role="navigation">
+    <div class="container">
+      <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <span class="logo-text">
+          <span class="lang-section lang-uk active">Я є</span>
+          <span class="lang-section lang-en">I Am</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+      <ul id="main-nav-menu">
+        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Anxiety Knot Unraveler</span></a></li>
+        <li><a href="blog.html" class="active"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <section class="py-20 text-white text-center animate-fade-in" style="background: linear-gradient(to right, var(--primary-color), var(--secondary-color));">
-        <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
-                <span class="lang-section lang-uk active">Як з усім цим жити далі?</span>
-                <span class="lang-section lang-en">How to Live with All This?</span>
-            </h2>
-            <p class="text-lg max-w-2xl mx-auto mb-6 subtitle">
-                <span class="lang-section lang-uk active">Тут — думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"</span>
-                <span class="lang-section lang-en">Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"</span>
-            </p>
-        </div>
-    </section>
+  <section class="py-20 text-white text-center animate-fade-in bg-gradient-to-r">
+    <div class="container mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
+        <span class="lang-section lang-uk active">Як з усім цим жити далі?</span>
+        <span class="lang-section lang-en">How to Live with All This?</span>
+      </h2>
+      <p class="text-lg max-w-2xl mx-auto mb-6 subtitle">
+        <span class="lang-section lang-uk active">Тут — думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"</span>
+        <span class="lang-section lang-en">Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"</span>
+      </p>
+    </div>
+  </section>
 
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto max-w-3xl">
-            <div class="buttons">
-                <a href="tools.html" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                    <span class="lang-section lang-uk active">Почати шлях</span>
-                    <span class="lang-section lang-en">Start the Journey</span>
-                </a>
-                <a href="contact.html" class="mt-4 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                    <span class="lang-section lang-uk active">Задати питання</span>
-                    <span class="lang-section lang-en">Ask a Question</span>
-                </a>
-            </div>
-        </div>
-    </section>
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto max-w-3xl">
+      <div id="posts-anchor"></div>
 
-    <footer>
-        <p>
-            <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-            <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
-        </p>
-        <p class="text-sm">
-            <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
-            <span class="lang-section lang-en">Warmly recommended:</span>
-            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
-                <span class="lang-section lang-uk active">Карпатська Грибниця</span>
-                <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
-            </a>
-        </p>
-    </footer>
+      <div class="buttons text-center">
+        <a href="tools.html" class="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+          <span class="lang-section lang-uk active">Почати шлях</span>
+          <span class="lang-section lang-en">Start the Journey</span>
+        </a>
+        <a href="contact.html" class="mt-4 inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+          <span class="lang-section lang-uk active">Задати питання</span>
+          <span class="lang-section lang-en">Ask a Question</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <script defer>
-        let postsData = [];
+  <footer>
+    <p>
+      <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
+      <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+    </p>
+    <p class="text-sm">
+      <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
+      <span class="lang-section lang-en">Warmly recommended:</span>
+      <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
+        <span class="lang-section lang-uk active">Карпатська Грибниця</span>
+        <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
+      </a>
+    </p>
+  </footer>
 
-        function loadJSONData(filename, callback) {
-            console.log('Починаємо завантаження JSON:', filename);
-            fetch(filename, { cache: 'no-store' })
-                .then(response => {
-                    console.log('Статус відповіді:', response.status, response.statusText, response.url);
-                    if (!response.ok) {
-                        throw new Error(`Помилка завантаження JSON: ${response.status} ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Дані JSON отримані:', data);
-                    if (!data.posts) {
-                        throw new Error('Неправильна структура JSON: ключ \"posts\" відсутній');
-                    }
-                    postsData = data.posts;
-                    callback(postsData);
-                })
-                .catch(error => {
-                    console.error('Помилка при завантаженні JSON:', error.message);
-                    alert(`Не вдалося завантажити пости: ${error.message}. Перевірте, чи доступний файл posts.json.`);
-                });
-        }
+  <script defer>
+    let postsData = [];
 
-        function renderPosts(posts, lang) {
-            console.log('Рендеримо пости для мови:', lang);
-            const accordionContainer = document.querySelector('.container.max-w-3xl');
-            const existingAccordions = accordionContainer.querySelectorAll('.accordion-item.dynamic');
-            existingAccordions.forEach(item => item.remove());
+    function setDocumentTitle(lang){
+      document.title = (lang==='en')
+        ? 'How to Live with All This? | I Am'
+        : 'Як з усім цим жити далі? | Я є';
+    }
 
-            posts.forEach(post => {
-                const accordionItem = document.createElement('div');
-                accordionItem.className = 'accordion-item dynamic';
-                accordionItem.innerHTML = `
-                    <div class="accordion-header" role="button" aria-expanded="false">
-                        <h3 class="text-2xl font-semibold font-lora text-darkslategray">
-                            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">${post.title_uk || 'Без заголовку'}</span>
-                            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">${post.title_en || 'No title'}</span>
-                        </h3>
-                        <span class="accordion-icon">+</span>
-                    </div>
-                    <div class="accordion-content" aria-hidden="true">
-                        <p class="text-lg mb-4"><em>
-                            <span class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">Дата: ${post.date || 'Немає дати'}</span>
-                            <span class="lang-section lang-en${lang === 'en' ? ' active' : ''}">Date: ${post.date || 'No date'}</span>
-                        </em></p>
-                        <div class="lang-section lang-uk${lang === 'uk' ? ' active' : ''}">${post.content_uk || ''}</div>
-                        <div class="lang-section lang-en${lang === 'en' ? ' active' : ''}">${post.content_en || ''}</div>
-                    </div>
-                `;
-                accordionContainer.insertBefore(accordionItem, accordionContainer.querySelector('.buttons'));
-            });
+    function updateMetaTags(lang){
+      if(lang==='en'){
+        document.querySelector('meta[property="og:title"]').content = 'How to Live with All This? | I Am';
+        document.querySelector('meta[property="og:description"]').content =
+          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
+        document.querySelector('meta[name="description"]').content =
+          'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
+      }else{
+        document.querySelector('meta[property="og:title"]').content = 'Як з усім цим жити далі? | Я є';
+        document.querySelector('meta[property="og:description"]').content =
+          'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
+        document.querySelector('meta[name="description"]').content =
+          'Думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"';
+      }
+    }
 
-            const accordionItems = document.querySelectorAll('.accordion-item.dynamic .accordion-header');
-            accordionItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    const content = item.nextElementSibling;
-                    const isActive = content.classList.contains('active');
-                    document.querySelectorAll('.accordion-content').forEach(c => {
-                        c.classList.remove('active');
-                        c.setAttribute('aria-hidden', 'true');
-                        c.previousElementSibling.setAttribute('aria-expanded', 'false');
-                        const icon = c.previousElementSibling.querySelector('.accordion-icon');
-                        if (icon) icon.textContent = '+';
-                    });
+    async function loadJSONData(filename){
+      try{
+        const res = await fetch(filename,{cache:'no-store'});
+        if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+        const data = await res.json();
+        if(!data.posts) throw new Error('Bad JSON structure: "posts" key missing');
+        postsData = data.posts;
+        return postsData;
+      }catch(err){
+        console.error('posts.json load error:', err);
+        return null;
+      }
+    }
 
-                    if (!isActive) {
-                        content.classList.add('active');
-                        content.setAttribute('aria-hidden', 'false');
-                        item.setAttribute('aria-expanded', 'true');
-                        const icon = item.querySelector('.accordion-icon');
-                        if (icon) icon.textContent = '−';
-                    }
-                });
+    function renderPosts(posts, lang){
+      const container = document.querySelector('.container.max-w-3xl');
+      // wipe dynamic items
+      container.querySelectorAll('.accordion-item.dynamic').forEach(n=>n.remove());
+      // remove empty message if exists
+      const prevEmpty = document.getElementById('empty-posts-msg');
+      if(prevEmpty) prevEmpty.remove();
 
-                item.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        item.click();
-                        console.log('Меню переключено клавіатурою:', e.key);
-                    }
-                });
-            });
-        }
+      if(!posts || posts.length===0){
+        const msg = document.createElement('p');
+        msg.id = 'empty-posts-msg';
+        msg.className = 'text-center text-lg';
+        msg.innerHTML = (lang==='en')
+          ? 'No posts yet. Come back a bit later.'
+          : 'Постів поки немає. Завітай трохи згодом.';
+        container.insertBefore(msg, container.querySelector('.buttons'));
+        return;
+      }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, initializing navigation...');
-            const savedLang = localStorage.getItem('lang') || 'uk';
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-            document.documentElement.lang = savedLang;
-            const langToggle = document.querySelector('.lang-toggle');
-            if (langToggle) {
-                langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            } else {
-                console.error('Language toggle button not found!');
-            }
-            updateMetaTags(savedLang);
+      posts.forEach(post=>{
+        const item = document.createElement('div');
+        item.className = 'accordion-item dynamic';
+        item.innerHTML = `
+          <div class="accordion-header" role="button" tabindex="0" aria-expanded="false">
+            <h3 class="text-2xl font-semibold font-lora text-darkslategray" style="margin:0">
+              <span class="lang-section lang-uk${lang==='uk'?' active':''}">${post.title_uk || 'Без заголовку'}</span>
+              <span class="lang-section lang-en${lang==='en'?' active':''}">${post.title_en || 'No title'}</span>
+            </h3>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content" aria-hidden="true">
+            <p class="text-lg mb-4"><em>
+              <span class="lang-section lang-uk${lang==='uk'?' active':''}">Дата: ${post.date || 'Немає дати'}</span>
+              <span class="lang-section lang-en${lang==='en'?' active':''}">Date: ${post.date || 'No date'}</span>
+            </em></p>
+            <div class="lang-section lang-uk${lang==='uk'?' active':''}">${post.content_uk || ''}</div>
+            <div class="lang-section lang-en${lang==='en'?' active':''}">${post.content_en || ''}</div>
+          </div>
+        `;
+        container.insertBefore(item, container.querySelector('.buttons'));
+      });
 
-            loadJSONData('./posts.json', (posts) => {
-                renderPosts(posts, savedLang);
-            });
-            // Немає потреби в .catch() тут, оскільки loadJSONData вже обробляє помилки всередині
-            // Якщо loadJSONData не знайде файл, воно виведе помилку в консоль і сповіщення користувачу.
-
-            // **********************************************
-            // ОНОВЛЕНИЙ JAVASCRIPT ДЛЯ МЕНЮ (як на сторінці Інструменти)
-            // **********************************************
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('nav ul'); // Знову шукаємо за тегом, як на Інструментах
-
-            if (menuToggle && navUl) {
-                console.log('Menu toggle and nav ul found, setting up click handler');
-                menuToggle.addEventListener('click', () => {
-                    const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
-                    menuToggle.textContent = isExpanded ? '✕' : '☰';
-                    console.log('Menu toggled, isExpanded:', isExpanded);
-                });
-                menuToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        menuToggle.click();
-                        console.log('Menu toggled via keyboard:', e.key);
-                    }
-                });
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.setAttribute('tabindex', '0');
-                });
-            } else {
-                console.error('Menu toggle or nav ul not found!');
-            }
-            // **********************************************
-
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navUl.querySelectorAll('a').forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-
-            document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
-                anchor.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
+      // bind toggles
+      container.querySelectorAll('.accordion-item.dynamic .accordion-header').forEach(header=>{
+        header.addEventListener('click', ()=>toggleAccordion(header));
+        header.addEventListener('keydown', (e)=>{
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); header.click(); }
         });
+      });
+    }
 
-        function toggleLang() {
-            const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-            const newLang = isUkrainian ? 'en' : 'uk';
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-            document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            document.documentElement.lang = newLang;
-            localStorage.setItem('lang', newLang);
-            updateMetaTags(newLang);
-            renderPosts(postsData, newLang);
-        }
+    function toggleAccordion(header){
+      const content = header.nextElementSibling;
+      const container = document.querySelector('.container.max-w-3xl');
+      // close others
+      container.querySelectorAll('.accordion-content').forEach(c=>{
+        c.classList.remove('active'); c.setAttribute('aria-hidden','true');
+        const h = c.previousElementSibling;
+        if(h){ h.setAttribute('aria-expanded','false'); const ic = h.querySelector('.accordion-icon'); if(ic) ic.textContent='+'; }
+      });
+      // open this
+      content.classList.add('active'); content.setAttribute('aria-hidden','false');
+      header.setAttribute('aria-expanded','true');
+      const icon = header.querySelector('.accordion-icon'); if(icon) icon.textContent='−';
+    }
 
-        function updateMetaTags(lang) {
-            if (lang === 'en') {
-                document.querySelector('meta[property=\"og:title\"]').content = 'How to Live with All This? | I Am';
-                document.querySelector('meta[property=\"og:description\"]').content = 'Here are thoughts, texts, and tips for those who can no longer live \"as before.\" The archetype pulses, the body speaks, and the mind asks: \"What now?\"';
-                document.querySelector('meta[name=\"description\"]').content = 'Here are thoughts, texts, and tips for those who can no longer live \"as before.\" The archetype pulses, the body speaks, and the mind asks: \"What now?\"';
-            } else {
-                document.querySelector('meta[property=\"og:title\"]').content = 'Як з усім цим жити далі? | Я є';
-                document.querySelector('meta[property=\"og:description\"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити \"як раніше\". Архетип пульсує, тіло говорить, а розум питає: \"І що тепер?\"';
-                document.querySelector('meta[name=\"description\"]').content = 'Думки, тексти і підказки для тих, хто вже не може жити \"як раніше\". Архетип пульсує, тіло говорить, а розум питає: \"І що тепер?\"';
-            }
-        }
-    </script>
+    function initMenu(){
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.querySelector('nav ul');
+      if(!menuToggle || !navUl) return;
+      menuToggle.addEventListener('click', ()=>{
+        const isExpanded = navUl.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isExpanded);
+        menuToggle.textContent = isExpanded ? '✕' : '☰';
+      });
+      menuToggle.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); menuToggle.click(); }
+      });
+      navUl.querySelectorAll('a').forEach(link=>link.setAttribute('tabindex','0'));
+
+      const currentPage = location.pathname.split('/').pop() || 'index.html';
+      navUl.querySelectorAll('a').forEach(link=>{
+        if(link.getAttribute('href')===currentPage){ link.classList.add('active'); }
+      });
+    }
+
+    function applyLang(lang){
+      document.querySelectorAll('.lang-section').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
+      document.documentElement.lang = lang;
+      const toggle = document.querySelector('.lang-toggle');
+      if(toggle) toggle.textContent = (lang==='uk') ? 'UA / EN' : 'EN / UA';
+      setDocumentTitle(lang);
+      updateMetaTags(lang);
+      renderPosts(postsData, lang);
+    }
+
+    function initLang(){
+      const saved = localStorage.getItem('lang') || 'uk';
+      applyLang(saved);
+    }
+
+    function toggleLang(){
+      const isUkr = document.querySelector('.lang-uk')?.classList.contains('active');
+      const newLang = isUkr ? 'en' : 'uk';
+      localStorage.setItem('lang', newLang);
+      applyLang(newLang);
+    }
+    window.toggleLang = toggleLang; // для href onclick
+
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      initMenu();
+      initLang();
+      const posts = await loadJSONData('./posts.json');
+      renderPosts(posts || [], document.documentElement.lang || 'uk');
+    });
+  </script>
 </body>
 </html>
