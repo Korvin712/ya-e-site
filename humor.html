@@ -1,558 +1,374 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <span class="lang-section lang-uk active">Гумор - Шукач Архетипів | Я є</span>
-        <span class="lang-section lang-en">Humor - Seeker of Archetypes | I Am</span>
-    </title>
-    <meta name="description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
-    <meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія, humor, archetypes, self-discovery, jokes, irony">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Гумор - Шукач Архетипів | Я є">
-    <meta property="og:description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="images/favicon-v2.png">
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Гумор - Шукач Архетипів | Я є</title>
+  <meta name="description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
+  <meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія, humor, archetypes, self-discovery, jokes, irony">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Гумор - Шукач Архетипів | Я є">
+  <meta property="og:description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/favicon-v2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-color: #4b0082;
-            --secondary-color: #800080;
-            --button-bg: #4c1d95;
-            --button-hover: #5b21b6;
-            --gray-50: #f9fafb;
-            --white: #ffffff;
-            --lang-toggle-bg: #ffffff;
-            --lang-toggle-text: #000000;
-            --lang-toggle-border: #ff0000;
-        }
+  <style>
+    :root {
+      --primary-color: #4b0082;
+      --secondary-color: #800080;
+      --button-bg: #4c1d95;
+      --button-hover: #5b21b6;
+      --gray-50: #f9fafb;
+      --white: #ffffff;
+      --lang-toggle-bg: #ffffff;
+      --lang-toggle-text: #000000;
+      --lang-toggle-border: #ff0000;
+    }
+    *,*::before,*::after{box-sizing:border-box}
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+    body{
+      font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;
+      display:flex;flex-direction:column;min-height:100vh
+    }
 
-        body {
-            font-family: 'Lora', serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background: var(--white);
-            color: #111;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    nav{
+      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));color:var(--white);
+      padding:1rem;position:sticky;top:0;z-index:10
+    }
+    nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
+    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
+    nav a{color:var(--white);text-decoration:none;padding:0.5rem;display:block;font-size:.9375rem;transition:color .2s ease,transform .2s ease}
+    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05)}
+    nav a.active{color:#FFD700;text-decoration:underline}
 
-        nav {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    .logo-link{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--white);font-weight:bold;font-size:1.5rem}
+    .logo-img{width:32px;height:32px}
 
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .lang-toggle{
+      cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);
+      border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;
+      font-size:1.125rem;transition:background-color .3s ease,transform .2s ease
+    }
+    .lang-toggle:hover,.lang-toggle:focus{background:#e0e0e0;transform:scale(1.05)}
 
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--white);
-        }
+    .lang-section{display:none}
+    .lang-section.active{display:inline}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
+    .container{max-width:1200px;margin:0 auto;padding:0 1rem;flex:1}
 
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            padding: 0.5rem;
-            display: block;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
+    .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
+    .text-white{color:var(--white)}
+    .text-center{text-align:center}
+    .text-left{text-align:left}
+    .py-20{padding-top:5rem;padding-bottom:5rem}
+    .py-16{padding-top:4rem;padding-bottom:4rem}
+    .mb-4{margin-bottom:1rem}
+    .mb-6{margin-bottom:1.5rem}
+    .mb-8{margin-bottom:2rem}
+    .mt-4{margin-top:1rem}
+    .mt-6{margin-top:1.5rem}
+    .mt-8{margin-top:2rem}
 
-        nav a:hover,
-        nav a:focus {
-            color: #FFD700;
-            transform: scale(1.05);
-        }
+    .text-4xl{font-size:2.25rem}
+    @media(min-width:768px){.md\:text-5xl{font-size:3rem}}
+    .text-lg{font-size:1.125rem}
+    .text-3xl{font-size:1.875rem}
+    .text-2xl{font-size:1.5rem}
+    .font-bold{font-weight:bold}
+    .font-semibold{font-weight:600}
+    .font-lora{font-family:'Lora',serif}
 
-        nav a.active {
-            color: #FFD700;
-            text-decoration: underline;
-        }
+    .max-w-2xl{max-width:42rem}
+    .max-w-3xl{max-width:48rem}
+    .max-w-600{max-width:600px}
+    .mx-auto{margin-left:auto;margin-right:auto}
+    .bg-gray-50{background-color:var(--gray-50)}
+    .inline-block{display:inline-block}
+    .bg-indigo-600{background:var(--button-bg)}
+    .px-8{padding-left:2rem;padding-right:2rem}
+    .py-3{padding-top:.75rem;padding-bottom:.75rem}
+    .rounded-full{border-radius:9999px}
+    .hover\:bg-indigo-700:hover{background:var(--button-hover)}
+    .space-y-4>:not([hidden])~:not([hidden]){margin-top:1rem}
 
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
+    .humor-section{max-width:800px;margin:0 auto;text-align:left}
+    .humor-section p{font-size:1.125rem;line-height:1.6}
+    .humor-section ul{padding-left:1.5rem}
+    .humor-section li{margin-bottom:.5rem}
+    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem}
+    .buttons a{text-decoration:none}
+    .text-yellow-400{color:#FFD700}
+    .underline{text-decoration:underline}
 
-        .logo-img {
-            width: 32px;
-            height: 32px;
-        }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .animate-fade-in{animation:fadeIn 1s ease-in}
 
-        .lang-toggle {
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--lang-toggle-text);
-            background: var(--lang-toggle-bg);
-            border: 2px solid var(--lang-toggle-border);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-size: 1.125rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    footer{background:var(--primary-color);color:var(--white);padding:1.5rem 1rem;text-align:center}
 
-        .lang-toggle:hover,
-        .lang-toggle:focus {
-            background: #e0e0e0;
-            transform: scale(1.05);
-        }
-
-        .lang-section { display: none; }
-        .lang-section.active { display: inline-block; }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 1rem;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                animation: slideIn 0.3s ease;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            nav a {
-                font-size: 1rem;
-                padding: 0.75rem;
-            }
-            .logo-link {
-                font-size: 1.25rem;
-            }
-            .logo-img {
-                width: 28px;
-                height: 28px;
-            }
-            .lang-toggle {
-                font-size: 1rem;
-                padding: 0.4rem 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav a {
-                font-size: 0.9375rem;
-            }
-            .logo-link {
-                font-size: 1.125rem;
-            }
-            .logo-img {
-                width: 24px;
-                height: 24px;
-            }
-            .lang-toggle {
-                font-size: 0.875rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            nav a {
-                font-size: 0.875rem;
-            }
-            .logo-link {
-                font-size: 1rem;
-            }
-            .logo-img {
-                width: 20px;
-                height: 20px;
-            }
-            .lang-toggle {
-                font-size: 0.8125rem;
-                padding: 0.3rem 0.6rem;
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            flex: 1;
-        }
-
-        .section {
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-
-        .bg-gradient-to-r {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        }
-
-        .text-white { color: var(--white); }
-        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
-        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-
-        .text-4xl { font-size: 2.25rem; }
-        @media (min-width: 768px) {
-            .md\:text-5xl { font-size: 3rem; }
-        }
-        .text-lg { font-size: 1.125rem; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-sm { font-size: 0.875rem; }
-
-        .font-bold { font-weight: bold; }
-        .font-semibold { font-weight: 600; }
-        .font-lora { font-family: 'Lora', serif; }
-
-        .max-w-2xl { max-width: 42rem; }
-        .max-w-3xl { max-width: 48rem; }
-        .max-w-600 { max-width: 600px; }
-
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .bg-gray-50 { background-color: var(--gray-50); }
-        .p-4 { padding: 1rem; }
-        .inline-block { display: inline-block; }
-        .bg-indigo-600 { background: var(--button-bg); }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .rounded-full { border-radius: 9999px; }
-        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
-
-        .humor-section {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .humor-section p {
-            font-size: 1.125rem;
-            line-height: 1.6;
-        }
-        .humor-section ul {
-            padding-left: 1.5rem;
-        }
-        .humor-section li {
-            margin-bottom: 0.5rem;
-        }
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .buttons a {
-            text-decoration: none;
-        }
-        .text-yellow-400 { color: #FFD700; }
-        .underline { text-decoration: underline; }
-
-        @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .animate-fade-in { animation: fadeIn 1s ease-in; }
-
-        footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1.5rem 1rem;
-            text-align: center;
-        }
-
-        footer a {
-            color: #FFD700;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
-            .text-4xl { font-size: 2rem; }
-            .md\:text-5xl { font-size: 2.5rem; }
-            .text-lg { font-size: 1rem; }
-            .max-w-2xl { max-width: 100%; }
-            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
-            .text-3xl { font-size: 1.5rem; }
-            .text-2xl { font-size: 1.25rem; }
-            .px-8 { padding-left: 1rem; padding-right: 1rem; }
-            .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-            .container { padding: 0 1rem; }
-            .max-w-600 { max-width: 100%; }
-            .humor-section { max-width: 100%; }
-            .buttons { justify-content: center; }
-        }
-
-        @media (max-width: 480px) {
-            .text-4xl { font-size: 1.5rem; }
-            .md\:text-5xl { font-size: 2rem; }
-            .text-3xl { font-size: 1.25rem; }
-            .text-2xl { font-size: 1rem; }
-            .px-8 { padding-left: 0.5rem; padding-right: 0.5rem; }
-            .container { padding: 0 0.5rem; }
-        }
-
-        @media (max-width: 320px) {
-            .text-4xl { font-size: 1.2rem; }
-            .text-3xl { font-size: 1rem; }
-            .text-2xl { font-size: 0.875rem; }
-            .container { padding: 0 0.25rem; }
-        }
-    </style>
+    @media(max-width:768px){
+      .menu-toggle{display:block}
+      nav ul{
+        display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;
+        background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+        padding:1rem;box-shadow:0 4px 8px rgba(0,0,0,.2)
+      }
+      nav ul.active{display:flex}
+      nav .container{flex-direction:column;align-items:flex-start}
+      nav a{font-size:1rem;padding:.75rem}
+      .logo-link{font-size:1.25rem}
+      .logo-img{width:28px;height:28px}
+      .lang-toggle{font-size:1rem;padding:.4rem .8rem}
+      .py-20{padding-top:2rem;padding-bottom:2rem}
+      .text-4xl{font-size:2rem}
+      .md\:text-5xl{font-size:2.5rem}
+      .text-lg{font-size:1rem}
+      .max-w-2xl{max-width:100%}
+      .py-16{padding-top:2rem;padding-bottom:2rem}
+      .text-3xl{font-size:1.5rem}
+      .text-2xl{font-size:1.25rem}
+      .px-8{padding-left:1rem;padding-right:1rem}
+      .py-3{padding-top:.5rem;padding-bottom:.5rem}
+      .container{padding:0 1rem}
+      .max-w-600{max-width:100%}
+      .humor-section{max-width:100%}
+      .buttons{justify-content:center}
+    }
+    @media(max-width:480px){
+      nav a{font-size:.9375rem}
+      .logo-link{font-size:1.125rem}
+      .logo-img{width:24px;height:24px}
+      .lang-toggle{font-size:.875rem}
+      .text-4xl{font-size:1.5rem}
+      .md\:text-5xl{font-size:2rem}
+      .text-3xl{font-size:1.25rem}
+      .text-2xl{font-size:1rem}
+      .px-8{padding-left:.5rem;padding-right:.5rem}
+      .container{padding:0 .5rem}
+    }
+    @media(max-width:320px){
+      nav a{font-size:.875rem}
+      .logo-link{font-size:1rem}
+      .logo-img{width:20px;height:20px}
+      .lang-toggle{font-size:.8125rem;padding:.3rem .6rem}
+      .text-4xl{font-size:1.2rem}
+      .text-3xl{font-size:1rem}
+      .text-2xl{font-size:.875rem}
+      .container{padding:0 .25rem}
+    }
+  </style>
 </head>
 <body>
-    <nav role="navigation">
-        <div class="container">
-            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
-                <span class="logo-text">
-                    <span class="lang-section lang-uk active">Я є</span>
-                    <span class="lang-section lang-en">I Am</span>
-                </span>
-            </a>
-            <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-            <ul>
-                <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-                <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-                <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-                <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-                <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
-                <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
-                <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-                <li><a href="humor.html" class="active"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-                <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-                <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
-            </ul>
+  <nav role="navigation">
+    <div class="container">
+      <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <span class="logo-text">
+          <span class="lang-section lang-uk active">Я є</span>
+          <span class="lang-section lang-en">I Am</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+      <a href="#" onclick="toggleLang();return false" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+      <ul>
+        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+        <li><a href="humor.html" class="active"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+    <div class="container">
+      <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
+        <span class="lang-section lang-uk active">Гумор</span>
+        <span class="lang-section lang-en">Humor</span>
+      </h2>
+      <p class="text-lg max-w-2xl mx-auto mb-6">
+        <span class="lang-section lang-uk active">Ну бо скільки можна серйозно?</span>
+        <span class="lang-section lang-en">Because how much seriousness can one take?</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container max-w-3xl">
+      <div class="humor-section">
+        <!-- UK -->
+        <div class="lang-section lang-uk active">
+          <p class="text-lg mb-4">Світ складний, внутрішній шлях ще складніший.<br>А якщо без гумору — то або в дурку, або в TikTok.<br>Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</p>
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 Анекдоти з життя (і не тільки)</h3>
+          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+            <li>— Сину, ким ти хочеш стати, коли виростеш?<br>— Самопізнаним.<br>— Господи, краще б алкоголіком…</li>
+            <li>— Мамо, я змерз чи хочу їсти?<br>— Що?<br>— Ярослав питає… Опікун включилася.</li>
+            <li>— Слухай, а ти хто за архетипом?<br>— Я кішка.<br>— Чому?<br>— Не знаю, йди геть.</li>
+            <li>— Я в архетипах розбираюсь!<br>— Ну давай, хто я?<br>— А ти Кріса.<br>— Я шо?!<br>— Той, що вижив.</li>
+            <li>Дві бабки дивляться телевізор.<br>Ведучий каже: “Такий-то завів блог у Твіттері.”<br>Одна бабка недочула:<br>— Що він сказав?<br>— Та каже, завів блох у світері… наркоман, мабуть.</li>
+            <li>Студенти філософського вимірюють стовп.<br>Один лізе вгору з рулеткою.<br>Йде інженер, витягує стовп з ями, кладе на землю, міряє — 5 метрів.<br>Студенти:<br>— Ну от… Довжину він нам сказав, а висоту як ми тепер дізнаємось?</li>
+            <li>— Внутрішній голос каже: "Вставай і працюй!"<br>— А я йому: "Я не вірю в токсичну продуктивність".<br>— Він образився і пішов.</li>
+            <li>— Я ось подумав: може, я не лінивий…<br>— А який?<br>— Просто глибоко інтровертований з протестом проти безсенсової метушні.</li>
+            <li>— Мамо, я не знаю, що хочу.<br>— То з’їж щось.<br>— А якщо це не те?<br>— Значить, повториш.</li>
+            <li>— Чого ти не пишеш книгу?<br>— Я її вже подумав.<br>— А папір що, сам себе надрукує?</li>
+            <li>— Ти за яким архетипом?<br>— За місячним. Спочатку світю, потім зникаю, потім знову світю, але вже не тим.</li>
+            <li>— Краще не доспати, чим переспати.<br>Бо коли не доспиш — ляжеш і доспиш.<br>А коли переспиш — назад не відіспиш.</li>
+            <li>— Психотерапевт порадив прислухатися до себе.<br>— Прислухався… тепер боюсь. Там хтось живе.</li>
+            <li>— Учора прокинувся і подумав: «Життя — диво!»<br>— А сьогодні прокинувся і подумав: «Ну його нафіг, таке диво…»</li>
+            <li>— Ти чого мовчиш?<br>— Вчуся приймати реальність.<br>— І як?<br>— Ніяк. Але мовчу красиво.</li>
+            <li>— Медитація — це коли не працюєш, але виглядаєш, ніби дуже зайнятий.</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Внутрішній голос:</h3>
+          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+            <li>— А раптом у тебе нічого не вийде?<br>— Та я не раптом, я стабільно!</li>
+            <li>— Сьогодні ми працюємо над внутрішньою дитиною.<br>— Моя знову хоче піцу й ображається, якщо її не похвалити.</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Маєш свій прикол?</h3>
+          <p class="text-lg mb-4">Пиши — вставимо.<br>Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</p>
         </div>
-    </nav>
 
-    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
-        <div class="container">
-            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
-                <span class="lang-section lang-uk active">Гумор</span>
-                <span class="lang-section lang-en">Humor</span>
-            </h2>
-            <p class="text-lg max-w-2xl mx-auto mb-6">
-                <span class="lang-section lang-uk active">Ну бо скільки можна серйозно?</span>
-                <span class="lang-section lang-en">Because how much seriousness can one take?</span>
-            </p>
+        <!-- EN -->
+        <div class="lang-section lang-en">
+          <p class="text-lg mb-4">The world’s a mess, and the inner journey? Even messier.<br>Without humor — well, it’s either a mental ward or TikTok.<br>We chose the third option: laugh. Sometimes at ourselves. Mostly at ourselves.</p>
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 True-life jokes (and some that just feel true)</h3>
+          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+            <li>— Son, what do you want to be when you grow up?<br>— Self-aware.<br>— Oh God, better if you’d just become an alcoholic…</li>
+            <li>— Mom, am I cold or hungry?<br>— What??<br>— Yaroslav’s asking… The caregiver mode just kicked in.</li>
+            <li>— Hey, what’s your archetype?<br>— I’m a cat.<br>— Why?<br>— I don’t know. Go away.</li>
+            <li>— I know all about archetypes!<br>— Oh yeah? Who am I then?<br>— You’re Kris.<br>— I’m WHAT?!<br>— The one who survived.</li>
+            <li>Two grannies are watching TV.<br>The host says: “So-and-so just started a blog on Twitter.”<br>One granny mishears:<br>— What did he say?<br>— Says he got fleas in his sweater… must be a junkie.</li>
+            <li>Philosophy students are measuring a pole.<br>One climbs up with a measuring tape.<br>An engineer walks by, pulls the pole out, lays it on the ground, measures: 5 meters.<br>Students:<br>— Great… He gave us the length, but how the hell do we find out the height now?!</li>
+            <li>— Inner voice says: "Get up and work!"<br>— I told it: "I don’t believe in toxic productivity."<br>— It got offended and left.</li>
+            <li>— I was thinking: maybe I’m not lazy…<br>— Then what are you?<br>— Just a deeply introverted soul protesting meaningless hustle.</li>
+            <li>— Mom, I don’t know what I want.<br>— Then eat something.<br>— What if it’s not it?<br>— Then do it again.</li>
+            <li>— Why don’t you write a book?<br>— I already thought it.<br>— And the paper’s gonna print itself?</li>
+            <li>— What’s your archetype?<br>— The lunar one. I shine, then disappear, then shine again—but not the same way.</li>
+            <li>— Better to undersleep than oversleep.<br>Because if you undersleep—you can just lie down and catch up.<br>But if you oversleep—you can’t undo it.</li>
+            <li>— My therapist said to listen to myself.<br>— I did… now I’m scared. Someone’s living in there.</li>
+            <li>— Yesterday I woke up and thought: "Life is a miracle!"<br>— Today I woke up and thought: "Screw it, what a miracle…"</li>
+            <li>— Why are you so quiet?<br>— Learning to accept reality.<br>— And how’s that going?<br>— Not great. But I’m quiet about it with style.</li>
+            <li>— Meditation is when you’re not working but look like you’re super busy.</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Inner voice moments</h3>
+          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
+            <li>— What if nothing works out for you?<br>— Oh, it’s not “what if.” It’s consistent.</li>
+            <li>— Today, we work on our inner child.<br>— Mine wants pizza again and gets mad if you don’t compliment her.</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Got a good one?</h3>
+          <p class="text-lg mb-4">Send it in — we’ll add it.<br>Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</p>
         </div>
-    </section>
 
-    <section class="py-16 bg-gray-50">
-        <div class="container max-w-3xl">
-            <div class="humor-section">
-                <div class="lang-section lang-uk active">
-                    <p class="text-lg mb-4">Світ складний, внутрішній шлях ще складніший.<br>А якщо без гумору — то або в дурку, або в TikTok.<br>Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 Анекдоти з життя (і не тільки)</h3>
-                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                        <li>— Сину, ким ти хочеш стати, коли виростеш?<br>— Самопізнаним.<br>— Господи, краще б алкоголіком…</li>
-                        <li>— Мамо, я змерз чи хочу їсти?<br>— Що?<br>— Ярослав питає… Опікун включилася.</li>
-                        <li>— Слухай, а ти хто за архетипом?<br>— Я кішка.<br>— Чому?<br>— Не знаю, йди геть.</li>
-                        <li>— Я в архетипах розбираюсь!<br>— Ну давай, хто я?<br>— А ти Кріса.<br>— Я шо?!<br>— Той, що вижив.</li>
-                        <li>Дві бабки дивляться телевізор.<br>Ведучий каже: “Такий-то завів блог у Твіттері.”<br>Одна бабка недочула:<br>— Що він сказав?<br>— Та каже, завів блох у світері… наркоман, мабуть.</li>
-                        <li>Студенти філософського вимірюють стовп.<br>Один лізе вгору з рулеткою.<br>Йде інженер, витягує стовп з ями, кладе на землю, міряє — 5 метрів.<br>Студенти:<br>— Ну от… Довжину він нам сказав, а висоту як ми тепер дізнаємось?</li>
-                        <li>— Внутрішній голос каже: "Вставай і працюй!"<br>— А я йому: "Я не вірю в токсичну продуктивність".<br>— Він образився і пішов.</li>
-                        <li>— Я ось подумав: може, я не лінивий…<br>— А який?<br>— Просто глибоко інтровертований з протестом проти безсенсової метушні.</li>
-                        <li>— Мамо, я не знаю, що хочу.<br>— То з’їж щось.<br>— А якщо це не те?<br>— Значить, повториш.</li>
-                        <li>— Чого ти не пишеш книгу?<br>— Я її вже подумав.<br>— А папір що, сам себе надрукує?</li>
-                        <li>— Ти за яким архетипом?<br>— За місячним. Спочатку світю, потім зникаю, потім знову світю, але вже не тим.</li>
-                        <li>— Краще не доспати, чим переспати.<br>Бо коли не доспиш — ляжеш і доспиш.<br>А коли переспиш — назад не відіспиш.</li>
-                        <li>— Психотерапевт порадив прислухатися до себе.<br>— Прислухався… тепер боюсь. Там хтось живе.</li>
-                        <li>— Учора прокинувся і подумав: «Життя — диво!»<br>— А сьогодні прокинувся і подумав: «Ну його нафіг, таке диво…»</li>
-                        <li>— Ти чого мовчиш?<br>— Вчуся приймати реальність.<br>— І як?<br>— Ніяк. Але мовчу красиво.</li>
-                        <li>— Медитація — це коли не працюєш, але виглядаєш, ніби дуже зайнятий.</li>
-                    </ul>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Внутрішній голос:</h3>
-                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                        <li>— А раптом у тебе нічого не вийде?<br>— Та я не раптом, я стабільно!</li>
-                        <li>— Сьогодні ми працюємо над внутрішньою дитиною.<br>— Моя знову хоче піцу й ображається, якщо її не похвалити.</li>
-                    </ul>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Маєш свій прикол?</h3>
-                    <p class="text-lg mb-4">Пиши — вставимо.<br>Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</p>
-                </div>
-                <div class="lang-section lang-en">
-                    <p class="text-lg mb-4">The world’s a mess, and the inner journey? Even messier.<br>Without humor — well, it’s either a mental ward or TikTok.<br>We chose the third option: laugh. Sometimes at ourselves. Mostly at ourselves.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 True-life jokes (and some that just feel true)</h3>
-                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                        <li>— Son, what do you want to be when you grow up?<br>— Self-aware.<br>— Oh God, better if you’d just become an alcoholic…</li>
-                        <li>— Mom, am I cold or hungry?<br>— What??<br>— Yaroslav’s asking… The caregiver mode just kicked in.</li>
-                        <li>— Hey, what’s your archetype?<br>— I’m a cat.<br>— Why?<br>— I don’t know. Go away.</li>
-                        <li>— I know all about archetypes!<br>— Oh yeah? Who am I then?<br>— You’re Kris.<br>— I’m WHAT?!<br>— The one who survived.</li>
-                        <li>Two grannies are watching TV.<br>The host says: “So-and-so just started a blog on Twitter.”<br>One granny mishears:<br>— What did he say?<br>— Says he got fleas in his sweater… must be a junkie.</li>
-                        <li>Philosophy students are measuring a pole.<br>One climbs up with a measuring tape.<br>An engineer walks by, pulls the pole out, lays it on the ground, measures: 5 meters.<br>Students:<br>— Great… He gave us the length, but how the hell do we find out the height now?!</li>
-                        <li>— Inner voice says: "Get up and work!"<br>— I told it: "I don’t believe in toxic productivity."<br>— It got offended and left.</li>
-                        <li>— I was thinking: maybe I’m not lazy…<br>— Then what are you?<br>— Just a deeply introverted soul protesting meaningless hustle.</li>
-                        <li>— Mom, I don’t know what I want.<br>— Then eat something.<br>— What if it’s not it?<br>— Then do it again.</li>
-                        <li>— Why don’t you write a book?<br>— I already thought it.<br>— And the paper’s gonna print itself?</li>
-                        <li>— What’s your archetype?<br>— The lunar one. I shine, then disappear, then shine again—but not the same way.</li>
-                        <li>— Better to undersleep than oversleep.<br>Because if you undersleep—you can just lie down and catch up.<br>But if you oversleep—you can’t undo it.</li>
-                        <li>— My therapist said to listen to myself.<br>— I did… now I’m scared. Someone’s living in there.</li>
-                        <li>— Yesterday I woke up and thought: "Life is a miracle!"<br>— Today I woke up and thought: "Screw it, what a miracle…"</li>
-                        <li>— Why are you so quiet?<br>— Learning to accept reality.<br>— And how’s that going?<br>— Not great. But I’m quiet about it with style.</li>
-                        <li>— Meditation is when you’re not working but look like you’re super busy.</li>
-                    </ul>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Inner voice moments</h3>
-                    <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-                        <li>— What if nothing works out for you?<br>— Oh, it’s not “what if.” It’s consistent.</li>
-                        <li>— Today, we work on our inner child.<br>— Mine wants pizza again and gets mad if you don’t compliment her.</li>
-                    </ul>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Got a good one?</h3>
-                    <p class="text-lg mb-4">Send it in — we’ll add it.<br>Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</p>
-                </div>
-                <div class="buttons">
-                    <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                        <span class="lang-section lang-uk active">Почати шлях</span>
-                        <span class="lang-section lang-en">Start Your Journey</span>
-                    </a>
-                    <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                        <span class="lang-section lang-uk active">Задати питання</span>
-                        <span class="lang-section lang-en">Ask a Question</span>
-                    </a>
-                </div>
-            </div>
+        <div class="buttons">
+          <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+            <span class="lang-section lang-uk active">Почати шлях</span>
+            <span class="lang-section lang-en">Start Your Journey</span>
+          </a>
+          <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+            <span class="lang-section lang-uk active">Задати питання</span>
+            <span class="lang-section lang-en">Ask a Question</span>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>
-            <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-            <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
-        </p>
-        <p class="text-sm">
-            <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
-            <span class="lang-section lang-en">Warmly recommended:</span>
-            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
-                <span class="lang-section lang-uk active">Карпатська Грибниця</span>
-                <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
-            </a>
-        </p>
-    </footer>
+  <footer>
+    <p>
+      <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
+      <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+    </p>
+    <p class="text-sm">
+      <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
+      <span class="lang-section lang-en">Warmly recommended:</span>
+      <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
+        <span class="lang-section lang-uk active">Карпатська Грибниця</span>
+        <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
+      </a>
+    </p>
+  </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, initializing navigation...');
-            const savedLang = localStorage.getItem('lang') || 'uk';
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-            document.documentElement.lang = savedLang;
-            const langToggle = document.querySelector('.lang-toggle');
-            if (langToggle) {
-                langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            } else {
-                console.error('Language toggle button not found!');
-            }
-            updateMetaTags(savedLang);
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'uk';
+      // Активуємо потрібну мову
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
+      document.documentElement.lang = savedLang;
 
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('nav ul');
-            if (menuToggle && navUl) {
-                console.log('Menu toggle and nav ul found, setting up click handler');
-                menuToggle.addEventListener('click', () => {
-                    const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
-                    menuToggle.textContent = isExpanded ? '✕' : '☰';
-                    console.log('Menu toggled, isExpanded:', isExpanded);
-                });
-                menuToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        menuToggle.click();
-                        console.log('Menu toggled via keyboard:', e.key);
-                    }
-                });
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.setAttribute('tabindex', '0');
-                });
-            } else {
-                console.error('Menu toggle or nav ul not found!');
-            }
+      // Кнопка мови
+      const langToggle = document.querySelector('.lang-toggle');
+      if (langToggle) langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      updateMetaAndTitle(savedLang);
 
-            // Highlight active page
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navUl.querySelectorAll('a').forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
+      // Мобільне меню
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.querySelector('nav ul');
+      if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+          const isExpanded = navUl.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', isExpanded);
+          menuToggle.textContent = isExpanded ? '✕' : '☰';
         });
-
-        function toggleLang() {
-            const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            const newLang = isUkrainian ? 'en' : 'uk';
-            document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-            document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            document.documentElement.lang = newLang;
-            localStorage.setItem('lang', newLang);
-            updateMetaTags(newLang);
-            console.log(`Language switched to ${newLang.toUpperCase()}`);
-        }
-
-        function updateMetaTags(lang) {
-            if (lang === 'en') {
-                document.querySelector('meta[property="og:title"]').content = 'Humor - Seeker of Archetypes | I Am';
-                document.querySelector('meta[property="og:description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
-                document.querySelector('meta[name="description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
-            } else {
-                document.querySelector('meta[property="og:title"]').content = 'Гумор - Шукач Архетипів | Я є';
-                document.querySelector('meta[property="og:description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
-                document.querySelector('meta[name="description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+        menuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            menuToggle.click();
+          }
+        });
+        // Закриваємо меню при кліку по посиланню
+        navUl.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', () => {
+            if (navUl.classList.contains('active')) {
+              navUl.classList.remove('active');
+              menuToggle.setAttribute('aria-expanded', 'false');
+              menuToggle.textContent = '☰';
             }
-        }
-    </script>
+          });
+        });
+      }
+
+      // Підсвічуємо активну сторінку
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      navUl.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+    });
+
+    function toggleLang() {
+      const isUk = document.querySelector('.lang-uk').classList.contains('active');
+      const newLang = isUk ? 'en' : 'uk';
+
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
+      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      document.documentElement.lang = newLang;
+      localStorage.setItem('lang', newLang);
+      updateMetaAndTitle(newLang);
+    }
+
+    function updateMetaAndTitle(lang) {
+      if (lang === 'en') {
+        document.title = 'Humor - Seeker of Archetypes | I Am';
+        document.querySelector('meta[property="og:title"]').content = 'Humor - Seeker of Archetypes | I Am';
+        document.querySelector('meta[property="og:description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+        document.querySelector('meta[name="description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+      } else {
+        document.title = 'Гумор - Шукач Архетипів | Я є';
+        document.querySelector('meta[property="og:title"]').content = 'Гумор - Шукач Архетипів | Я є';
+        document.querySelector('meta[property="og:description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+        document.querySelector('meta[name="description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+      }
+    }
+  </script>
 </body>
 </html>
