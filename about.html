@@ -1,567 +1,454 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <span class="lang-section lang-uk active">Про мене - Шукач Архетипів | Я є</span>
-    <span class="lang-section lang-en">About Me - Seeker of Archetypes | I Am</span>
-  </title>
-  <meta name="description" content="Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти на проєкті Я є.">
-  <meta name="keywords" content="про мене, самопізнання, архетипи, шукач, психологія, інструменти, about me, self-discovery, archetypes, seeker, psychology, tools">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Про мене - Шукач Архетипів | Я є">
-  <meta property="og:description" content="Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="images/favicon-v2.png">
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Про мене — Шукач Архетипів | Я є</title>
+
+  <meta name="description" content="Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти на проєкті Я є." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Про мене — Шукач Архетипів | Я є" />
+  <meta property="og:description" content="Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="images/favicon-v2.png" />
+
+  <!-- Fonts perf -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #4b0082;
-      --secondary-color: #800080;
-      --button-bg: #4c1d95;
-      --button-hover: #5b21b6;
-      --gray-50: #f9fafb;
-      --white: #ffffff;
-      --lang-toggle-bg: #ffffff;
-      --lang-toggle-text: #000000;
-      --lang-toggle-border: #ff0000;
+    :root{
+      --primary-color:#4b0082;
+      --secondary-color:#800080;
+      --button-bg:#4c1d95;
+      --button-hover:#5b21b6;
+      --gray-50:#f9fafb;
+      --white:#ffffff;
+      --link-hover:#FFD700;
+      --text:#111;
+      --lang-toggle-bg:#ffffff;
+      --lang-toggle-text:#000000;
+      --lang-toggle-border:#ff0000;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; padding:0; color:var(--text); background:var(--white);
+      font-family:'Lora',serif; line-height:1.6; display:flex; flex-direction:column;
     }
 
-    body {
-      font-family: 'Lora', serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: var(--white);
-      color: #111;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    /* Utilities */
+    .container{ max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .page-wrap{ flex:1; }
+    .text-center{ text-align:center; }
+    .text-white{ color:#fff; }
+    .py-20{ padding:5rem 0; } .py-16{ padding:4rem 0; }
+    .mb-4{ margin-bottom:1rem; } .mb-6{ margin-bottom:1.5rem; } .mt-6{ margin-top:1.5rem; }
+    .text-5xl{ font-size:3rem; } .text-3xl{ font-size:1.875rem; }
+    .text-2xl{ font-size:1.5rem; } .text-xl{ font-size:1.25rem; } .text-lg{ font-size:1.125rem; }
+    .font-bold{ font-weight:700; } .font-lora{ font-family:'Lora',serif; }
+    .bg-white{ background-color:#fff; } .bg-gray-50{ background-color:var(--gray-50); }
+    .bg-gradient-to-r{ background:linear-gradient(to right,var(--primary-color),var(--secondary-color)); }
+    .space-y-4 > :not([hidden]) ~ :not([hidden]){ margin-top:1rem; }
+
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      position:static; width:auto; height:auto; padding:0.5rem 1rem; background:#fff; color:#000; display:inline-block;
     }
 
-    nav {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    /* Header / Nav */
+    nav{
+      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+      color:#fff; position:sticky; top:0; z-index:10;
+    }
+    nav .container{
+      display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem;
+    }
+    .logo-link{
+      display:flex; align-items:center; gap:0.5rem; color:#fff; text-decoration:none; font-weight:700; font-size:1.5rem;
+    }
+    .logo-img{ width:32px; height:32px; }
+
+    .menu-toggle{
+      display:none; font-size:1.5rem; background:none; border:none; color:#fff; cursor:pointer;
     }
 
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    #primary-nav{
+      list-style:none; display:flex; gap:1rem; margin:0; padding:0;
+    }
+    #primary-nav a{
+      color:#fff; text-decoration:none; padding:0.5rem; display:block; font-size:0.9375rem;
+      transition:transform .2s ease,color .2s ease;
+    }
+    #primary-nav a:hover, #primary-nav a:focus{
+      color:var(--link-hover); transform:scale(1.03); transform-origin:center;
+    }
+    #primary-nav a.active{ color:var(--link-hover); text-decoration:underline; }
+    #primary-nav a[aria-current="page"]{ text-decoration:underline; }
+
+    .lang-toggle{
+      cursor:pointer; font-weight:700; color:var(--lang-toggle-text);
+      background:var(--lang-toggle-bg); border:2px solid var(--lang-toggle-border);
+      padding:0.5rem 1rem; border-radius:9999px; font-size:1.125rem;
+      transition:background-color .3s ease, transform .2s ease;
+      margin-left:1rem;
+    }
+    .lang-toggle:hover, .lang-toggle:focus{ background:#e0e0e0; transform:scale(1.05); }
+
+    .lang-section{ display:none; }
+    .lang-section.active{ display:inline; }
+
+    /* Hero */
+    .animate-fade-in{ animation:fadeIn 1s ease-in; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Buttons */
+    .buttons{ text-align:center; margin-top:2.5rem; }
+    .button{
+      display:inline-block; background:var(--button-bg); color:#fff;
+      padding:0.75rem 2rem; border-radius:9999px; text-decoration:none; transition:background-color .3s ease;
+    }
+    .button:hover,.button:focus{ background:var(--button-hover); }
+
+    /* Footer */
+    footer{ background:var(--primary-color); color:#fff; text-align:center; padding:1.5rem 1rem; }
+    footer a{ color:var(--link-hover); text-decoration:underline; }
+    .footer-note{ font-size:0.875rem; margin-top:0.5rem; }
+
+    /* Image behavior: НЕ розтягувати на десктопі */
+    .figure-img{
+      display:block;
+      margin:0 auto;
+      max-width:900px; /* кап на десктопі */
+      width:auto;
+      height:auto;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--white);
+    /* Responsive */
+    @media (min-width:768px){
+      .md\:text-6xl{ font-size:3.75rem; }
     }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.5rem;
-      display: block;
-      font-size: 0.9375rem;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      color: #FFD700;
-      transform: scale(1.05);
-    }
-
-    nav a.active {
-      color: #FFD700;
-      text-decoration: underline;
-    }
-
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .logo-img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .lang-toggle {
-      cursor: pointer;
-      font-weight: bold;
-      color: var(--lang-toggle-text);
-      background: var(--lang-toggle-bg);
-      border: 2px solid var(--lang-toggle-border);
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      font-size: 1.125rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .lang-toggle:hover,
-    .lang-toggle:focus {
-      background: #e0e0e0;
-      transform: scale(1.05);
-    }
-
-    .lang-section { display: none; }
-    .lang-section.active { display: inline-block; }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    @media (max-width:768px){
+      .menu-toggle{ display:inline-block; }
+      #primary-nav{
+        position:absolute; left:0; top:100%; width:100%;
+        background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+        flex-direction:column; gap:0; padding:0.75rem 1rem; display:none;
+        box-shadow:0 4px 8px rgba(0,0,0,0.2); animation:slideIn .25s ease;
       }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        animation: slideIn 0.3s ease;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav .container {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem;
-      }
-      nav a {
-        font-size: 1rem;
-        padding: 0.5rem;
-      }
-      .logo-link {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-      }
-      .logo-img {
-        width: 28px;
-        height: 28px;
-      }
-      .lang-toggle {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-        margin-top: 0.5rem;
-      }
-      .container {
-        padding: 0.5rem;
-      }
-      .py-20 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-      .text-5xl { font-size: 1.75rem; }
-      .md\:text-6xl { font-size: 2rem; }
-      .text-3xl { font-size: 1.5rem; }
-      .text-2xl { font-size: 1.25rem; }
-      .text-xl { font-size: 1rem; }
-      .text-lg { font-size: 1rem; }
-      .button { padding: 0.5rem 1.5rem; font-size: 0.875rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 100%;
-      }
-      .buttons .button { width: 100%; margin-bottom: 1rem; }
+      #primary-nav.active{ display:flex; }
+      #primary-nav li + li{ margin-top:0.25rem; }
+      nav .container{ flex-wrap:wrap; gap:0.5rem; }
+      .lang-toggle{ font-size:1rem; padding:0.4rem 0.8rem; }
+
+      .py-20{ padding:1.5rem 0; } .py-16{ padding:1.25rem 0; }
+      .text-5xl{ font-size:1.75rem; } .md\:text-6xl{ font-size:2rem; }
+      .text-3xl{ font-size:1.5rem; } .text-2xl{ font-size:1.25rem; } .text-xl,.text-lg{ font-size:1rem; }
+      .button{ padding:0.5rem 1.5rem; font-size:0.9rem; }
+      .buttons .button{ width:100%; margin-bottom:1rem; }
+
+      .figure-img{ width:100%; max-width:100%; }
+    }
+    @media (max-width:480px){
+      .logo-img{ width:24px; height:24px; }
+      .logo-link{ font-size:1rem; }
+      .lang-toggle{ font-size:0.95rem; }
+      .text-5xl{ font-size:1.5rem; } .md\:text-6xl{ font-size:1.75rem; }
+      .text-3xl{ font-size:1.25rem; } .text-2xl{ font-size:1rem; }
+      .button{ padding:0.45rem 1.2rem; font-size:0.85rem; }
+
+      .figure-img{ width:90%; max-width:90%; margin:0 auto; }
+    }
+    @media (max-width:320px){
+      .logo-img{ width:20px; height:20px; }
+      .logo-link{ font-size:0.9rem; }
+      .lang-toggle{ font-size:0.85rem; padding:0.3rem 0.6rem; }
+      .text-5xl{ font-size:1.25rem; } .text-3xl{ font-size:1rem; } .text-2xl{ font-size:0.9rem; }
+      .button{ padding:0.35rem 0.9rem; font-size:0.75rem; }
     }
 
-    @media (max-width: 480px) {
-      nav .container {
-        padding: 0.25rem;
-      }
-      nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
-      }
-      .logo-link {
-        font-size: 1rem;
-      }
-      .logo-img {
-        width: 24px;
-        height: 24px;
-      }
-      .lang-toggle {
-        font-size: 0.875rem;
-        padding: 0.3rem 0.6rem;
-      }
-      .text-5xl { font-size: 1.5rem; }
-      .md\:text-6xl { font-size: 1.75rem; }
-      .text-3xl { font-size: 1.25rem; }
-      .text-2xl { font-size: 1rem; }
-      .button { padding: 0.4rem 1rem; font-size: 0.75rem; }
-      .container { padding: 0.25rem; }
-      .py-20 { padding-top: 1rem; padding-bottom: 1rem; }
-      .py-16 { padding-top: 1rem; padding-bottom: 1rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 90%;
-        margin: 0 auto;
-      }
+    @keyframes slideIn{ from{ transform:translateY(-12px); opacity:0 } to{ transform:translateY(0); opacity:1 } }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important; }
     }
-
-    @media (max-width: 320px) {
-      nav .container {
-        padding: 0.1rem;
-      }
-      nav a {
-        font-size: 0.75rem;
-        padding: 0.2rem;
-      }
-      .logo-link {
-        font-size: 0.875rem;
-      }
-      .logo-img {
-        width: 20px;
-        height: 20px;
-      }
-      .lang-toggle {
-        font-size: 0.75rem;
-        padding: 0.2rem 0.4rem;
-      }
-      .text-5xl { font-size: 1.2rem; }
-      .text-3xl { font-size: 1rem; }
-      .text-2xl { font-size: 0.875rem; }
-      .button { padding: 0.3rem 0.8rem; font-size: 0.625rem; }
-      .container { padding: 0.1rem; }
-      img {
-        max-width: 100%;
-        height: auto;
-        width: 85%;
-        margin: 0 auto;
-      }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-      flex: 1;
-    }
-
-    .text-center { text-align: center; }
-    .text-white { color: var(--white); }
-    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .mb-6 { margin-bottom: 1.5rem; }
-    .mt-6 { margin-top: 1.5rem; }
-
-    .text-5xl { font-size: 3rem; }
-    @media (min-width: 768px) {
-      .md\:text-6xl { font-size: 3.75rem; }
-    }
-    .text-3xl { font-size: 1.875rem; }
-    .text-2xl { font-size: 1.5rem; }
-    .text-xl { font-size: 1.25rem; }
-    .text-lg { font-size: 1.125rem; }
-
-    .font-bold { font-weight: bold; }
-    .font-lora { font-family: 'Lora', serif; }
-
-    .bg-white { background-color: var(--white); }
-    .bg-gray-50 { background-color: var(--gray-50); }
-    .bg-gradient-to-r {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    }
-
-    .button {
-      display: inline-block;
-      background: var(--button-bg);
-      color: var(--white);
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .button:hover,
-    .button:focus {
-      background: var(--button-hover);
-      outline: none;
-    }
-
-    .buttons {
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-
-    .buttons .button:not(:last-child) {
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-fade-in {
-      animation: fadeIn 1s ease-in;
-    }
-
-    footer {
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 1.5rem 1rem;
-      text-align: center;
-    }
-
-    footer a {
-      color: #FFD700;
-      text-decoration: underline;
-    }
-
-    .footer-note {
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-    }
-
-    ol { list-style-type: decimal; padding-left: 1.5rem; }
-    .list-decimal { list-style-type: decimal; }
-    .list-inside { list-style-position: inside; }
-    .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Пропустити до контенту</a>
+
   <nav role="navigation">
     <div class="container">
       <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img" width="32" height="32" />
         <span class="logo-text">
-          <span class="lang-section lang-uk active">Я є</span>
-          <span class="lang-section lang-en">I Am</span>
+          <span class="lang-section lang-uk active" lang="uk">Я є</span>
+          <span class="lang-section lang-en" lang="en">I Am</span>
         </span>
       </a>
-      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-      <ul>
-        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-        <li><a href="about.html" class="active"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
-        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Anxiety Knot Unraveler</span></a></li>
-        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-left:auto;">
+        <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+        <button type="button" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</button>
+      </div>
+
+      <ul id="primary-nav">
+        <li><a href="index.html"><span class="lang-section lang-uk active" lang="uk">Головна</span><span class="lang-section lang-en" lang="en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active" lang="uk">Про архетипи</span><span class="lang-section lang-en" lang="en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active" lang="uk">Про мене</span><span class="lang-section lang-en" lang="en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active" lang="uk">Інструменти</span><span class="lang-section lang-en" lang="en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active" lang="uk">Мисленне Дослідження</span><span class="lang-section lang-en" lang="en">Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active" lang="uk">Розплутування Тривоги</span><span class="lang-section lang-en" lang="en">Anxiety Knot Unraveler</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active" lang="uk">Як жити далі?</span><span class="lang-section lang-en" lang="en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active" lang="uk">Гумор</span><span class="lang-section lang-en" lang="en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active" lang="uk">Прайс</span><span class="lang-section lang-en" lang="en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active" lang="uk">Контакти</span><span class="lang-section lang-en" lang="en">Contact</span></a></li>
       </ul>
     </div>
   </nav>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing navigation...');
-      const savedLang = localStorage.getItem('lang') || 'uk';
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-      document.documentElement.lang = savedLang;
-      const langToggle = document.querySelector('.lang-toggle');
-      if (langToggle) {
-        langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      } else {
-        console.error('Language toggle button not found!');
-      }
-      updateMetaTags(savedLang);
-
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navUl = document.querySelector('nav ul');
-      if (menuToggle && navUl) {
-        console.log('Menu toggle and nav ul found, setting up click handler');
-        menuToggle.addEventListener('click', () => {
-          const isExpanded = navUl.classList.toggle('active');
-          menuToggle.setAttribute('aria-expanded', isExpanded);
-          menuToggle.textContent = isExpanded ? '✕' : '☰';
-          console.log('Menu toggled, isExpanded:', isExpanded);
-        });
-        menuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            menuToggle.click();
-            console.log('Menu toggled via keyboard:', e.key);
-          }
-        });
-        navUl.querySelectorAll('a').forEach(link => {
-          link.setAttribute('tabindex', '0');
-        });
-      } else {
-        console.error('Menu toggle or nav ul not found!');
-      }
-
-      // Highlight active page
-      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      navUl.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    function toggleLang() {
-      const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      const newLang = isUkrainian ? 'en' : 'uk';
-      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      document.documentElement.lang = newLang;
-      localStorage.setItem('lang', newLang);
-      updateMetaTags(newLang);
-      console.log(`Language switched to ${newLang.toUpperCase()}`);
-    }
-
-    function updateMetaTags(lang) {
-      if (lang === 'en') {
-        document.querySelector('meta[property="og:title"]').content = 'About Me - Seeker of Archetypes | I Am';
-        document.querySelector('meta[property="og:description"]').content = 'A Seeker who helps you uncover your archetypes through personal experience and practical tools with the I Am project.';
-        document.querySelector('meta[name="description"]').content = 'A Seeker who helps you uncover your archetypes through personal experience and practical tools with the I Am project.';
-      } else {
-        document.querySelector('meta[property="og:title"]').content = 'Про мене - Шукач Архетипів | Я є';
-        document.querySelector('meta[property="og:description"]').content = 'Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти на проєкті Я є.';
-        document.querySelector('meta[name="description"]').content = 'Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти на проєкті Я є.';
-      }
-    }
-  </script>
-
-  <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
-    <div class="container">
-      <h2 class="text-5xl md:text-6xl font-bold font-lora mb-4">
-        <span class="lang-section lang-uk active">Хто я?</span>
-        <span class="lang-section lang-en">Who am I?</span>
-      </h2>
-      <p class="text-xl max-w-2xl mx-auto mb-6">
-        <span class="lang-section lang-uk active">Я — Шукач. Не в сенсі мандрівник із мапою й компасом, а той, хто розгрібає шари пилу з чужих очікувань і знайомиться із собою.</span>
-        <span class="lang-section lang-en">I’m a Seeker. Not the kind with a map and compass, but the one who brushes off layers of dust from others’ expectations — and gets to know himself.</span>
-      </p>
-    </div>
-  </section>
-
-  <section class="py-16 bg-gray-50 text-center">
-    <div class="container">
-      <img src="images/campfire.jpg" alt="Вогнище, що символізує тепло і затишок / Campfire symbolizing warmth and comfort" class="mx-auto mb-6 max-w-full h-auto" loading="lazy">
-    </div>
-  </section>
-
-  <section class="py-16 bg-white">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl font-bold font-lora mb-6 text-center">
-        <span class="lang-section lang-uk active">Про мене</span>
-        <span class="lang-section lang-en">About Me</span>
-      </h2>
-      <div class="lang-section lang-uk active">
-        <p class="text-lg mb-4">Привіт, Шукачу!</p>
-        <p class="text-lg mb-4">Раз ти тут — значить, у нас із тобою є дещо спільне: <strong>цікавість</strong>. Вона не добра й не зла. Вона просто є. І вона — твій двигун у цій реальності.</p>
-        <p class="text-lg mb-4">Мені вже не двадцять. За плечима — всяке. Але це не має значення. Я — просто <strong>Людина</strong>. Йду своїм шляхом. Не скажу тобі, як жити. Не покажу готову дорогу. Лише вкажу напрям. А стежку прокладеш сам. І тільки ти.</p>
-        <p class="text-lg mb-4">Колись я відчув мурашки від пісні. Потім — від інших слів. Тіло реагувало, а я не надавав цьому значення. Аж поки не дізнався про <strong>архетипи</strong>. І все стало на свої місця.</p>
-        <p class="text-lg mb-4">Це стало ключем. Почалося найважливіше знайомство — знайомство із собою. Я зрозумів, що жив згідно зі своїм архетипом несвідомо — і не зраджував йому. А тіло свідчило про це — бо тіло не бреше. Мозок може вигадати будь-що. А тіло — ні.</p>
-        <p class="text-lg mb-4"><strong>Архетип — це ядро людини.</strong> Хтось у це вірить, хтось ні. Але він просто є. У когось один, у когось кілька. Вони можуть змішуватись, змінюватися, але все одно формують твій шлях.</p>
-        <p class="text-lg mb-4"><strong>Приймаєш себе — краще розумієш.</strong> А отже, краще живеш. Це як вихід із туману. Але страшно. Бо не кожен готовий подивитися на себе без прикрас.</p>
-        <p class="text-lg mb-4"><strong>Світло й темрява — усе твоє.</strong> Не борись із собою. Прийми. І йди.</p>
-        <p class="text-lg mb-4">Мій шлях почався 22 роки тому, коли я відмовився від алкоголю. Це була точка неповернення. З того часу почалося зростання. Повільне, болюче, але справжнє.</p>
-        <p class="text-lg mb-4">Ці роки я вчився, шукав, пробував — семінари, гуру, курси, успішний успіх і призначення. І що далі, то більше розчарувань. Я біг по колу. Та зрозумів: у кожного — свій шлях. І навіть наймудріший учитель не може пройти його за тебе.</p>
-        <p class="text-lg mb-4">Коли я відкрив архетипи — я почав жити, не просто існувати.</p>
-        <p class="text-lg mb-4">Я не вважаю себе великим чи просвітленим. Просто бачу більше, ніж раніше. І вчуся бачити ще. І це дає мені повноту життя.</p>
-        <p class="text-lg mb-4">Коли ти знайдеш себе — в тебе теж з’явиться ця повнота. Не гарантую ні щастя, ні багатства. Але обіцяю одне: <strong>зміни</strong>. Ти побачиш реальність чіткіше. Людей — ясніше. І себе — глибше. Хтось піде з твого життя. Хтось залишиться. Але ти вже сам вирішиш, хто тобі потрібен.</p>
-        <p class="text-lg mb-4">А ще буде побічний ефект: <strong>бажання почнуть здійснюватись</strong>. Може не всі й не одразу. Але точно — твої.</p>
-        <p class="text-lg mb-4">Навіщо я це роблю?</p>
-        <ol class="list-decimal list-inside text-lg mb-4 space-y-4">
-          <li>Щоб допомогти. Але тільки тим, хто сам попросить. Я більше не рятую світ і не лізу зі своїм «добром» до тих, хто не просив.</li>
-          <li>Щоб знайти таких, як я. Для спілкування, обговорення, розвитку. План максимум — спільнота для підтримки таких самих Шукачів.</li>
-          <li>Щоб заробляти. Чесно. Я вкладаю час, сили, досвід — і хочу, щоб це стало справою мого життя. Живою. Дієвою. Не фальшивою.</li>
-        </ol>
-        <p class="text-lg mb-4">Тут буде не лише теорія. Я — <strong>практик</strong>. І тому буде багато практичних інструментів. Бо просто знати — мало. Треба застосовувати.</p>
-        <p class="text-lg mb-4">Буде і багато спілкування. Теми — найрізноманітніші. Я й сам не знаю, куди це нас приведе. Але точно — вартує спроби. Це поклик мого архетипу. І я не можу не йти.</p>
-        <p class="text-lg mb-4">Тому — я знову саджаю насіння. І вірю, що з нього виросте щось сильне, живе й справжнє.</p>
-        <p class="text-lg mb-4">Якщо хочеш — приєднуйся. Дорога не буде легкою. Але вона буде твоєю.</p>
+  <main id="main-content" class="page-wrap">
+    <!-- Hero -->
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+      <div class="container">
+        <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">
+          <span class="lang-section lang-uk active" lang="uk">Хто я?</span>
+          <span class="lang-section lang-en" lang="en">Who am I?</span>
+        </h1>
+        <p class="text-xl" style="max-width:60ch; margin:0 auto;">
+          <span class="lang-section lang-uk active" lang="uk">Я — Шукач. Не з мапою й компасом, а той, хто знімає пил чужих очікувань і знайомиться із собою.</span>
+          <span class="lang-section lang-en" lang="en">I’m a Seeker — not with a map and compass, but one who brushes off others’ expectations and gets to know himself.</span>
+        </p>
       </div>
-      <div class="lang-section lang-en">
-        <p class="text-lg mb-4">Hello, fellow Seeker!</p>
-        <p class="text-lg mb-4">If you’re here, it means we share something: <strong>curiosity</strong>. It’s neither good nor bad. It just is. And it’s your engine in this reality.</p>
-        <p class="text-lg mb-4">I’m not twenty anymore. I’ve been through things. But that doesn’t matter. I’m just a <strong>Human</strong>. Walking my path. I won’t tell you how to live. I won’t hand you a ready-made road. I’ll just point in a direction. You’ll carve the path yourself. And only you can.</p>
-        <p class="text-lg mb-4">Once, I felt chills from a song. Then — from words. My body reacted, but I paid no attention. Until I discovered <strong>archetypes</strong>. And everything clicked into place.</p>
-        <p class="text-lg mb-4">That was the key. It started the most important journey — meeting myself. I realized I had lived according to my archetype unconsciously — and never betrayed it. And my body testified to it — because the body doesn’t lie. The mind can make things up. The body — never.</p>
-        <p class="text-lg mb-4"><strong>An archetype is the core of a person.</strong> Some believe in it. Some don’t. Doesn’t matter. It just is. Some people have one. Others have a few. They can blend, shift — but still shape your path.</p>
-        <p class="text-lg mb-4"><strong>The more you accept yourself, the clearer you see.</strong> And that means — the better you live. It’s like walking out of fog. But it’s scary. Because not everyone is ready to look at themselves without filters.</p>
-        <p class="text-lg mb-4"><strong>Your light and darkness — they’re both yours.</strong> Don’t fight yourself. Accept. And walk.</p>
-        <p class="text-lg mb-4">My path began 22 years ago, when I gave up alcohol. That was the point of no return. Since then, the real growth began. Slow, painful, but true.</p>
-        <p class="text-lg mb-4">For years, I searched, tried, explored — seminars, gurus, courses, success formulas and life purposes. The further I went, the more disillusioned I became. I was running in circles. Until I realized: everyone has their own way. Even the wisest teacher can’t walk it for you.</p>
-        <p class="text-lg mb-4">When I discovered archetypes — I started to live, not just exist.</p>
-        <p class="text-lg mb-4">I don’t see myself as enlightened or great. I just see more than I used to. And I’m learning to see deeper. And that gives life its fullness.</p>
-        <p class="text-lg mb-4">When you find yourself — you’ll feel that fullness too. I won’t promise happiness or riches. But I promise one thing: <strong>change</strong>. You’ll see reality more clearly. People — more transparently. And yourself — more deeply. Some people will leave your life. Some will stay. But now you will decide who belongs.</p>
-        <p class="text-lg mb-4">And there’s a side effect: <strong>your real desires start coming true</strong>. Maybe not all. Not at once. But the real ones — definitely.</p>
-        <p class="text-lg mb-4">Why am I doing this?</p>
-        <ol class="list-decimal list-inside text-lg mb-4 space-y-4">
-          <li>To help. But only those who ask. I no longer try to save the world or offer “goodness” to those who didn’t ask for it.</li>
-          <li>To find people like me. For conversation, reflection, growth. The long-term dream — a community of Seekers.</li>
-          <li>To make a living. Honestly. I put in time, effort, experience — and I want this to become my life’s work. Alive. Practical. Real.</li>
-        </ol>
-        <p class="text-lg mb-4">This won’t be theory alone. I’m a <strong>practitioner</strong>. So expect real tools — because just knowing is never enough. You must apply it.</p>
-        <p class="text-lg mb-4">There will be lots of conversations. On all sorts of topics. Even I don’t know where this will lead us. But I know one thing: it’s worth trying. This is my archetype’s calling. And I can’t not follow it.</p>
-        <p class="text-lg mb-4">So — once again, I plant a seed. And I believe something strong, living, and true will grow from it.</p>
-        <p class="text-lg mb-4">If you feel the pull — join in. The road won’t be easy. But it will be yours.</p>
+    </section>
+
+    <!-- Image (не міняю поведінку, як просив) -->
+    <section class="py-16 bg-gray-50 text-center">
+      <div class="container">
+        <img
+          src="images/campfire.jpg"
+          alt="Вогнище — тепло і затишок / Campfire — warmth and comfort"
+          class="figure-img mb-6"
+          width="1200" height="675" loading="lazy" />
       </div>
-      <div class="buttons">
-        <a href="tools.html" class="button">
-          <span class="lang-section lang-uk active">Спробувати інструменти</span>
-          <span class="lang-section lang-en">Try the Tools</span>
-        </a>
-        <a href="contact.html" class="button">
-          <span class="lang-section lang-uk active">Зв'язатися</span>
-          <span class="lang-section lang-en">Contact Me</span>
-        </a>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 bg-white">
+      <div class="container" style="max-width:820px;">
+        <h2 class="text-3xl font-bold font-lora mb-6 text-center">
+          <span class="lang-section lang-uk active" lang="uk">Про мене</span>
+          <span class="lang-section lang-en" lang="en">About Me</span>
+        </h2>
+
+        <div class="lang-section lang-uk active" lang="uk">
+          <p class="text-lg mb-4">Привіт, Шукачу!</p>
+          <p class="text-lg mb-4">Раз ти тут — значить, у нас із тобою є дещо спільне: <strong>цікавість</strong>. Вона не добра й не зла. Вона просто є. І вона — твій двигун у цій реальності.</p>
+          <p class="text-lg mb-4">Мені вже не двадцять. За плечима — всяке. Але це не має значення. Я — просто <strong>Людина</strong>. Йду своїм шляхом. Не скажу тобі, як жити. Не покажу готову дорогу. Лише вкажу напрям. А стежку прокладеш сам. І тільки ти.</p>
+          <p class="text-lg mb-4">Колись я відчув мурашки від пісні. Потім — від інших слів. Тіло реагувало, а я не надавав цьому значення. Аж поки не дізнався про <strong>архетипи</strong>. І все стало на свої місця.</p>
+          <p class="text-lg mb-4">Це стало ключем. Почалося найважливіше знайомство — знайомство із собою. Я зрозумів, що жив згідно зі своїм архетипом несвідомо — і не зраджував йому. А тіло свідчило про це — бо тіло не бреше. Мозок може вигадати будь-що. А тіло — ні.</p>
+          <p class="text-lg mb-4"><strong>Архетип — це ядро людини.</strong> У когось один, у когось кілька. Вони можуть змішуватись, змінюватися, але все одно формують твій шлях.</p>
+          <p class="text-lg mb-4"><strong>Приймаєш себе — краще розумієш.</strong> А отже, краще живеш. Це як вихід із туману. Але страшно — не кожен готовий дивитися без прикрас.</p>
+          <p class="text-lg mb-4"><strong>Світло й темрява — твої.</strong> Не борись із собою. Прийми. І йди.</p>
+          <p class="text-lg mb-4">Мій шлях почався 22 роки тому, коли я відмовився від алкоголю. Це була точка неповернення. З того часу — повільне, болюче, але справжнє зростання.</p>
+          <p class="text-lg mb-4">Були семінари, гуру, курси, «успішний успіх» і «призначення». Чим далі — тим більше розчарувань. Поки не второпав: у кожного — свій шлях. Навіть наймудріший учитель не пройде його за тебе.</p>
+          <p class="text-lg mb-4">Коли відкрив архетипи — почав жити, а не існувати.</p>
+          <p class="text-lg mb-4">Я не «просвітлений». Просто бачу більше, ніж учора — і вчуся бачити глибше. Це дає відчуття повноти життя.</p>
+          <p class="text-lg mb-4">Коли знайдеш себе — відчуєш це теж. Не обіцяю щастя чи багатства. Обіцяю одне: <strong>зміни</strong>. Реальність стане чіткішою. Люди — яснішими. Себе — зрозумієш глибше.</p>
+          <p class="text-lg mb-4">Побічний ефект: <strong>справжні бажання почнуть здійснюватись</strong>. Може не всі й не одразу — але свої.</p>
+          <p class="text-lg mb-4">Навіщо я це роблю?</p>
+          <ol class="text-lg mb-4 space-y-4" style="list-style:decimal; padding-left:1.25rem;">
+            <li>Щоб допомогти — тільки тим, хто сам попросить. Без «рятування світу» без запиту.</li>
+            <li>Щоб знайти своїх — для спілкування, обговорення, розвитку. План-максимум — спільнота Шукачів.</li>
+            <li>Щоб заробляти чесно: вкладаю час, сили, досвід — хочу, щоб це стало живою справою мого життя.</li>
+          </ol>
+          <p class="text-lg mb-4">Тут — не лише теорія. Я <strong>практик</strong>. Тому будуть інструменти й приклади. Бо знати — мало. Треба застосовувати.</p>
+          <p class="text-lg mb-4">Буде багато розмов і тем. Куди це приведе — побачимо. Але спробувати варто. Це поклик мого архетипу.</p>
+          <p class="text-lg mb-4">Отже, я знову саджаю насіння. Хочу, щоб виросло щось сильне, живе й справжнє.</p>
+          <p class="text-lg mb-4">Якщо відгукується — приєднуйся. Дорога не легка, але — твоя.</p>
+        </div>
+
+        <div class="lang-section lang-en" lang="en">
+          <p class="text-lg mb-4">Hello, fellow Seeker!</p>
+          <p class="text-lg mb-4">If you’re here, we share <strong>curiosity</strong>. It simply is — and powers you through reality.</p>
+          <p class="text-lg mb-4">I’m no longer twenty. I’m just a <strong>Human</strong> on my path. I won’t hand you a ready-made road — I’ll point a direction. You’ll carve it.</p>
+          <p class="text-lg mb-4">Once music gave me chills. Later, words did. My body reacted; I ignored it — until I discovered <strong>archetypes</strong>. Then it clicked.</p>
+          <p class="text-lg mb-4">That started the key journey — meeting myself. I’d been living my archetype unconsciously. The body doesn’t lie; the mind does.</p>
+          <p class="text-lg mb-4"><strong>Archetype is a person’s core.</strong> One or many — blending, shifting — still shaping your path.</p>
+          <p class="text-lg mb-4"><strong>Self-acceptance sharpens sight.</strong> You live better. It’s scary, but worth it.</p>
+          <p class="text-lg mb-4"><strong>Your light and darkness are yours.</strong> Don’t fight yourself. Accept and walk.</p>
+          <p class="text-lg mb-4">My turning point: quitting alcohol 22 years ago. Since then — slow, painful, true growth.</p>
+          <p class="text-lg mb-4">Seminars, gurus, courses… disillusionment. Everyone has their way; no teacher can walk it for you.</p>
+          <p class="text-lg mb-4">Archetypes helped me start living — not merely existing.</p>
+          <p class="text-lg mb-4">I’m not enlightened. I just see more and learn to see deeper. That brings fullness.</p>
+          <p class="text-lg mb-4">Find yourself — feel that fullness. I promise one thing: <strong>change</strong>.</p>
+          <p class="text-lg mb-4">Side effect: <strong>true desires start coming true</strong>. Not all, not at once — but yours.</p>
+          <p class="text-lg mb-4">Why do I do this?</p>
+          <ol class="text-lg mb-4 space-y-4" style="list-style:decimal; padding-left:1.25rem;">
+            <li>To help — only those who ask.</li>
+            <li>To find my people — conversation, reflection, growth; ultimately, a Seekers’ community.</li>
+            <li>To earn honestly — time, effort, experience deserve a living craft.</li>
+          </ol>
+          <p class="text-lg mb-4">Not just theory. I’m a <strong>practitioner</strong>. Expect tools and examples.</p>
+          <p class="text-lg mb-4">Plenty of dialogue. We’ll see where it leads. It’s my archetype’s calling.</p>
+          <p class="text-lg mb-4">So I plant a seed again — hoping for something strong, living, and true.</p>
+          <p class="text-lg mb-4">If it pulls you — join. The road won’t be easy, but it will be yours.</p>
+        </div>
+
+        <div class="buttons">
+          <a href="tools.html" class="button">
+            <span class="lang-section lang-uk active" lang="uk">Спробувати інструменти</span>
+            <span class="lang-section lang-en" lang="en">Try the Tools</span>
+          </a>
+          <a href="contact.html" class="button" style="margin-left:0.75rem;">
+            <span class="lang-section lang-uk active" lang="uk">Зв'язатися</span>
+            <span class="lang-section lang-en" lang="en">Contact Me</span>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <p>
-      <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-      <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+      <span class="lang-section lang-uk active" lang="uk">© 2025 Я є. Усі права захищено.</span>
+      <span class="lang-section lang-en" lang="en">© 2025 I Am. All rights reserved.</span>
     </p>
     <p class="footer-note">
-      <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
-      <span class="lang-section lang-en">Warmly recommended:</span>
+      <span class="lang-section lang-uk active" lang="uk">З душею рекомендуємо:</span>
+      <span class="lang-section lang-en" lang="en">Warmly recommended:</span>
       <a href="https://t.me/CRPT_shroomery" target="_blank" rel="noopener noreferrer">
-        <span class="lang-section lang-uk active">Карпатська Грибниця</span>
-        <span class="lang-section lang-en">The Carpathian Mycelium</span>
+        <span class="lang-section lang-uk active" lang="uk">Карпатська Грибниця</span>
+        <span class="lang-section lang-en" lang="en">The Carpathian Mycelium</span>
       </a>
     </p>
   </footer>
+
+  <script>
+    (function(){
+      const SELECTORS = {
+        langSections: '.lang-section',
+        navList: '#primary-nav',
+        menuToggle: '.menu-toggle',
+        langToggle: '.lang-toggle'
+      };
+
+      const TITLES = {
+        uk: 'Про мене — Шукач Архетипів | Я є',
+        en: 'About Me — Seeker of Archetypes | I Am'
+      };
+
+      const DESCS = {
+        uk: 'Шукач, який допомагає відкрити твої архетипи через особистий досвід і практичні інструменти.',
+        en: 'A Seeker who helps uncover your archetypes through experience and practical tools.'
+      };
+
+      const $ = (sel, root=document) => root.querySelector(sel);
+      const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+      function updateHead(lang){
+        document.title = TITLES[lang] || TITLES.uk;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc  = document.querySelector('meta[property="og:description"]');
+        const desc    = document.querySelector('meta[name="description"]');
+        if(ogTitle) ogTitle.content = TITLES[lang] || TITLES.uk;
+        if(ogDesc)  ogDesc.content  = DESCS[lang]  || DESCS.uk;
+        if(desc)    desc.content    = DESCS[lang]  || DESCS.uk;
+      }
+
+      function applyLang(lang){
+        $$(SELECTORS.langSections).forEach(el => el.classList.remove('active'));
+        $$(`.lang-${lang}`).forEach(el => el.classList.add('active'));
+        document.documentElement.lang = lang;
+        const lt = $(SELECTORS.langToggle);
+        if(lt) lt.textContent = (lang === 'uk') ? 'UA / EN' : 'EN / UA';
+        updateHead(lang);
+        try{ localStorage.setItem('lang', lang); }catch(e){}
+      }
+
+      function initLang(){
+        let saved = 'uk';
+        try{ saved = localStorage.getItem('lang') || 'uk'; }catch(e){}
+        applyLang(saved);
+      }
+
+      function initMenu(){
+        const toggle = $(SELECTORS.menuToggle);
+        const nav = $(SELECTORS.navList);
+        if(!toggle || !nav) return;
+
+        let lastFocus = null;
+
+        function openMenu(){
+          nav.classList.add('active');
+          toggle.setAttribute('aria-expanded','true');
+          toggle.textContent = '✕';
+          lastFocus = document.activeElement;
+          const firstLink = nav.querySelector('a');
+          if(firstLink) firstLink.focus();
+          document.addEventListener('click', onDocClick, true);
+          document.addEventListener('keydown', onKeydown);
+        }
+
+        function closeMenu(){
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded','false');
+          toggle.textContent = '☰';
+          document.removeEventListener('click', onDocClick, true);
+          document.removeEventListener('keydown', onKeydown);
+          if(lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        function onDocClick(e){
+          if(nav.contains(e.target) || toggle.contains(e.target)) return;
+          closeMenu();
+        }
+
+        function onKeydown(e){
+          if(e.key === 'Escape'){ closeMenu(); }
+          if((e.key === ' ' || e.key === 'Enter') && document.activeElement === toggle){
+            e.preventDefault();
+            nav.classList.contains('active') ? closeMenu() : openMenu();
+          }
+        }
+
+        toggle.addEventListener('click', () => {
+          nav.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        // highlight current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        nav.querySelectorAll('a').forEach(a=>{
+          if(a.getAttribute('href') === currentPage){
+            a.classList.add('active');
+            a.setAttribute('aria-current','page');
+          }
+        });
+      }
+
+      function initLangToggle(){
+        const btn = $(SELECTORS.langToggle);
+        if(!btn) return;
+        btn.addEventListener('click', ()=>{
+          const now = document.documentElement.lang || 'uk';
+          const next = (now === 'uk') ? 'en' : 'uk';
+          applyLang(next);
+          console.log('[lang] switched to', next.toUpperCase());
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        initLang();
+        initMenu();
+        initLangToggle();
+      });
+    })();
+  </script>
 </body>
 </html>
