@@ -1,753 +1,560 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <span class="lang-section lang-uk active">Інструменти - Самопізнання через Архетипи | Я є</span>
-    <span class="lang-section lang-en">Tools - Self-Knowledge through Archetypes | I Am</span>
-  </title>
-  <meta name="description" content="Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття.">
-  <meta name="keywords" content="інструменти, самопізнання, архетипи, відгук тіла, твоя казка, психологія, tools, self-knowledge, archetypes, body feedback, your fairy tale, psychology">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Інструменти - Самопізнання через Архетипи | Я є">
-  <meta property="og:description" content="Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="images/favicon-v2.png">
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Інструменти — Самопізнання через Архетипи | Я є</title>
+
+  <meta name="description" content="Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Інструменти — Самопізнання через Архетипи | Я є" />
+  <meta property="og:description" content="Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="images/favicon-v2.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #4b0082;
-      --secondary-color: #800080;
-      --button-bg: #4c1d95;
-      --button-hover: #5b21b6;
-      --gray-50: #f9fafb;
-      --white: #ffffff;
-      --lang-toggle-bg: #ffffff;
-      --lang-toggle-text: #000000;
-      --lang-toggle-border: #ff0000;
+    :root{
+      --primary-color:#4b0082;
+      --secondary-color:#800080;
+      --button-bg:#4c1d95;
+      --button-hover:#5b21b6;
+      --gray-50:#f9fafb;
+      --white:#ffffff;
+      --link-hover:#FFD700;
+      --text:#111;
+      --lang-toggle-bg:#ffffff;
+      --lang-toggle-text:#000000;
+      --lang-toggle-border:#ff0000;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; padding:0; color:var(--text); background:var(--white);
+      font-family:'Lora',serif; line-height:1.6; display:flex; flex-direction:column;
     }
 
-    body {
-      font-family: 'Lora', serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: var(--white);
-      color: #111;
+    /* Utilities */
+    .container{ max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .page-wrap{ flex:1; }
+    .text-center{ text-align:center; }
+    .text-left{ text-align:left; }
+    .text-white{ color:#fff; }
+    .py-20{ padding:5rem 0; } .py-16{ padding:4rem 0; }
+    .mb-2{ margin-bottom:.5rem; } .mb-4{ margin-bottom:1rem; } .mb-6{ margin-bottom:1.5rem; }
+    .mt-4{ margin-top:1rem; } .mt-6{ margin-top:1.5rem; } .mt-8{ margin-top:2rem; }
+    .text-5xl{ font-size:3rem; } .text-3xl{ font-size:1.875rem; } .text-2xl{ font-size:1.5rem; } .text-xl{ font-size:1.25rem; } .text-lg{ font-size:1.125rem; }
+    .font-bold{ font-weight:700; } .font-semibold{ font-weight:600; } .font-lora{ font-family:'Lora',serif; }
+    .bg-white{ background-color:#fff; } .bg-gray-50{ background-color:var(--gray-50); }
+    .bg-gradient-to-r{ background:linear-gradient(to right,var(--primary-color),var(--secondary-color)); }
+    .space-y-4 > :not([hidden]) ~ :not([hidden]){ margin-top:1rem; }
+    .space-y-8 > :not([hidden]) ~ :not([hidden]){ margin-top:2rem; }
+
+    /* Nav */
+    nav{
+      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+      color:#fff; position:sticky; top:0; z-index:10;
+    }
+    nav .container{ display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem; }
+    .logo-link{ display:flex; align-items:center; gap:0.5rem; color:#fff; text-decoration:none; font-weight:700; font-size:1.5rem; }
+    .logo-img{ width:32px; height:32px; }
+
+    .menu-toggle{ display:none; font-size:1.5rem; background:none; border:none; color:#fff; cursor:pointer; }
+
+    #primary-nav{ list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
+    #primary-nav a{
+      color:#fff; text-decoration:none; padding:0.5rem; display:block; font-size:0.9375rem;
+      transition:transform .2s ease,color .2s ease;
+    }
+    #primary-nav a:hover,#primary-nav a:focus{ color:var(--link-hover); transform:scale(1.03); }
+    #primary-nav a.active,#primary-nav a[aria-current="page"]{ color:var(--link-hover); text-decoration:underline; }
+
+    .lang-toggle{
+      cursor:pointer; font-weight:700; color:var(--lang-toggle-text);
+      background:var(--lang-toggle-bg); border:2px solid var(--lang-toggle-border);
+      padding:0.5rem 1rem; border-radius:9999px; font-size:1.125rem;
+      transition:background-color .3s ease, transform .2s ease; margin-left:1rem;
+    }
+    .lang-toggle:hover,.lang-toggle:focus{ background:#e0e0e0; transform:scale(1.05); }
+
+    .lang-section{ display:none; }
+    .lang-section.active{ display:inline; }
+
+    /* Hero */
+    .animate-fade-in{ animation:fadeIn 1s ease-in; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Buttons */
+    .buttons{ text-align:center; margin-top:2.5rem; }
+    .button{
+      display:inline-block; background:var(--button-bg); color:#fff;
+      padding:0.75rem 2rem; border-radius:9999px; text-decoration:none; transition:background-color .3s ease;
+    }
+    .button:hover,.button:focus{ background:var(--button-hover); }
+
+    /* Accordion */
+    .accordion{ max-width:600px; margin:0 auto; }
+    .accordion-item{ border-bottom:1px solid #ddd; }
+    .accordion-header{
+      width:100%; text-align:left; display:flex; align-items:center; gap:.5rem;
+      font-size:1.5rem; font-family:'Lora',serif; font-weight:700;
+      padding:1rem; cursor:pointer; background:#f5f5f5; border:none;
+      transition:background .3s;
+    }
+    .accordion-header:hover,.accordion-header:focus{ background:#e0e0e0; }
+    .accordion-content{ padding:0 1rem 1rem; display:none; background:#fff; }
+    .accordion-item.accordion-active .accordion-content{ display:block; }
+    .accordion-content p{ margin:0.5rem 0; text-align:left; }
+
+    /* Images */
+    img{ max-width:100%; height:auto; display:block; }
+    .figure-img{
+      display:block; margin:0 auto;
+      max-width:900px; width:auto; height:auto;      /* десктоп — не тягнемо */
     }
 
-    nav {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav h1 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--white);
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.5rem;
-      display: block;
-      font-size: 0.9375rem;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      text-decoration: underline;
-    }
-
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .logo-img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .lang-toggle {
-      cursor: pointer;
-      font-weight: bold;
-      color: var(--lang-toggle-text);
-      background: var(--lang-toggle-bg);
-      border: 2px solid var(--lang-toggle-border);
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      font-size: 1.125rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .lang-toggle:hover,
-    .lang-toggle:focus {
-      background: #e0e0e0;
-      transform: scale(1.05);
-    }
-
-    .lang-section { display: none; }
-    .lang-section.active { display: inline-block; }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    /* Responsive */
+    @media (min-width:768px){ .md\:text-6xl{ font-size:3.75rem; } }
+    @media (max-width:768px){
+      .menu-toggle{ display:inline-block; }
+      #primary-nav{
+        position:absolute; left:0; top:100%; width:100%;
+        background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+        flex-direction:column; gap:0; padding:0.75rem 1rem; display:none;
+        box-shadow:0 4px 8px rgba(0,0,0,0.2);
       }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        padding: 0.5rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav .container {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.5rem;
-      }
-      nav a {
-        font-size: 0.875rem;
-        padding: 0.25rem;
-      }
-      .logo-link {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-      }
-      .logo-img {
-        width: 28px;
-        height: 28px;
-      }
-      .lang-toggle {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-        margin-top: 0.5rem;
-      }
-      .container { padding: 0.5rem; }
-      .py-20 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-      .text-5xl { font-size: 1.75rem; }
-      .md\:text-6xl { font-size: 2rem; }
-      .text-3xl { font-size: 1.5rem; }
-      .text-2xl { font-size: 1.25rem; }
-      .text-xl { font-size: 1rem; }
-      .text-lg { font-size: 1rem; }
-      .accordion-header { font-size: 1.25rem; padding: 0.75rem; }
-      .accordion-content { padding: 0.5rem; }
-      .button { padding: 0.5rem 1.5rem; font-size: 0.875rem; }
-      img { width: 100%; }
+      #primary-nav.active{ display:flex; }
+      #primary-nav li + li{ margin-top:0.25rem; }
+      nav .container{ flex-wrap:wrap; gap:0.5rem; }
+      .lang-toggle{ font-size:1rem; padding:0.4rem 0.8rem; }
+
+      .py-20{ padding:1.5rem 0; } .py-16{ padding:1.25rem 0; }
+      .text-5xl{ font-size:1.75rem; } .md\:text-6xl{ font-size:2rem; }
+      .text-3xl{ font-size:1.5rem; } .text-2xl{ font-size:1.25rem; } .text-xl,.text-lg{ font-size:1rem; }
+
+      .accordion-header{ font-size:1.25rem; padding:0.75rem; }
+      .accordion-content{ padding:0.5rem 0.75rem 0.75rem; }
+
+      .figure-img{ width:100%; max-width:100%; }  /* мобілка — на всю ширину */
+    }
+    @media (max-width:480px){
+      .logo-img{ width:24px; height:24px; }
+      .logo-link{ font-size:1rem; }
+      .lang-toggle{ font-size:0.95rem; }
+      .text-5xl{ font-size:1.5rem; } .md\:text-6xl{ font-size:1.75rem; }
+      .text-3xl{ font-size:1.25rem; } .text-2xl{ font-size:1rem; }
+
+      .accordion-header{ font-size:1rem; padding:0.5rem; }
+      .accordion-content{ padding:0.25rem 0.5rem 0.5rem; }
+
+      .figure-img{ width:90%; max-width:90%; }
     }
 
-    @media (max-width: 480px) {
-      nav .container { padding: 0.25rem; }
-      nav a { font-size: 0.75rem; }
-      .logo-link { font-size: 1rem; }
-      .logo-img { width: 24px; height: 24px; }
-      .lang-toggle { font-size: 0.875rem; padding: 0.3rem 0.6rem; }
-      .text-5xl { font-size: 1.5rem; }
-      .md\:text-6xl { font-size: 1.75rem; }
-      .text-3xl { font-size: 1.25rem; }
-      .text-2xl { font-size: 1rem; }
-      .text-xl { font-size: 0.875rem; }
-      .text-lg { font-size: 0.875rem; }
-      .accordion-header { font-size: 1rem; padding: 0.5rem; }
-      .accordion-content { padding: 0.25rem; }
-      .button { padding: 0.4rem 1rem; font-size: 0.75rem; }
-      .container { padding: 0.25rem; }
-      .py-20 { padding-top: 1rem; padding-bottom: 1rem; }
-      .py-16 { padding-top: 1rem; padding-bottom: 1rem; }
-    }
+    @keyframes slideIn{ from{ transform:translateY(-12px); opacity:0 } to{ transform:translateY(0); opacity:1 } }
 
-    @media (max-width: 320px) {
-      nav .container { padding: 0.1rem; }
-      nav a { font-size: 0.625rem; }
-      .logo-link { font-size: 0.875rem; }
-      .logo-img { width: 20px; height: 20px; }
-      .lang-toggle { font-size: 0.75rem; padding: 0.2rem 0.4rem; }
-      .text-5xl { font-size: 1.2rem; }
-      .text-3xl { font-size: 1rem; }
-      .text-2xl { font-size: 0.875rem; }
-      .text-xl { font-size: 0.75rem; }
-      .text-lg { font-size: 0.75rem; }
-      .accordion-header { font-size: 0.875rem; padding: 0.25rem; }
-      .accordion-content { padding: 0.1rem; }
-      .button { padding: 0.3rem 0.8rem; font-size: 0.625rem; }
-      .container { padding: 0.1rem; }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .text-center { text-align: center; }
-    .text-left { text-align: left; }
-    .text-white { color: var(--white); }
-    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .mb-6 { margin-bottom: 1.5rem; }
-    .mt-4 { margin-top: 1rem; }
-    .mt-6 { margin-top: 1.5rem; }
-    .mt-8 { margin-top: 2rem; }
-
-    .text-5xl { font-size: 3rem; }
-    @media (min-width: 768px) {
-      .md\:text-6xl { font-size: 3.75rem; }
-    }
-    .text-3xl { font-size: 1.875rem; }
-    .text-2xl { font-size: 1.5rem; }
-    .text-xl { font-size: 1.25rem; }
-    .text-lg { font-size: 1.125rem; }
-    .font-bold { font-weight: bold; }
-    .font-semibold { font-weight: 600; }
-    .font-lora { font-family: 'Lora', serif; }
-
-    .bg-white { background-color: var(--white); }
-    .bg-gray-50 { background-color: var(--gray-50); }
-    .bg-gradient-to-r {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    }
-
-    .button {
-      display: inline-block;
-      background: var(--button-bg);
-      color: var(--white);
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
-
-    .button:hover,
-    .button:focus {
-      background: var(--button-hover);
-      outline: none;
-    }
-
-    .buttons {
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-
-    .buttons .button:not(:last-child) {
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-fade-in {
-      animation: fadeIn 1s ease-in;
-    }
-
-    .accordion {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .accordion-item {
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 0.5rem;
-    }
-
-    .accordion-header {
-      font-size: 1.5rem;
-      font-family: 'Lora', serif;
-      font-weight: bold;
-      padding: 1rem;
-      cursor: pointer;
-      background: #f5f5f5;
-      transition: background 0.3s;
-    }
-
-    .accordion-header:hover {
-      background: #e0e0e0;
-    }
-
-    .accordion-content {
-      padding: 0 1rem 1rem;
-      display: none;
-      background: #fff;
-    }
-
-    .accordion-content p {
-      margin: 0.5rem 0;
-      text-align: left;
-    }
-
-    .accordion-active .accordion-content {
-      display: block;
-    }
-
-    footer {
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 1.5rem 1rem;
-      text-align: center;
-    }
-
-    footer a {
-      color: #FFD700;
-      text-decoration: underline;
-    }
-
-    .footer-note {
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-    }
-
-    ol { list-style-type: decimal; padding-left: 1.5rem; }
-    .list-decimal { list-style-type: decimal; }
-    .list-inside { list-style-position: inside; }
-    .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-    .space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem; }
-    .max-w-600 { max-width: 600px; }
-    .max-w-2xl { max-width: 42rem; }
-    .max-w-3xl { max-width: 48rem; }
-    img { max-width: 100%; height: auto; display: block; }
-    .mx-auto { margin-left: auto; margin-right: auto; }
-    .h-auto { height: auto; }
-    .max-w-full { max-width: 100%; }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   </style>
 </head>
 <body>
   <nav role="navigation">
     <div class="container">
       <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img" width="32" height="32" />
         <span class="logo-text">
-          <span class="lang-section lang-uk active">Я є</span>
-          <span class="lang-section lang-en">I Am</span>
+          <span class="lang-section lang-uk active" lang="uk">Я є</span>
+          <span class="lang-section lang-en" lang="en">I Am</span>
         </span>
       </a>
-      <button class="menu-toggle" aria-label="Переключити меню навігації" aria-expanded="false">☰</button>
-      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-      <ul>
-        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
-        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
-        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-left:auto;">
+        <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+        <button type="button" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</button>
+      </div>
+
+      <ul id="primary-nav">
+        <li><a href="index.html"><span class="lang-section lang-uk active" lang="uk">Головна</span><span class="lang-section lang-en" lang="en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active" lang="uk">Про архетипи</span><span class="lang-section lang-en" lang="en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active" lang="uk">Про мене</span><span class="lang-section lang-en" lang="en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active" lang="uk">Інструменти</span><span class="lang-section lang-en" lang="en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active" lang="uk">Мисленне Дослідження</span><span class="lang-section lang-en" lang="en">Mind Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active" lang="uk">Розплутування Тривоги</span><span class="lang-section lang-en" lang="en">Unraveling Anxiety</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active" lang="uk">Як жити далі?</span><span class="lang-section lang-en" lang="en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active" lang="uk">Гумор</span><span class="lang-section lang-en" lang="en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active" lang="uk">Прайс</span><span class="lang-section lang-en" lang="en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active" lang="uk">Контакти</span><span class="lang-section lang-en" lang="en">Contact</span></a></li>
       </ul>
     </div>
   </nav>
 
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing navigation...');
-      const savedLang = localStorage.getItem('lang') || 'uk';
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-      document.documentElement.lang = savedLang;
-      const langToggle = document.querySelector('.lang-toggle');
-      if (langToggle) {
-        langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      } else {
-        console.error('Language toggle button not found!');
-      }
-      updateMetaTags(savedLang);
-
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navUl = document.querySelector('nav ul');
-      if (menuToggle && navUl) {
-        console.log('Menu toggle and nav ul found, setting up click handler');
-        menuToggle.addEventListener('click', () => {
-          const isExpanded = navUl.classList.toggle('active');
-          menuToggle.setAttribute('aria-expanded', isExpanded);
-          menuToggle.textContent = isExpanded ? '✕' : '☰';
-          console.log('Menu toggled, isExpanded:', isExpanded);
-        });
-        menuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            menuToggle.click();
-            console.log('Menu toggled via keyboard:', e.key);
-          }
-        });
-        navUl.querySelectorAll('a').forEach(link => {
-          link.setAttribute('tabindex', '0');
-        });
-      } else {
-        console.error('Menu toggle or nav ul not found!');
-      }
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            console.log('Smooth scroll to:', anchor.getAttribute('href'));
-          }
-        });
-      });
-
-      async function loadArchetypeContent(item) {
-        if (item.dataset.loaded === 'true') return;
-        const archetype = item.dataset.archetype;
-        const lang = document.documentElement.lang;
-        console.log(`Loading archetype content for ${archetype} in ${lang}`);
-        try {
-          const response = await fetch('archetypes.json');
-          const data = await response.json();
-          if (!data[archetype]) throw new Error(`Archetype ${archetype} not found`);
-          const content = data[archetype][lang].content;
-          item.querySelector('.accordion-content').innerHTML = `
-            <div class="lang-section lang-${lang} active">${content}</div>
-            <div class="lang-section lang-${lang === 'uk' ? 'en' : 'uk'}">${data[archetype][lang === 'uk' ? 'en' : 'uk'].content}</div>
-          `;
-          item.dataset.loaded = 'true';
-          console.log(`Loaded content for ${archetype}`);
-        } catch (error) {
-          console.error('Error loading archetype:', error);
-          item.querySelector('.accordion-content').innerHTML = '<p>Error loading content.</p>';
-        }
-      }
-
-      const headers = document.querySelectorAll('.accordion-header');
-      headers.forEach(header => {
-        header.setAttribute('role', 'button');
-        header.setAttribute('aria-expanded', 'false');
-        header.addEventListener('click', async () => {
-          const item = header.parentElement;
-          const isActive = item.classList.toggle('accordion-active');
-          header.setAttribute('aria-expanded', isActive);
-          console.log(`Accordion toggled: ${header.textContent}, isActive: ${isActive}`);
-          if (isActive) await loadArchetypeContent(item);
-          headers.forEach(otherHeader => {
-            if (otherHeader !== header) {
-              otherHeader.parentElement.classList.remove('accordion-active');
-              otherHeader.setAttribute('aria-expanded', 'false');
-            }
-          });
-        });
-        header.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            header.click();
-            console.log('Accordion toggled via keyboard:', header.textContent);
-          }
-        });
-      });
-    });
-
-    function toggleLang() {
-      const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      if (isUkrainian) {
-        document.querySelectorAll('.lang-en').forEach(el => el.classList.add('active'));
-        document.querySelector('.lang-toggle').textContent = 'EN / UA';
-        document.documentElement.lang = 'en';
-        localStorage.setItem('lang', 'en');
-        updateMetaTags('en');
-        console.log('Language switched to EN');
-      } else {
-        document.querySelectorAll('.lang-uk').forEach(el => el.classList.add('active'));
-        document.querySelector('.lang-toggle').textContent = 'UA / EN';
-        document.documentElement.lang = 'uk';
-        localStorage.setItem('lang', 'uk');
-        updateMetaTags('uk');
-        console.log('Language switched to UK');
-      }
-      const activeItem = document.querySelector('.accordion-item.accordion-active');
-      if (activeItem) {
-        activeItem.dataset.loaded = 'false';
-        loadArchetypeContent(activeItem);
-      }
-    }
-
-    function updateMetaTags(lang) {
-      if (lang === 'en') {
-        document.querySelector('meta[property="og:title"]').content = 'Tools - Self-Knowledge through Archetypes | I Am';
-        document.querySelector('meta[property="og:description"]').content = 'Self-knowledge tools from I Am: Body Feedback and Your Fairy Tale to uncover archetypes through physical sensations.';
-        document.querySelector('meta[name="description"]').content = 'Self-knowledge tools from I Am: Body Feedback and Your Fairy Tale to uncover archetypes through physical sensations.';
-      } else {
-        document.querySelector('meta[property="og:title"]').content = 'Інструменти - Самопізнання через Архетипи | Я є';
-        document.querySelector('meta[property="og:description"]').content = 'Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття.';
-        document.querySelector('meta[name="description"]').content = 'Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття.';
-      }
-    }
-  </script>
-
-  <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
-    <div class="container">
-      <h2 class="text-5xl md:text-6xl font-bold font-lora mb-4">
-        <span class="lang-section lang-uk active">Інструменти для самопізнання</span>
-        <span class="lang-section lang-en">Tools for Self-Knowledge</span>
-      </h2>
-      <p class="text-lg max-w-2xl mx-auto mb-6">
-        <span class="lang-section lang-uk active">Архетипи не обираються з голови. Вони відчуваються тілом.</span>
-        <span class="lang-section lang-en">Archetypes are not chosen by the mind. They are felt through the body.</span>
-      </p>
-    </div>
-  </section>
-
-  <section class="py-16 bg-gray-50">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl font-bold font-lora mb-6 text-center">
-        <span class="lang-section lang-uk active">Інструмент: Відгук тіла</span>
-        <span class="lang-section lang-en">Tool: Body Feedback</span>
-      </h2>
-      <ol class="space-y-4 text-lg max-w-600 mx-auto text-left list-inside">
-        <li>
-          <span class="lang-section lang-uk active">Ти читаєш і фіксуєш кожну <strong>тілесну реакцію</strong>: мурашки, тепло, напруга, відторгнення.</span>
-          <span class="lang-section lang-en">You read and notice every <strong>physical reaction</strong>: goosebumps, warmth, tension, rejection.</span>
-        </li>
-        <li>
-          <span class="lang-section lang-uk active">Потім робиш просту рефлексію: “Що зачепило?”, “Де впізнав себе?”, “Що відгукнулось найбільше?”</span>
-          <span class="lang-section lang-en">Then you do a simple reflection: “What triggered me?”, “Where did I recognize myself?”, “What resonated the most?”</span>
-        </li>
-        <li>
-          <span class="lang-section lang-uk active">Наприкінці: “Як цей архетип проявляється у моєму житті?” (<strong>3 приклади</strong>).</span>
-          <span class="lang-section lang-en">At the end: “How does this archetype manifest in my life?” (<strong>3 examples</strong>).</span>
-        </li>
-        <li>
-          <span class="lang-section lang-uk active">А ще не потрібно вибирати розумом, тому що я хочу таким бути. Потрібно вибирати <strong>тілом</strong>, воно обов’язково підкаже.</span>
-          <span class="lang-section lang-en">And you don’t need to choose with your mind, thinking “I want to be like this.” You need to choose with your <strong>body</strong>, it will surely guide you.</span>
-        </li>
-        <li>
-          <span class="lang-section lang-uk active">І якщо нічого не зачепило, також нічого страшного, в нас є ще інструменти.</span>
-          <span class="lang-section lang-en">And if nothing resonated, that’s okay too — we have other tools.</span>
-        </li>
-      </ol>
-
-      <h3 class="text-2xl font-semibold font-lora mt-8 mb-2 text-center">
-        <span class="lang-section lang-uk active">Архетипи – Відгук тіла</span>
-        <span class="lang-section lang-en">Archetypes – Body Feedback</span>
-      </h3>
-      <div class="accordion">
-        <div class="accordion-item" data-archetype="hero" data-loaded="false">
-          <div class="accordion-header">🛡️
-            <span class="lang-section lang-uk active">Герой</span>
-            <span class="lang-section lang-en">Hero</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="sage" data-loaded="false">
-          <div class="accordion-header">🦉
-            <span class="lang-section lang-uk active">Мудрець</span>
-            <span class="lang-section lang-en">The Sage</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="ruler" data-loaded="false">
-          <div class="accordion-header">👑
-            <span class="lang-section lang-uk active">Правитель</span>
-            <span class="lang-section lang-en">The Ruler</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="creator" data-loaded="false">
-          <div class="accordion-header">🎨
-            <span class="lang-section lang-uk active">Творець</span>
-            <span class="lang-section lang-en">The Creator</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="lover" data-loaded="false">
-          <div class="accordion-header">💕
-            <span class="lang-section lang-uk active">Любовник</span>
-            <span class="lang-section lang-en">The Lover</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="rebel" data-loaded="false">
-          <div class="accordion-header">🌪️
-            <span class="lang-section lang-uk active">Бунтар</span>
-            <span class="lang-section lang-en">The Rebel</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="clown" data-loaded="false">
-          <div class="accordion-header">🤡
-            <span class="lang-section lang-uk active">Клоун</span>
-            <span class="lang-section lang-en">The Clown</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="trickster" data-loaded="false">
-          <div class="accordion-header">🃏
-            <span class="lang-section lang-uk active">Трікстер</span>
-            <span class="lang-section lang-en">The Trickster</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="caregiver" data-loaded="false">
-          <div class="accordion-header">🤲
-            <span class="lang-section lang-uk active">Опікун</span>
-            <span class="lang-section lang-en">The Caregiver</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="traveler" data-loaded="false">
-          <div class="accordion-header">🌍
-            <span class="lang-section lang-uk active">Мандрівник</span>
-            <span class="lang-section lang-en">The Traveler</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="wolf" data-loaded="false">
-          <div class="accordion-header">🐺
-            <span class="lang-section lang-uk active">Вовк</span>
-            <span class="lang-section lang-en">The Wolf</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="doe" data-loaded="false">
-          <div class="accordion-header">🦌
-            <span class="lang-section lang-uk active">Лань</span>
-            <span class="lang-section lang-en">The Doe</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="cat" data-loaded="false">
-          <div class="accordion-header">🐱
-            <span class="lang-section lang-uk active">Кіт</span>
-            <span class="lang-section lang-en">The Cat</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
-        <div class="accordion-item" data-archetype="eagle" data-loaded="false">
-          <div class="accordion-header">🦅
-            <span class="lang-section lang-uk active">Орел</span>
-            <span class="lang-section lang-en">The Eagle</span>
-          </div>
-          <div class="accordion-content"></div>
-        </div>
+  <main class="page-wrap">
+    <!-- Hero -->
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+      <div class="container">
+        <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">
+          <span class="lang-section lang-uk active" lang="uk">Інструменти для самопізнання</span>
+          <span class="lang-section lang-en" lang="en">Tools for Self-Knowledge</span>
+        </h1>
+        <p class="text-xl" style="max-width:52ch; margin:0 auto;">
+          <span class="lang-section lang-uk active" lang="uk">Архетипи не обираються з голови. Вони відчуваються тілом.</span>
+          <span class="lang-section lang-en" lang="en">Archetypes are not chosen by the mind. They are felt through the body.</span>
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="py-16 bg-white">
-    <div class="container max-w-3xl">
-      <h2 class="text-3xl font-bold font-lora mb-6 text-center">
-        <span class="lang-section lang-uk active">Інструмент: Твоя казка</span>
-        <span class="lang-section lang-en">Tool: Your Fairy Tale</span>
-      </h2>
-      <div class="space-y-4 text-lg max-w-600 mx-auto text-left">
-        <p>
-          <span class="lang-section lang-uk active">Цей інструмент запрошує створити історію, яка відображає твій внутрішній світ, бажання чи боротьбу. Через наратив ти можеш виразити свої емоції, знайти сенс або дослідити особисту трансформацію.</span>
-          <span class="lang-section lang-en">This tool invites you to create a story that reflects your inner world, desires, or struggles. Through the narrative, you can express your emotions, find meaning, or explore personal transformation.</span>
-        </p>
-        <p>
-          <span class="lang-section lang-uk active">Щоб почати, подумай про наступні елементи:</span>
-          <span class="lang-section lang-en">To begin, think of the following elements:</span>
-        </p>
-        <ol class="list-decimal list-inside">
-          <li>
-            <span class="lang-section lang-uk active">Головний герой: Хто є головним персонажем? Це можеш бути ти, символічна постать чи цілком вигаданий персонаж. Які якості втілює цей персонаж, і які виклики перед ним стоять?</span>
-            <span class="lang-section lang-en">Protagonist: Who is the main character? This could be you, a symbolic figure, or a completely fictional entity. What qualities does this character embody, and what challenges do they face?</span>
-          </li>
-          <li>
-            <span class="lang-section lang-uk active">Місце дії: Де відбувається історія? Це може бути магічне королівство, знайомий світ чи абстрактний простір, який відображає твій внутрішній шлях.</span>
-            <span class="lang-section lang-en">Setting: Where does the story take place? It can be a magical realm, a familiar world, or an abstract space that represents your inner journey.</span>
-          </li>
-          <li>
-            <span class="lang-section lang-uk active">Конфлікт: Який виклик чи перешкода стоїть перед героєм? Це може бути зовнішній ворог, внутрішня боротьба чи ситуація, яка змушує персонажа зростати.</span>
-            <span class="lang-section lang-en">Conflict: What challenge or obstacle does the protagonist face? This could be an external enemy, an internal struggle, or a situation that forces the character to grow.</span>
-          </li>
-          <li>
-            <span class="lang-section lang-uk active">Трансформація: Як герой змінюється протягом історії? Які уроки він отримує, і як він долає виклики?</span>
-            <span class="lang-section lang-en">Transformation: How does the protagonist evolve throughout the story? What lessons do they learn, and how do they overcome their challenges?</span>
-          </li>
-          <li>
-            <span class="lang-section lang-uk active">Розв’язка: Як закінчується історія? Чи досягає герой успіху, зазнає невдачі чи знаходить нове розуміння себе чи світу?</span>
-            <span class="lang-section lang-en">Resolution: How does the story end? Does the protagonist succeed, fail, or find a new understanding of themselves or the world?</span>
-          </li>
+    <!-- Tool: Body Feedback -->
+    <section class="py-16 bg-gray-50">
+      <div class="container" style="max-width:768px;">
+        <h2 class="text-3xl font-bold font-lora mb-6 text-center">
+          <span class="lang-section lang-uk active" lang="uk">Інструмент: Відгук тіла</span>
+          <span class="lang-section lang-en" lang="en">Tool: Body Feedback</span>
+        </h2>
+
+        <ol class="space-y-4 text-lg mx-auto text-left" style="max-width:600px; list-style:decimal; padding-left:1.25rem;">
+          <li><span class="lang-section lang-uk active" lang="uk">Фіксуй кожну <strong>тілесну реакцію</strong>: мурашки, тепло, напруга, відторгнення.</span><span class="lang-section lang-en" lang="en">Notice every <strong>physical reaction</strong>: goosebumps, warmth, tension, rejection.</span></li>
+          <li><span class="lang-section lang-uk active" lang="uk">Рефлексія: «Що зачепило?», «Де впізнав себе?», «Що відгукнулось найбільше?»</span><span class="lang-section lang-en" lang="en">Reflect: “What triggered me?”, “Where did I recognize myself?”, “What resonated most?”</span></li>
+          <li><span class="lang-section lang-uk active" lang="uk">Запиши: «Як цей архетип проявляється в моєму житті?» (<strong>3 приклади</strong>).</span><span class="lang-section lang-en" lang="en">Write: “How does this archetype manifest in my life?” (<strong>3 examples</strong>).</span></li>
+          <li><span class="lang-section lang-uk active" lang="uk">Не «хочу бути таким», а <strong>вибір тілом</strong>. Тіло підкаже.</span><span class="lang-section lang-en" lang="en">Don’t pick what you “want to be”; choose with your <strong>body</strong>. It will guide you.</span></li>
+          <li><span class="lang-section lang-uk active" lang="uk">Не зачепило? Норм. Є інші інструменти.</span><span class="lang-section lang-en" lang="en">Nothing resonated? That’s fine. There are other tools.</span></li>
         </ol>
-        <p>
-          <span class="lang-section lang-uk active">Дай волю своїй уяві та позволь історії текти природно. Казка може не мати чіткої моралі, але вона буде відображенням твоїх думок, бажань і досвіду.</span>
-          <span class="lang-section lang-en">Use your imagination and allow the story to flow naturally. The tale might not have a clear moral, but it will be a reflection of your thoughts, desires, and experiences.</span>
-        </p>
-        <p>
-          <span class="lang-section lang-uk active">Коли ти створив свою казку, подивись на неї як на інструмент рефлексії. Що символізують персонажі, місце дії чи події у твоєму житті? Чого ти можеш навчитися з цього?</span>
-          <span class="lang-section lang-en">Once you’ve created your fairy tale, look at it as a tool for reflection. What do the characters, setting, or events represent in your life? What can you learn from it?</span>
-        </p>
-      </div>
-      <div class="buttons">
-        <a href="contact.html" class="button">
-          <span class="lang-section lang-uk active">Задати питання</span>
-          <span class="lang-section lang-en">Ask a Question</span>
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <section class="py-16 bg-gray-50 text-center">
-    <div class="container mx-auto">
-      <img src="images/hedgehog.jpg" alt="Їжачок, що символізує допитливість і заземленість / Hedgehog symbolizing curiosity and groundedness" class="mx-auto mb-6 max-w-full h-auto" loading="lazy">
-    </div>
-  </section>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-2 text-center">
+          <span class="lang-section lang-uk active" lang="uk">Архетипи — Відгук тіла</span>
+          <span class="lang-section lang-en" lang="en">Archetypes — Body Feedback</span>
+        </h3>
+
+        <div class="accordion" id="archetype-accordion">
+          <!-- Кожен айтем отримує унікальні id для ARIA -->
+          <div class="accordion-item" data-archetype="hero" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-hero" id="acc-btn-hero">🛡️
+              <span class="lang-section lang-uk active" lang="uk">Герой</span>
+              <span class="lang-section lang-en" lang="en">Hero</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-hero" role="region" aria-labelledby="acc-btn-hero"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="sage" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-sage" id="acc-btn-sage">🦉
+              <span class="lang-section lang-uk active" lang="uk">Мудрець</span>
+              <span class="lang-section lang-en" lang="en">The Sage</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-sage" role="region" aria-labelledby="acc-btn-sage"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="ruler" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-ruler" id="acc-btn-ruler">👑
+              <span class="lang-section lang-uk active" lang="uk">Правитель</span>
+              <span class="lang-section lang-en" lang="en">The Ruler</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-ruler" role="region" aria-labelledby="acc-btn-ruler"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="creator" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-creator" id="acc-btn-creator">🎨
+              <span class="lang-section lang-uk active" lang="uk">Творець</span>
+              <span class="lang-section lang-en" lang="en">The Creator</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-creator" role="region" aria-labelledby="acc-btn-creator"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="lover" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-lover" id="acc-btn-lover">💕
+              <span class="lang-section lang-uk active" lang="uk">Любовник</span>
+              <span class="lang-section lang-en" lang="en">The Lover</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-lover" role="region" aria-labelledby="acc-btn-lover"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="rebel" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-rebel" id="acc-btn-rebel">🌪️
+              <span class="lang-section lang-uk active" lang="uk">Бунтар</span>
+              <span class="lang-section lang-en" lang="en">The Rebel</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-rebel" role="region" aria-labelledby="acc-btn-rebel"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="clown" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-clown" id="acc-btn-clown">🤡
+              <span class="lang-section lang-uk active" lang="uk">Клоун</span>
+              <span class="lang-section lang-en" lang="en">The Clown</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-clown" role="region" aria-labelledby="acc-btn-clown"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="trickster" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-trickster" id="acc-btn-trickster">🃏
+              <span class="lang-section lang-uk active" lang="uk">Трікстер</span>
+              <span class="lang-section lang-en" lang="en">The Trickster</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-trickster" role="region" aria-labelledby="acc-btn-trickster"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="caregiver" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-caregiver" id="acc-btn-caregiver">🤲
+              <span class="lang-section lang-uk active" lang="uk">Опікун</span>
+              <span class="lang-section lang-en" lang="en">The Caregiver</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-caregiver" role="region" aria-labelledby="acc-btn-caregiver"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="traveler" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-traveler" id="acc-btn-traveler">🌍
+              <span class="lang-section lang-uk active" lang="uk">Мандрівник</span>
+              <span class="lang-section lang-en" lang="en">The Traveler</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-traveler" role="region" aria-labelledby="acc-btn-traveler"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="wolf" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-wolf" id="acc-btn-wolf">🐺
+              <span class="lang-section lang-uk active" lang="uk">Вовк</span>
+              <span class="lang-section lang-en" lang="en">The Wolf</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-wolf" role="region" aria-labelledby="acc-btn-wolf"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="doe" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-doe" id="acc-btn-doe">🦌
+              <span class="lang-section lang-uk active" lang="uk">Лань</span>
+              <span class="lang-section lang-en" lang="en">The Doe</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-doe" role="region" aria-labelledby="acc-btn-doe"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="cat" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-cat" id="acc-btn-cat">🐱
+              <span class="lang-section lang-uk active" lang="uk">Кіт</span>
+              <span class="lang-section lang-en" lang="en">The Cat</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-cat" role="region" aria-labelledby="acc-btn-cat"></div>
+          </div>
+
+          <div class="accordion-item" data-archetype="eagle" data-loaded="false">
+            <button class="accordion-header" aria-expanded="false" aria-controls="acc-panel-eagle" id="acc-btn-eagle">🦅
+              <span class="lang-section lang-uk active" lang="uk">Орел</span>
+              <span class="lang-section lang-en" lang="en">The Eagle</span>
+            </button>
+            <div class="accordion-content" id="acc-panel-eagle" role="region" aria-labelledby="acc-btn-eagle"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool: Your Fairy Tale -->
+    <section class="py-16 bg-white">
+      <div class="container" style="max-width:768px;">
+        <h2 class="text-3xl font-bold font-lora mb-6 text-center">
+          <span class="lang-section lang-uk active" lang="uk">Інструмент: Твоя казка</span>
+          <span class="lang-section lang-en" lang="en">Tool: Your Fairy Tale</span>
+        </h2>
+
+        <div class="space-y-4 text-lg mx-auto text-left" style="max-width:600px;">
+          <p><span class="lang-section lang-uk active" lang="uk">Цей інструмент запрошує створити історію, яка відображає твій внутрішній світ, бажання чи боротьбу.</span><span class="lang-section lang-en" lang="en">This tool invites you to create a story that reflects your inner world, desires, or struggles.</span></p>
+          <p><span class="lang-section lang-uk active" lang="uk">Щоб почати, подумай про наступні елементи:</span><span class="lang-section lang-en" lang="en">To begin, think of the following elements:</span></p>
+          <ol class="list-decimal" style="padding-left:1.25rem;">
+            <li><span class="lang-section lang-uk active" lang="uk">Герой: хто він/вона, які якості та виклики?</span><span class="lang-section lang-en" lang="en">Protagonist: who they are, what qualities and challenges?</span></li>
+            <li><span class="lang-section lang-uk active" lang="uk">Місце дії: де розгортається історія?</span><span class="lang-section lang-en" lang="en">Setting: where does it take place?</span></li>
+            <li><span class="lang-section lang-uk active" lang="uk">Конфлікт: що треба подолати?</span><span class="lang-section lang-en" lang="en">Conflict: what must be overcome?</span></li>
+            <li><span class="lang-section lang-uk active" lang="uk">Трансформація: як змінюється герой?</span><span class="lang-section lang-en" lang="en">Transformation: how does the protagonist change?</span></li>
+            <li><span class="lang-section lang-uk active" lang="uk">Розв’язка: чим усе завершується?</span><span class="lang-section lang-en" lang="en">Resolution: how does it end?</span></li>
+          </ol>
+          <p><span class="lang-section lang-uk active" lang="uk">Дай волю уяві — історія може не мати моралі, але віддзеркалює твої досвіди.</span><span class="lang-section lang-en" lang="en">Let imagination lead — the tale might not have a moral, but it reflects your experience.</span></p>
+          <p><span class="lang-section lang-uk active" lang="uk">Поглянь на казку як на інструмент рефлексії: що символізують персонажі й події у твоєму житті?</span><span class="lang-section lang-en" lang="en">Use it as reflection: what do the characters and events symbolize in your life?</span></p>
+        </div>
+
+        <div class="buttons">
+          <a href="contact.html" class="button">
+            <span class="lang-section lang-uk active" lang="uk">Задати питання</span>
+            <span class="lang-section lang-en" lang="en">Ask a Question</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image block (не міняю поведінку зображення) -->
+    <section class="py-16 bg-gray-50 text-center">
+      <div class="container">
+        <img src="images/hedgehog.jpg" alt="Їжачок — допитливість і заземленість / Hedgehog — curiosity and groundedness" class="figure-img mb-6" width="1200" height="800" loading="lazy" />
+      </div>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
       <p>
-        <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-        <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+        <span class="lang-section lang-uk active" lang="uk">© 2025 Я є. Усі права захищено.</span>
+        <span class="lang-section lang-en" lang="en">© 2025 I Am. All rights reserved.</span>
       </p>
       <p class="footer-note">
-        <span class="lang-section lang-uk active">Створено з любов’ю до самопізнання.</span>
-        <span class="lang-section lang-en">Created with love for self-knowledge.</span>
+        <span class="lang-section lang-uk active" lang="uk">Створено з любов’ю до самопізнання.</span>
+        <span class="lang-section lang-en" lang="en">Created with love for self-knowledge.</span>
       </p>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      const SELECTORS = {
+        langSections: '.lang-section',
+        navList: '#primary-nav',
+        menuToggle: '.menu-toggle',
+        langToggle: '.lang-toggle',
+        accordion: '.accordion',
+        accordionHeaders: '.accordion-header'
+      };
+
+      const TITLES = {
+        uk: 'Інструменти — Самопізнання через Архетипи | Я є',
+        en: 'Tools — Self-Knowledge through Archetypes | I Am'
+      };
+      const DESCS = {
+        uk: 'Інструменти самопізнання від Я є: Відгук тіла та Твоя казка для відкриття архетипів через тілесні відчуття.',
+        en: 'Self-knowledge tools from I Am: Body Feedback and Your Fairy Tale to uncover archetypes through physical sensations.'
+      };
+
+      const $ = (s,root=document)=>root.querySelector(s);
+      const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+
+      function updateHead(lang){
+        document.title = TITLES[lang] || TITLES.uk;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc  = document.querySelector('meta[property="og:description"]');
+        const desc    = document.querySelector('meta[name="description"]');
+        if(ogTitle) ogTitle.content = TITLES[lang] || TITLES.uk;
+        if(ogDesc)  ogDesc.content  = DESCS[lang]  || DESCS.uk;
+        if(desc)    desc.content    = DESCS[lang]  || DESCS.uk;
+      }
+
+      function applyLang(lang){
+        $$(SELECTORS.langSections).forEach(el=>el.classList.remove('active'));
+        $$(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
+        document.documentElement.lang = lang;
+        const lt = $(SELECTORS.langToggle);
+        if(lt) lt.textContent = (lang === 'uk') ? 'UA / EN' : 'EN / UA';
+        updateHead(lang);
+        try{ localStorage.setItem('lang',lang); }catch(e){}
+      }
+
+      async function loadArchetypeContent(item){
+        if(item.dataset.loaded === 'true') return;
+        const archetype = item.dataset.archetype;
+        try{
+          const res = await fetch('archetypes.json', { cache: 'no-store' });
+          const data = await res.json();
+          if(!data[archetype]) throw new Error('No such archetype in archetypes.json: '+archetype);
+
+          // ВСТАВЛЯЄМО ОБИДВІ МОВИ ОДРАЗУ — перемикач просто ховає/показує, без перезавантаження
+          const uk = data[archetype].uk?.content || '';
+          const en = data[archetype].en?.content || '';
+          item.querySelector('.accordion-content').innerHTML = `
+            <div class="lang-section lang-uk active" lang="uk">${uk}</div>
+            <div class="lang-section lang-en" lang="en">${en}</div>
+          `;
+          item.dataset.loaded = 'true';
+        }catch(err){
+          console.error(err);
+          item.querySelector('.accordion-content').innerHTML = '<p>Не вдалося завантажити контент / Failed to load content.</p>';
+          item.dataset.loaded = 'true';
+        }
+      }
+
+      function initMenu(){
+        const toggle = $(SELECTORS.menuToggle);
+        const nav = $(SELECTORS.navList);
+        if(!toggle || !nav) return;
+
+        function openMenu(){
+          nav.classList.add('active');
+          toggle.setAttribute('aria-expanded','true');
+          toggle.textContent = '✕';
+          document.addEventListener('click', onDocClick, true);
+          document.addEventListener('keydown', onKeydown);
+        }
+        function closeMenu(){
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded','false');
+          toggle.textContent = '☰';
+          document.removeEventListener('click', onDocClick, true);
+          document.removeEventListener('keydown', onKeydown);
+        }
+        function onDocClick(e){
+          if(nav.contains(e.target) || toggle.contains(e.target)) return;
+          closeMenu();
+        }
+        function onKeydown(e){
+          if(e.key === 'Escape') closeMenu();
+        }
+        toggle.addEventListener('click', ()=>{
+          nav.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        // highlight current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        nav.querySelectorAll('a').forEach(a=>{
+          if(a.getAttribute('href') === currentPage){
+            a.classList.add('active');
+            a.setAttribute('aria-current','page');
+          }
+        });
+      }
+
+      function initLang(){
+        let saved = 'uk';
+        try{ saved = localStorage.getItem('lang') || 'uk'; }catch(e){}
+        applyLang(saved);
+
+        const btn = $(SELECTORS.langToggle);
+        if(btn){
+          btn.addEventListener('click', ()=>{
+            const now = document.documentElement.lang || 'uk';
+            const next = (now === 'uk') ? 'en' : 'uk';
+            applyLang(next);
+          });
+        }
+      }
+
+      function initAccordion(){
+        const headers = $$(SELECTORS.accordionHeaders);
+        headers.forEach(header=>{
+          header.addEventListener('click', async ()=>{
+            const item = header.closest('.accordion-item');
+            const isOpen = item.classList.contains('accordion-active');
+            // закриваємо всі
+            headers.forEach(h=>{
+              const it = h.closest('.accordion-item');
+              it.classList.remove('accordion-active');
+              h.setAttribute('aria-expanded','false');
+            });
+            // відкриваємо вибране
+            if(!isOpen){
+              item.classList.add('accordion-active');
+              header.setAttribute('aria-expanded','true');
+              await loadArchetypeContent(item);
+              // після завантаження підлаштовуємо видимість мовних блоків під поточну мову
+              const lang = document.documentElement.lang || 'uk';
+              item.querySelectorAll('.lang-section').forEach(el=>el.classList.remove('active'));
+              item.querySelectorAll(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
+            }
+          });
+          header.addEventListener('keydown',(e)=>{
+            if(e.key === 'Enter' || e.key === ' '){
+              e.preventDefault(); header.click();
+            }
+          });
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        initMenu();
+        initLang();
+        initAccordion();
+      });
+    })();
+  </script>
 </body>
 </html>
