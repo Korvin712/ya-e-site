@@ -1,467 +1,369 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <span class="lang-section lang-uk active">Мисленне Дослідження</span>
-    <span class="lang-section lang-en">Mental Exploration</span>
-  </title>
-  <meta name="description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.">
-  <meta name="keywords" content="мисленне дослідження, самопізнання, психологія, думки, рефлексія, mental exploration, self-knowledge, psychology, thoughts, reflection">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Мисленне Дослідження">
-  <meta property="og:description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="images/favicon-v2.png">
-  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мисленне Дослідження — Визначення Власної Думки</title>
+
+  <meta name="description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Мисленне Дослідження — Визначення Власної Думки" />
+  <meta property="og:description" content="Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="images/favicon-v2.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #4b0082;
-      --secondary-color: #800080;
-      --button-bg: #4c1d95;
-      --button-hover: #5b21b6;
-      --gray-50: #f9fafb;
-      --white: #ffffff;
-      --lang-toggle-bg: #ffffff;
-      --lang-toggle-text: #000000;
-      --lang-toggle-border: #ff0000;
+    :root{
+      --primary-color:#4b0082;
+      --secondary-color:#800080;
+      --button-bg:#4c1d95;
+      --button-hover:#5b21b6;
+      --gray-50:#f9fafb;
+      --white:#ffffff;
+      --link-hover:#FFD700;
+      --text:#111;
+      --lang-toggle-bg:#ffffff;
+      --lang-toggle-text:#000000;
+      --lang-toggle-border:#ff0000;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; padding:0; color:var(--text); background:var(--white);
+      font-family:'Lora',serif; line-height:1.6; display:flex; flex-direction:column;
     }
 
-    body {
-      font-family: 'Lora', serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: var(--white);
-      color: #111;
+    /* Utilities */
+    .container{ max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .page-wrap{ flex:1; }
+    .text-center{ text-align:center; }
+    .text-left{ text-align:left; }
+    .text-white{ color:#fff; }
+    .py-20{ padding:5rem 0; } .py-16{ padding:4rem 0; }
+    .mb-4{ margin-bottom:1rem; } .mb-6{ margin-bottom:1.5rem; }
+    .mt-4{ margin-top:1rem; } .mt-6{ margin-top:1.5rem; } .mt-8{ margin-top:2rem; }
+    .text-5xl{ font-size:3rem; } .text-3xl{ font-size:1.875rem; } .text-2xl{ font-size:1.5rem; } .text-xl{ font-size:1.25rem; } .text-lg{ font-size:1.125rem; }
+    .font-bold{ font-weight:700; } .font-semibold{ font-weight:600; } .font-lora{ font-family:'Lora',serif; }
+    .bg-white{ background-color:#fff; } .bg-gray-50{ background-color:var(--gray-50); }
+    .bg-gradient-to-r{ background:linear-gradient(to right,var(--primary-color),var(--secondary-color)); }
+
+    /* Nav */
+    nav{
+      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+      color:#fff; position:sticky; top:0; z-index:10;
     }
+    nav .container{ display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem; }
+    .logo-link{ display:flex; align-items:center; gap:0.5rem; color:#fff; text-decoration:none; font-weight:700; font-size:1.5rem; }
+    .logo-img{ width:32px; height:32px; }
 
-    nav {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .menu-toggle{ display:none; font-size:1.5rem; background:none; border:none; color:#fff; cursor:pointer; }
+
+    #primary-nav{ list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
+    #primary-nav a{
+      color:#fff; text-decoration:none; padding:0.5rem; display:block; font-size:0.9375rem;
+      transition:transform .2s ease,color .2s ease;
     }
+    #primary-nav a:hover,#primary-nav a:focus{ color:var(--link-hover); transform:scale(1.03); }
+    #primary-nav a.active,#primary-nav a[aria-current="page"]{ color:var(--link-hover); text-decoration:underline; }
 
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .lang-toggle{
+      cursor:pointer; font-weight:700; color:var(--lang-toggle-text);
+      background:var(--lang-toggle-bg); border:2px solid var(--lang-toggle-border);
+      padding:0.5rem 1rem; border-radius:9999px; font-size:1.125rem;
+      transition:background-color .3s ease, transform .2s ease; margin-left:1rem;
     }
+    .lang-toggle:hover,.lang-toggle:focus{ background:#e0e0e0; transform:scale(1.05); }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--white);
+    .lang-section{ display:none; }
+    .lang-section.active{ display:inline; }
+
+    /* Hero */
+    .animate-fade-in{ animation:fadeIn 1s ease-in; }
+    @keyframes fadeIn{ from{opacity:0} to{opacity:1} }
+
+    /* Steps */
+    .steps-wrap{ max-width:820px; margin:0 auto; }
+    .step{
+      background:#fff; border-radius:0.5rem; padding:1.5rem; margin-bottom:1.25rem;
+      box-shadow:0 2px 4px rgba(0,0,0,0.08);
     }
+    .step h2{ color:var(--secondary-color); margin:0 0 .5rem 0; font-size:1.4rem; }
+    .step p{ margin:0.5rem 0; }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
+    /* Footer */
+    footer{ background:var(--primary-color); color:#fff; text-align:center; padding:1.5rem 1rem; }
+    footer a{ color:var(--link-hover); text-decoration:underline; }
+    .footer-note{ font-size:0.875rem; margin-top:0.5rem; }
 
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      padding: 0.5rem;
-      display: block;
-      font-size: 0.9375rem;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      text-decoration: underline;
-    }
-
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    .logo-img {
-      width: 32px;
-      height: 32px;
-    }
-
-    .lang-toggle {
-      cursor: pointer;
-      font-weight: bold;
-      color: var(--lang-toggle-text);
-      background: var(--lang-toggle-bg);
-      border: 2px solid var(--lang-toggle-border);
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      font-size: 1.125rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .lang-toggle:hover,
-    .lang-toggle:focus {
-      background: #e0e0e0;
-      transform: scale(1.05);
-    }
-
-    .lang-section { display: none; }
-    .lang-section.active { display: inline-block; }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+    /* Responsive */
+    @media (min-width:768px){ .md\:text-6xl{ font-size:3.75rem; } }
+    @media (max-width:768px){
+      .menu-toggle{ display:inline-block; }
+      #primary-nav{
+        position:absolute; left:0; top:100%; width:100%;
+        background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+        flex-direction:column; gap:0; padding:0.75rem 1rem; display:none;
+        box-shadow:0 4px 8px rgba(0,0,0,0.2);
       }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        padding: 1rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav .container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav a {
-        font-size: 0.875rem;
-      }
-      .logo-link {
-        font-size: 1.25rem;
-      }
-      .logo-img {
-        width: 28px;
-        height: 28px;
-      }
-      .lang-toggle {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-      }
+      #primary-nav.active{ display:flex; }
+      #primary-nav li + li{ margin-top:0.25rem; }
+      nav .container{ flex-wrap:wrap; gap:0.5rem; }
+      .lang-toggle{ font-size:1rem; padding:0.4rem 0.8rem; }
+
+      .py-20{ padding:1.5rem 0; } .py-16{ padding:1.25rem 0; }
+      .text-5xl{ font-size:1.75rem; } .md\:text-6xl{ font-size:2rem; }
+      .text-3xl{ font-size:1.5rem; } .text-2xl{ font-size:1.25rem; } .text-xl,.text-lg{ font-size:1rem; }
+    }
+    @media (max-width:480px){
+      .logo-img{ width:24px; height:24px; }
+      .logo-link{ font-size:1rem; }
+      .lang-toggle{ font-size:0.95rem; }
+      .text-5xl{ font-size:1.5rem; } .md\:text-6xl{ font-size:1.75rem; }
+      .text-3xl{ font-size:1.25rem; } .text-2xl{ font-size:1rem; }
     }
 
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 0.8125rem;
-      }
-      .logo-link {
-        font-size: 1.125rem;
-      }
-      .logo-img {
-        width: 24px;
-        height: 24px;
-      }
-      .lang-toggle {
-        font-size: 0.875rem;
-      }
-    }
-
-    @media (max-width: 320px) {
-      nav a {
-        font-size: 0.75rem;
-      }
-      .logo-link {
-        font-size: 1rem;
-      }
-      .logo-img {
-        width: 20px;
-        height: 20px;
-      }
-      .lang-toggle {
-        font-size: 0.8125rem;
-        padding: 0.3rem 0.6rem;
-      }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .text-center { text-align: center; }
-    .text-left { text-align: left; }
-    .text-white { color: var(--white); }
-    .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-    .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-    .mb-4 { margin-bottom: 1rem; }
-    .mb-6 { margin-bottom: 1.5rem; }
-    .mt-4 { margin-top: 1rem; }
-    .mt-6 { margin-top: 1.5rem; }
-    .mt-8 { margin-top: 2rem; }
-
-    .text-5xl { font-size: 3rem; }
-    @media (min-width: 768px) {
-      .md\:text-6xl { font-size: 3.75rem; }
-    }
-    .text-3xl { font-size: 1.875rem; }
-    .text-2xl { font-size: 1.5rem; }
-    .text-xl { font-size: 1.25rem; }
-    .text-lg { font-size: 1.125rem; }
-    .font-bold { font-weight: bold; }
-    .font-semibold { font-weight: 600; }
-    .font-lora { font-family: 'Lora', serif; }
-
-    .bg-white { background-color: var(--white); }
-    .bg-gray-50 { background-color: var(--gray-50); }
-    .bg-gradient-to-r {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    }
-
-    .step {
-      background-color: var(--white);
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .step h2 {
-      color: var(--secondary-color);
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-    }
-
-    .step p {
-      margin: 0.5rem 0;
-    }
-
-    footer {
-      background: var(--primary-color);
-      color: var(--white);
-      padding: 1.5rem 1rem;
-      text-align: center;
-    }
-
-    footer a {
-      color: #FFD700;
-      text-decoration: underline;
-    }
-
-    .footer-note {
-      font-size: 0.875rem;
-      margin-top: 0.5rem;
-    }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   </style>
 </head>
 <body>
   <nav role="navigation">
     <div class="container">
       <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img" width="32" height="32" />
         <span class="logo-text">
-          <span class="lang-section lang-uk active">Я є</span>
-          <span class="lang-section lang-en">I Am</span>
+          <span class="lang-section lang-uk active" lang="uk">Я є</span>
+          <span class="lang-section lang-en" lang="en">I Am</span>
         </span>
       </a>
-      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-      <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-      <ul>
-        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
-        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
-        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-left:auto;">
+        <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+        <button type="button" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</button>
+      </div>
+
+      <ul id="primary-nav">
+        <li><a href="index.html"><span class="lang-section lang-uk active" lang="uk">Головна</span><span class="lang-section lang-en" lang="en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active" lang="uk">Про архетипи</span><span class="lang-section lang-en" lang="en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active" lang="uk">Про мене</span><span class="lang-section lang-en" lang="en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active" lang="uk">Інструменти</span><span class="lang-section lang-en" lang="en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active" lang="uk">Мисленне Дослідження</span><span class="lang-section lang-en" lang="en">Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active" lang="uk">Розплутування Тривоги</span><span class="lang-section lang-en" lang="en">Unraveling Anxiety</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active" lang="uk">Як жити далі?</span><span class="lang-section lang-en" lang="en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active" lang="uk">Гумор</span><span class="lang-section lang-en" lang="en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active" lang="uk">Прайс</span><span class="lang-section lang-en" lang="en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active" lang="uk">Контакти</span><span class="lang-section lang-en" lang="en">Contact</span></a></li>
       </ul>
     </div>
   </nav>
 
-  <section class="bg-gradient-to-r text-white py-20 text-center">
-    <div class="container">
-      <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">
-        <span class="lang-section lang-uk active">Мисленне Дослідження: Визначення Власної Думки</span>
-        <span class="lang-section lang-en">Mental Exploration: Identifying Your Own Thought</span>
-      </h1>
-      <p class="text-lg max-w-2xl mx-auto mb-6">
-        <span class="lang-section lang-uk active">Інструмент для самопізнання через спостереження за власними думками.</span>
-        <span class="lang-section lang-en">A tool for self-knowledge through observing your own thoughts.</span>
-      </p>
-    </div>
-  </section>
+  <main class="page-wrap">
+    <!-- Hero -->
+    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
+      <div class="container">
+        <h1 class="text-5xl md:text-6xl font-bold font-lora mb-4">
+          <span class="lang-section lang-uk active" lang="uk">Мисленне Дослідження: Визначення Власної Думки</span>
+          <span class="lang-section lang-en" lang="en">Mental Exploration: Identifying Your Own Thought</span>
+        </h1>
+        <p class="text-xl" style="max-width:60ch; margin:0 auto;">
+          <span class="lang-section lang-uk active" lang="uk">Інструмент для самопізнання через спостереження за власними думками.</span>
+          <span class="lang-section lang-en" lang="en">A tool for self-knowledge through observing your own thoughts.</span>
+        </p>
+      </div>
+    </section>
 
-  <section class="py-16 bg-gray-50">
-    <div class="container max-w-3xl">
-      <div id="steps">
+    <!-- Steps -->
+    <section class="py-16 bg-gray-50">
+      <div class="container steps-wrap">
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 1: Злови думку</span>
-            <span class="lang-section lang-en">Step 1: Catch the Thought</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 1: Злови думку</span>
+            <span class="lang-section lang-en" lang="en">Step 1: Catch the Thought</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Яка саме думка тебе зараз непокоїть або цікавить? Напиши її. Зазвичай вона звучить як фраза в голові. Наприклад: «Я маю все контролювати», або «Люди не змінюються».</span>
-            <span class="lang-section lang-en">What exactly is the thought that's bothering or interesting you right now? Write it down. Usually, it's a phrase in your head. For example: “I have to control everything,” or “People don’t change.”</span>
+            <span class="lang-section lang-uk active" lang="uk">Яка думка тебе зараз непокоїть або цікавить? Запиши її. Напр.: «Я маю все контролювати», «Люди не змінюються».</span>
+            <span class="lang-section lang-en" lang="en">What thought is bothering or interesting you right now? Write it down. E.g., “I must control everything,” “People don’t change.”</span>
           </p>
         </div>
+
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 2: Де ти це вперше почув?</span>
-            <span class="lang-section lang-en">Step 2: Where Did You Hear It First?</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 2: Де ти це вперше почув?</span>
+            <span class="lang-section lang-en" lang="en">Step 2: Where Did You Hear It First?</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Спробуй пригадати, коли ти вперше зіштовхнувся з цією думкою. Чи це твої батьки так казали? Вчитель? Хтось із авторитетів? ЗМІ? Якщо нічого не згадується — нічого страшного. Але якщо згадується — це вже зачіпка.</span>
-            <span class="lang-section lang-en">Try to remember when you first encountered this thought. Was it something your parents said? A teacher? Someone authoritative? The media? If nothing comes to mind — that’s okay. But if you do remember — it’s a clue.</span>
+            <span class="lang-section lang-uk active" lang="uk">Пригадай, звідки ця думка: батьки, вчитель, авторитет, ЗМІ? Якщо не згадаєш — ок. Якщо згадаєш — це зачіпка.</span>
+            <span class="lang-section lang-en" lang="en">Recall the source: parents, teacher, authority, media? If nothing comes — fine. If something does — that’s a clue.</span>
           </p>
         </div>
+
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 3: Що каже тіло?</span>
-            <span class="lang-section lang-en">Step 3: What Does Your Body Say?</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 3: Що каже тіло?</span>
+            <span class="lang-section lang-en" lang="en">Step 3: What Does Your Body Say?</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Подумай про цю думку і прислухайся до тіла. Чи з'являється напруга, стискання в грудях, холод у животі? Якщо тіло пручається — можливо, ця думка не твоя. Якщо спокій — то, можливо, вона твоя. Але це не гарантія.</span>
-            <span class="lang-section lang-en">Think about this thought and listen to your body. Do you feel tension, tightness in the chest, a cold feeling in the stomach? If your body resists — maybe the thought isn’t truly yours. If your body feels calm — maybe it is. But that’s not a guarantee.</span>
+            <span class="lang-section lang-uk active" lang="uk">Подумай про неї й прислухайся до тіла: напруга, стискання, холод у животі — можливо, думка не твоя. Спокій — можливо твоя (але не гарантія).</span>
+            <span class="lang-section lang-en" lang="en">Think of it and notice the body: tension, tightness, cold in the belly — maybe not yours. Calm — maybe yours (not a guarantee).</span>
           </p>
         </div>
+
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 4: Вплив на дії</span>
-            <span class="lang-section lang-en">Step 4: Impact on Actions</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 4: Вплив на дії</span>
+            <span class="lang-section lang-en" lang="en">Step 4: Impact on Actions</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Які твої дії базуються на цій думці? Що ти робиш або не робиш через неї? Якби цієї думки не існувало — що б ти робив інакше?</span>
-            <span class="lang-section lang-en">What actions do you take (or avoid) because of this thought? If this thought didn’t exist — what would you do differently?</span>
+            <span class="lang-section lang-uk active" lang="uk">Що ти робиш/не робиш через цю думку? Без неї що б ти робив інакше?</span>
+            <span class="lang-section lang-en" lang="en">What do you do/avoid because of this thought? Without it, what would you do differently?</span>
           </p>
         </div>
+
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 5: Перевірка логіки</span>
-            <span class="lang-section lang-en">Step 5: Logic Check</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 5: Перевірка логіки</span>
+            <span class="lang-section lang-en" lang="en">Step 5: Logic Check</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Чи витримує думка логічну перевірку? Наприклад, якщо вона стосується людей, запитай себе: чи завжди так? Чи є винятки? Якщо думка універсальна — це підозріло. Життя рідко буває чорно-білим.</span>
-            <span class="lang-section lang-en">Does this thought hold up logically? For example, if it’s about people, ask: is it always true? Are there exceptions? If the thought sounds absolute — be careful. Life is rarely black and white.</span>
+            <span class="lang-section lang-uk active" lang="uk">Чи «завжди» це правда? Є винятки? Абсолюти — підозрілі. Життя рідко чорно-біле.</span>
+            <span class="lang-section lang-en" lang="en">Is it “always” true? Any exceptions? Absolutes are suspicious. Life is rarely black-and-white.</span>
           </p>
         </div>
+
         <div class="step">
           <h2 class="text-2xl font-semibold">
-            <span class="lang-section lang-uk active">Крок 6: Твоя відповідь</span>
-            <span class="lang-section lang-en">Step 6: Your Answer</span>
+            <span class="lang-section lang-uk active" lang="uk">Крок 6: Твоя відповідь</span>
+            <span class="lang-section lang-en" lang="en">Step 6: Your Answer</span>
           </h2>
           <p>
-            <span class="lang-section lang-uk active">Тепер відповідай чесно:<br>– Ця думка моя, бо виросла з мого досвіду, відгукується в мені, і я готовий її нести.<br>– Або: ця думка не моя, просто дуже добре замаскувалась. Дякую, що була, але далі я сам.</span>
-            <span class="lang-section lang-en">Now answer honestly:<br>– This thought is mine because it grew from my experience, it resonates with me, and I’m ready to own it.<br>– Or: This thought isn’t mine, it just got really good at pretending. Thanks for being here, but from now on, I go alone.</span>
+            <span class="lang-section lang-uk active" lang="uk">А) Вона моя: з мого досвіду, відгукується, готовий її нести. <br>Б) Вона не моя: добре маскувалась. Дякую — далі я сам.</span>
+            <span class="lang-section lang-en" lang="en">A) It’s mine: from my experience, resonates, I’ll own it. <br>B) Not mine: it masqueraded well. Thanks — I go on without it.</span>
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
       <p>
-        <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-        <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+        <span class="lang-section lang-uk active" lang="uk">© 2025 Я є. Усі права захищено.</span>
+        <span class="lang-section lang-en" lang="en">© 2025 I Am. All rights reserved.</span>
       </p>
       <p class="footer-note">
-        <span class="lang-section lang-uk active">Створено для дослідження мислення. Якщо ти дійшов сюди — вітаю, ти вже не просто мислиш, а спостерігаєш за мисленням.</span>
-        <span class="lang-section lang-en">Created for mental self-exploration. If you’ve reached this point — congratulations, you’re not just thinking, you’re observing your thinking.</span>
+        <span class="lang-section lang-uk active" lang="uk">Створено для дослідження мислення. Якщо ти дійшов сюди — ти вже спостерігаєш за мисленням.</span>
+        <span class="lang-section lang-en" lang="en">Created for mental self-exploration. If you reached this point — you’re already observing your thinking.</span>
       </p>
     </div>
   </footer>
 
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing navigation...');
-      const savedLang = localStorage.getItem('lang') || 'uk';
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-      document.documentElement.lang = savedLang;
-      const langToggle = document.querySelector('.lang-toggle');
-      if (langToggle) {
-        langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      } else {
-        console.error('Language toggle button not found!');
-      }
-      updateMetaTags(savedLang);
+  <script>
+    (function(){
+      const SELECTORS = {
+        langSections: '.lang-section',
+        navList: '#primary-nav',
+        menuToggle: '.menu-toggle',
+        langToggle: '.lang-toggle'
+      };
 
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navUl = document.querySelector('nav ul');
-      if (menuToggle && navUl) {
-        console.log('Menu toggle and nav ul found, setting up click handler');
-        menuToggle.addEventListener('click', () => {
-          const isExpanded = navUl.classList.toggle('active');
-          menuToggle.setAttribute('aria-expanded', isExpanded);
-          menuToggle.textContent = isExpanded ? '✕' : '☰';
-          console.log('Menu toggled, isExpanded:', isExpanded);
-        });
-        menuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            menuToggle.click();
-            console.log('Menu toggled via keyboard:', e.key);
-          }
-        });
-        navUl.querySelectorAll('a').forEach(link => {
-          link.setAttribute('tabindex', '0');
-        });
-      } else {
-        console.error('Menu toggle or nav ul not found!');
+      const TITLES = {
+        uk: 'Мисленне Дослідження — Визначення Власної Думки',
+        en: 'Mental Exploration — Identifying Your Own Thought'
+      };
+      const DESCS = {
+        uk: 'Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.',
+        en: 'A tool for mental self-exploration. Helps identify your own thoughts through six simple steps.'
+      };
+
+      const $ = (s,root=document)=>root.querySelector(s);
+      const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+
+      function updateHead(lang){
+        document.title = TITLES[lang] || TITLES.uk;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc  = document.querySelector('meta[property="og:description"]');
+        const desc    = document.querySelector('meta[name="description"]');
+        if(ogTitle) ogTitle.content = TITLES[lang] || TITLES.uk;
+        if(ogDesc)  ogDesc.content  = DESCS[lang]  || DESCS.uk;
+        if(desc)    desc.content    = DESCS[lang]  || DESCS.uk;
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-          e.preventDefault();
-          const target = document.querySelector(anchor.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            console.log('Smooth scroll to:', anchor.getAttribute('href'));
+      function applyLang(lang){
+        $$(SELECTORS.langSections).forEach(el=>el.classList.remove('active'));
+        $$(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
+        document.documentElement.lang = lang;
+        const lt = $(SELECTORS.langToggle);
+        if(lt) lt.textContent = (lang === 'uk') ? 'UA / EN' : 'EN / UA';
+        updateHead(lang);
+        try{ localStorage.setItem('lang',lang); }catch(e){}
+      }
+
+      function initMenu(){
+        const toggle = $(SELECTORS.menuToggle);
+        const nav = $(SELECTORS.navList);
+        if(!toggle || !nav) return;
+
+        function openMenu(){
+          nav.classList.add('active');
+          toggle.setAttribute('aria-expanded','true');
+          toggle.textContent = '✕';
+          document.addEventListener('click', onDocClick, true);
+          document.addEventListener('keydown', onKeydown);
+        }
+        function closeMenu(){
+          nav.classList.remove('active');
+          toggle.setAttribute('aria-expanded','false');
+          toggle.textContent = '☰';
+          document.removeEventListener('click', onDocClick, true);
+          document.removeEventListener('keydown', onKeydown);
+        }
+        function onDocClick(e){
+          if(nav.contains(e.target) || toggle.contains(e.target)) return;
+          closeMenu();
+        }
+        function onKeydown(e){
+          if(e.key === 'Escape') closeMenu();
+        }
+        toggle.addEventListener('click', ()=>{
+          nav.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        // highlight current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        nav.querySelectorAll('a').forEach(a=>{
+          if(a.getAttribute('href') === currentPage){
+            a.classList.add('active');
+            a.setAttribute('aria-current','page');
           }
         });
+      }
+
+      function initLang(){
+        let saved = 'uk';
+        try{ saved = localStorage.getItem('lang') || 'uk'; }catch(e){}
+        applyLang(saved);
+
+        const btn = $(SELECTORS.langToggle);
+        if(btn){
+          btn.addEventListener('click', ()=>{
+            const now = document.documentElement.lang || 'uk';
+            const next = (now === 'uk') ? 'en' : 'uk';
+            applyLang(next);
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        initMenu();
+        initLang();
       });
-    });
-
-    function toggleLang() {
-      const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      const newLang = isUkrainian ? 'en' : 'uk';
-      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      document.documentElement.lang = newLang;
-      localStorage.setItem('lang', newLang);
-      updateMetaTags(newLang);
-      console.log(`Language switched to ${newLang.toUpperCase()}`);
-    }
-
-    function updateMetaTags(lang) {
-      if (lang === 'en') {
-        document.querySelector('meta[property="og:title"]').content = 'Mental Exploration: Identifying Your Own Thought';
-        document.querySelector('meta[property="og:description"]').content = 'A tool for mental self-exploration. Helps identify your own thoughts through six simple steps.';
-        document.querySelector('meta[name="description"]').content = 'A tool for mental self-exploration. Helps identify your own thoughts through six simple steps.';
-      } else {
-        document.querySelector('meta[property="og:title"]').content = 'Мисленне Дослідження: Визначення Власної Думки';
-        document.querySelector('meta[property="og:description"]').content = 'Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.';
-        document.querySelector('meta[name="description"]').content = 'Створено для дослідження мислення. Допомагає визначити власні думки через шість простих кроків.';
-      }
-    }
+    })();
   </script>
 </body>
 </html>
