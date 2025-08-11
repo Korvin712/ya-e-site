@@ -1,554 +1,327 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <span class="lang-section lang-uk active">Прайс - Шукач Архетипів | Я є</span>
-        <span class="lang-section lang-en">Pricing - Seeker of Archetypes | I Am</span>
-    </title>
-    <meta name="description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
-    <meta name="keywords" content="прайс, самопізнання, архетипи, консультації, гайди, знижки, pricing, self-discovery, archetypes, consultations, guides, discounts">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Прайс - Шукач Архетипів | Я є">
-    <meta property="og:description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="images/favicon-v2.png">
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Прайс - Шукач Архетипів | Я є</title>
+  <meta name="description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
+  <meta name="keywords" content="прайс, самопізнання, архетипи, консультації, гайди, знижки, pricing, self-discovery, archetypes, consultations, guides, discounts">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Прайс - Шукач Архетипів | Я є">
+  <meta property="og:description" content="Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="images/favicon-v2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-color: #4b0082;
-            --secondary-color: #800080;
-            --button-bg: #4c1d95;
-            --button-hover: #5b21b6;
-            --gray-50: #f9fafb;
-            --white: #ffffff;
-            --lang-toggle-bg: #ffffff;
-            --lang-toggle-text: #000000;
-            --lang-toggle-border: #ff0000;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lora', serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background: var(--white);
-            color: #111;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        nav {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: var(--white);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            padding: 0.5rem;
-            display: block;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        nav a:hover,
-        nav a:focus {
-            color: #FFD700;
-            transform: scale(1.05);
-        }
-
-        nav a.active {
-            color: #FFD700;
-            text-decoration: underline;
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--white);
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .logo-img {
-            width: 32px;
-            height: 32px;
-        }
-
-        .lang-toggle {
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--lang-toggle-text);
-            background: var(--lang-toggle-bg);
-            border: 2px solid var(--lang-toggle-border);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            font-size: 1.125rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .lang-toggle:hover,
-        .lang-toggle:focus {
-            background: #e0e0e0;
-            transform: scale(1.05);
-        }
-
-        .lang-section { display: none; }
-        .lang-section.active { display: inline-block; }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                padding: 1rem;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                animation: slideIn 0.3s ease;
-            }
-            nav ul.active {
-                display: flex;
-            }
-            nav .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            nav a {
-                font-size: 1rem;
-                padding: 0.75rem;
-            }
-            .logo-link {
-                font-size: 1.25rem;
-            }
-            .logo-img {
-                width: 28px;
-                height: 28px;
-            }
-            .lang-toggle {
-                font-size: 1rem;
-                padding: 0.4rem 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav a {
-                font-size: 0.9375rem;
-            }
-            .logo-link {
-                font-size: 1.125rem;
-            }
-            .logo-img {
-                width: 24px;
-                height: 24px;
-            }
-            .lang-toggle {
-                font-size: 0.875rem;
-            }
-        }
-
-        @media (max-width: 320px) {
-            nav a {
-                font-size: 0.875rem;
-            }
-            .logo-link {
-                font-size: 1rem;
-            }
-            .logo-img {
-                width: 20px;
-                height: 20px;
-            }
-            .lang-toggle {
-                font-size: 0.8125rem;
-                padding: 0.3rem 0.6rem;
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            flex: 1;
-        }
-
-        .section {
-            padding: 4rem 1rem;
-            text-align: center;
-        }
-
-        .bg-gradient-to-r {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-        }
-
-        .text-white { color: var(--white); }
-        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-        .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
-        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
-
-        .text-center { text-align: center; }
-        .text-left { text-align: left; }
-
-        .text-4xl { font-size: 2.25rem; }
-        @media (min-width: 768px) {
-            .md\:text-5xl { font-size: 3rem; }
-        }
-        .text-lg { font-size: 1.125rem; }
-        .text-3xl { font-size: 1.875rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .text-sm { font-size: 0.875rem; }
-
-        .font-bold { font-weight: bold; }
-        .font-semibold { font-weight: 600; }
-        .font-lora { font-family: 'Lora', serif; }
-
-        .max-w-2xl { max-width: 42rem; }
-        .max-w-3xl { max-width: 48rem; }
-        .max-w-600 { max-width: 600px; }
-
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .bg-gray-50 { background-color: var(--gray-50); }
-        .p-4 { padding: 1rem; }
-        .inline-block { display: inline-block; }
-        .bg-indigo-600 { background: var(--button-bg); }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-        .rounded-full { border-radius: 9999px; }
-        .hover\:bg-indigo-700:hover { background: var(--button-hover); }
-
-        .price-section {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .price-section p {
-            font-size: 1.125rem;
-            line-height: 1.6;
-        }
-        .price-section ul {
-            padding-left: 1.5rem;
-            list-style: disc;
-        }
-        .price-section li {
-            margin-bottom: 0.5rem;
-        }
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .buttons a {
-            text-decoration: none;
-        }
-        .text-yellow-400 { color: #FFD700; }
-        .underline { text-decoration: underline; }
-
-        @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .animate-fade-in { animation: fadeIn 1s ease-in; }
-
-        footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1.5rem 1rem;
-            text-align: center;
-        }
-
-        footer a {
-            color: #FFD700;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .py-20 { padding-top: 2rem; padding-bottom: 2rem; }
-            .text-4xl { font-size: 2rem; }
-            .md\:text-5xl { font-size: 2.5rem; }
-            .text-lg { font-size: 1rem; }
-            .max-w-2xl { max-width: 100%; }
-            .py-16 { padding-top: 2rem; padding-bottom: 2rem; }
-            .text-3xl { font-size: 1.5rem; }
-            .text-2xl { font-size: 1.25rem; }
-            .px-8 { padding-left: 1rem; padding-right: 1rem; }
-            .py-3 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-            .container { padding: 0 1rem; }
-            .max-w-600 { max-width: 100%; }
-            .price-section { max-width: 100%; }
-            .buttons { justify-content: center; }
-        }
-
-        @media (max-width: 480px) {
-            .text-4xl { font-size: 1.5rem; }
-            .md\:text-5xl { font-size: 2rem; }
-            .text-3xl { font-size: 1.25rem; }
-            .text-2xl { font-size: 1rem; }
-            .px-8 { padding-left: 0.5rem; padding-right: 0.5rem; }
-            .container { padding: 0 0.5rem; }
-        }
-
-        @media (max-width: 320px) {
-            .text-4xl { font-size: 1.2rem; }
-            .text-3xl { font-size: 1rem; }
-            .text-2xl { font-size: 0.875rem; }
-            .container { padding: 0 0.25rem; }
-        }
-    </style>
+  <style>
+    :root{--primary-color:#4b0082;--secondary-color:#800080;--button-bg:#4c1d95;--button-hover:#5b21b6;--gray-50:#f9fafb;--white:#ffffff;--lang-toggle-bg:#ffffff;--lang-toggle-text:#000000;--lang-toggle-border:#ff0000}
+    *,*::before,*::after{box-sizing:border-box}
+    body{font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;display:flex;flex-direction:column;min-height:100vh}
+    nav{background:linear-gradient(to right,var(--primary-color),var(--secondary-color));color:var(--white);padding:1rem;position:sticky;top:0;z-index:10}
+    nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
+    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
+    nav a{color:var(--white);text-decoration:none;padding:.5rem;display:block;font-size:.9375rem;transition:color .2s ease,transform .2s ease}
+    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05)}
+    nav a.active{color:#FFD700;text-decoration:underline}
+    .logo-link{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--white);font-weight:bold;font-size:1.5rem}
+    .logo-img{width:32px;height:32px}
+    .lang-toggle{cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;font-size:1.125rem;transition:background-color .3s ease,transform .2s ease}
+    .lang-toggle:hover,.lang-toggle:focus{background:#e0e0e0;transform:scale(1.05)}
+    .lang-section{display:none}
+    .lang-section.active{display:inline}
+    .container{max-width:1200px;margin:0 auto;padding:0 1rem;flex:1}
+    .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
+    .text-white{color:var(--white)}.text-center{text-align:center}.text-left{text-align:left}
+    .py-20{padding-top:5rem;padding-bottom:5rem}.py-16{padding-top:4rem;padding-bottom:4rem}
+    .mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}
+    .mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}
+    .text-4xl{font-size:2.25rem}@media(min-width:768px){.md\:text-5xl{font-size:3rem}}
+    .text-lg{font-size:1.125rem}.text-3xl{font-size:1.875rem}.text-2xl{font-size:1.5rem}.text-sm{font-size:.875rem}
+    .font-bold{font-weight:bold}.font-semibold{font-weight:600}.font-lora{font-family:'Lora',serif}
+    .max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-600{max-width:600px}
+    .mx-auto{margin-left:auto;margin-right:auto}.bg-gray-50{background-color:var(--gray-50)}
+    .inline-block{display:inline-block}.bg-indigo-600{background:var(--button-bg)}
+    .px-8{padding-left:2rem;padding-right:2rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}
+    .rounded-full{border-radius:9999px}.hover\:bg-indigo-700:hover{background:var(--button-hover)}
+    .space-y-4>:not([hidden])~:not([hidden]){margin-top:1rem}
+    .price-section{max-width:800px;margin:0 auto;text-align:left}
+    .price-section p{font-size:1.125rem;line-height:1.6}
+    .price-list{width:100%;border-collapse:separate;border-spacing:0;margin:1rem 0;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff}
+    .price-list thead th{background:#f3f4f6;font-weight:600;padding:.75rem 1rem;text-align:left}
+    .price-list td{padding:.75rem 1rem;border-top:1px solid #f0f0f0}
+    .badge{display:inline-block;padding:.15rem .5rem;border-radius:9999px;background:#efe6ff}
+    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem}
+    .buttons a{text-decoration:none}
+    footer{background:var(--primary-color);color:var(--white);padding:1.5rem 1rem;text-align:center}
+    @media(max-width:768px){
+      .menu-toggle{display:block}
+      nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:linear-gradient(to right,var(--primary-color),var(--secondary-color));padding:1rem;box-shadow:0 4px 8px rgba(0,0,0,.2)}
+      nav ul.active{display:flex}
+      nav .container{flex-direction:column;align-items:flex-start}
+      nav a{font-size:1rem;padding:.75rem}
+      .logo-link{font-size:1.25rem}.logo-img{width:28px;height:28px}
+      .lang-toggle{font-size:1rem;padding:.4rem .8rem}
+      .py-20{padding-top:2rem;padding-bottom:2rem}
+      .text-4xl{font-size:2rem}.md\:text-5xl{font-size:2.5rem}
+      .text-lg{font-size:1rem}.max-w-2xl{max-width:100%}
+      .py-16{padding-top:2rem;padding-bottom:2rem}
+      .text-3xl{font-size:1.5rem}.text-2xl{font-size:1.25rem}
+      .px-8{padding-left:1rem;padding-right:1rem}.py-3{padding-top:.5rem;padding-bottom:.5rem}
+      .container{padding:0 1rem}.max-w-600{max-width:100%}.price-section{max-width:100%}
+    }
+    @media(max-width:480px){
+      nav a{font-size:.9375rem}.logo-link{font-size:1.125rem}.logo-img{width:24px;height:24px}
+      .lang-toggle{font-size:.875rem}
+      .text-4xl{font-size:1.5rem}.md\:text-5xl{font-size:2rem}
+      .text-3xl{font-size:1.25rem}.text-2xl{font-size:1rem}
+      .px-8{padding-left:.5rem;padding-right:.5rem}.container{padding:0 .5rem}
+    }
+    @media(max-width:320px){
+      nav a{font-size:.875rem}.logo-link{font-size:1rem}.logo-img{width:20px;height:20px}
+      .lang-toggle{font-size:.8125rem;padding:.3rem .6rem}
+      .text-4xl{font-size:1.2rem}.text-3xl{font-size:1rem}.text-2xl{font-size:.875rem}
+      .container{padding:0 .25rem}
+    }
+  </style>
 </head>
 <body>
-    <nav role="navigation">
-        <div class="container">
-            <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
-                <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
-                <span class="logo-text">
-                    <span class="lang-section lang-uk active">Я є</span>
-                    <span class="lang-section lang-en">I Am</span>
-                </span>
-            </a>
-            <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
-            <a href="#" onclick="toggleLang()" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
-            <ul>
-                <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
-                <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
-                <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
-                <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-                <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
-                <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
-                <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
-                <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
-                <li><a href="price.html" class="active"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
-                <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
-            </ul>
+  <nav role="navigation">
+    <div class="container">
+      <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img">
+        <span class="logo-text">
+          <span class="lang-section lang-uk active">Я є</span>
+          <span class="lang-section lang-en">I Am</span>
+        </span>
+      </a>
+      <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
+      <a href="#" onclick="toggleLang();return false" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
+      <ul>
+        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+        <li><a href="price.html" class="active"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="bg-gradient-to-r text-white py-20 text-center">
+    <div class="container">
+      <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
+        <span class="lang-section lang-uk active">Прайс</span>
+        <span class="lang-section lang-en">Pricing</span>
+      </h2>
+      <p class="text-lg max-w-2xl mx-auto mb-6">
+        <span class="lang-section lang-uk active">Якщо коротко і чесно</span>
+        <span class="lang-section lang-en">Short and honest</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container max-w-3xl">
+      <div class="price-section">
+        <!-- UA -->
+        <div class="lang-section lang-uk active">
+          <p class="text-lg mb-4">Це не супермаркет і не шоу.<br>Тут ти не купуєш “продукт” — ти заходиш у простір, де можна глянути в себе.<br>Без води, без унітазів з золота, але з душею і змістом.</p>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">💬 Що ти отримаєш у Telegram-каналі</h3>
+          <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+            <li>щотижневі практики</li>
+            <li>доступ до інструментів</li>
+            <li>підтримку й спілкування, коли це справді потрібно</li>
+            <li>місце, де можна не прикидатися</li>
+          </ul>
+
+          <table class="price-list" aria-label="Прайс">
+            <thead>
+              <tr><th>Послуга</th><th>Опис</th><th>Ціна</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Доступ до Telegram-каналу</td>
+                <td>Практики, інструменти, підтримка</td>
+                <td><strong>300 грн/місяць</strong></td>
+              </tr>
+              <tr>
+                <td>Окремі інструменти</td>
+                <td>Гайди-листи, тести, методики</td>
+                <td><strong>200 грн одноразово</strong></td>
+              </tr>
+              <tr>
+                <td>Індивідуальна консультація</td>
+                <td>1 година щирої розмови</td>
+                <td><strong>800 грн/год</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🎖️ Знижки — бо є речі, що важливіші за гроші</h3>
+          <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+            <li><span class="badge">−40%</span> Військовим</li>
+            <li><span class="badge">−30%</span> Вчителям</li>
+            <li><span class="badge">−30%</span> Пенсіонерам</li>
+          </ul>
+          <p class="text-lg mb-4">Якщо ти один з них — просто напиши мені. Документи не потрібні, вірю на слово.</p>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">📩 Якщо є питання — пиши</h3>
+          <p class="text-lg mb-4">Я людина. Не чат-бот. Відповім, поясню, домовимось. Все по-людськи.</p>
         </div>
-    </nav>
 
-    <section class="bg-gradient-to-r text-white py-20 text-center animate-fade-in">
-        <div class="container">
-            <h2 class="text-4xl md:text-5xl font-bold font-lora mb-4">
-                <span class="lang-section lang-uk active">Прайс</span>
-                <span class="lang-section lang-en">Pricing</span>
-            </h2>
-            <p class="text-lg max-w-2xl mx-auto mb-6">
-                <span class="lang-section lang-uk active">Якщо коротко і чесно</span>
-                <span class="lang-section lang-en">Short and honest</span>
-            </p>
+        <!-- EN -->
+        <div class="lang-section lang-en">
+          <p class="text-lg mb-4">This isn’t a supermarket or a show. You’re not buying a “product” — you’re entering a space to look within. No fluff, no golden toilets — but soul and meaning.</p>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">💬 What you get in the Telegram channel</h3>
+          <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+            <li>Weekly practices</li>
+            <li>Access to tools</li>
+            <li>Support and honest conversation when needed</li>
+            <li>A space where you don’t have to pretend</li>
+          </ul>
+
+          <table class="price-list" aria-label="Pricing">
+            <thead>
+              <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Telegram channel access</td>
+                <td>Practices, tools, support</td>
+                <td><strong>300 UAH/month</strong></td>
+              </tr>
+              <tr>
+                <td>Individual tools</td>
+                <td>Guides, tests, practical methods</td>
+                <td><strong>200 UAH one-time</strong></td>
+              </tr>
+              <tr>
+                <td>One-on-one consultation</td>
+                <td>1 hour of honest talk</td>
+                <td><strong>800 UAH/hour</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🎖️ Discounts — because some things matter more</h3>
+          <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
+            <li><span class="badge">−40%</span> Military personnel</li>
+            <li><span class="badge">−30%</span> Teachers</li>
+            <li><span class="badge">−30%</span> Pensioners</li>
+          </ul>
+          <p class="text-lg mb-4">If that’s you — just write to me. No documents needed. I take your word for it.</p>
+
+          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">📩 Questions? Just ask</h3>
+          <p class="text-lg mb-4">I’m human, not a chatbot. I’ll reply, explain, and we’ll figure it out.</p>
         </div>
-    </section>
 
-    <section class="py-16 bg-gray-50">
-        <div class="container max-w-3xl">
-            <div class="price-section">
-                <div class="lang-section lang-uk active">
-                    <p class="text-lg mb-4">Це не супермаркет і не шоу.<br>Тут ти не купуєш “продукт” — ти заходиш у простір, де можна глянути в себе.<br>Без води, без унітазів з золота, але з душею і змістом.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">💬 Що ти отримаєш у Telegram-каналі</h3>
-                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
-                        <li>щотижневі практики</li>
-                        <li>доступ до інструментів</li>
-                        <li>підтримку й спілкування, коли це справді потрібно</li>
-                        <li>місце, де можна не прикидатися</li>
-                    </ul>
-                    <p class="text-lg mb-4"><strong>300 грн/місяць</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🧰 Окремі інструменти</h3>
-                    <p class="text-lg mb-4">гайди-листи, тести, методики</p>
-                    <p class="text-lg mb-4"><strong>200 грн одноразово</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">👥 Індивідуальні консультації</h3>
-                    <p class="text-lg mb-4">одна година щирої розмови, без “псевдопсихології”, з реальністю і теплом</p>
-                    <p class="text-lg mb-4"><strong>800 грн/година</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🎖️ Знижки — бо є речі, що важливіші за гроші</h3>
-                    <p class="text-lg mb-4">Я не міністерство, але розумію ціну людського вкладу. Тому:</p>
-                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
-                        <li>Військовим — 40% знижка</li>
-                        <li>Вчителям — 30% знижка</li>
-                        <li>Пенсіонерам — 30% (якщо такі справді з’являться — буду приємно здивований)</li>
-                    </ul>
-                    <p class="text-lg mb-4">Якщо ти один з них — просто напиши мені.<br>Документально нічого не треба, вірю на слово.<br>Хто бреше — той і без знижки собі знайде карму.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">📩 Якщо є питання — пиши</h3>
-                    <p class="text-lg mb-4">Я людина. Не чат-бот.<br>Відповім, поясню, домовимось. Все по-людськи.</p>
-                </div>
-                <div class="lang-section lang-en">
-                    <p class="text-lg mb-4">This isn’t a supermarket. And it’s not a show.<br>You’re not buying a “product” here — you’re entering a space where you can look within.<br>No fluff, no golden toilets — but there is soul and meaning.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">💬 What you get in the Telegram channel</h3>
-                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
-                        <li>Weekly practices</li>
-                        <li>Access to tools</li>
-                        <li>Support and real conversation when it’s truly needed</li>
-                        <li>A space where you don’t have to pretend</li>
-                    </ul>
-                    <p class="text-lg mb-4"><strong>300 UAH/month</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🧰 Individual tools</h3>
-                    <p class="text-lg mb-4">Guides, tests, practical methods</p>
-                    <p class="text-lg mb-4"><strong>200 UAH one-time</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">👥 One-on-one consultations</h3>
-                    <p class="text-lg mb-4">An hour of honest conversation — no “pseudo-psychology,” just realness and warmth</p>
-                    <p class="text-lg mb-4"><strong>800 UAH/hour</strong></p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🎖️ Discounts — because some things matter more than money</h3>
-                    <p class="text-lg mb-4">I’m not a ministry, but I understand the value of human effort. So:</p>
-                    <ul class="space-y-4 text-lg mb-4 max-w-600 mx-auto text-left">
-                        <li>Military personnel — 40% off</li>
-                        <li>Teachers — 30% off</li>
-                        <li>Pensioners — 30% (and if any show up, I’ll be pleasantly surprised)</li>
-                    </ul>
-                    <p class="text-lg mb-4">If you’re one of them — just write to me.<br>No documents needed. I take your word for it.<br>And hey — if someone lies, karma will find them, discount or not.</p>
-                    <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">📩 Questions? Just ask</h3>
-                    <p class="text-lg mb-4">I’m a human. Not a chatbot.<br>I’ll reply, explain, and we’ll figure things out. Human to human.</p>
-                </div>
-                <div class="buttons">
-                    <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                        <span class="lang-section lang-uk active">Почати шлях</span>
-                        <span class="lang-section lang-en">Start Your Journey</span>
-                    </a>
-                    <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
-                        <span class="lang-section lang-uk active">Задати питання</span>
-                        <span class="lang-section lang-en">Ask a Question</span>
-                    </a>
-                </div>
-            </div>
+        <div class="buttons">
+          <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+            <span class="lang-section lang-uk active">Почати шлях</span>
+            <span class="lang-section lang-en">Start Your Journey</span>
+          </a>
+          <a href="contact.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
+            <span class="lang-section lang-uk active">Задати питання</span>
+            <span class="lang-section lang-en">Ask a Question</span>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>
-            <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
-            <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
-        </p>
-        <p class="text-sm">
-            <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
-            <span class="lang-section lang-en">Warmly recommended:</span>
-            <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
-                <span class="lang-section lang-uk active">Карпатська Грибниця</span>
-                <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
-            </a>
-        </p>
-    </footer>
+  <footer>
+    <p>
+      <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
+      <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
+    </p>
+    <p class="text-sm">
+      <span class="lang-section lang-uk active">З душею рекомендуємо:</span>
+      <span class="lang-section lang-en">Warmly recommended:</span>
+      <a href="https://t.me/CRPT_shroomery" class="text-yellow-400 underline" target="_blank" rel="noopener noreferrer">
+        <span class="lang-section lang-uk active">Карпатська Грибниця</span>
+        <span class="lang-section lang-en">Carpathian Mushroom Network 🍄</span>
+      </a>
+    </p>
+  </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM loaded, initializing navigation...');
-            const savedLang = localStorage.getItem('lang') || 'uk';
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-            document.documentElement.lang = savedLang;
-            const langToggle = document.querySelector('.lang-toggle');
-            if (langToggle) {
-                langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            } else {
-                console.error('Language toggle button not found!');
-            }
-            updateMetaTags(savedLang);
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'uk';
+      // Активуємо потрібну мову
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
+      document.documentElement.lang = savedLang;
 
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navUl = document.querySelector('nav ul');
-            if (menuToggle && navUl) {
-                console.log('Menu toggle and nav ul found, setting up click handler');
-                menuToggle.addEventListener('click', () => {
-                    const isExpanded = navUl.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', isExpanded);
-                    menuToggle.textContent = isExpanded ? '✕' : '☰';
-                    console.log('Menu toggled, isExpanded:', isExpanded);
-                });
-                menuToggle.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        menuToggle.click();
-                        console.log('Menu toggled via keyboard:', e.key);
-                    }
-                });
-                navUl.querySelectorAll('a').forEach(link => {
-                    link.setAttribute('tabindex', '0');
-                });
-            } else {
-                console.error('Menu toggle or nav ul not found!');
-            }
+      // Кнопка мови
+      const langToggle = document.querySelector('.lang-toggle');
+      if (langToggle) langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      updateMetaAndTitle(savedLang);
 
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            navUl.querySelectorAll('a').forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
+      // Мобільне меню
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navUl = document.querySelector('nav ul');
+      if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+          const isExpanded = navUl.classList.toggle('active');
+          menuToggle.setAttribute('aria-expanded', isExpanded);
+          menuToggle.textContent = isExpanded ? '✕' : '☰';
         });
-
-        function toggleLang() {
-            const isUkrainian = document.querySelector('.lang-uk').classList.contains('active');
-            document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-            const newLang = isUkrainian ? 'en' : 'uk';
-            document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-            document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-            document.documentElement.lang = newLang;
-            localStorage.setItem('lang', newLang);
-            updateMetaTags(newLang);
-            console.log(`Language switched to ${newLang.toUpperCase()}`);
-        }
-
-        function updateMetaTags(lang) {
-            if (lang === 'en') {
-                document.querySelector('meta[property="og:title"]').content = 'Pricing - Seeker of Archetypes | I Am';
-                document.querySelector('meta[property="og:description"]').content = 'Pricing for access to the Telegram channel, individual tools, and one-on-one consultations from I Am. Discounts for military, teachers, and pensioners.';
-                document.querySelector('meta[name="description"]').content = 'Pricing for access to the Telegram channel, individual tools, and one-on-one consultations from I Am. Discounts for military, teachers, and pensioners.';
-            } else {
-                document.querySelector('meta[property="og:title"]').content = 'Прайс - Шукач Архетипів | Я є';
-                document.querySelector('meta[property="og:description"]').content = 'Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.';
-                document.querySelector('meta[name="description"]').content = 'Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.';
+        menuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            menuToggle.click();
+          }
+        });
+        // Закриваємо меню по кліку на пункт
+        navUl.querySelectorAll('a').forEach(a => {
+          a.addEventListener('click', () => {
+            if (navUl.classList.contains('active')) {
+              navUl.classList.remove('active');
+              menuToggle.setAttribute('aria-expanded', 'false');
+              menuToggle.textContent = '☰';
             }
-        }
-    </script>
+          });
+        });
+      }
+
+      // Підсвічуємо активну сторінку
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      navUl.querySelectorAll('a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      });
+    });
+
+    function toggleLang() {
+      const isUk = document.querySelector('.lang-uk').classList.contains('active');
+      const newLang = isUk ? 'en' : 'uk';
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
+      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
+      document.documentElement.lang = newLang;
+      localStorage.setItem('lang', newLang);
+      updateMetaAndTitle(newLang);
+    }
+
+    function updateMetaAndTitle(lang) {
+      if (lang === 'en') {
+        document.title = 'Pricing - Seeker of Archetypes | I Am';
+        document.querySelector('meta[property="og:title"]').content = 'Pricing - Seeker of Archetypes | I Am';
+        document.querySelector('meta[property="og:description"]').content = 'Pricing for access to the Telegram channel, individual tools, and one-on-one consultations from I Am. Discounts for military, teachers, and pensioners.';
+        document.querySelector('meta[name="description"]').content = 'Pricing for access to the Telegram channel, individual tools, and one-on-one consultations from I Am. Discounts for military, teachers, and pensioners.';
+      } else {
+        document.title = 'Прайс - Шукач Архетипів | Я є';
+        document.querySelector('meta[property="og:title"]').content = 'Прайс - Шукач Архетипів | Я є';
+        document.querySelector('meta[property="og:description"]').content = 'Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.';
+        document.querySelector('meta[name="description"]').content = 'Вартість доступу до Telegram-каналу, окремих інструментів та індивідуальних консультацій від Я є. Знижки для військових, вчителів, пенсіонерів.';
+      }
+    }
+  </script>
 </body>
 </html>
