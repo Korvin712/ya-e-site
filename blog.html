@@ -42,7 +42,7 @@
     .text-center{text-align:center}.text-white{color:var(--white)}
     .py-20{padding-top:5rem;padding-bottom:5rem}
     .py-16{padding-top:4rem;padding-bottom:4rem}
-    .mb-4{margin-bottom:1rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
+    .mb-0{margin-bottom:0}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}
     .text-4xl{font-size:2.25rem}.md\:text-5xl{font-size:3rem}
     .text-lg{font-size:1.125rem}.text-2xl{font-size:1.5rem}.text-sm{font-size:.875rem}
     .font-bold{font-weight:bold}.font-lora{font-family:'Lora',serif}
@@ -60,11 +60,19 @@
     /* HERO */
     .subtitle{font-size:1.25rem;font-style:italic;margin-bottom:2rem}
 
+    /* CONTROLS */
+    .controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;margin-bottom:1rem}
+    .control-group{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .control-group label{font-size:.9375rem;color:#333}
+    .control-input{padding:.55rem .75rem;border:1px solid #ccc;border-radius:.75rem;font-family:inherit;font-size:1rem;min-width:220px}
+    .select{min-width:260px}
+    .muted{color:#666;font-size:.9rem}
+
     /* ACCORDION */
     .accordion-wrap{max-width:48rem;margin:0 auto}
-    .accordion-item{border-bottom:1px solid #ddd;margin-bottom:1rem}
+    .accordion-item{border-bottom:1px solid #ddd;margin-bottom:1rem;background:#fff;border-radius:.5rem;overflow:hidden}
     .accordion-header{padding:1rem;background:#f1f1f1;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-    .accordion-header:hover{background:#e1e1e1}
+    .accordion-header:hover{background:#e7e7e7}
     .accordion-header h3{margin:0;font-size:1.25rem;color:var(--darkslategray)}
     .accordion-icon{font-size:1.2rem;line-height:1}
     .accordion-content{display:none;padding:1rem;background:#fff}
@@ -88,12 +96,19 @@
       .text-4xl{font-size:2rem}.md\:text-5xl{font-size:2.5rem}
       .subtitle{font-size:1rem}
       .px-8{padding-left:1rem;padding-right:1rem}.py-3{padding-top:.5rem;padding-bottom:.5rem}
+      .controls{gap:.5rem}
+      .control-input{min-width:180px}
+      .select{min-width:200px}
     }
     @media (max-width:480px){
       nav a{font-size:.75rem}
       .logo-link{font-size:1rem}.logo-img{width:24px;height:24px}
       .lang-toggle{font-size:.875rem;padding:.3rem .6rem}
       .text-4xl{font-size:1.5rem}.md\:text-5xl{font-size:2rem}.subtitle{font-size:.875rem}
+      .controls{flex-direction:column;align-items:stretch}
+      .control-group{width:100%;justify-content:space-between}
+      .control-input{width:100%}
+      .select{width:100%}
     }
     @media (max-width:320px){
       nav a{font-size:.625rem}
@@ -122,8 +137,8 @@
         <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
         <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
         <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
-        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
-        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Anxiety Knot Unraveler</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Ментальне Дослідження</span><span class="lang-section lang-en">Mind Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутати Тривогу</span><span class="lang-section lang-en">Unraveling Anxiety</span></a></li>
         <li><a href="blog.html" class="active"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
         <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
         <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
@@ -143,6 +158,31 @@
         <span class="lang-section lang-uk active">Тут — думки, тексти і підказки для тих, хто вже не може жити "як раніше". Архетип пульсує, тіло говорить, а розум питає: "І що тепер?"</span>
         <span class="lang-section lang-en">Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"</span>
       </p>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="bg-gray-50">
+    <div class="container mx-auto max-w-3xl">
+      <div class="controls">
+        <div class="control-group">
+          <label for="search" class="lang-section lang-uk active">Пошук:</label>
+          <label for="search" class="lang-section lang-en">Search:</label>
+          <input id="search" class="control-input" type="search"
+                 placeholder="Пошук у заголовках і тексті…" aria-label="Поле пошуку">
+        </div>
+        <div class="control-group">
+          <label for="sort" class="lang-section lang-uk active">Сортування:</label>
+          <label for="sort" class="lang-section lang-en">Sort by:</label>
+          <select id="sort" class="control-input select" aria-label="Сортування">
+            <option value="dateDesc">📅 Date — New → Old</option>
+            <option value="dateAsc">📅 Date — Old → New</option>
+            <option value="titleAZ">🔤 Title — A → Z</option>
+            <option value="titleZA">🔤 Title — Z → A</option>
+          </select>
+        </div>
+      </div>
+      <p id="resultMeta" class="muted mb-6"></p>
     </div>
   </section>
 
@@ -181,10 +221,34 @@
   </footer>
 
   <script>
+    // ---------- State ----------
     let postsData = [];
+    let state = { lang: 'uk', query: '', sort: 'dateDesc' };
+
+    // ---------- i18n labels ----------
+    const SORT_LABELS = {
+      uk: {
+        dateDesc: '📅 Дата — Нові → Старі',
+        dateAsc:  '📅 Дата — Старі → Нові',
+        titleAZ:  '🔤 Заголовок — A → Z',
+        titleZA:  '🔤 Заголовок — Z → A',
+      },
+      en: {
+        dateDesc: '📅 Date — New → Old',
+        dateAsc:  '📅 Date — Old → New',
+        titleAZ:  '🔤 Title — A → Z',
+        titleZA:  '🔤 Title — Z → A',
+      }
+    };
+
+    const PLACEHOLDER = {
+      uk: 'Пошук у заголовках і тексті…',
+      en: 'Search in titles and content…'
+    };
 
     // ---------- Helpers ----------
     function setLang(lang){
+      state.lang = lang;
       document.querySelectorAll('.lang-section').forEach(el=>el.classList.remove('active'));
       document.querySelectorAll('.lang-' + lang).forEach(el=>el.classList.add('active'));
       document.documentElement.lang = lang;
@@ -206,13 +270,36 @@
         document.querySelector('meta[name="description"]').content =
           'Here are thoughts, texts, and tips for those who can no longer live "as before." The archetype pulses, the body speaks, and the mind asks: "What now?"';
       }
+      // controls i18n
+      updateSortLabels(lang);
+      const search = document.getElementById('search');
+      if (search) search.placeholder = PLACEHOLDER[lang];
+      updateResultMeta();
     }
 
     function toggleLang(){
-      const isUkrainian = document.documentElement.lang === 'uk';
-      const newLang = isUkrainian ? 'en' : 'uk';
+      const newLang = (state.lang === 'uk') ? 'en' : 'uk';
       setLang(newLang);
-      renderPosts(postsData, newLang);
+      renderPosts(filteredAndSorted(), newLang);
+    }
+
+    function updateSortLabels(lang){
+      const sel = document.getElementById('sort');
+      if(!sel) return;
+      Array.from(sel.options).forEach(opt=>{
+        const v = opt.value;
+        if (SORT_LABELS[lang] && SORT_LABELS[lang][v]){
+          opt.textContent = SORT_LABELS[lang][v];
+        }
+      });
+    }
+
+    function parseDateSafe(d){
+      // expects YYYY-MM-DD or empty
+      const t = (d || '').trim();
+      if(!t) return null;
+      const ms = Date.parse(t);
+      return Number.isNaN(ms) ? null : new Date(ms);
     }
 
     // ---------- Accordion ----------
@@ -230,7 +317,7 @@
       const content = header.nextElementSibling;
       const isOpen = content.classList.contains('open');
 
-      // якщо відкрито — закриваємо
+      // if open -> close
       if(isOpen){
         content.classList.remove('open');
         content.setAttribute('aria-hidden','true');
@@ -239,7 +326,7 @@
         return;
       }
 
-      // закриваємо інші
+      // close others
       container.querySelectorAll('.accordion-content.open').forEach(c=>{
         c.classList.remove('open');
         c.setAttribute('aria-hidden','true');
@@ -250,7 +337,7 @@
         }
       });
 
-      // відкриваємо поточний
+      // open current
       content.classList.add('open');
       content.setAttribute('aria-hidden','false');
       header.setAttribute('aria-expanded','true');
@@ -260,7 +347,17 @@
     // ---------- Render ----------
     function renderPosts(posts, lang){
       const wrap = document.getElementById('posts');
-      wrap.innerHTML = ''; // чистимо
+      wrap.innerHTML = '';
+
+      if(!posts.length){
+        const empty = document.createElement('p');
+        empty.className = 'muted';
+        empty.textContent = (lang==='uk')
+          ? 'Нічого не знайдено. Спробуйте змінити запит або сортування.'
+          : 'No results. Try adjusting your query or sorting.';
+        wrap.appendChild(empty);
+        return;
+      }
 
       posts.forEach(post=>{
         const item = document.createElement('div');
@@ -288,13 +385,80 @@
       bindAccordion(wrap);
     }
 
+    // ---------- Filtering, sorting ----------
+    function filteredAndSorted(){
+      const q = state.query.trim().toLowerCase();
+      let list = postsData.slice();
+
+      if(q){
+        list = list.filter(p=>{
+          const t1 = (p.title_uk||'').toLowerCase();
+          const t2 = (p.title_en||'').toLowerCase();
+          const c1 = (p.content_uk||'').toLowerCase();
+          const c2 = (p.content_en||'').toLowerCase();
+          return t1.includes(q) || t2.includes(q) || c1.includes(q) || c2.includes(q);
+        });
+      }
+
+      switch(state.sort){
+        case 'dateAsc':
+          list.sort((a,b)=>{
+            const da = parseDateSafe(a.date); const db = parseDateSafe(b.date);
+            if(da && db) return da - db;
+            if(da && !db) return 1;      // без дати наприкінці
+            if(!da && db) return -1;
+            return (a.id||0) - (b.id||0);
+          });
+          break;
+        case 'titleAZ':
+          list.sort((a,b)=>{
+            const A = (a.title_uk||a.title_en||'').toLowerCase();
+            const B = (b.title_uk||b.title_en||'').toLowerCase();
+            return A.localeCompare(B);
+          });
+          break;
+        case 'titleZA':
+          list.sort((a,b)=>{
+            const A = (a.title_uk||a.title_en||'').toLowerCase();
+            const B = (b.title_uk||b.title_en||'').toLowerCase();
+            return B.localeCompare(A);
+          });
+          break;
+        case 'dateDesc':
+        default:
+          list.sort((a,b)=>{
+            const da = parseDateSafe(a.date); const db = parseDateSafe(b.date);
+            if(da && db) return db - da;
+            if(da && !db) return -1;     // без дати в кінці
+            if(!da && db) return 1;
+            return (b.id||0) - (a.id||0);
+          });
+      }
+
+      return list;
+    }
+
+    function updateResultMeta(){
+      const el = document.getElementById('resultMeta');
+      const n = filteredAndSorted().length;
+      el.textContent = (state.lang==='uk')
+        ? `Знайдено записів: ${n}`
+        : `Posts found: ${n}`;
+    }
+
+    // small debounce for search
+    function debounce(fn, ms){
+      let t; 
+      return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), ms); };
+    }
+
     // ---------- Boot ----------
     document.addEventListener('DOMContentLoaded', ()=>{
-      // мова
+      // language
       const savedLang = localStorage.getItem('lang') || 'uk';
       setLang(savedLang);
 
-      // меню
+      // menu
       const menuToggle = document.querySelector('.menu-toggle');
       const navUl = document.querySelector('nav ul');
       if(menuToggle && navUl){
@@ -309,16 +473,37 @@
         navUl.querySelectorAll('a').forEach(a=>a.setAttribute('tabindex','0'));
       }
 
-      // активне посилання
+      // active link
       const currentPage = (window.location.pathname.split('/').pop() || 'index.html');
       navUl.querySelectorAll('a').forEach(link=>{
         if(link.getAttribute('href')===currentPage){ link.classList.add('active'); }
       });
 
-      // перемикач мови
+      // language toggle
       document.querySelector('.lang-toggle').addEventListener('click', (e)=>{ e.preventDefault(); toggleLang(); });
 
-      // завантаження постів
+      // controls events
+      const search = document.getElementById('search');
+      const sortSel = document.getElementById('sort');
+      if (search){
+        search.placeholder = PLACEHOLDER[state.lang];
+        search.addEventListener('input', debounce((e)=>{
+          state.query = e.target.value || '';
+          updateResultMeta();
+          renderPosts(filteredAndSorted(), state.lang);
+        }, 200));
+      }
+      if (sortSel){
+        updateSortLabels(state.lang);
+        sortSel.value = state.sort;
+        sortSel.addEventListener('change', (e)=>{
+          state.sort = e.target.value;
+          updateResultMeta();
+          renderPosts(filteredAndSorted(), state.lang);
+        });
+      }
+
+      // load posts
       fetch('./posts.json',{cache:'no-store'})
         .then(r=>{
           if(!r.ok) throw new Error(`Помилка завантаження JSON: ${r.status} ${r.statusText}`);
@@ -327,7 +512,8 @@
         .then(data=>{
           if(!data.posts) throw new Error('Неправильна структура JSON: ключ "posts" відсутній');
           postsData = data.posts;
-          renderPosts(postsData, document.documentElement.lang);
+          updateResultMeta();
+          renderPosts(filteredAndSorted(), state.lang);
         })
         .catch(err=>{
           console.error(err);
