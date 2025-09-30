@@ -102,9 +102,13 @@
     .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem}
     .buttons a{text-decoration:none}
 
-    .list{list-style:disc}
-    .muted{color:var(--muted)}
-    .card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px}
+    /* Accordion styles */
+    #accordion{margin:0;padding:0}
+    details.joke{border:1px solid var(--card-border);border-radius:10px;background:#fff;margin-bottom:.75rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    details.joke[open]{background:#f9fafb}
+    details.joke summary{padding:.75rem 1rem;cursor:pointer;font-weight:600;list-style:none}
+    details.joke summary::marker{display:none}
+    details.joke .body{padding:0 1rem 1rem}
 
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .animate-fade-in{animation:fadeIn 1s ease-in}
@@ -200,14 +204,12 @@
         <span class="lang-section lang-uk active">Ну бо скільки можна серйозно?</span>
         <span class="lang-section lang-en">Because how much seriousness can one take?</span>
       </p>
-      <p id="meta-info" class="muted text-lg"></p>
     </div>
   </section>
 
   <section class="py-16 bg-gray-50">
     <div class="container max-w-3xl">
       <div class="humor-section">
-        <!-- UK/EN текст над списками залишаємо як було -->
         <div class="card">
           <p class="text-lg mb-4">
             <span class="lang-section lang-uk active">Світ складний, внутрішній шлях ще складніший. А якщо без гумору — то або в дурку, або в TikTok. Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</span>
@@ -216,10 +218,7 @@
         </div>
 
         <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">😄 Анекдоти з життя (і не тільки)</span><span class="lang-section lang-en">😄 True-life jokes (and some that just feel true)</span></h3>
-        <ul id="list-jokes" class="list space-y-4 text-lg mb-8 max-w-600 mx-auto text-left"></ul>
-
-        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">🤡 Внутрішній голос:</span><span class="lang-section lang-en">🤡 Inner voice moments</span></h3>
-        <ul id="list-inner" class="list space-y-4 text-lg mb-8 max-w-600 mx-auto text-left"></ul>
+        <div id="accordion" class="mb-8"></div>
 
         <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">🙃 Маєш свій прикол?</span><span class="lang-section lang-en">🙃 Got a good one?</span></h3>
         <p class="text-lg mb-4">
@@ -302,7 +301,7 @@
       }
 
       // Завантажуємо жарти з JSON
-      loadJokes().then(() => renderJokes(getLang()));
+      loadJokes().then(() => renderAccordion(getLang()));
     });
 
     function getLang(){ return document.documentElement.lang || 'uk'; }
@@ -323,7 +322,6 @@
           date: j.date ?? null,
           rating: (typeof j.rating==='number')? j.rating : null
         })).filter(j=> j.text_uk.length || j.text_en.length);
-        document.getElementById('meta-info').textContent = `${JOKES.length} записів • JSON: anekdoty.json`;
       }catch(err){
         console.error(err);
         setState('Не вдалось завантажити anekdoty.json. Перевір файл і формат.');
@@ -335,31 +333,45 @@
       if(!s) return; s.textContent = msg || ''; 
     }
 
-    function renderJokes(lang){
-      const jokesUl = document.getElementById('list-jokes');
-      const innerUl = document.getElementById('list-inner');
-      if(!jokesUl || !innerUl) return;
+    function renderAccordion(lang){
+      const root = document.getElementById('accordion');
+      if(!root) return;
+      root.innerHTML = '';
 
       const getText = j => lang==='en' ? (j.text_en || j.text_uk) : (j.text_uk || j.text_en);
 
-      const jokes = [];
-      const inner = [];
       JOKES.forEach(j => {
-        const html = `<li>${escapeHtml(getText(j))}</li>`;
-        if(j.categories.includes('inner') || j.categories.includes('inner_voice')) inner.push(html);
-        else jokes.push(html);
+        const raw = getText(j);
+        const lines = raw.split(/\r?\n/).filter(Boolean);
+        const summaryLine = lines.length ? lines[0] : raw;
+        const rest = lines.slice(1).join('\n');
+
+        const details = document.createElement('details');
+        details.className = 'joke';
+
+        const summary = document.createElement('summary');
+        summary.innerHTML = escapeHtml(summaryLine);
+        details.appendChild(summary);
+
+        if(rest.trim().length){
+          const body = document.createElement('div');
+          body.className = 'body';
+          body.innerHTML = escapeHtml(rest).replace(/\n/g,'<br>');
+          details.appendChild(body);
+        }
+
+        root.appendChild(details);
       });
 
-      jokesUl.innerHTML = jokes.join('') || `<li class="muted">${lang==='en'?'No jokes yet.':'Поки немає анекдотів.'}</li>`;
-      innerUl.innerHTML = inner.join('') || `<li class="muted">${lang==='en'?'No inner voice moments yet.':'Поки немає записів внутрішнього голосу.'}</li>`;
-      setState('');
+      if(!root.childElementCount){
+        setState(lang==='en' ? 'No jokes yet.' : 'Поки немає анекдотів.');
+      } else setState('');
     }
 
     function escapeHtml(s){
       return String(s).replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
     }
 
-    // Перевизначаємо toggleLang, щоб ще й перерендерити списки
     function toggleLang() {
       const isUk = document.querySelector('.lang-uk').classList.contains('active');
       const newLang = isUk ? 'en' : 'uk';
@@ -370,7 +382,7 @@
       document.documentElement.lang = newLang;
       localStorage.setItem('lang', newLang);
       updateMetaAndTitle(newLang);
-      renderJokes(newLang);
+      renderAccordion(newLang);
     }
 
     function updateMetaAndTitle(lang) {
@@ -389,7 +401,7 @@
   </script>
 
   <!--
-  📦 Формат anekdoty.json (один файл для двох мов):
+  📦 Формат anekdoty.json (UA+EN у кожному записі):
   [
     {"id": 1,
      "text_uk": "— Сину, ким ти хочеш стати, коли виростеш?\n— Самопізнаним.\n— Господи, краще б алкоголіком…",
@@ -397,18 +409,8 @@
      "categories": ["joke"],
      "rating": 4.6,
      "date": "2024-11-02"
-    },
-    {"id": 2,
-     "text_uk": "— А раптом у тебе нічого не вийде?\n— Та я не раптом, я стабільно!",
-     "text_en": "— What if nothing works out for you?\n— Oh, it’s not ‘what if’. It’s consistent.",
-     "categories": ["inner"],
-     "rating": 4.2
     }
   ]
-
-  Пояснення категорій:
-  - "joke" — піде у розділ «Анекдоти з життя» / “True-life jokes”
-  - "inner" або "inner_voice" — у розділ «Внутрішній голос» / “Inner voice moments”
   -->
 </body>
 </html>
