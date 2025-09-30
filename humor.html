@@ -24,6 +24,9 @@
       --lang-toggle-bg: #ffffff;
       --lang-toggle-text: #000000;
       --lang-toggle-border: #ff0000;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --card-border: #e5e7eb;
     }
     *,*::before,*::after{box-sizing:border-box}
 
@@ -61,7 +64,6 @@
     .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
     .text-white{color:var(--white)}
     .text-center{text-align:center}
-    .text-left{text-align:left}
     .py-20{padding-top:5rem;padding-bottom:5rem}
     .py-16{padding-top:4rem;padding-bottom:4rem}
     .mb-4{margin-bottom:1rem}
@@ -99,8 +101,10 @@
     .humor-section li{margin-bottom:.5rem}
     .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem}
     .buttons a{text-decoration:none}
-    .text-yellow-400{color:#FFD700}
-    .underline{text-decoration:underline}
+
+    .list{list-style:disc}
+    .muted{color:var(--muted)}
+    .card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px}
 
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
     .animate-fade-in{animation:fadeIn 1s ease-in}
@@ -196,77 +200,32 @@
         <span class="lang-section lang-uk active">Ну бо скільки можна серйозно?</span>
         <span class="lang-section lang-en">Because how much seriousness can one take?</span>
       </p>
+      <p id="meta-info" class="muted text-lg"></p>
     </div>
   </section>
 
   <section class="py-16 bg-gray-50">
     <div class="container max-w-3xl">
       <div class="humor-section">
-        <!-- UK -->
-        <div class="lang-section lang-uk active">
-          <p class="text-lg mb-4">Світ складний, внутрішній шлях ще складніший.<br>А якщо без гумору — то або в дурку, або в TikTok.<br>Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</p>
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 Анекдоти з життя (і не тільки)</h3>
-          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-            <li>— Сину, ким ти хочеш стати, коли виростеш?<br>— Самопізнаним.<br>— Господи, краще б алкоголіком…</li>
-            <li>— Мамо, я змерз чи хочу їсти?<br>— Що?<br>— Ярослав питає… Опікун включилася.</li>
-            <li>— Слухай, а ти хто за архетипом?<br>— Я кішка.<br>— Чому?<br>— Не знаю, йди геть.</li>
-            <li>— Я в архетипах розбираюсь!<br>— Ну давай, хто я?<br>— А ти Кріса.<br>— Я шо?!<br>— Той, що вижив.</li>
-            <li>Дві бабки дивляться телевізор.<br>Ведучий каже: “Такий-то завів блог у Твіттері.”<br>Одна бабка недочула:<br>— Що він сказав?<br>— Та каже, завів блох у світері… наркоман, мабуть.</li>
-            <li>Студенти філософського вимірюють стовп.<br>Один лізе вгору з рулеткою.<br>Йде інженер, витягує стовп з ями, кладе на землю, міряє — 5 метрів.<br>Студенти:<br>— Ну от… Довжину він нам сказав, а висоту як ми тепер дізнаємось?</li>
-            <li>— Внутрішній голос каже: "Вставай і працюй!"<br>— А я йому: "Я не вірю в токсичну продуктивність".<br>— Він образився і пішов.</li>
-            <li>— Я ось подумав: може, я не лінивий…<br>— А який?<br>— Просто глибоко інтровертований з протестом проти безсенсової метушні.</li>
-            <li>— Мамо, я не знаю, що хочу.<br>— То з’їж щось.<br>— А якщо це не те?<br>— Значить, повториш.</li>
-            <li>— Чого ти не пишеш книгу?<br>— Я її вже подумав.<br>— А папір що, сам себе надрукує?</li>
-            <li>— Ти за яким архетипом?<br>— За місячним. Спочатку світю, потім зникаю, потім знову світю, але вже не тим.</li>
-            <li>— Краще не доспати, чим переспати.<br>Бо коли не доспиш — ляжеш і доспиш.<br>А коли переспиш — назад не відіспиш.</li>
-            <li>— Психотерапевт порадив прислухатися до себе.<br>— Прислухався… тепер боюсь. Там хтось живе.</li>
-            <li>— Учора прокинувся і подумав: «Життя — диво!»<br>— А сьогодні прокинувся і подумав: «Ну його нафіг, таке диво…»</li>
-            <li>— Ти чого мовчиш?<br>— Вчуся приймати реальність.<br>— І як?<br>— Ніяк. Але мовчу красиво.</li>
-            <li>— Медитація — це коли не працюєш, але виглядаєш, ніби дуже зайнятий.</li>
-          </ul>
-
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Внутрішній голос:</h3>
-          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-            <li>— А раптом у тебе нічого не вийде?<br>— Та я не раптом, я стабільно!</li>
-            <li>— Сьогодні ми працюємо над внутрішньою дитиною.<br>— Моя знову хоче піцу й ображається, якщо її не похвалити.</li>
-          </ul>
-
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Маєш свій прикол?</h3>
-          <p class="text-lg mb-4">Пиши — вставимо.<br>Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</p>
+        <!-- UK/EN текст над списками залишаємо як було -->
+        <div class="card">
+          <p class="text-lg mb-4">
+            <span class="lang-section lang-uk active">Світ складний, внутрішній шлях ще складніший. А якщо без гумору — то або в дурку, або в TikTok. Ми обрали третій варіант — посміятися. Іноді з себе. Частіше — з себе.</span>
+            <span class="lang-section lang-en">The world’s a mess, and the inner journey? Even messier. Without humor — it’s either a mental ward or TikTok. We chose the third option: laugh. Sometimes at ourselves. Mostly at ourselves.</span>
+          </p>
         </div>
 
-        <!-- EN -->
-        <div class="lang-section lang-en">
-          <p class="text-lg mb-4">The world’s a mess, and the inner journey? Even messier.<br>Without humor — well, it’s either a mental ward or TikTok.<br>We chose the third option: laugh. Sometimes at ourselves. Mostly at ourselves.</p>
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">😄 True-life jokes (and some that just feel true)</h3>
-          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-            <li>— Son, what do you want to be when you grow up?<br>— Self-aware.<br>— Oh God, better if you’d just become an alcoholic…</li>
-            <li>— Mom, am I cold or hungry?<br>— What??<br>— Yaroslav’s asking… The caregiver mode just kicked in.</li>
-            <li>— Hey, what’s your archetype?<br>— I’m a cat.<br>— Why?<br>— I don’t know. Go away.</li>
-            <li>— I know all about archetypes!<br>— Oh yeah? Who am I then?<br>— You’re Kris.<br>— I’m WHAT?!<br>— The one who survived.</li>
-            <li>Two grannies are watching TV.<br>The host says: “So-and-so just started a blog on Twitter.”<br>One granny mishears:<br>— What did he say?<br>— Says he got fleas in his sweater… must be a junkie.</li>
-            <li>Philosophy students are measuring a pole.<br>One climbs up with a measuring tape.<br>An engineer walks by, pulls the pole out, lays it on the ground, measures: 5 meters.<br>Students:<br>— Great… He gave us the length, but how the hell do we find out the height now?!</li>
-            <li>— Inner voice says: "Get up and work!"<br>— I told it: "I don’t believe in toxic productivity."<br>— It got offended and left.</li>
-            <li>— I was thinking: maybe I’m not lazy…<br>— Then what are you?<br>— Just a deeply introverted soul protesting meaningless hustle.</li>
-            <li>— Mom, I don’t know what I want.<br>— Then eat something.<br>— What if it’s not it?<br>— Then do it again.</li>
-            <li>— Why don’t you write a book?<br>— I already thought it.<br>— And the paper’s gonna print itself?</li>
-            <li>— What’s your archetype?<br>— The lunar one. I shine, then disappear, then shine again—but not the same way.</li>
-            <li>— Better to undersleep than oversleep.<br>Because if you undersleep—you can just lie down and catch up.<br>But if you oversleep—you can’t undo it.</li>
-            <li>— My therapist said to listen to myself.<br>— I did… now I’m scared. Someone’s living in there.</li>
-            <li>— Yesterday I woke up and thought: "Life is a miracle!"<br>— Today I woke up and thought: "Screw it, what a miracle…"</li>
-            <li>— Why are you so quiet?<br>— Learning to accept reality.<br>— And how’s that going?<br>— Not great. But I’m quiet about it with style.</li>
-            <li>— Meditation is when you’re not working but look like you’re super busy.</li>
-          </ul>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">😄 Анекдоти з життя (і не тільки)</span><span class="lang-section lang-en">😄 True-life jokes (and some that just feel true)</span></h3>
+        <ul id="list-jokes" class="list space-y-4 text-lg mb-8 max-w-600 mx-auto text-left"></ul>
 
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🤡 Inner voice moments</h3>
-          <ul class="space-y-4 text-lg mb-8 max-w-600 mx-auto text-left">
-            <li>— What if nothing works out for you?<br>— Oh, it’s not “what if.” It’s consistent.</li>
-            <li>— Today, we work on our inner child.<br>— Mine wants pizza again and gets mad if you don’t compliment her.</li>
-          </ul>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">🤡 Внутрішній голос:</span><span class="lang-section lang-en">🤡 Inner voice moments</span></h3>
+        <ul id="list-inner" class="list space-y-4 text-lg mb-8 max-w-600 mx-auto text-left"></ul>
 
-          <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">🙃 Got a good one?</h3>
-          <p class="text-lg mb-4">Send it in — we’ll add it.<br>Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</p>
-        </div>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">🙃 Маєш свій прикол?</span><span class="lang-section lang-en">🙃 Got a good one?</span></h3>
+        <p class="text-lg mb-4">
+          <span class="lang-section lang-uk active">Пиши — вставимо. Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</span>
+          <span class="lang-section lang-en">Send it in — we’ll add it. Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</span>
+        </p>
 
         <div class="buttons">
           <a href="tools.html" class="inline-block bg-indigo-600 text-white px-8 py-3 rounded-full hover:bg-indigo-700">
@@ -278,6 +237,8 @@
             <span class="lang-section lang-en">Ask a Question</span>
           </a>
         </div>
+
+        <p id="state" class="muted mt-6" aria-live="polite"></p>
       </div>
     </div>
   </section>
@@ -287,9 +248,12 @@
       <span class="lang-section lang-uk active">© 2025 Я є. Усі права захищено.</span>
       <span class="lang-section lang-en">© 2025 I Am. All rights reserved.</span>
     </p>
-      </footer>
+  </footer>
 
   <script>
+    const JSON_URL = 'anekdoty.json'; // поклади файл поруч із цією сторінкою
+    let JOKES = [];
+
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'uk';
       // Активуємо потрібну мову
@@ -331,11 +295,71 @@
 
       // Підсвічуємо активну сторінку
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      navUl.querySelectorAll('a').forEach(link => {
-        if (link.getAttribute('href') === currentPage) link.classList.add('active');
-      });
+      if (navUl) {
+        navUl.querySelectorAll('a').forEach(link => {
+          if (link.getAttribute('href') === currentPage) link.classList.add('active');
+        });
+      }
+
+      // Завантажуємо жарти з JSON
+      loadJokes().then(() => renderJokes(getLang()));
     });
 
+    function getLang(){ return document.documentElement.lang || 'uk'; }
+
+    async function loadJokes(){
+      setState('');
+      try{
+        const res = await fetch(JSON_URL + '?t=' + Date.now(), {headers:{'Accept':'application/json'}});
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        if(!Array.isArray(data)) throw new Error('Очікував масив');
+        // нормалізація
+        JOKES = data.map((j,i)=>({
+          id: j.id ?? (i+1),
+          text_uk: String(j.text_uk ?? '').trim(),
+          text_en: String(j.text_en ?? '').trim(),
+          categories: Array.isArray(j.categories) ? j.categories : (j.categories? [j.categories] : []),
+          date: j.date ?? null,
+          rating: (typeof j.rating==='number')? j.rating : null
+        })).filter(j=> j.text_uk.length || j.text_en.length);
+        document.getElementById('meta-info').textContent = `${JOKES.length} записів • JSON: anekdoty.json`;
+      }catch(err){
+        console.error(err);
+        setState('Не вдалось завантажити anekdoty.json. Перевір файл і формат.');
+      }
+    }
+
+    function setState(msg){
+      const s = document.getElementById('state');
+      if(!s) return; s.textContent = msg || ''; 
+    }
+
+    function renderJokes(lang){
+      const jokesUl = document.getElementById('list-jokes');
+      const innerUl = document.getElementById('list-inner');
+      if(!jokesUl || !innerUl) return;
+
+      const getText = j => lang==='en' ? (j.text_en || j.text_uk) : (j.text_uk || j.text_en);
+
+      const jokes = [];
+      const inner = [];
+      JOKES.forEach(j => {
+        const html = `<li>${escapeHtml(getText(j))}</li>`;
+        if(j.categories.includes('inner') || j.categories.includes('inner_voice')) inner.push(html);
+        else jokes.push(html);
+      });
+
+      jokesUl.innerHTML = jokes.join('') || `<li class="muted">${lang==='en'?'No jokes yet.':'Поки немає анекдотів.'}</li>`;
+      innerUl.innerHTML = inner.join('') || `<li class="muted">${lang==='en'?'No inner voice moments yet.':'Поки немає записів внутрішнього голосу.'}</li>`;
+      setState('');
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+    }
+
+    // Перевизначаємо toggleLang, щоб ще й перерендерити списки
     function toggleLang() {
       const isUk = document.querySelector('.lang-uk').classList.contains('active');
       const newLang = isUk ? 'en' : 'uk';
@@ -346,6 +370,7 @@
       document.documentElement.lang = newLang;
       localStorage.setItem('lang', newLang);
       updateMetaAndTitle(newLang);
+      renderJokes(newLang);
     }
 
     function updateMetaAndTitle(lang) {
@@ -362,5 +387,28 @@
       }
     }
   </script>
+
+  <!--
+  📦 Формат anekdoty.json (один файл для двох мов):
+  [
+    {"id": 1,
+     "text_uk": "— Сину, ким ти хочеш стати, коли виростеш?\n— Самопізнаним.\n— Господи, краще б алкоголіком…",
+     "text_en": "— Son, what do you want to be when you grow up?\n— Self-aware.\n— Oh God, better if you’d just become an alcoholic…",
+     "categories": ["joke"],
+     "rating": 4.6,
+     "date": "2024-11-02"
+    },
+    {"id": 2,
+     "text_uk": "— А раптом у тебе нічого не вийде?\n— Та я не раптом, я стабільно!",
+     "text_en": "— What if nothing works out for you?\n— Oh, it’s not ‘what if’. It’s consistent.",
+     "categories": ["inner"],
+     "rating": 4.2
+    }
+  ]
+
+  Пояснення категорій:
+  - "joke" — піде у розділ «Анекдоти з життя» / “True-life jokes”
+  - "inner" або "inner_voice" — у розділ «Внутрішній голос» / “Inner voice moments”
+  -->
 </body>
 </html>
