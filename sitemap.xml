@@ -1,51 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Головна -->
   <url>
     <loc>https://ya-e.in.ua/</loc>
-    <lastmod>2025-05-17</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Блог -->
   <url>
     <loc>https://ya-e.in.ua/blog.html</loc>
-    <lastmod>2025-05-17</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://ya-e.in.ua/tools.html</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ya-e.in.ua/about.html</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+
+  <!-- Про архетипи -->
   <url>
     <loc>https://ya-e.in.ua/archetypes.html</loc>
-    <lastmod>2025-05-17</lastmod>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Про мене -->
+  <url>
+    <loc>https://ya-e.in.ua/about.html</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Інструменти -->
   <url>
-    <loc>https://ya-e.in.ua/contact.html</loc>
-    <lastmod>2025-05-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://ya-e.in.ua/tools.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Новий інструмент: Мапа усвідомлення (V2 покроковий) -->
+  <url>
+    <loc>https://ya-e.in.ua/thinking-map-stepper.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Мисленне дослідження -->
+  <url>
+    <loc>https://ya-e.in.ua/mind-exploration.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Розплутування тривоги -->
+  <url>
+    <loc>https://ya-e.in.ua/unravel-anxiety.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Прайс -->
   <url>
     <loc>https://ya-e.in.ua/price.html</loc>
-    <lastmod>2025-05-17</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- Контакти -->
+  <url>
+    <loc>https://ya-e.in.ua/contact.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Гумор -->
   <url>
     <loc>https://ya-e.in.ua/humor.html</loc>
-    <lastmod>2025-05-17</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
 </urlset>
