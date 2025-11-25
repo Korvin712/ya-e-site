@@ -2,25 +2,24 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Гумор — Шукач Архетипів | Я є</title>
+  <title>Гумор — Шукач Архетипів | Я є</title>
 
-<meta name="description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії." />
-<meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія, humor, archetypes, self-discovery, jokes, irony" />
-<meta name="robots" content="index, follow" />
+  <meta name="description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії." />
+  <meta name="keywords" content="гумор, архетипи, самопізнання, анекдоти, іронія, humor, archetypes, self-discovery, jokes, irony" />
+  <meta name="robots" content="index, follow" />
 
-<!-- Open Graph -->
-<meta property="og:title" content="Гумор — Шукач Архетипів | Я є" />
-<meta property="og:description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="images/ya-e-og.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:locale" content="uk_UA" />
+  <meta property="og:title" content="Гумор — Шукач Архетипів | Я є" />
+  <meta property="og:description" content="Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/ya-e-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="uk_UA" />
 
-<link rel="icon" href="images/favicon-v2.png" />
-<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="images/favicon-v2.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet"/>
 
   <style>
     :root {
@@ -37,142 +36,559 @@
       --card: #ffffff;
       --card-border: #e5e7eb;
     }
-    *,*::before,*::after{box-sizing:border-box}
 
-    body{
-      font-family:'Lora',serif;margin:0;padding:0;line-height:1.6;background:var(--white);color:#111;
-      display:flex;flex-direction:column;min-height:100vh
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
-    nav{
-      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));color:var(--white);
-      padding:1rem;position:sticky;top:0;z-index:10
+    body {
+      font-family: 'Lora', serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: var(--white);
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    nav .container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-    .menu-toggle{display:none;font-size:1.5rem;cursor:pointer;background:none;border:none;color:var(--white)}
-    nav ul{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
-    nav a{color:var(--white);text-decoration:none;padding:0.5rem;display:block;font-size:.9375rem;transition:color .2s ease,transform .2s ease}
-    nav a:hover,nav a:focus{color:#FFD700;transform:scale(1.05)}
-    nav a.active{color:#FFD700;text-decoration:underline}
 
-    .logo-link{display:flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--white);font-weight:bold;font-size:1.5rem}
-    .logo-img{width:32px;height:32px}
-
-    .lang-toggle{
-      cursor:pointer;font-weight:bold;color:var(--lang-toggle-text);background:var(--lang-toggle-bg);
-      border:2px solid var(--lang-toggle-border);padding:.5rem 1rem;border-radius:9999px;text-decoration:none;
-      font-size:1.125rem;transition:background-color .3s ease,transform .2s ease
+    nav {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .lang-toggle:hover,.lang-toggle:focus{background:#e0e0e0;transform:scale(1.05)}
 
-    .lang-section{display:none}
-    .lang-section.active{display:inline}
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .container{max-width:1200px;margin:0 auto;padding:0 1rem;flex:1}
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--white);
+    }
 
-    .bg-gradient-to-r{background:linear-gradient(to right,var(--primary-color),var(--secondary-color))}
-    .text-white{color:var(--white)}
-    .text-center{text-align:center}
-    .py-20{padding-top:5rem;padding-bottom:5rem}
-    .py-16{padding-top:4rem;padding-bottom:4rem}
-    .mb-4{margin-bottom:1rem}
-    .mb-6{margin-bottom:1.5rem}
-    .mb-8{margin-bottom:2rem}
-    .mt-4{margin-top:1rem}
-    .mt-6{margin-top:1.5rem}
-    .mt-8{margin-top:2rem}
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
 
-    .text-4xl{font-size:2.25rem}
-    @media(min-width:768px){.md\:text-5xl{font-size:3rem}}
-    .text-lg{font-size:1.125rem}
-    .text-3xl{font-size:1.875rem}
-    .text-2xl{font-size:1.5rem}
-    .font-bold{font-weight:bold}
-    .font-semibold{font-weight:600}
-    .font-lora{font-family:'Lora',serif}
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.5rem;
+      display: block;
+      font-size: 0.9375rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
 
-    .max-w-2xl{max-width:42rem}
-    .max-w-3xl{max-width:48rem}
-    .max-w-600{max-width:600px}
-    .mx-auto{margin-left:auto;margin-right:auto}
-    .bg-gray-50{background-color:var(--gray-50)}
-    .inline-block{display:inline-block}
-    .bg-indigo-600{background:var(--button-bg)}
-    .px-8{padding-left:2rem;padding-right:2rem}
-    .py-3{padding-top:.75rem;padding-bottom:.75rem}
-    .rounded-full{border-radius:9999px}
-    .hover\:bg-indigo-700:hover{background:var(--button-hover)}
-    .space-y-4>:not([hidden])~:not([hidden]){margin-top:1rem}
+    nav a:hover,
+    nav a:focus {
+      color: #FFD700;
+      transform: scale(1.05);
+    }
 
-    .humor-section{max-width:800px;margin:0 auto;text-align:left}
-    .humor-section p{font-size:1.125rem;line-height:1.6}
-    .humor-section ul{padding-left:1.5rem}
-    .humor-section li{margin-bottom:.5rem}
-    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:2rem}
-    .buttons a{text-decoration:none}
+    nav a.active {
+      color: #FFD700;
+      text-decoration: underline;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--white);
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .lang-toggle {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--lang-toggle-text);
+      background: var(--lang-toggle-bg);
+      border: 2px solid var(--lang-toggle-border);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      font-size: 1.125rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .lang-toggle:hover,
+    .lang-toggle:focus {
+      background: #e0e0e0;
+      transform: scale(1.05);
+    }
+
+    .lang-section {
+      display: none;
+    }
+
+    .lang-section.active {
+      display: inline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      flex: 1;
+    }
+
+    .bg-gradient-to-r {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    }
+
+    .text-white {
+      color: var(--white);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .py-20 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mb-8 {
+      margin-bottom: 2rem;
+    }
+
+    .mt-4 {
+      margin-top: 1rem;
+    }
+
+    .mt-6 {
+      margin-top: 1.5rem;
+    }
+
+    .mt-8 {
+      margin-top: 2rem;
+    }
+
+    .text-4xl {
+      font-size: 2.25rem;
+    }
+
+    @media (min-width: 768px) {
+      .md\:text-5xl {
+        font-size: 3rem;
+      }
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+    }
+
+    .text-3xl {
+      font-size: 1.875rem;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+    }
+
+    .font-bold {
+      font-weight: bold;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-lora {
+      font-family: 'Lora', serif;
+    }
+
+    .max-w-2xl {
+      max-width: 42rem;
+    }
+
+    .max-w-3xl {
+      max-width: 48rem;
+    }
+
+    .max-w-600 {
+      max-width: 600px;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bg-gray-50 {
+      background-color: var(--gray-50);
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .bg-indigo-600 {
+      background: var(--button-bg);
+    }
+
+    .px-8 {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .py-3 {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .hover\:bg-indigo-700:hover {
+      background: var(--button-hover);
+    }
+
+    .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 1rem;
+    }
+
+    .humor-section {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .humor-section p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    .humor-section ul {
+      padding-left: 1.5rem;
+    }
+
+    .humor-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .buttons a {
+      text-decoration: none;
+    }
+
+    /* Card style */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
 
     /* Accordion styles */
-    #accordion{margin:0;padding:0}
-    details.joke{border:1px solid var(--card-border);border-radius:10px;background:#fff;margin-bottom:.75rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
-    details.joke[open]{background:#f9fafb}
-    details.joke summary{padding:.75rem 1rem;cursor:pointer;font-weight:600;list-style:none}
-    details.joke summary::marker{display:none}
-    details.joke .body{padding:0 1rem 1rem}
+    #accordion {
+      margin: 0;
+      padding: 0;
+    }
 
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .animate-fade-in{animation:fadeIn 1s ease-in}
+    details.joke {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background: #fff;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
 
-    footer{background:var(--primary-color);color:var(--white);padding:1.5rem 1rem;text-align:center}
+    details.joke[open] {
+      background: #f9fafb;
+    }
 
-    @media(max-width:768px){
-      .menu-toggle{display:block}
-      nav ul{
-        display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;
-        background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
-        padding:1rem;box-shadow:0 4px 8px rgba(0,0,0,.2)
+    details.joke summary {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    details.joke summary::marker {
+      display: none;
+    }
+
+    details.joke .body {
+      padding: 0 1rem 1rem;
+    }
+
+    /* Стилі для HTML-статей */
+    details.joke .body h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.35rem;
+    }
+
+    details.joke .body h4 {
+      margin-top: 0.8rem;
+      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    details.joke .body p {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    details.joke .body ul,
+    details.joke .body ol {
+      margin-bottom: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    footer {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
       }
-      nav ul.active{display:flex}
-      nav .container{flex-direction:column;align-items:flex-start}
-      nav a{font-size:1rem;padding:.75rem}
-      .logo-link{font-size:1.25rem}
-      .logo-img{width:28px;height:28px}
-      .lang-toggle{font-size:1rem;padding:.4rem .8rem}
-      .py-20{padding-top:2rem;padding-bottom:2rem}
-      .text-4xl{font-size:2rem}
-      .md\:text-5xl{font-size:2.5rem}
-      .text-lg{font-size:1rem}
-      .max-w-2xl{max-width:100%}
-      .py-16{padding-top:2rem;padding-bottom:2rem}
-      .text-3xl{font-size:1.5rem}
-      .text-2xl{font-size:1.25rem}
-      .px-8{padding-left:1rem;padding-right:1rem}
-      .py-3{padding-top:.5rem;padding-bottom:.5rem}
-      .container{padding:0 1rem}
-      .max-w-600{max-width:100%}
-      .humor-section{max-width:100%}
-      .buttons{justify-content:center}
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        font-size: 1rem;
+        padding: 0.75rem;
+      }
+
+      .logo-link {
+        font-size: 1.25rem;
+      }
+
+      .logo-img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .lang-toggle {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .py-20 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .text-4xl {
+        font-size: 2rem;
+      }
+
+      .md\:text-5xl {
+        font-size: 2.5rem;
+      }
+
+      .text-lg {
+        font-size: 1rem;
+      }
+
+      .max-w-2xl {
+        max-width: 100%;
+      }
+
+      .py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .text-3xl {
+        font-size: 1.5rem;
+      }
+
+      .text-2xl {
+        font-size: 1.25rem;
+      }
+
+      .px-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .py-3 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .max-w-600 {
+        max-width: 100%;
+      }
+
+      .humor-section {
+        max-width: 100%;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
     }
-    @media(max-width:480px){
-      nav a{font-size:.9375rem}
-      .logo-link{font-size:1.125rem}
-      .logo-img{width:24px;height:24px}
-      .lang-toggle{font-size:.875rem}
-      .text-4xl{font-size:1.5rem}
-      .md\:text-5xl{font-size:2rem}
-      .text-3xl{font-size:1.25rem}
-      .text-2xl{font-size:1rem}
-      .px-8{padding-left:.5rem;padding-right:.5rem}
-      .container{padding:0 .5rem}
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9375rem;
+      }
+
+      .logo-link {
+        font-size: 1.125rem;
+      }
+
+      .logo-img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .lang-toggle {
+        font-size: 0.875rem;
+      }
+
+      .text-4xl {
+        font-size: 1.5rem;
+      }
+
+      .md\:text-5xl {
+        font-size: 2rem;
+      }
+
+      .text-3xl {
+        font-size: 1.25rem;
+      }
+
+      .text-2xl {
+        font-size: 1rem;
+      }
+
+      .px-8 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      .container {
+        padding: 0 0.5rem;
+      }
     }
-    @media(max-width:320px){
-      nav a{font-size:.875rem}
-      .logo-link{font-size:1rem}
-      .logo-img{width:20px;height:20px}
-      .lang-toggle{font-size:.8125rem;padding:.3rem .6rem}
-      .text-4xl{font-size:1.2rem}
-      .text-3xl{font-size:1rem}
-      .text-2xl{font-size:.875rem}
-      .container{padding:0 .25rem}
+
+    @media (max-width: 320px) {
+      nav a {
+        font-size: 0.875rem;
+      }
+
+      .logo-link {
+        font-size: 1rem;
+      }
+
+      .logo-img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .lang-toggle {
+        font-size: 0.8125rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .text-4xl {
+        font-size: 1.2rem;
+      }
+
+      .text-3xl {
+        font-size: 1rem;
+      }
+
+      .text-2xl {
+        font-size: 0.875rem;
+      }
+
+      .container {
+        padding: 0 0.25rem;
+      }
     }
   </style>
 </head>
@@ -189,18 +605,18 @@
       <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false">☰</button>
       <a href="#" onclick="toggleLang();return false" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</a>
       <ul id="primary-nav">
-  <li><a href="index.html"><span class="lang-uk">Головна</span><span class="lang-en" hidden>Home</span></a></li>
-  <li><a href="archetypes.html"><span class="lang-uk">Про архетипи</span><span class="lang-en" hidden>About Archetypes</span></a></li>
-  <li><a href="about.html"><span class="lang-uk">Про мене</span><span class="lang-en" hidden>About Me</span></a></li>
-  <li><a href="tools.html"><span class="lang-uk">Інструменти</span><span class="lang-en" hidden>Tools</span></a></li>
-  <li><a href="map-awareness-test-v2.html"><span class="lang-uk">Мапа усвідомлення — Тест V2</span><span class="lang-en" hidden>Map of Awareness — Test V2</span></a></li>
-  <li><a href="mind-exploration.html"><span class="lang-uk">Мисленне Дослідження</span><span class="lang-en" hidden>Mental Exploration</span></a></li>
-  <li><a href="unravel-anxiety.html"><span class="lang-uk">Розплутування Тривоги</span><span class="lang-en" hidden>Anxiety Knot Unraveler</span></a></li>
-  <li><a href="blog.html"><span class="lang-uk">Як жити далі?</span><span class="lang-en" hidden>How to Live On?</span></a></li>
-  <li><a href="humor.html"><span class="lang-uk">Гумор</span><span class="lang-en" hidden>Humor</span></a></li>
-  <li><a href="price.html"><span class="lang-uk">Прайс</span><span class="lang-en" hidden>Pricing</span></a></li>
-  <li><a href="contact.html"><span class="lang-uk">Контакти</span><span class="lang-en" hidden>Contact</span></a></li>
-</ul>
+        <li><a href="index.html"><span class="lang-uk">Головна</span><span class="lang-en" hidden>Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-uk">Про архетипи</span><span class="lang-en" hidden>About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-uk">Про мене</span><span class="lang-en" hidden>About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-uk">Інструменти</span><span class="lang-en" hidden>Tools</span></a></li>
+        <li><a href="map-awareness-test-v2.html"><span class="lang-uk">Мапа усвідомлення — Тест V2</span><span class="lang-en" hidden>Map of Awareness — Test V2</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-uk">Мисленне Дослідження</span><span class="lang-en" hidden>Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-uk">Розплутування Тривоги</span><span class="lang-en" hidden>Anxiety Knot Unraveler</span></a></li>
+        <li><a href="blog.html"><span class="lang-uk">Як жити далі?</span><span class="lang-en" hidden>How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-uk">Гумор</span><span class="lang-en" hidden>Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-uk">Прайс</span><span class="lang-en" hidden>Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-uk">Контакти</span><span class="lang-en" hidden>Contact</span></a></li>
+      </ul>
     </div>
   </nav>
 
@@ -227,10 +643,16 @@
           </p>
         </div>
 
-        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">😄 Анекдоти з життя (і не тільки)</span><span class="lang-section lang-en">😄 True-life jokes (and some that just feel true)</span></h3>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">
+          <span class="lang-section lang-uk active">😄 Анекдоти з життя (і не тільки)</span>
+          <span class="lang-section lang-en">😄 True-life jokes (and some that just feel true)</span>
+        </h3>
         <div id="accordion" class="mb-8"></div>
 
-        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4"><span class="lang-section lang-uk active">🙃 Маєш свій прикол?</span><span class="lang-section lang-en">🙃 Got a good one?</span></h3>
+        <h3 class="text-2xl font-semibold font-lora mt-8 mb-4">
+          <span class="lang-section lang-uk active">🙃 Маєш свій прикол?</span>
+          <span class="lang-section lang-en">🙃 Got a good one?</span>
+        </h3>
         <p class="text-lg mb-4">
           <span class="lang-section lang-uk active">Пиши — вставимо. Головне правило: не бути як усі, не боятись сміятись, і не втратити себе навіть у дурості.</span>
           <span class="lang-section lang-en">Send it in — we’ll add it. Main rule: Don’t be like everyone else. Don’t be afraid to laugh. And don’t lose yourself — not even in silliness.</span>
@@ -260,20 +682,12 @@
   </footer>
 
   <script>
-    const JSON_URL = 'anekdoty.json'; // поклади файл поруч із цією сторінкою
+    const JSON_URL = 'anekdoty.json';
     let JOKES = [];
 
     document.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('lang') || 'uk';
-      // Активуємо потрібну мову
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${savedLang}`).forEach(el => el.classList.add('active'));
-      document.documentElement.lang = savedLang;
-
-      // Кнопка мови
-      const langToggle = document.querySelector('.lang-toggle');
-      if (langToggle) langToggle.textContent = savedLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      updateMetaAndTitle(savedLang);
+      setLanguage(savedLang);
 
       // Мобільне меню
       const menuToggle = document.querySelector('.menu-toggle');
@@ -284,12 +698,14 @@
           menuToggle.setAttribute('aria-expanded', isExpanded);
           menuToggle.textContent = isExpanded ? '✕' : '☰';
         });
+
         menuToggle.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             menuToggle.click();
           }
         });
+
         // Закриваємо меню при кліку по посиланню
         navUl.querySelectorAll('a').forEach(a => {
           a.addEventListener('click', () => {
@@ -304,57 +720,125 @@
 
       // Підсвічуємо активну сторінку
       const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-      if (navUl) {
-        navUl.querySelectorAll('a').forEach(link => {
-          if (link.getAttribute('href') === currentPage) link.classList.add('active');
+      const navRoot = document.getElementById('primary-nav');
+      if (navRoot) {
+        navRoot.querySelectorAll('a').forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
         });
       }
 
-      // Завантажуємо жарти з JSON
+      // Завантажуємо жарти
       loadJokes().then(() => renderAccordion(getLang()));
     });
 
-    function getLang(){ return document.documentElement.lang || 'uk'; }
+    function getLang() {
+      return document.documentElement.lang || 'uk';
+    }
 
-    async function loadJokes(){
+    function setLanguage(lang) {
+      // Захист від дурні
+      if (lang !== 'uk' && lang !== 'en') lang = 'uk';
+
+      document.documentElement.lang = lang;
+
+      // Перемикаємо .lang-section
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-section.lang-' + lang).forEach(el => el.classList.add('active'));
+
+      // Перемикаємо текст у меню (span.lang-uk/lang-en без класу lang-section)
+      document.querySelectorAll('.lang-uk').forEach(el => {
+        if (!el.classList.contains('lang-section')) {
+          el.hidden = (lang !== 'uk');
+        }
+      });
+      document.querySelectorAll('.lang-en').forEach(el => {
+        if (!el.classList.contains('lang-section')) {
+          el.hidden = (lang !== 'en');
+        }
+      });
+
+      const langToggle = document.querySelector('.lang-toggle');
+      if (langToggle) {
+        langToggle.textContent = lang === 'uk' ? 'UA / EN' : 'EN / UA';
+      }
+
+      localStorage.setItem('lang', lang);
+      updateMetaAndTitle(lang);
+      renderAccordion(lang);
+    }
+
+    function toggleLang() {
+      const current = getLang();
+      const newLang = current === 'uk' ? 'en' : 'uk';
+      setLanguage(newLang);
+    }
+
+    async function loadJokes() {
       setState('');
-      try{
-        const res = await fetch(JSON_URL + '?t=' + Date.now(), {headers:{'Accept':'application/json'}});
-        if(!res.ok) throw new Error('HTTP ' + res.status);
+      try {
+        const res = await fetch(JSON_URL + '?t=' + Date.now(), {
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        if(!Array.isArray(data)) throw new Error('Очікував масив');
-        // нормалізація
-        JOKES = data.map((j,i)=>({
-          id: j.id ?? (i+1),
+        if (!Array.isArray(data)) throw new Error('Очікував масив');
+
+        JOKES = data.map((j, i) => ({
+          id: j.id ?? (i + 1),
           text_uk: String(j.text_uk ?? '').trim(),
           text_en: String(j.text_en ?? '').trim(),
-          categories: Array.isArray(j.categories) ? j.categories : (j.categories? [j.categories] : []),
+          categories: Array.isArray(j.categories) ? j.categories : (j.categories ? [j.categories] : []),
           date: j.date ?? null,
-          rating: (typeof j.rating==='number')? j.rating : null
-        })).filter(j=> j.text_uk.length || j.text_en.length);
-      }catch(err){
+          rating: (typeof j.rating === 'number') ? j.rating : null
+        })).filter(j => j.text_uk.length || j.text_en.length);
+      } catch (err) {
         console.error(err);
         setState('Не вдалось завантажити anekdoty.json. Перевір файл і формат.');
       }
     }
 
-    function setState(msg){
+    function setState(msg) {
       const s = document.getElementById('state');
-      if(!s) return; s.textContent = msg || ''; 
+      if (!s) return;
+      s.textContent = msg || '';
     }
 
-    function renderAccordion(lang){
+    function renderAccordion(lang) {
       const root = document.getElementById('accordion');
-      if(!root) return;
+      if (!root) return;
       root.innerHTML = '';
 
-      const getText = j => lang==='en' ? (j.text_en || j.text_uk) : (j.text_uk || j.text_en);
+      const getText = j => lang === 'en'
+        ? (j.text_en || j.text_uk)
+        : (j.text_uk || j.text_en);
 
       JOKES.forEach(j => {
         const raw = getText(j);
-        const lines = raw.split(/\r?\n/).filter(Boolean);
-        const summaryLine = lines.length ? lines[0] : raw;
-        const rest = lines.slice(1).join('\n');
+        if (!raw) return;
+
+        // Перевіряємо, чи контент містить HTML, не рахуючи тупі <br>
+        const hasHtml = /<[a-z][\s\S]*>/i.test(raw) &&
+          !/^([^<]*<br\s*\/?>[^>]*)*$/.test(raw);
+
+        let summaryLine;
+        let rest = '';
+
+        if (hasHtml) {
+          const match = raw.match(/<h[1-6]>(.*?)<\/h[1-6]>/i);
+          if (match) {
+            summaryLine = match[1].trim();
+            rest = raw.replace(match[0], '').trim();
+          } else {
+            summaryLine = raw.replace(/<[^>]*>/g, '').substring(0, 80).trim() + '...';
+            rest = raw;
+          }
+        } else {
+          const lines = raw.split(/\r?\n/).filter(Boolean);
+          summaryLine = lines.length ? lines[0] : raw;
+          rest = lines.slice(1).join('\n');
+        }
 
         const details = document.createElement('details');
         details.className = 'joke';
@@ -363,64 +847,57 @@
         summary.innerHTML = escapeHtml(summaryLine);
         details.appendChild(summary);
 
-        if(rest.trim().length){
+        if (rest.trim().length) {
           const body = document.createElement('div');
           body.className = 'body';
-          body.innerHTML = escapeHtml(rest).replace(/\n/g,'<br>');
+
+          if (hasHtml) {
+            body.innerHTML = rest;
+          } else {
+            body.innerHTML = escapeHtml(rest).replace(/\n/g, '<br>');
+          }
+
           details.appendChild(body);
         }
 
         root.appendChild(details);
       });
 
-      if(!root.childElementCount){
-        setState(lang==='en' ? 'No jokes yet.' : 'Поки немає анекдотів.');
-      } else setState('');
+      if (!root.childElementCount) {
+        setState(lang === 'en' ? 'No jokes yet.' : 'Поки немає анекдотів.');
+      } else {
+        setState('');
+      }
     }
 
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
-    }
-
-    function toggleLang() {
-      const isUk = document.querySelector('.lang-uk').classList.contains('active');
-      const newLang = isUk ? 'en' : 'uk';
-
-      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll(`.lang-${newLang}`).forEach(el => el.classList.add('active'));
-      document.querySelector('.lang-toggle').textContent = newLang === 'uk' ? 'UA / EN' : 'EN / UA';
-      document.documentElement.lang = newLang;
-      localStorage.setItem('lang', newLang);
-      updateMetaAndTitle(newLang);
-      renderAccordion(newLang);
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[m]));
     }
 
     function updateMetaAndTitle(lang) {
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const metaDesc = document.querySelector('meta[name="description"]');
+
       if (lang === 'en') {
-        document.title = 'Humor - Seeker of Archetypes | I Am';
-        document.querySelector('meta[property="og:title"]').content = 'Humor - Seeker of Archetypes | I Am';
-        document.querySelector('meta[property="og:description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
-        document.querySelector('meta[name="description"]').content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+        document.title = 'Humor — Seeker of Archetypes | I Am';
+        if (ogTitle) ogTitle.content = 'Humor — Seeker of Archetypes | I Am';
+        if (ogDesc) ogDesc.content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
+        if (metaDesc) metaDesc.content = 'Humor about archetypes and self-discovery: jokes, inner voice moments, and laughing at ourselves. From I Am with a love for irony.';
       } else {
-        document.title = 'Гумор - Шукач Архетипів | Я є';
-        document.querySelector('meta[property="og:title"]').content = 'Гумор - Шукач Архетипів | Я є';
-        document.querySelector('meta[property="og:description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
-        document.querySelector('meta[name="description"]').content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+        document.title = 'Гумор — Шукач Архетипів | Я є';
+        if (ogTitle) ogTitle.content = 'Гумор — Шукач Архетипів | Я є';
+        if (ogDesc) ogDesc.content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
+        if (metaDesc) metaDesc.content = 'Гумор про архетипи та самопізнання: анекдоти, внутрішній голос і сміх із собою. Від Я є з любов’ю до іронії.';
       }
     }
   </script>
 
-  <!--
-  📦 Формат anekdoty.json (UA+EN у кожному записі):
-  [
-    {"id": 1,
-     "text_uk": "— Сину, ким ти хочеш стати, коли виростеш?\n— Самопізнаним.\n— Господи, краще б алкоголіком…",
-     "text_en": "— Son, what do you want to be when you grow up?\n— Self-aware.\n— Oh God, better if you’d just become an alcoholic…",
-     "categories": ["joke"],
-     "rating": 4.6,
-     "date": "2024-11-02"
-    }
-  ]
-  -->
 </body>
 </html>
