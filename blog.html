@@ -296,13 +296,35 @@
       });
     }
 
-    function parseDateSafe(d){
-      // expects YYYY-MM-DD or empty
-      const t = (d || '').trim();
-      if(!t) return null;
-      const ms = Date.parse(t);
-      return Number.isNaN(ms) ? null : new Date(ms);
-    }
+    function parseDateSafe(d) {
+  const t = (d || '').trim();
+  if (!t) return null;
+
+  const parts = t.split('-');
+  if (parts.length !== 3) return null;
+
+  const day = Number(parts[0]);
+  const month = Number(parts[1]);
+  const year = Number(parts[2]);
+
+  if (
+    !Number.isInteger(day) ||
+    !Number.isInteger(month) ||
+    !Number.isInteger(year)
+  ) return null;
+
+  const date = new Date(year, month - 1, day);
+
+  // перевірка, що дата не «перекотилась»
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day
+  ) return null;
+
+  return date;
+}
+
 
     // ---------- Accordion ----------
     function bindAccordion(container){
