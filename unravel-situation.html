@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Розплутувач ситуації V0.5 | Я є</title>
+  <title>Розплутувач ситуації V0.6 | Я є</title>
   <meta name="description" content="Короткий інструмент для первинного розбору складної ситуації: відокрем факти від припущень, побач динаміку, мету та отримай швидку карту ситуації." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://ya-e.in.ua/unravel-situation.html" />
@@ -155,7 +155,7 @@
     }
     @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   
-    /* V0.5: structured diagnostic controls + emotional state */
+    /* V0.6: expanded self-explanatory prompts + emotional state */
     .choice-question{ margin-top:1rem; padding-top:.85rem; border-top:1px solid #eee; }
     .choice-question > p{ margin:.15rem 0 .55rem; font-weight:600; color:#333; }
     .choice-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.55rem; }
@@ -230,25 +230,25 @@
       <div class="container" style="max-width:820px;">
         <div class="intro-note">
           <p><strong><span class="lang-section lang-uk active">Що це?</span><span class="lang-section lang-en">What is this?</span></strong></p>
-          <p class="lang-section lang-uk active">Це не порада і не прогноз. Це мінімальний діагностичний етап: спочатку треба зрозуміти, що саме ми знаємо, чого хочемо і де в картині є прогалини.</p>
-          <p class="lang-section lang-en">This is not advice or a forecast. It is a minimal diagnostic stage: first we clarify what we actually know, what we want, and where the picture has gaps.</p>
+          <p class="lang-section lang-uk active">Це не порада і не прогноз. Це мінімальний діагностичний етап: крок за кроком відділяємо події від пояснень, мету від способу, власний стан від зовнішніх фактів і дивимося, яких даних бракує для наступного рішення.</p>
+          <p class="lang-section lang-en">This is not advice or a forecast. It is a minimal diagnostic stage: step by step we separate events from explanations, the goal from the route, your inner state from external facts, and identify what information is still missing for the next decision.</p>
         </div>
 
         <form id="situationForm" novalidate>
           <div class="stage">
             <h2><span class="lang-section lang-uk active">1. Що відбувається?</span><span class="lang-section lang-en">1. What is happening?</span></h2>
-            <p><span class="lang-section lang-uk active">Опиши ситуацію так, як ти її зараз бачиш. Без потреби писати красиво — головне по суті.</span><span class="lang-section lang-en">Describe the situation as you currently see it. No need to write beautifully — substance matters more.</span></p>
+            <p><span class="lang-section lang-uk active">Коротко опиши, що сталося і що відбувається зараз. Хто або що бере участь? Яка саме частина ситуації тебе турбує або потребує рішення? Поки не пояснюй, чому це сталося — тут потрібна лише загальна картина.</span><span class="lang-section lang-en">Briefly describe what happened and what is happening now. Who or what is involved? Which part of the situation worries you or requires a decision? Do not explain why it happened yet — here we only need the overall picture.</span></p>
             <label for="situation"><span class="lang-section lang-uk active">Ситуація:</span><span class="lang-section lang-en">Situation:</span></label>
-            <textarea id="situation" required placeholder="Що сталося? Хто або що бере участь? / What happened? Who or what is involved?"></textarea>
+            <textarea id="situation" required placeholder="Напр.: що сталося, хто бере участь, у чому зараз проблема або невизначеність? / E.g. what happened, who is involved, and what is the current problem or uncertainty?"></textarea>
           </div>
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">2. Чого ти хочеш?</span><span class="lang-section lang-en">2. What do you want?</span></h2>
-            <p><span class="lang-section lang-uk active">Спробуй описати не конкретний спосіб, а бажаний результат. Один шлях може закритися, а мета — залишитися.</span><span class="lang-section lang-en">Try to describe the desired outcome rather than one specific route. A route may close while the goal remains.</span></p>
+            <p><span class="lang-section lang-uk active">Опиши, який результат ти хочеш отримати, якщо не прив’язуватися до одного конкретного способу. Наприклад, «мати нормальні взаємні стосунки» — це мета, а «щоб саме ця людина повернулася» може бути лише одним із маршрутів до неї. Один шлях може закритися, а мета — залишитися.</span><span class="lang-section lang-en">Describe the result you want without tying it to one specific method. For example, “to have a healthy mutual relationship” is a goal, while “for this particular person to come back” may be only one route toward it. One route can close while the goal remains.</span></p>
             <label for="goal"><span class="lang-section lang-uk active">Бажаний результат:</span><span class="lang-section lang-en">Desired outcome:</span></label>
-            <textarea id="goal" required placeholder="Що має стати інакше? / What should become different?"></textarea>
+            <textarea id="goal" required placeholder="Який стан або результат ти хочеш отримати? Спробуй описати без прив’язки до одного способу. / What outcome or state do you want? Try to state it without tying it to one route."></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Те, що ти написав, — це радше:</span><span class="lang-section lang-en">What you wrote is closer to:</span></p>
+              <p><span class="lang-section lang-uk active">Перевір себе: те, що ти написав вище, описує бажаний кінцевий стан чи вже конкретний спосіб його досягти?</span><span class="lang-section lang-en">Check yourself: does what you wrote above describe the desired end state, or already a specific way of reaching it?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="goalType" value="goal"><span><span class="lang-section lang-uk active">кінцева мета</span><span class="lang-section lang-en">an end goal</span></span></label>
                 <label class="choice"><input type="radio" name="goalType" value="route"><span><span class="lang-section lang-uk active">конкретний спосіб</span><span class="lang-section lang-en">a specific route</span></span></label>
@@ -259,11 +259,11 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">3. Що ти знаєш напевно?</span><span class="lang-section lang-en">3. What do you know for sure?</span></h2>
-            <p><span class="lang-section lang-uk active">Запиши тільки те, що можна назвати даними: події, слова, числа, спостереження, документи, конкретні дії.</span><span class="lang-section lang-en">Write only what can reasonably be treated as data: events, statements, numbers, observations, documents, specific actions.</span></p>
+            <p><span class="lang-section lang-uk active">Запиши тільки те, що можна відносно легко перевірити: конкретні події, слова, повідомлення, числа, документи, спостережувані дії. Не додавай сюди мотиви й пояснення. «Вона не відповіла два дні» — факт. «Вона мене ігнорує, бо образилась» — уже висновок.</span><span class="lang-section lang-en">Write only what can be reasonably checked: specific events, statements, messages, numbers, documents, and observable actions. Do not add motives or explanations here. “She did not reply for two days” is a fact. “She is ignoring me because she is hurt” is already a conclusion.</span></p>
             <label for="facts"><span class="lang-section lang-uk active">Факти / дані:</span><span class="lang-section lang-en">Facts / data:</span></label>
-            <textarea id="facts" placeholder="Що точно відомо? / What is actually known?"></textarea>
+            <textarea id="facts" placeholder="Переліч перевірювані події, слова, числа або дії. Без пояснення мотивів. / List verifiable events, statements, numbers, or actions. Do not explain motives yet."></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Причину того, що відбувається, ти:</span><span class="lang-section lang-en">The cause of what is happening is:</span></p>
+              <p><span class="lang-section lang-uk active">Наскільки причина того, що відбувається, підтверджена даними? Не «мені здається», а чи є конкретні підстави вважати її встановленою.</span><span class="lang-section lang-en">How well is the cause of what is happening supported by actual data? Not “it feels like”, but whether there are concrete grounds to treat the cause as established.</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="causeKnown" value="yes"><span><span class="lang-section lang-uk active">знаю</span><span class="lang-section lang-en">known</span></span></label>
                 <label class="choice"><input type="radio" name="causeKnown" value="partial"><span><span class="lang-section lang-uk active">знаю частково</span><span class="lang-section lang-en">partly known</span></span></label>
@@ -274,11 +274,11 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">4. Що ти лише припускаєш?</span><span class="lang-section lang-en">4. What are you only assuming?</span></h2>
-            <p><span class="lang-section lang-uk active">Причини, мотиви, прогнози, пояснення — усе, що може бути правдоподібним, але не встановленим.</span><span class="lang-section lang-en">Causes, motives, forecasts, explanations — anything plausible but not established.</span></p>
+            <p><span class="lang-section lang-uk active">Тепер окремо випиши те, що ти думаєш про причини, мотиви, наміри або майбутній розвиток, але не можеш підтвердити. Сюди якраз належать формулювання «мабуть», «скоріше за все», «думаю, що», «він/вона зробив це тому що…».</span><span class="lang-section lang-en">Now separately write down what you think about causes, motives, intentions, or future developments but cannot confirm. This is where phrases such as “probably”, “most likely”, “I think that”, or “he/she did this because…” belong.</span></p>
             <label for="assumptions"><span class="lang-section lang-uk active">Припущення / висновки:</span><span class="lang-section lang-en">Assumptions / conclusions:</span></label>
-            <textarea id="assumptions" placeholder="Що ти думаєш, але не можеш підтвердити? / What do you think but cannot confirm?"></textarea>
+            <textarea id="assumptions" placeholder="Які пояснення, мотиви або прогнози здаються правдоподібними, але не підтверджені? / Which explanations, motives, or predictions seem plausible but are not confirmed?"></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Твоя нинішня картина ситуації спирається:</span><span class="lang-section lang-en">Your current picture of the situation rests:</span></p>
+              <p><span class="lang-section lang-uk active">Якщо подивитися на всю твою картину цілком, на чому вона тримається більше: на перевірених даних чи на твоїх тлумаченнях цих даних?</span><span class="lang-section lang-en">Looking at your whole picture, what does it rely on more: verified information or your interpretation of that information?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="basis" value="facts"><span><span class="lang-section lang-uk active">переважно на фактах</span><span class="lang-section lang-en">mostly on facts</span></span></label>
                 <label class="choice"><input type="radio" name="basis" value="mixed"><span><span class="lang-section lang-uk active">і на фактах, і на припущеннях</span><span class="lang-section lang-en">on both facts and assumptions</span></span></label>
@@ -290,10 +290,10 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">5. У якому стані ти зараз дивишся на ситуацію?</span><span class="lang-section lang-en">5. What state are you in while looking at this situation?</span></h2>
-            <p><span class="lang-section lang-uk active">Емоційний стан — теж частина поточної картини. Він не робить твої висновки правильними чи хибними автоматично, але може змінювати увагу, вагу фактів і поле можливих рішень.</span><span class="lang-section lang-en">Your emotional state is part of the current picture too. It does not automatically make your conclusions right or wrong, but it can change attention, the weight given to facts, and the range of options you see.</span></p>
+            <p><span class="lang-section lang-uk active">Зверни увагу не на саму ситуацію, а на себе в ній. Що ти зараз відчуваєш, коли про неї думаєш? Емоція не є помилкою і не робить твої висновки автоматично хибними, але сильний стан може змінювати увагу, вагу фактів і те, які варіанти ти взагалі помічаєш.</span><span class="lang-section lang-en">Shift attention from the situation itself to yourself inside it. What do you feel when you think about it right now? An emotion is not an error and does not automatically make your conclusions false, but a strong state can change your attention, the weight you give to facts, and even which options you notice.</span></p>
 
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Що зараз найближче до твого стану?</span><span class="lang-section lang-en">What is closest to your current state?</span></p>
+              <p><span class="lang-section lang-uk active">Який із варіантів найкраще описує твій домінантний стан саме зараз? Обери найближчий, навіть якщо відчуттів кілька.</span><span class="lang-section lang-en">Which option best describes your dominant state right now? Choose the closest one even if you feel several things at once.</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="emotion" value="calm"><span><span class="lang-section lang-uk active">спокій</span><span class="lang-section lang-en">calm</span></span></label>
                 <label class="choice"><input type="radio" name="emotion" value="anxiety"><span><span class="lang-section lang-uk active">тривога</span><span class="lang-section lang-en">anxiety</span></span></label>
@@ -308,7 +308,7 @@
             </div>
 
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Наскільки сильний цей стан?</span><span class="lang-section lang-en">How strong is this state?</span></p>
+              <p><span class="lang-section lang-uk active">Наскільки сильно цей стан захоплює увагу: він лише фоном, помітно впливає на думки чи майже визначає їх?</span><span class="lang-section lang-en">How strongly does this state occupy your attention: is it only in the background, does it noticeably influence your thoughts, or does it almost dominate them?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="emotionIntensity" value="low"><span><span class="lang-section lang-uk active">слабкий</span><span class="lang-section lang-en">mild</span></span></label>
                 <label class="choice"><input type="radio" name="emotionIntensity" value="medium"><span><span class="lang-section lang-uk active">середній</span><span class="lang-section lang-en">moderate</span></span></label>
@@ -317,7 +317,7 @@
             </div>
 
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Як, на твою думку, цей стан впливає на бачення ситуації?</span><span class="lang-section lang-en">How do you think this state affects how you see the situation?</span></p>
+              <p><span class="lang-section lang-uk active">Як ти сам оцінюєш його вплив: він допомагає зосередитися, майже не змінює картину, чи може змушувати перебільшувати одні дані й недооцінювати інші?</span><span class="lang-section lang-en">How do you assess its influence: does it help you focus, barely change the picture, or might it make you overvalue some information and undervalue other information?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="emotionEffect" value="clearer"><span><span class="lang-section lang-uk active">допомагає бачити ясніше</span><span class="lang-section lang-en">helps me see more clearly</span></span></label>
                 <label class="choice"><input type="radio" name="emotionEffect" value="neutral"><span><span class="lang-section lang-uk active">майже не впливає</span><span class="lang-section lang-en">barely affects it</span></span></label>
@@ -329,11 +329,11 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">6. Що змінилося?</span><span class="lang-section lang-en">6. What has changed?</span></h2>
-            <p><span class="lang-section lang-uk active">Порівняй теперішній стан із попереднім. Нас цікавить не тільки «що є», а й куди все рухається.</span><span class="lang-section lang-en">Compare the current state with the previous one. We care not only about what is, but also about how it is changing.</span></p>
+            <p><span class="lang-section lang-uk active">Порівняй ситуацію зараз із тим, якою вона була раніше. Що стало частішим або рідшим? Що з’явилося, зникло, посилилося чи ослабло? Важливо побачити не одну яскраву подію, а напрямок змін у часі.</span><span class="lang-section lang-en">Compare the situation now with how it was earlier. What became more or less frequent? What appeared, disappeared, intensified, or weakened? Try to see not one vivid event but the direction of change over time.</span></p>
             <label for="changes"><span class="lang-section lang-uk active">Зміни / траєкторія:</span><span class="lang-section lang-en">Changes / trajectory:</span></label>
-            <textarea id="changes" placeholder="Що стало більше, менше, з'явилося або зникло? / What increased, decreased, appeared or disappeared?"></textarea>
+            <textarea id="changes" placeholder="Порівняй хоча б два моменти в часі: що змінилося і в який бік? / Compare at least two points in time: what changed, and in which direction?"></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Якщо дивитися не на одну подію, а на рух у часі:</span><span class="lang-section lang-en">Looking beyond one event and at movement over time:</span></p>
+              <p><span class="lang-section lang-uk active">Якщо відкласти останній епізод і подивитися на кілька подій у часі, який загальний рух ти бачиш?</span><span class="lang-section lang-en">If you set aside the latest episode and look across several events over time, what overall movement do you see?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="trajectory" value="better"><span><span class="lang-section lang-uk active">рухається до бажаного</span><span class="lang-section lang-en">moving toward the desired state</span></span></label>
                 <label class="choice"><input type="radio" name="trajectory" value="worse"><span><span class="lang-section lang-uk active">рухається від бажаного</span><span class="lang-section lang-en">moving away from it</span></span></label>
@@ -346,11 +346,11 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">7. Які ходи ти зараз бачиш?</span><span class="lang-section lang-en">7. What moves do you currently see?</span></h2>
-            <p><span class="lang-section lang-uk active">Не шукай поки найкращий. Просто переліч доступні дії — навіть якщо деякі здаються слабкими або неприємними.</span><span class="lang-section lang-en">Do not choose the best one yet. Just list available actions, even if some seem weak or uncomfortable.</span></p>
+            <p><span class="lang-section lang-uk active">Не обирай поки «правильний» варіант. Просто переліч різні дії, які реально доступні: зробити щось, поговорити, почекати, відмовитися, перевірити інформацію, змінити умови або нічого не робити певний час. Навіть неприємний варіант усе одно є варіантом.</span><span class="lang-section lang-en">Do not choose the “right” option yet. Simply list different actions that are realistically available: act, talk, wait, refuse, verify information, change conditions, or deliberately do nothing for a while. An unpleasant option is still an option.</span></p>
             <label for="options"><span class="lang-section lang-uk active">Варіанти дій:</span><span class="lang-section lang-en">Possible actions:</span></label>
-            <textarea id="options" placeholder="Що реально можна зробити? / What can realistically be done?"></textarea>
+            <textarea id="options" placeholder="Переліч кілька різних дій, навіть якщо частина з них тобі не подобається. / List several different actions, even if you dislike some of them."></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Скільки різних реальних шляхів до мети ти бачиш?</span><span class="lang-section lang-en">How many genuinely different routes to the goal do you see?</span></p>
+              <p><span class="lang-section lang-uk active">Після цього списку перевір: скільки справді різних маршрутів до бажаного результату в тебе є, а не скільки варіацій одного й того самого способу.</span><span class="lang-section lang-en">After making the list, check how many genuinely different routes toward the desired outcome you have, rather than several variations of the same route.</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="routes" value="many"><span><span class="lang-section lang-uk active">два або більше</span><span class="lang-section lang-en">two or more</span></span></label>
                 <label class="choice"><input type="radio" name="routes" value="one"><span><span class="lang-section lang-uk active">лише один</span><span class="lang-section lang-en">only one</span></span></label>
@@ -359,7 +359,7 @@
               </div>
             </div>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Наскільки результат залежить від твоїх дій?</span><span class="lang-section lang-en">How much does the result depend on your actions?</span></p>
+              <p><span class="lang-section lang-uk active">Відділи те, що ти можеш зробити сам, від того, що залежить від інших людей, випадку або зовнішніх умов. Наскільки саме кінцевий результат перебуває у твоїй зоні впливу?</span><span class="lang-section lang-en">Separate what you can do yourself from what depends on other people, chance, or external conditions. How much is the final outcome actually within your sphere of influence?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="control" value="high"><span><span class="lang-section lang-uk active">переважно від мене</span><span class="lang-section lang-en">mostly on me</span></span></label>
                 <label class="choice"><input type="radio" name="control" value="shared"><span><span class="lang-section lang-uk active">частково від мене</span><span class="lang-section lang-en">partly on me</span></span></label>
@@ -370,11 +370,11 @@
 
           <div class="stage">
             <h2><span class="lang-section lang-uk active">8. Яких даних бракує?</span><span class="lang-section lang-en">8. What information is missing?</span></h2>
-            <p><span class="lang-section lang-uk active">Яка невідомість зараз найбільше впливає на рішення? І чи можна зробити невелику дію, яка дасть нові дані?</span><span class="lang-section lang-en">Which unknown matters most to the decision? Can you take a small action that would produce new information?</span></p>
+            <p><span class="lang-section lang-uk active">Подумай, яке саме невідоме зараз найбільше заважає рухатися далі. Чого ти не знаєш про причини, іншу сторону, наслідки або альтернативи? Потім окремо подумай, чи можна отримати ці дані невеликою дією замість довгого здогадування.</span><span class="lang-section lang-en">Think about which unknown currently blocks the next step most. What do you not know about causes, another party, consequences, or alternatives? Then ask whether a small action could produce that information instead of prolonged guessing.</span></p>
             <label for="missingText"><span class="lang-section lang-uk active">Критично відсутні дані:</span><span class="lang-section lang-en">Critical missing information:</span></label>
-            <textarea id="missingText" placeholder="Що треба дізнатися або перевірити? / What needs to be learned or checked?"></textarea>
+            <textarea id="missingText" placeholder="Яке невідоме найбільше впливає на рішення? Що саме треба дізнатися, побачити або перевірити? / Which unknown matters most? What exactly needs to be learned, observed, or checked?"></textarea>
             <div class="choice-question">
-              <p><span class="lang-section lang-uk active">Чого найбільше бракує для наступного рішення?</span><span class="lang-section lang-en">What is most missing for the next decision?</span></p>
+              <p><span class="lang-section lang-uk active">Якщо вибрати одну головну прогалину, до якого типу вона найближча?</span><span class="lang-section lang-en">If you choose one main gap, which type is it closest to?</span></p>
               <div class="choice-grid">
                 <label class="choice"><input type="radio" name="missingType" value="cause"><span><span class="lang-section lang-uk active">розуміння причин</span><span class="lang-section lang-en">understanding causes</span></span></label>
                 <label class="choice"><input type="radio" name="missingType" value="other"><span><span class="lang-section lang-uk active">даних про іншу сторону</span><span class="lang-section lang-en">data about another party</span></span></label>
@@ -385,7 +385,7 @@
               </div>
             </div>
             <label for="probe"><span class="lang-section lang-uk active">Мала перевірочна дія:</span><span class="lang-section lang-en">Small diagnostic action:</span></label>
-            <textarea id="probe" placeholder="Яка дія може не лише щось змінити, а й дати нові дані? / What action could both change something and provide new data?"></textarea>
+            <textarea id="probe" placeholder="Який невеликий, бажано оборотний крок дасть нові дані навіть якщо не вирішить проблему одразу? / What small, preferably reversible step would produce new information even if it does not solve the problem immediately?"></textarea>
           </div>
 
           <div class="actions">
@@ -401,7 +401,7 @@
           <p><span class="lang-section lang-uk active">Якщо цей розбір щось підсвітив у твоїй ситуації, залиш коротку відповідь. Сам текст ситуації нікуди не надсилається.</span><span class="lang-section lang-en">If this first pass revealed something new, leave a short response. The text of your situation is not sent anywhere.</span></p>
           <iframe
             class="feedback-frame"
-            src="https://tally.so/embed/rjXaXX?hideTitle=1&alignLeft=1&transparentBackground=1&version=V0.5"
+            src="https://tally.so/embed/rjXaXX?hideTitle=1&alignLeft=1&transparentBackground=1&version=V0.6"
             title="Розплутувач ситуації — зворотний зв’язок"
             loading="lazy"
             allow="clipboard-write"
