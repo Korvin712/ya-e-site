@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Розплутувач ситуації V0.4 | Я є</title>
+  <meta name="description" content="Короткий інструмент для первинного розбору складної ситуації: відокрем факти від припущень, побач динаміку, мету та отримай швидку карту ситуації." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ya-e.in.ua/unravel-situation.html" />
+  <meta property="og:title" content="Розплутувач ситуації | Я є" />
+  <meta property="og:description" content="Короткий інструмент для первинного розбору складної ситуації." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/ya-e-og.jpg" />
+  <meta property="og:locale" content="uk_UA" />
+  <link rel="icon" href="images/favicon-v2.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --primary-color:#4b0082;
+      --secondary-color:#800080;
+      --button-bg:#4c1d95;
+      --button-hover:#5b21b6;
+      --gray-50:#f9fafb;
+      --white:#ffffff;
+      --text:#111;
+      --muted:#5f6368;
+      --link-hover:#FFD700;
+      --lang-toggle-bg:#ffffff;
+      --lang-toggle-text:#000000;
+      --lang-toggle-border:#ff0000;
+      --soft:#f3e8ff;
+      --line:#e5e7eb;
+    }
+
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; padding:0; line-height:1.6; color:var(--text); background:var(--white);
+      font-family:'Lora',serif; display:flex; flex-direction:column;
+    }
+    .container{ max-width:1200px; margin:0 auto; padding:0 1rem; }
+    .page-wrap{ flex:1; }
+    .text-center{ text-align:center; }
+    .py-20{ padding:5rem 0; }
+    .py-16{ padding:4rem 0; }
+    .mb-4{ margin-bottom:1rem; }
+    .text-5xl{ font-size:3rem; }
+    .text-2xl{ font-size:1.5rem; }
+    .text-lg{ font-size:1.125rem; }
+    .font-bold{ font-weight:700; }
+    .font-semibold{ font-weight:600; }
+    .bg-gray-50{ background-color:var(--gray-50); }
+    .bg-gradient-to-r{ background:linear-gradient(to right,var(--primary-color),var(--secondary-color)); }
+
+    nav{
+      background:linear-gradient(to right,var(--primary-color),var(--secondary-color));
+      color:#fff; position:sticky; top:0; z-index:10;
+    }
+    nav .container{ display:flex; align-items:center; justify-content:space-between; padding:1rem; }
+    .logo-link{ display:flex; align-items:center; gap:.5rem; color:#fff; text-decoration:none; font-weight:700; font-size:1.5rem; }
+    .logo-img{ width:32px; height:32px; }
+    .menu-toggle{ display:none; font-size:1.5rem; background:none; border:none; color:#fff; cursor:pointer; }
+    #primary-nav{ list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
+    #primary-nav a{ color:#fff; text-decoration:none; padding:.5rem; display:block; font-size:.9375rem; transition:transform .2s ease,color .2s ease; }
+    #primary-nav a:hover,#primary-nav a:focus{ color:var(--link-hover); transform:scale(1.03); }
+    #primary-nav a.active,#primary-nav a[aria-current="page"]{ color:var(--link-hover); text-decoration:underline; }
+    .lang-toggle{ cursor:pointer; font-weight:700; color:var(--lang-toggle-text); background:var(--lang-toggle-bg); border:2px solid var(--lang-toggle-border); padding:.5rem 1rem; border-radius:9999px; font-size:1.125rem; transition:background-color .3s ease, transform .2s ease; margin-left:1rem; }
+    .lang-toggle:hover,.lang-toggle:focus{ background:#e0e0e0; transform:scale(1.05); }
+    .lang-section{ display:none; }
+    .lang-section.active{ display:inline; }
+
+    .hero h1{ color:#fff; text-shadow:0 2px 4px rgba(0,0,0,.3); }
+    .hero .subtitle{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.25); max-width:68ch; margin:0 auto; }
+
+    .intro-note{
+      background:var(--soft); border-left:5px solid var(--secondary-color); border-radius:10px;
+      padding:1rem 1.25rem; margin-bottom:1.5rem;
+    }
+    .intro-note p{ margin:.35rem 0; }
+
+    .stage{
+      background:#fff; padding:1.7rem; margin-bottom:1.25rem; border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08); position:relative; overflow:hidden;
+    }
+    .stage::before{ content:''; position:absolute; left:0; top:0; width:4px; height:100%; background:var(--secondary-color); }
+    .stage h2{ color:var(--primary-color); font-size:1.35rem; margin:0 0 .65rem 0; font-weight:600; }
+    .stage p{ margin:.35rem 0 1rem; color:#333; }
+    label{ display:block; font-weight:600; margin:.6rem 0; color:#333; }
+    textarea{
+      width:100%; padding:.8rem; border:1px solid #d1d5db; border-radius:7px; font-size:1rem;
+      background:#f9fafb; transition:border-color .2s ease; resize:vertical; min-height:105px; font-family:inherit;
+    }
+    textarea:focus{ outline:none; border-color:var(--primary-color); }
+    .hint{ font-size:.92rem; color:var(--muted); margin-top:.45rem; }
+
+    .actions{ display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem; }
+    button.primary, a.primary-link, button.secondary{
+      padding:.9rem 1.6rem; border-radius:8px; font-size:1rem; cursor:pointer; text-decoration:none;
+      font-family:inherit; transition:background .2s ease, transform .2s ease, border-color .2s ease;
+    }
+    button.primary, a.primary-link{ background:var(--button-bg); color:#fff; border:none; }
+    button.primary:hover, a.primary-link:hover{ background:var(--button-hover); transform:translateY(-2px); }
+    button.secondary{ background:#fff; color:var(--primary-color); border:1px solid var(--primary-color); }
+    button.secondary:hover{ background:#faf5ff; transform:translateY(-2px); }
+
+    .output{
+      background:#fff; padding:2rem; border-radius:12px; border-left:5px solid var(--secondary-color);
+      margin-top:2rem; display:none; box-shadow:0 4px 12px rgba(0,0,0,.06);
+    }
+    .output h2{ color:var(--primary-color); margin:0 0 .75rem 0; font-size:1.6rem; }
+    .output-lead{ color:#333; margin-bottom:1.2rem; }
+    .output-section{ padding:1rem 0; border-top:1px solid var(--line); }
+    .output-section:first-of-type{ border-top:none; }
+    .output-section h3{ color:var(--secondary-color); font-size:1.15rem; margin:.15rem 0 .45rem; }
+    .output-section p{ margin:.25rem 0; white-space:pre-wrap; }
+    .next-step{ background:#fef3c7; padding:1rem 1.1rem; border-radius:8px; margin-top:1rem; }
+    .next-step strong{ color:#7c2d12; }
+    .privacy-note{ margin-top:1rem; font-size:.9rem; color:var(--muted); text-align:center; }
+
+    .feedback-wrap{
+      display:none; margin-top:1.5rem; background:#fff; padding:1.5rem; border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.06); border-left:5px solid var(--secondary-color);
+    }
+    .feedback-wrap h2{ color:var(--primary-color); margin:0 0 .4rem; font-size:1.35rem; }
+    .feedback-wrap p{ margin:.25rem 0 1rem; color:#333; }
+    .feedback-frame{ width:100%; min-height:430px; border:0; display:block; }
+
+    footer{ background:var(--primary-color); color:#fff; text-align:center; padding:1.5rem 1rem; }
+    footer a{ color:var(--link-hover); text-decoration:underline; }
+    .footer-note{ font-size:.875rem; margin-top:.5rem; }
+
+    @media (min-width:768px){ .md\:text-6xl{ font-size:3.75rem; } }
+    @media (max-width:768px){
+      .menu-toggle{ display:inline-block; }
+      #primary-nav{ position:absolute; left:0; top:100%; width:100%; background:linear-gradient(to right,var(--primary-color),var(--secondary-color)); flex-direction:column; gap:0; padding:.75rem 1rem; display:none; box-shadow:0 4px 8px rgba(0,0,0,.2); }
+      #primary-nav.active{ display:flex; }
+      #primary-nav li + li{ margin-top:.25rem; }
+      nav .container{ flex-wrap:wrap; gap:.5rem; }
+      .lang-toggle{ font-size:1rem; padding:.4rem .8rem; }
+      .py-20{ padding:1.7rem 0; }
+      .py-16{ padding:1.35rem 0; }
+      .text-5xl{ font-size:1.85rem; }
+      .md\:text-6xl{ font-size:2.1rem; }
+      .text-lg{ font-size:1rem; }
+    }
+    @media (max-width:480px){
+      .logo-img{ width:24px; height:24px; }
+      .logo-link{ font-size:1rem; }
+      .lang-toggle{ font-size:.95rem; }
+      .stage{ padding:1.35rem; }
+      .output{ padding:1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+  
+    /* V0.3: structured diagnostic controls */
+    .choice-question{ margin-top:1rem; padding-top:.85rem; border-top:1px solid #eee; }
+    .choice-question > p{ margin:.15rem 0 .55rem; font-weight:600; color:#333; }
+    .choice-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:.55rem; }
+    .choice{
+      display:flex; align-items:flex-start; gap:.45rem; padding:.65rem .75rem;
+      border:1px solid #d1d5db; border-radius:8px; background:#f9fafb; cursor:pointer;
+      font-weight:400; margin:0;
+    }
+    .choice:hover{ border-color:var(--primary-color); }
+    .choice input{ margin-top:.3rem; flex:0 0 auto; }
+    .insight{
+      padding:1rem; border-radius:8px; margin:.8rem 0; background:#f3f4f6;
+      border-left:4px solid #6b7280;
+    }
+    .insight.warn{ background:#fffbeb; border-left-color:#d97706; }
+    .insight.good{ background:#ecfdf5; border-left-color:#059669; }
+    .insight.info{ background:#eff6ff; border-left-color:#2563eb; }
+    .insight h3{ margin:.05rem 0 .35rem; font-size:1.08rem; }
+    .next-step{ background:#f3e8ff; padding:1rem; border-radius:8px; margin-top:1rem; }
+    .next-step h3{ color:var(--primary-color); margin:.05rem 0 .4rem; }
+    .deep-cta{ background:#111827; color:#fff; padding:1rem; border-radius:8px; margin-top:1.2rem; }
+    .deep-cta a{ color:#FFD700; }
+
+  </style>
+</head>
+<body>
+  <nav role="navigation">
+    <div class="container">
+      <a href="index.html" class="logo-link" aria-label="Перейти на головну сторінку / Go to homepage">
+        <img src="images/favicon-v2.png" alt="Логотип Я є / I Am logo" class="logo-img" width="32" height="32" />
+        <span class="logo-text">
+          <span class="lang-section lang-uk active" lang="uk">Я є</span>
+          <span class="lang-section lang-en" lang="en">I Am</span>
+        </span>
+      </a>
+      <div style="display:flex; align-items:center; gap:.5rem; margin-left:auto;">
+        <button class="menu-toggle" aria-label="Переключити меню навігації / Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+        <button type="button" class="lang-toggle" aria-label="Переключити мову / Toggle language">UA / EN</button>
+      </div>
+      <ul id="primary-nav">
+        <li><a href="index.html"><span class="lang-section lang-uk active">Головна</span><span class="lang-section lang-en">Home</span></a></li>
+        <li><a href="archetypes.html"><span class="lang-section lang-uk active">Про архетипи</span><span class="lang-section lang-en">About Archetypes</span></a></li>
+        <li><a href="about.html"><span class="lang-section lang-uk active">Про мене</span><span class="lang-section lang-en">About Me</span></a></li>
+        <li><a href="tools.html"><span class="lang-section lang-uk active">Інструменти</span><span class="lang-section lang-en">Tools</span></a></li>
+        <li><a href="unravel-situation.html"><span class="lang-section lang-uk active">Розплутувач ситуації</span><span class="lang-section lang-en">Situation Unraveler</span></a></li>
+        <li><a href="map-awareness-test-v2.html"><span class="lang-section lang-uk active">Мапа усвідомлення — Тест V2</span><span class="lang-section lang-en">Map of Awareness — Test V2</span></a></li>
+        <li><a href="mind-exploration.html"><span class="lang-section lang-uk active">Мисленне Дослідження</span><span class="lang-section lang-en">Mental Exploration</span></a></li>
+        <li><a href="unravel-anxiety.html"><span class="lang-section lang-uk active">Розплутування Тривоги</span><span class="lang-section lang-en">Anxiety Knot Unraveler</span></a></li>
+        <li><a href="blog.html"><span class="lang-section lang-uk active">Як жити далі?</span><span class="lang-section lang-en">How to Live On?</span></a></li>
+        <li><a href="humor.html"><span class="lang-section lang-uk active">Гумор</span><span class="lang-section lang-en">Humor</span></a></li>
+        <li><a href="price.html"><span class="lang-section lang-uk active">Прайс</span><span class="lang-section lang-en">Pricing</span></a></li>
+        <li><a href="contact.html"><span class="lang-section lang-uk active">Контакти</span><span class="lang-section lang-en">Contact</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+    <section class="bg-gradient-to-r py-20 text-center hero">
+      <div class="container">
+        <h1 class="text-5xl md:text-6xl font-bold mb-4">
+          <span class="lang-section lang-uk active" lang="uk">Розплутувач ситуації</span>
+          <span class="lang-section lang-en" lang="en">Situation Unraveler</span>
+        </h1>
+        <p class="text-lg subtitle">
+          <span class="lang-section lang-uk active" lang="uk">Короткий перший розбір складної ситуації. Не шукаємо «правильну відповідь» — наводимо лад у даних, відокремлюємо факти від припущень і дивимося, що варто перевірити далі.</span>
+          <span class="lang-section lang-en" lang="en">A short first pass through a difficult situation. We do not hunt for a “correct answer” — we organize the data, separate facts from assumptions, and identify what is worth checking next.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="container" style="max-width:820px;">
+        <div class="intro-note">
+          <p><strong><span class="lang-section lang-uk active">Що це?</span><span class="lang-section lang-en">What is this?</span></strong></p>
+          <p class="lang-section lang-uk active">Це не порада і не прогноз. Це мінімальний діагностичний етап: спочатку треба зрозуміти, що саме ми знаємо, чого хочемо і де в картині є прогалини.</p>
+          <p class="lang-section lang-en">This is not advice or a forecast. It is a minimal diagnostic stage: first we clarify what we actually know, what we want, and where the picture has gaps.</p>
+        </div>
+
+        <form id="situationForm" novalidate>
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">1. Що відбувається?</span><span class="lang-section lang-en">1. What is happening?</span></h2>
+            <p><span class="lang-section lang-uk active">Опиши ситуацію так, як ти її зараз бачиш. Без потреби писати красиво — головне по суті.</span><span class="lang-section lang-en">Describe the situation as you currently see it. No need to write beautifully — substance matters more.</span></p>
+            <label for="situation"><span class="lang-section lang-uk active">Ситуація:</span><span class="lang-section lang-en">Situation:</span></label>
+            <textarea id="situation" required placeholder="Що сталося? Хто або що бере участь? / What happened? Who or what is involved?"></textarea>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">2. Чого ти хочеш?</span><span class="lang-section lang-en">2. What do you want?</span></h2>
+            <p><span class="lang-section lang-uk active">Спробуй описати не конкретний спосіб, а бажаний результат. Один шлях може закритися, а мета — залишитися.</span><span class="lang-section lang-en">Try to describe the desired outcome rather than one specific route. A route may close while the goal remains.</span></p>
+            <label for="goal"><span class="lang-section lang-uk active">Бажаний результат:</span><span class="lang-section lang-en">Desired outcome:</span></label>
+            <textarea id="goal" required placeholder="Що має стати інакше? / What should become different?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Те, що ти написав, — це радше:</span><span class="lang-section lang-en">What you wrote is closer to:</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="goalType" value="goal"><span><span class="lang-section lang-uk active">кінцева мета</span><span class="lang-section lang-en">an end goal</span></span></label>
+                <label class="choice"><input type="radio" name="goalType" value="route"><span><span class="lang-section lang-uk active">конкретний спосіб</span><span class="lang-section lang-en">a specific route</span></span></label>
+                <label class="choice"><input type="radio" name="goalType" value="unknown"><span><span class="lang-section lang-uk active">не впевнений</span><span class="lang-section lang-en">not sure</span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">3. Що ти знаєш напевно?</span><span class="lang-section lang-en">3. What do you know for sure?</span></h2>
+            <p><span class="lang-section lang-uk active">Запиши тільки те, що можна назвати даними: події, слова, числа, спостереження, документи, конкретні дії.</span><span class="lang-section lang-en">Write only what can reasonably be treated as data: events, statements, numbers, observations, documents, specific actions.</span></p>
+            <label for="facts"><span class="lang-section lang-uk active">Факти / дані:</span><span class="lang-section lang-en">Facts / data:</span></label>
+            <textarea id="facts" placeholder="Що точно відомо? / What is actually known?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Причину того, що відбувається, ти:</span><span class="lang-section lang-en">The cause of what is happening is:</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="causeKnown" value="yes"><span><span class="lang-section lang-uk active">знаю</span><span class="lang-section lang-en">known</span></span></label>
+                <label class="choice"><input type="radio" name="causeKnown" value="partial"><span><span class="lang-section lang-uk active">знаю частково</span><span class="lang-section lang-en">partly known</span></span></label>
+                <label class="choice"><input type="radio" name="causeKnown" value="no"><span><span class="lang-section lang-uk active">не знаю</span><span class="lang-section lang-en">unknown</span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">4. Що ти лише припускаєш?</span><span class="lang-section lang-en">4. What are you only assuming?</span></h2>
+            <p><span class="lang-section lang-uk active">Причини, мотиви, прогнози, пояснення — усе, що може бути правдоподібним, але не встановленим.</span><span class="lang-section lang-en">Causes, motives, forecasts, explanations — anything plausible but not established.</span></p>
+            <label for="assumptions"><span class="lang-section lang-uk active">Припущення / висновки:</span><span class="lang-section lang-en">Assumptions / conclusions:</span></label>
+            <textarea id="assumptions" placeholder="Що ти думаєш, але не можеш підтвердити? / What do you think but cannot confirm?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Твоя нинішня картина ситуації спирається:</span><span class="lang-section lang-en">Your current picture of the situation rests:</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="basis" value="facts"><span><span class="lang-section lang-uk active">переважно на фактах</span><span class="lang-section lang-en">mostly on facts</span></span></label>
+                <label class="choice"><input type="radio" name="basis" value="mixed"><span><span class="lang-section lang-uk active">і на фактах, і на припущеннях</span><span class="lang-section lang-en">on both facts and assumptions</span></span></label>
+                <label class="choice"><input type="radio" name="basis" value="assumptions"><span><span class="lang-section lang-uk active">переважно на припущеннях</span><span class="lang-section lang-en">mostly on assumptions</span></span></label>
+                <label class="choice"><input type="radio" name="basis" value="unknown"><span><span class="lang-section lang-uk active">важко сказати</span><span class="lang-section lang-en">hard to tell</span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">5. Що змінилося?</span><span class="lang-section lang-en">5. What has changed?</span></h2>
+            <p><span class="lang-section lang-uk active">Порівняй теперішній стан із попереднім. Нас цікавить не тільки «що є», а й куди все рухається.</span><span class="lang-section lang-en">Compare the current state with the previous one. We care not only about what is, but also about how it is changing.</span></p>
+            <label for="changes"><span class="lang-section lang-uk active">Зміни / траєкторія:</span><span class="lang-section lang-en">Changes / trajectory:</span></label>
+            <textarea id="changes" placeholder="Що стало більше, менше, з'явилося або зникло? / What increased, decreased, appeared or disappeared?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Якщо дивитися не на одну подію, а на рух у часі:</span><span class="lang-section lang-en">Looking beyond one event and at movement over time:</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="trajectory" value="better"><span><span class="lang-section lang-uk active">рухається до бажаного</span><span class="lang-section lang-en">moving toward the desired state</span></span></label>
+                <label class="choice"><input type="radio" name="trajectory" value="worse"><span><span class="lang-section lang-uk active">рухається від бажаного</span><span class="lang-section lang-en">moving away from it</span></span></label>
+                <label class="choice"><input type="radio" name="trajectory" value="oscillates"><span><span class="lang-section lang-uk active">коливається</span><span class="lang-section lang-en">oscillating</span></span></label>
+                <label class="choice"><input type="radio" name="trajectory" value="static"><span><span class="lang-section lang-uk active">майже не змінюється</span><span class="lang-section lang-en">mostly unchanged</span></span></label>
+                <label class="choice"><input type="radio" name="trajectory" value="unknown"><span><span class="lang-section lang-uk active">даних недостатньо</span><span class="lang-section lang-en">not enough data</span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">6. Які ходи ти зараз бачиш?</span><span class="lang-section lang-en">6. What moves do you currently see?</span></h2>
+            <p><span class="lang-section lang-uk active">Не шукай поки найкращий. Просто переліч доступні дії — навіть якщо деякі здаються слабкими або неприємними.</span><span class="lang-section lang-en">Do not choose the best one yet. Just list available actions, even if some seem weak or uncomfortable.</span></p>
+            <label for="options"><span class="lang-section lang-uk active">Варіанти дій:</span><span class="lang-section lang-en">Possible actions:</span></label>
+            <textarea id="options" placeholder="Що реально можна зробити? / What can realistically be done?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Скільки різних реальних шляхів до мети ти бачиш?</span><span class="lang-section lang-en">How many genuinely different routes to the goal do you see?</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="routes" value="many"><span><span class="lang-section lang-uk active">два або більше</span><span class="lang-section lang-en">two or more</span></span></label>
+                <label class="choice"><input type="radio" name="routes" value="one"><span><span class="lang-section lang-uk active">лише один</span><span class="lang-section lang-en">only one</span></span></label>
+                <label class="choice"><input type="radio" name="routes" value="none"><span><span class="lang-section lang-uk active">жодного</span><span class="lang-section lang-en">none</span></span></label>
+                <label class="choice"><input type="radio" name="routes" value="notsearched"><span><span class="lang-section lang-uk active">ще не шукав</span><span class="lang-section lang-en">I have not looked yet</span></span></label>
+              </div>
+            </div>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Наскільки результат залежить від твоїх дій?</span><span class="lang-section lang-en">How much does the result depend on your actions?</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="control" value="high"><span><span class="lang-section lang-uk active">переважно від мене</span><span class="lang-section lang-en">mostly on me</span></span></label>
+                <label class="choice"><input type="radio" name="control" value="shared"><span><span class="lang-section lang-uk active">частково від мене</span><span class="lang-section lang-en">partly on me</span></span></label>
+                <label class="choice"><input type="radio" name="control" value="low"><span><span class="lang-section lang-uk active">переважно від інших / обставин</span><span class="lang-section lang-en">mostly on others / circumstances</span></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="stage">
+            <h2><span class="lang-section lang-uk active">7. Яких даних бракує?</span><span class="lang-section lang-en">7. What information is missing?</span></h2>
+            <p><span class="lang-section lang-uk active">Яка невідомість зараз найбільше впливає на рішення? І чи можна зробити невелику дію, яка дасть нові дані?</span><span class="lang-section lang-en">Which unknown matters most to the decision? Can you take a small action that would produce new information?</span></p>
+            <label for="missingText"><span class="lang-section lang-uk active">Критично відсутні дані:</span><span class="lang-section lang-en">Critical missing information:</span></label>
+            <textarea id="missingText" placeholder="Що треба дізнатися або перевірити? / What needs to be learned or checked?"></textarea>
+            <div class="choice-question">
+              <p><span class="lang-section lang-uk active">Чого найбільше бракує для наступного рішення?</span><span class="lang-section lang-en">What is most missing for the next decision?</span></p>
+              <div class="choice-grid">
+                <label class="choice"><input type="radio" name="missingType" value="cause"><span><span class="lang-section lang-uk active">розуміння причин</span><span class="lang-section lang-en">understanding causes</span></span></label>
+                <label class="choice"><input type="radio" name="missingType" value="other"><span><span class="lang-section lang-uk active">даних про іншу сторону</span><span class="lang-section lang-en">data about another party</span></span></label>
+                <label class="choice"><input type="radio" name="missingType" value="consequence"><span><span class="lang-section lang-uk active">розуміння наслідків дії</span><span class="lang-section lang-en">understanding consequences</span></span></label>
+                <label class="choice"><input type="radio" name="missingType" value="alternatives"><span><span class="lang-section lang-uk active">альтернативних варіантів</span><span class="lang-section lang-en">alternative options</span></span></label>
+                <label class="choice"><input type="radio" name="missingType" value="none"><span><span class="lang-section lang-uk active">здається, даних достатньо</span><span class="lang-section lang-en">the data seem sufficient</span></span></label>
+                <label class="choice"><input type="radio" name="missingType" value="unknown"><span><span class="lang-section lang-uk active">не знаю</span><span class="lang-section lang-en">I do not know</span></span></label>
+              </div>
+            </div>
+            <label for="probe"><span class="lang-section lang-uk active">Мала перевірочна дія:</span><span class="lang-section lang-en">Small diagnostic action:</span></label>
+            <textarea id="probe" placeholder="Яка дія може не лише щось змінити, а й дати нові дані? / What action could both change something and provide new data?"></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="primary" id="unravelBtn"><span class="lang-section lang-uk active">Побудувати швидку карту</span><span class="lang-section lang-en">Build a quick map</span></button>
+            <button type="reset" class="secondary" id="resetBtn"><span class="lang-section lang-uk active">Очистити</span><span class="lang-section lang-en">Clear</span></button>
+          </div>
+        </form>
+
+        <div class="output" id="output"></div>
+
+        <section class="feedback-wrap" id="feedbackWrap" aria-labelledby="feedbackTitle">
+          <h2 id="feedbackTitle"><span class="lang-section lang-uk active">Короткий зворотний зв’язок</span><span class="lang-section lang-en">Quick feedback</span></h2>
+          <p><span class="lang-section lang-uk active">Якщо цей розбір щось підсвітив у твоїй ситуації, залиш коротку відповідь. Сам текст ситуації нікуди не надсилається.</span><span class="lang-section lang-en">If this first pass revealed something new, leave a short response. The text of your situation is not sent anywhere.</span></p>
+          <iframe
+            class="feedback-frame"
+            src="https://tally.so/embed/rjXaXX?hideTitle=1&alignLeft=1&transparentBackground=1&version=V0.4"
+            title="Розплутувач ситуації — зворотний зв’язок"
+            loading="lazy"
+            allow="clipboard-write"
+          ></iframe>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><span class="lang-section lang-uk active">© 2026 Я є. Усі права захищено.</span><span class="lang-section lang-en">© 2026 I Am. All rights reserved.</span></p>
+      <p class="footer-note"><span class="lang-section lang-uk active">Перший етап розбору складної ситуації. Не замінює професійну юридичну, фінансову чи медичну консультацію.</span><span class="lang-section lang-en">A first-pass tool for difficult situations. It does not replace professional legal, financial, or medical advice.</span></p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const $ = (s,r=document)=>r.querySelector(s);
+      const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+      const SELECTORS = { nav:'#primary-nav', menuBtn:'.menu-toggle', langBtn:'.lang-toggle', output:'#output', feedback:'#feedbackWrap', unravelBtn:'#unravelBtn', resetBtn:'#resetBtn' };
+
+      const TITLES = { uk:'Розплутувач ситуації | Я є', en:'Situation Unraveler | I Am' };
+      const DESCS = { uk:'Короткий інструмент для первинного розбору складної ситуації: факти, припущення, динаміка, мета та наступний крок.', en:'A short tool for a first-pass analysis of a difficult situation: facts, assumptions, dynamics, goal and next step.' };
+
+      function updateHead(lang){
+        document.title = TITLES[lang];
+        const desc = document.querySelector('meta[name="description"]');
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if(desc) desc.content = DESCS[lang];
+        if(ogTitle) ogTitle.content = TITLES[lang];
+        if(ogDesc) ogDesc.content = DESCS[lang];
+      }
+
+      function applyLang(lang){
+        $$('.lang-section').forEach(el=>el.classList.remove('active'));
+        $$(`.lang-${lang}`).forEach(el=>el.classList.add('active'));
+        document.documentElement.lang = lang;
+        const btn = $(SELECTORS.langBtn);
+        if(btn) btn.textContent = lang === 'uk' ? 'UA / EN' : 'EN / UA';
+        updateHead(lang);
+        try{ localStorage.setItem('lang', lang); }catch(e){}
+      }
+
+      function initLang(){
+        let saved = 'uk';
+        try{ saved = localStorage.getItem('lang') || 'uk'; }catch(e){}
+        applyLang(saved);
+        $(SELECTORS.langBtn)?.addEventListener('click', ()=>{
+          const now = document.documentElement.lang || 'uk';
+          applyLang(now === 'uk' ? 'en' : 'uk');
+        });
+      }
+
+      function initMenu(){
+        const nav = $(SELECTORS.nav);
+        const btn = $(SELECTORS.menuBtn);
+        if(!nav || !btn) return;
+        function open(){ nav.classList.add('active'); btn.setAttribute('aria-expanded','true'); btn.textContent='✕'; document.addEventListener('click', outside, true); document.addEventListener('keydown', esc); }
+        function close(){ nav.classList.remove('active'); btn.setAttribute('aria-expanded','false'); btn.textContent='☰'; document.removeEventListener('click', outside, true); document.removeEventListener('keydown', esc); }
+        function outside(e){ if(nav.contains(e.target) || btn.contains(e.target)) return; close(); }
+        function esc(e){ if(e.key==='Escape') close(); }
+        btn.addEventListener('click', ()=>nav.classList.contains('active') ? close() : open());
+        const current = window.location.pathname.split('/').pop() || 'index.html';
+        nav.querySelectorAll('a').forEach(a=>{ if(a.getAttribute('href')===current){ a.classList.add('active'); a.setAttribute('aria-current','page'); } });
+      }
+
+      function htmlEsc(str){ return (str || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+      function val(id){ return ($('#'+id)?.value || '').trim(); }
+      function displayText(id, fallback){ return htmlEsc(val(id) || fallback); }
+
+      function plainSummary(lang){
+        const uk = lang === 'uk';
+        const n = uk ? 'Не вказано' : 'Not specified';
+        const labels = uk ? {
+          title:'РОЗПЛУТУВАЧ СИТУАЦІЇ — ПЕРШИЙ РОЗБІР',
+          situation:'1. Ситуація', goal:'2. Бажаний результат', facts:'3. Факти / дані', assumptions:'4. Припущення / висновки', changes:'5. Зміни / траєкторія', options:'6. Варіанти дій', missing:'7. Критично відсутні дані', probe:'8. Мала перевірочна дія'
+        } : {
+          title:'SITUATION UNRAVELER — FIRST PASS',
+          situation:'1. Situation', goal:'2. Desired outcome', facts:'3. Facts / data', assumptions:'4. Assumptions / conclusions', changes:'5. Changes / trajectory', options:'6. Possible actions', missing:'7. Critical missing information', probe:'8. Small diagnostic action'
+        };
+        return [
+          labels.title,
+          '',
+          labels.situation + ':\n' + (val('situation') || n),
+          '',
+          labels.goal + ':\n' + (val('goal') || n),
+          '',
+          labels.facts + ':\n' + (val('facts') || n),
+          '',
+          labels.assumptions + ':\n' + (val('assumptions') || n),
+          '',
+          labels.changes + ':\n' + (val('changes') || n),
+          '',
+          labels.options + ':\n' + (val('options') || n),
+          '',
+          labels.missing + ':\n' + (val('missing') || n),
+          '',
+          labels.probe + ':\n' + (val('probe') || n)
+        ].join('\n');
+      }
+
+      function buildOutput(){
+        const lang = (document.documentElement.lang === 'en') ? 'en' : 'uk';
+        const text = id => (($('#'+id)?.value || '').trim());
+        const radio = name => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+        const situation = text('situation');
+        const goal = text('goal');
+        if(!situation || !goal){
+          alert(lang==='uk' ? 'Заповни, будь ласка, ситуацію і бажаний результат.' : 'Please describe the situation and desired outcome.');
+          return;
+        }
+
+        const names = ['goalType','causeKnown','basis','trajectory','routes','control','missingType'];
+        if(names.some(n => !radio(n))){
+          alert(lang==='uk' ? 'Відповідай, будь ласка, на всі короткі питання з варіантами.' : 'Please answer all short multiple-choice questions.');
+          return;
+        }
+
+        const goalType = radio('goalType'), causeKnown = radio('causeKnown'), basis = radio('basis');
+        const trajectory = radio('trajectory'), routes = radio('routes'), control = radio('control');
+        const missingType = radio('missingType');
+        const insights = [], steps = [];
+
+        const add = (kind, ukTitle, enTitle, ukText, enText) => {
+          insights.push(`<div class="insight ${kind}"><h3>${lang==='uk'?ukTitle:enTitle}</h3><p>${lang==='uk'?ukText:enText}</p></div>`);
+        };
+
+        if(goalType==='route'){
+          add('warn','Можлива підміна мети способом','The goal may be confused with a route',
+            'Те, що ти назвав метою, схоже на конкретний маршрут. Якщо він закриється, це ще не означає, що закрилася сама мета.',
+            'What you called the goal looks like a specific route. If that route closes, the goal itself may still remain open.');
+          steps.push(lang==='uk'?'Сформулюй бажаний результат без прив’язки до одного способу його отримати.':'State the desired outcome without tying it to one route.');
+        } else if(goalType==='unknown'){
+          add('info','Мета ще не відділена від маршруту','The goal is not yet separated from the route',
+            'Поки неясно, чи описано бажаний стан, чи лише один спосіб його досягнення. Це може непомітно звузити поле рішень.',
+            'It is not yet clear whether you described the desired state or only one way to reach it. That can silently narrow the decision space.');
+          steps.push(lang==='uk'?'Переформулюй мету як стан, який має стати реальністю.':'Rephrase the goal as a state you want to become real.');
+        }
+
+        if((causeKnown==='no'||causeKnown==='partial') && basis==='assumptions'){
+          add('warn','Картина сильно спирається на припущення','The picture relies heavily on assumptions',
+            'Причина ключових подій не встановлена або встановлена лише частково, але загальна картина вже будується переважно на припущеннях. Правдоподібне пояснення тут легко переплутати з фактом.',
+            'The cause of key events is unknown or only partly known, while the overall picture rests mostly on assumptions. A plausible explanation can easily be mistaken for a fact.');
+          steps.push(lang==='uk'?'Шукай дані, які можуть розрізнити щонайменше дві можливі причини.':'Look for data that can distinguish at least two possible causes.');
+        } else if(causeKnown==='no'){
+          add('info','Причина не встановлена','The cause is not established',
+            'Остаточний висновок зараз може бути менш корисним, ніж дія, яка дасть нові дані про причину.',
+            'A final conclusion may be less useful now than an action that produces new information about the cause.');
+          steps.push(lang==='uk'?'Обери питання або дію, після яких про причину стане відомо більше.':'Choose a question or action that would reveal more about the cause.');
+        }
+
+        if(basis==='assumptions'){
+          add('warn','Висока невизначеність','High uncertainty',
+            'Твоя нинішня модель ситуації спирається більше на інтерпретації, ніж на встановлені дані. Це не робить її хибною, але робить висновки менш надійними.',
+            'Your current model relies more on interpretations than established data. That does not make it false, but it makes conclusions less reliable.');
+        } else if(basis==='facts'){
+          add('good','Опора на дані відносно сильна','Relatively strong data basis',
+            'Картина переважно спирається на встановлені дані. Наступна перевірка: чи достатньо саме цих даних для висновку, який ти з них робиш.',
+            'The picture relies mostly on established data. The next check is whether those data are sufficient for the conclusion you draw from them.');
+        }
+
+        if(trajectory==='oscillates'){
+          add('info','Ситуація коливається','The situation is oscillating',
+            'Одна остання подія тут легко вводить в оману. Корисніше дивитися на повторюваний малюнок кількох змін, а не робити останній епізод вироком.',
+            'The latest event can easily mislead here. Look for a repeating pattern across several changes instead of treating the last episode as a verdict.');
+          steps.push(lang==='uk'?'Порівняй 3–5 останніх змін і подивись, що повторюється.':'Compare the last 3–5 changes and look for what repeats.');
+        } else if(trajectory==='unknown'){
+          add('info','Траєкторія поки не визначена','The trajectory is not yet clear',
+            'Можливо, ти добре бачиш поточний стан, але маєш замало точок у часі, щоб визначити напрямок.',
+            'You may see the current state clearly but have too few points in time to determine direction.');
+          steps.push(lang==='uk'?'Порівняй поточний стан щонайменше з двома попередніми.':'Compare the current state with at least two earlier states.');
+        } else if(trajectory==='worse'){
+          add('warn','Поточний вектор несприятливий','The current vector is unfavorable',
+            'Не варто робити з поточного руху вічність, але й ігнорувати його не слід. Наступна дія має або змінювати умови, або перевіряти, чи правильно визначено напрямок.',
+            'Do not turn the current movement into eternity, but do not ignore it either. The next action should change conditions or test whether the direction was identified correctly.');
+        } else if(trajectory==='better'){
+          add('good','Поточний вектор сприятливий','The current vector is favorable',
+            'Це не гарантія майбутнього, але наявні дані підтримують рух у бажаний бік. Не кожна додаткова дія зараз обов’язково покращить ситуацію.',
+            'This is not a guarantee of the future, but current data support movement in the desired direction. Not every extra action will necessarily improve it.');
+        }
+
+        if(control==='low'){
+          add('warn','Низька керованість результату','Low control over the result',
+            'Ключовий результат залежить переважно від інших людей або обставин. План, що потребує гарантованої чужої поведінки, має слабке місце.',
+            'The key result depends mostly on other people or circumstances. A plan that requires guaranteed behavior from others has a weak point.');
+          steps.push(lang==='uk'?'Відділи власні дії від того, чого ти лише очікуєш від інших.':'Separate your own actions from what you merely expect from others.');
+        } else if(control==='shared'){
+          add('info','Керованість часткова','Control is partial',
+            'Ти можеш впливати на ситуацію, але не визначаєш її одноосібно. Твоя дія може змінити умови, але не гарантує відповіді системи.',
+            'You can influence the situation, but you do not determine it alone. Your action may change conditions without guaranteeing the system’s response.');
+        } else {
+          add('good','Керованість відносно висока','Control is relatively high',
+            'Значна частина результату залежить від твоїх власних дій. Тут невеликий практичний крок може дати більше, ніж подальше нескінченне обдумування.',
+            'A substantial part of the result depends on your own actions. A small practical move may give more than endless further analysis.');
+        }
+
+        if(routes==='one'){
+          add('warn','Поле варіантів звужене','The option space is narrow',
+            'Ти бачиш лише один реальний маршрут. Можливо, він справді найкращий, але це варто перевірити: один закритий шлях не завжди означає закриту мету.',
+            'You see only one real route. It may truly be the best one, but this should be tested: one closed route does not always mean a closed goal.');
+          steps.push(lang==='uk'?'Спробуй знайти ще два способи руху до тієї самої мети.':'Try to find two more ways toward the same goal.');
+        } else if(routes==='none'){
+          add('warn','Маршрутів поки не видно','No route is visible yet',
+            'Відсутність видимого ходу — це стан інформації зараз, а не автоматично доказ неможливості мети.',
+            'The absence of a visible move is the current information state, not automatic proof that the goal is impossible.');
+          steps.push(lang==='uk'?'Шукай дію, яка створить новий варіант або дасть дані для його появи.':'Look for an action that creates a new option or provides data from which one can emerge.');
+        } else if(routes==='notsearched'){
+          add('info','Альтернативи ще не перевірялися','Alternatives have not been explored',
+            'Поточний маршрут може здаватися єдиним просто тому, що поле можливостей ще не розглядалося окремо.',
+            'The current route may seem unique simply because the option space has not yet been explored deliberately.');
+          steps.push(lang==='uk'?'Перед остаточним рішенням свідомо пошукай альтернативні маршрути.':'Before a final decision, deliberately search for alternative routes.');
+        }
+
+        const missing = {
+          cause:['Критична прогалина — причини','Critical gap: causes','Найбільше бракує розуміння, чому ситуація має саме такий вигляд.','The biggest gap is understanding why the situation has this form.'],
+          other:['Критична прогалина — інша сторона','Critical gap: the other party','Найбільше бракує реальних даних про позицію, стан або наміри іншої сторони.','The biggest gap is real data about the other party’s position, state, or intentions.'],
+          consequence:['Критична прогалина — наслідки','Critical gap: consequences','Ти бачиш можливі дії, але недостатньо розумієш, що кожна з них може змінити.','You see possible actions but do not yet understand well enough what each may change.'],
+          alternatives:['Критична прогалина — альтернативи','Critical gap: alternatives','Проблема зараз не стільки у відсутності рішення, скільки у вузькому полі можливих ходів.','The problem is less the absence of a decision than a narrow field of possible moves.'],
+          none:['Перевір приховану передумову','Check for a hidden premise','Тобі здається, що даних достатньо. Перед рішенням корисно перевірити, чи не стало якесь припущення непомітно “фактом”.','The data seem sufficient. Before deciding, check whether an assumption has silently become a “fact”.'],
+          unknown:['Невідоме ще не структуроване','The unknown is not yet structured','Ти поки не можеш назвати головну прогалину. Це означає, що спочатку варто розкласти саме невідоме.','You cannot yet name the main gap. First structure what is unknown.']
+        }[missingType];
+        add(missingType==='none'?'info':'warn', missing[0],missing[1],missing[2],missing[3]);
+
+        if(missingType==='cause') steps.push(lang==='uk'?'Знайди спостереження, яке відрізнить одну можливу причину від іншої.':'Find an observation that distinguishes one possible cause from another.');
+        if(missingType==='other') steps.push(lang==='uk'?'Шукай спосіб отримати дані від іншої сторони, а не лише тлумачити її поведінку.':'Seek data from the other party rather than only interpreting their behavior.');
+        if(missingType==='consequence') steps.push(lang==='uk'?'Обери найменшу оборотну дію й подивись, що вона змінить.':'Choose the smallest reversible action and observe what it changes.');
+        if(missingType==='alternatives') steps.push(lang==='uk'?'Не закривай рішення, поки не створиш щонайменше ще два робочі варіанти.':'Do not close the decision until you create at least two more workable options.');
+        if(missingType==='unknown') steps.push(lang==='uk'?'Окремо випиши: відомо / невідомо / припускаю.':'Write three separate lists: known / unknown / assumed.');
+
+        const probe = text('probe');
+        let mainSummary;
+        if(basis==='assumptions' && control==='low'){
+          mainSummary = lang==='uk'
+            ? 'Зараз одночасно висока невизначеність і низька керованість результату. Це слабка позиція для жорсткого остаточного рішення, але добра позиція для збору даних і роботи зі своєю частиною ситуації.'
+            : 'You currently have both high uncertainty and low control over the result. That is a weak position for a rigid final decision, but a good one for gathering data and working on your part of the situation.';
+        } else if(routes==='one' && (goalType==='route'||goalType==='unknown')){
+          mainSummary = lang==='uk'
+            ? 'Основний ризик зараз — звузити всю ситуацію до одного способу. Спочатку відділи мету від маршруту, а вже потім оцінюй, які шляхи справді закриті.'
+            : 'The main risk is narrowing the whole situation to one route. First separate the goal from the route, then assess which paths are truly closed.';
+        } else if(trajectory==='oscillates'){
+          mainSummary = lang==='uk'
+            ? 'Ситуація схожа на коливальний процес. Окремий епізод мало що доводить; важливіший повторюваний малюнок і те, що змінює його.'
+            : 'The situation looks like an oscillating process. A single episode proves little; the repeating pattern and what changes it matter more.';
+        } else if(control==='high' && basis==='facts'){
+          mainSummary = lang==='uk'
+            ? 'У тебе відносно сильна опора на дані й висока керованість. Тут мала практична дія з подальшим спостереженням може бути кориснішою за подальше обдумування.'
+            : 'You have a relatively strong data basis and high control. A small practical action followed by observation may be more useful than further thinking.';
+        } else {
+          mainSummary = lang==='uk'
+            ? 'Ситуація вже має робочу структуру. Наступний хід краще обирати за тим, де найбільша невизначеність і що реально можна змінити або перевірити.'
+            : 'The situation already has a workable structure. Choose the next move by where uncertainty is greatest and what can actually be changed or tested.';
+        }
+
+        const nextStep = probe
+          ? (lang==='uk'
+              ? `Ти вже назвав перевірочну дію: <strong>${htmlEsc(probe)}</strong>. Перед виконанням перевір: чи дасть вона нові дані навіть тоді, якщо не приведе одразу до бажаного результату?`
+              : `You already named a diagnostic action: <strong>${htmlEsc(probe)}</strong>. Before doing it, ask whether it will produce new information even if it does not immediately produce the desired result.`)
+          : (steps[0] || (lang==='uk'
+              ? 'Обери одну малу дію, яка або покращить ситуацію, або дасть нові дані для наступного рішення.'
+              : 'Choose one small action that either improves the situation or produces new information for the next decision.'));
+
+        const box = $(SELECTORS.output);
+        box.innerHTML = `
+          <h2>${lang==='uk'?'Швидка карта ситуації':'Quick situation map'}</h2>
+          <div class="insight info">
+            <h3>${lang==='uk'?'Головний висновок':'Main finding'}</h3>
+            <p>${mainSummary}</p>
+          </div>
+          ${insights.join('')}
+          <div class="next-step">
+            <h3>${lang==='uk'?'Наступний хід':'Next move'}</h3>
+            <p>${nextStep}</p>
+          </div>
+          <div class="output-section">
+            <h3>${lang==='uk'?'Вихідна точка':'Starting point'}</h3>
+            <p><strong>${lang==='uk'?'Ситуація':'Situation'}:</strong> ${htmlEsc(situation)}</p>
+            <p><strong>${lang==='uk'?'Бажаний результат':'Desired outcome'}:</strong> ${htmlEsc(goal)}</p>
+          </div>
+          <div class="deep-cta">
+            <strong>${lang==='uk'?'Це лише перший рівень.':'This is only the first level.'}</strong>
+            <p>${lang==='uk'
+              ? 'Якщо карта показала суперечності, кілька правдоподібних версій або незрозуміло, який хід обрати, ситуацію можна розбирати глибше.'
+              : 'If the map revealed contradictions, several plausible versions, or an unclear next move, the situation can be analyzed more deeply.'}</p>
+            <p><a href="contact.html">${lang==='uk'?'Перейти до глибшого розбору':'Go to deeper analysis'}</a></p>
+          </div>
+        `;
+        box.style.display='block';
+        const feedback = $(SELECTORS.feedback);
+        if(feedback) feedback.style.display='block';
+        box.scrollIntoView({behavior:'smooth'});
+      }
+
+      function initForm(){
+        $(SELECTORS.unravelBtn)?.addEventListener('click', buildOutput);
+        $('#resetBtn')?.addEventListener('click', ()=>{
+          const box=$(SELECTORS.output);
+          const feedback=$(SELECTORS.feedback);
+          if(box){ box.innerHTML=''; box.style.display='none'; }
+          if(feedback) feedback.style.display='none';
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{ initLang(); initMenu(); initForm(); });
+    })();
+  </script>
+</body>
+</html>
