@@ -81,8 +81,15 @@
 
     .result-top{background:linear-gradient(135deg,#f7f0ff,#fff);border:1px solid #dac9ea;border-radius:16px;padding:1.25rem;margin-bottom:1.2rem}
     .result-label{font-size:.9rem;color:var(--muted);margin-bottom:.2rem}
-    .result-title{font-size:1.55rem;font-weight:700;color:var(--primary);margin:0 0 .45rem}
+    .result-title{font-size:1.55rem;font-weight:700;color:var(--primary);margin:0 0 .45rem;display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+    .result-title button{font-family:inherit;font-size:inherit;font-weight:700;color:var(--primary);background:transparent;border:none;border-bottom:1px dashed #9b7bb6;border-radius:0;padding:0;cursor:pointer;line-height:1.25}
+    .result-title button:hover,.result-title button:focus{color:var(--secondary);border-bottom-color:var(--secondary)}
+    .result-title .joiner{color:var(--muted);font-weight:400}
     .result-text{margin:.25rem 0}
+    .mode-detail{margin-top:.9rem;padding:1rem 1.1rem;border-radius:12px;background:#fff;border:1px solid #ddd2e8;color:#2a2430}
+    .mode-detail h4{margin:0 0 .45rem;color:var(--primary);font-size:1.05rem}
+    .mode-detail p{margin:.35rem 0}
+    .mode-hint{font-size:.86rem;color:var(--muted);margin:.45rem 0 0}
     .shift{margin:1rem 0;padding:1rem 1.1rem;border-radius:12px;background:#faf8fc;border:1px solid #e7def0}
     .shift strong{color:var(--primary)}
     .score-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
@@ -176,8 +183,13 @@
       <div class="container">
         <div class="test-shell">
           <div id="intro" class="intro">
-            <h2><span class="lang-section lang-uk active">Тест архетипів — V0.6</span><span class="lang-section lang-en">Archetype Test — V0.6</span></h2>
+            <h2><span class="lang-section lang-uk active">Тест архетипів — V0.7</span><span class="lang-section lang-en">Archetype Test — V0.7</span></h2>
             <p><span class="lang-section lang-uk active">Обирай не найкрасивішу і не «правильну» відповідь, а ту, яка найближча до твоєї першої природної реакції.</span><span class="lang-section lang-en">Do not choose the nicest or “correct” answer. Choose the one closest to your first natural reaction.</span></p>
+            <div class="note">
+              <strong><span class="lang-section lang-uk active">Навіщо проходити цей тест?</span><span class="lang-section lang-en">Why take this test?</span></strong><br>
+              <span class="lang-section lang-uk active">Щоб помітити, які способи дії вмикаються в тебе автоматично і чи змінюються вони, коли зростає емоційне навантаження. Це спосіб трохи подивитися на власні реакції збоку — не як на ярлик, а як на робочу карту.</span>
+              <span class="lang-section lang-en">To notice which ways of acting switch on automatically and whether they change as emotional pressure rises. It is a way to look at your own reactions from the outside — not as a label, but as a working map.</span>
+            </div>
             <div class="note">
               <span class="lang-section lang-uk active">Це не діагноз і не ярлик. Результат — легка експериментальна карта архетипів, які можуть проявлятися по-різному залежно від ситуації.</span>
               <span class="lang-section lang-en">This is not a diagnosis or a label. The result is a light experimental map of archetypes that may show up differently depending on the situation.</span>
@@ -210,17 +222,23 @@
               <div class="result-label"><span class="lang-section lang-uk active">Основний архетип</span><span class="lang-section lang-en">Primary archetype</span></div>
               <div id="baseTitle" class="result-title"></div>
               <p id="baseText" class="result-text"></p>
+              <p class="mode-hint"><span class="lang-section lang-uk active">Натисни на назву архетипу, щоб прочитати більше.</span><span class="lang-section lang-en">Click an archetype name to read more.</span></p>
+              <div id="baseDetails" class="mode-detail hidden"></div>
             </div>
             <div class="result-top">
               <div class="result-label"><span class="lang-section lang-uk active">Під емоційним навантаженням</span><span class="lang-section lang-en">Under emotional load</span></div>
               <div id="emotionTitle" class="result-title"></div>
               <p id="emotionText" class="result-text"></p>
+              <p class="mode-hint"><span class="lang-section lang-uk active">Натисни на назву архетипу, щоб прочитати більше.</span><span class="lang-section lang-en">Click an archetype name to read more.</span></p>
+              <div id="emotionDetails" class="mode-detail hidden"></div>
             </div>
             <div id="shiftText" class="shift"></div>
             <div class="result-top">
               <div class="result-label"><span class="lang-section lang-uk active">Додатковий архетип</span><span class="lang-section lang-en">Secondary archetype</span></div>
               <div id="secondaryTitle" class="result-title"></div>
               <p id="secondaryText" class="result-text"></p>
+              <p class="mode-hint"><span class="lang-section lang-uk active">Натисни на назву архетипу, щоб прочитати більше.</span><span class="lang-section lang-en">Click an archetype name to read more.</span></p>
+              <div id="secondaryDetails" class="mode-detail hidden"></div>
             </div>
 
             <div class="score-grid">
@@ -379,64 +397,64 @@
 
   const MODES = {
     hero:{
-      uk:{name:'Герой',desc:'У цьому тесті Герой проявляється як готовність входити в складність, діяти попри напругу й не відступати лише тому, що стало важко.'},
-      en:{name:'Hero',desc:'In this test, the Hero shows up as readiness to enter difficulty, act under pressure, and not retreat simply because things became hard.'}
+      uk:{name:'Герой',desc:'У цьому тесті Герой проявляється як готовність входити в складність, діяти попри напругу й не відступати лише тому, що стало важко.',long:'Герой вмикається там, де ситуація потребує дії, витримки й готовності пройти через складність. Йому важливо не відступити лише через страх, тиск або дискомфорт. Сильна сторона цього режиму — здатність тримати напрямок і доводити справу до результату. Його межа з’являється тоді, коли боротьба стає самоціллю і вже не перевіряється, чи справді її потрібно продовжувати.'},
+      en:{name:'Hero',desc:'In this test, the Hero shows up as readiness to enter difficulty, act under pressure, and not retreat simply because things became hard.',long:'The Hero switches on when a situation calls for action, endurance, and willingness to move through difficulty. It matters not to retreat merely because of fear, pressure, or discomfort. Its strength is holding direction and carrying things through. Its limit appears when struggle becomes a goal in itself and no one checks whether the fight is still necessary.'}
     },
     sage:{
-      uk:{name:'Мудрець',desc:'У цьому тесті Мудрець проявляється через потребу зрозуміти факти, причини, структуру й не поспішати з висновками без достатніх даних.'},
-      en:{name:'Sage',desc:'In this test, the Sage appears through the need to understand facts, causes, structure, and avoid conclusions without enough data.'}
+      uk:{name:'Мудрець',desc:'У цьому тесті Мудрець проявляється через потребу зрозуміти факти, причини, структуру й не поспішати з висновками без достатніх даних.',long:'Мудрець спершу хоче зрозуміти, що насправді відбувається: які є факти, причини, зв’язки й межі знання. Він схильний відділяти дані від припущень і не поспішати з висновком, якщо картина ще неповна. Сильна сторона — ясність і здатність бачити структуру. Межа режиму — ризик затриматися в аналізі тоді, коли вже потрібно діяти.'},
+      en:{name:'Sage',desc:'In this test, the Sage appears through the need to understand facts, causes, structure, and avoid conclusions without enough data.',long:'The Sage first wants to understand what is actually happening: the facts, causes, connections, and limits of what is known. It tends to separate evidence from assumptions and delay conclusions while the picture is incomplete. Its strength is clarity and structural understanding. Its limit is staying in analysis after action has already become necessary.'}
     },
     ruler:{
-      uk:{name:'Правитель',desc:'У цьому тесті Правитель — це схильність брати відповідальність, задавати рамку, організовувати й переводити невизначеність у рішення.'},
-      en:{name:'Ruler',desc:'In this test, the Ruler is the tendency to take responsibility, set structure, organize, and turn uncertainty into decisions.'}
+      uk:{name:'Правитель',desc:'У цьому тесті Правитель — це схильність брати відповідальність, задавати рамку, організовувати й переводити невизначеність у рішення.',long:'Правитель прагне перетворити невизначеність на зрозумілу конструкцію: визначити пріоритети, розподілити відповідальність, організувати дії й прийняти рішення. Його сила — створювати порядок там, де багато різних інтересів або хаосу. Межа цього режиму — надмірний контроль і спроба організувати те, що потребує більше свободи або часу.'},
+      en:{name:'Ruler',desc:'In this test, the Ruler is the tendency to take responsibility, set structure, organize, and turn uncertainty into decisions.',long:'The Ruler tries to turn uncertainty into a workable structure: set priorities, assign responsibility, organize action, and make decisions. Its strength is creating order where many interests or moving parts collide. Its limit is over-control — trying to organize what actually needs more freedom or more time.'}
     },
     creator:{
-      uk:{name:'Творець',desc:'У цьому тесті Творець проявляється через бажання надавати ідеям форму, переробляти наявне й створювати щось реальне.'},
-      en:{name:'Creator',desc:'In this test, the Creator appears through the urge to give ideas form, reshape what exists, and create something real.'}
+      uk:{name:'Творець',desc:'У цьому тесті Творець проявляється через бажання надавати ідеям форму, переробляти наявне й створювати щось реальне.',long:'Творець не любить залишати ідею лише в голові. Його природний рух — надати їй форму: написати, зібрати, переробити, намалювати, сконструювати або випробувати прототип. Сильна сторона — переводити можливість у щось реальне. Межа — захопитися самим створенням і втратити зв’язок із тим, для чого результат узагалі потрібен.'},
+      en:{name:'Creator',desc:'In this test, the Creator appears through the urge to give ideas form, reshape what exists, and create something real.',long:'The Creator does not like leaving an idea only in the mind. Its natural move is to give it form: write it, build it, reshape it, draw it, construct it, or test a prototype. Its strength is turning possibility into something real. Its limit is becoming absorbed in making and losing sight of what the result is actually for.'}
     },
     lover:{
-      uk:{name:'Любовник',desc:'У цьому тесті Любовник — це орієнтація на живий контакт, близькість, взаємність і цінність самого зв’язку.'},
-      en:{name:'Lover',desc:'In this test, the Lover is oriented toward live contact, closeness, reciprocity, and the value of the bond itself.'}
+      uk:{name:'Любовник',desc:'У цьому тесті Любовник — це орієнтація на живий контакт, близькість, взаємність і цінність самого зв’язку.',long:'Любовник ставить високо живий зв’язок між людьми: близькість, взаємність, тілесність, емоційний контакт і відчуття «ми». У складній ситуації він часто спершу намагається не втратити сам контакт. Сильна сторона — глибина присутності й здатність створювати близькість. Межа — ризик надто довго зберігати зв’язок, який уже суперечить власним потребам або межам.'},
+      en:{name:'Lover',desc:'In this test, the Lover is oriented toward live contact, closeness, reciprocity, and the value of the bond itself.',long:'The Lover places high value on the living bond between people: closeness, reciprocity, physical and emotional contact, and the sense of “us.” In difficulty it often first tries not to lose the connection itself. Its strength is depth of presence and the ability to create closeness. Its limit is preserving a bond too long when it has begun to conflict with one’s own needs or boundaries.'}
     },
     rebel:{
-      uk:{name:'Бунтар',desc:'У цьому тесті Бунтар проявляється там, де хочеться відкинути правило або рамку, яка перестала мати сенс, і піти своїм шляхом.'},
-      en:{name:'Rebel',desc:'In this test, the Rebel appears where a rule or frame has stopped making sense and there is a pull to reject it and choose your own way.'}
+      uk:{name:'Бунтар',desc:'У цьому тесті Бунтар проявляється там, де хочеться відкинути правило або рамку, яка перестала мати сенс, і піти своїм шляхом.',long:'Бунтар перевіряє правила на сенс, а не на авторитет. Якщо рамка більше не працює, він схильний її відкинути, перебудувати маршрут або зробити по-своєму. Сильна сторона — здатність виходити з застарілих конструкцій. Межа — ламати те, що ще працює, лише тому, що воно обмежує свободу.'},
+      en:{name:'Rebel',desc:'In this test, the Rebel appears where a rule or frame has stopped making sense and there is a pull to reject it and choose your own way.',long:'The Rebel tests rules by meaning rather than authority. If a frame no longer works, it tends to reject it, rebuild the route, or choose its own way. Its strength is leaving outdated structures. Its limit is breaking something that still works merely because it restricts freedom.'}
     },
     clown:{
-      uk:{name:'Клоун',desc:'У цьому тесті Клоун використовує легкість, гру й гумор, щоб послабити надмірну напругу й повернути ситуації рухливість.'},
-      en:{name:'Clown',desc:'In this test, the Clown uses lightness, play, and humor to reduce excessive tension and restore flexibility.'}
+      uk:{name:'Клоун',desc:'У цьому тесті Клоун використовує легкість, гру й гумор, щоб послабити надмірну напругу й повернути ситуації рухливість.',long:'Клоун відчуває, коли ситуація стала надто важкою, застиглою або серйозною, і повертає їй рухливість через гумор, гру чи самоіронію. Це не обов’язково втеча від проблеми — іноді саме зниження напруги дає змогу знову мислити. Сильна сторона — розряджати зайву вагу. Межа — жартувати там, де проблема потребує прямої уваги.'},
+      en:{name:'Clown',desc:'In this test, the Clown uses lightness, play, and humor to reduce excessive tension and restore flexibility.',long:'The Clown senses when a situation has become too heavy, rigid, or serious and restores movement through humor, play, or self-irony. This is not necessarily avoidance; sometimes lowering tension makes thinking possible again. Its strength is releasing unnecessary weight. Its limit is joking where a problem needs direct attention.'}
     },
     trickster:{
-      uk:{name:'Трікстер',desc:'У цьому тесті Трікстер шукає неочевидний хід, обходить тупики й може змінити правила гри замість того, щоб боротися всередині них.'},
-      en:{name:'Trickster',desc:'In this test, the Trickster looks for an unexpected move, bypasses dead ends, and may change the rules rather than struggle inside them.'}
+      uk:{name:'Трікстер',desc:'У цьому тесті Трікстер шукає неочевидний хід, обходить тупики й може змінити правила гри замість того, щоб боротися всередині них.',long:'Трікстер не обов’язково приймає умову задачі такою, як її подали. Він шукає обхідний шлях, іншу точку входу, прихований ресурс або спосіб змінити самі правила гри. Сильна сторона — бачити можливість там, де інші бачать тупик. Межа — захопитися хитрим ходом настільки, що просте пряме рішення лишається непоміченим.'},
+      en:{name:'Trickster',desc:'In this test, the Trickster looks for an unexpected move, bypasses dead ends, and may change the rules rather than struggle inside them.',long:'The Trickster does not always accept a problem exactly as it is presented. It looks for a bypass, another entry point, a hidden resource, or a way to change the rules themselves. Its strength is seeing possibility where others see a dead end. Its limit is becoming so attracted to the clever move that a simple direct solution gets missed.'}
     },
     caregiver:{
-      uk:{name:'Опікун',desc:'У цьому тесті Опікун насамперед помічає стан людей, підтримує, допомагає відновити рівновагу й не дає людині загубитися за самою задачею.'},
-      en:{name:'Caregiver',desc:'In this test, the Caregiver first notices people’s state, supports them, restores balance, and does not let the person disappear behind the task.'}
+      uk:{name:'Опікун',desc:'У цьому тесті Опікун насамперед помічає стан людей, підтримує, допомагає відновити рівновагу й не дає людині загубитися за самою задачею.',long:'Опікун помічає не лише проблему, а й людей усередині неї: кому важко, кого не чують, де потрібна підтримка або відновлення контакту. Сильна сторона — утримувати людський вимір ситуації й допомагати системі не розсипатися через виснаження чи конфлікт. Межа — брати на себе чужу відповідальність або постійно ставити чужі потреби вище власних.'},
+      en:{name:'Caregiver',desc:'In this test, the Caregiver first notices people’s state, supports them, restores balance, and does not let the person disappear behind the task.',long:'The Caregiver notices not only the problem but the people inside it: who is struggling, who is unheard, where support or restored contact is needed. Its strength is preserving the human dimension and helping a system not fall apart through exhaustion or conflict. Its limit is taking on other people’s responsibility or repeatedly placing their needs above one’s own.'}
     },
     traveler:{
-      uk:{name:'Мандрівник',desc:'У цьому тесті Мандрівник тягнеться до нового простору, досвіду й маршруту та схильний частину відповіді отримувати вже в русі.'},
-      en:{name:'Traveler',desc:'In this test, the Traveler is drawn to new spaces, experiences, and routes and is willing to discover part of the answer while moving.'}
+      uk:{name:'Мандрівник',desc:'У цьому тесті Мандрівник тягнеться до нового простору, досвіду й маршруту та схильний частину відповіді отримувати вже в русі.',long:'Мандрівник не чекає повної карти перед першим кроком. Його приваблює новий простір, досвід і можливість дізнатися частину відповіді вже в русі. Сильна сторона — відкритість до нового й здатність адаптуватися по дорозі. Межа — рух заради самого руху без перевірки, куди й навіщо веде маршрут.'},
+      en:{name:'Traveler',desc:'In this test, the Traveler is drawn to new spaces, experiences, and routes and is willing to discover part of the answer while moving.',long:'The Traveler does not wait for a complete map before taking the first step. It is drawn to new space, experience, and the possibility of learning part of the answer through movement itself. Its strength is openness and adaptation on the way. Its limit is movement for its own sake without checking where the route leads or why.'}
     },
     wolf:{
-      uk:{name:'Вовк',desc:'У цьому тесті Вовк проявляється через внутрішню опору, вірність власній позиції, межі й небажання розчинятися в тиску групи.'},
-      en:{name:'Wolf',desc:'In this test, the Wolf appears through inner support, loyalty to one’s own position, boundaries, and resistance to dissolving under group pressure.'}
+      uk:{name:'Вовк',desc:'У цьому тесті Вовк проявляється через внутрішню опору, вірність власній позиції, межі й небажання розчинятися в тиску групи.',long:'Вовк спирається на власну позицію й не поспішає змінювати її лише через груповий тиск, критику або бажання інших швидко домовитися. Сильна сторона — автономність, внутрішня опора й здатність берегти межі. Межа — перетворити самостійність на ізоляцію і не почути корисного зовнішнього сигналу.'},
+      en:{name:'Wolf',desc:'In this test, the Wolf appears through inner support, loyalty to one’s own position, boundaries, and resistance to dissolving under group pressure.',long:'The Wolf relies on its own position and does not rush to change it merely because of group pressure, criticism, or other people’s wish for quick agreement. Its strength is autonomy, inner support, and protection of boundaries. Its limit is turning independence into isolation and missing a useful outside signal.'}
     },
     doe:{
-      uk:{name:'Лань',desc:'У цьому тесті Лань — це чутливість до атмосфери, тонких сигналів і безпеки контакту без потреби одразу йти напролом.'},
-      en:{name:'Doe',desc:'In this test, the Doe is sensitivity to atmosphere, subtle signals, and safety of contact without needing to push forward immediately.'}
+      uk:{name:'Лань',desc:'У цьому тесті Лань — це чутливість до атмосфери, тонких сигналів і безпеки контакту без потреби одразу йти напролом.',long:'Лань спершу зчитує атмосферу, тонкі сигнали й рівень безпеки контакту. Вона не обов’язково слабка або пасивна — просто рухається тоді, коли відчула середовище й людей. Сильна сторона — чутливість до нюансів, які грубіші стратегії можуть пропустити. Межа — надто довго залишатися в режимі обережності й відкладати власну дію.'},
+      en:{name:'Doe',desc:'In this test, the Doe is sensitivity to atmosphere, subtle signals, and safety of contact without needing to push forward immediately.',long:'The Doe first reads the atmosphere, subtle signals, and the safety of contact. It is not necessarily weak or passive; it simply moves after sensing the environment and the people in it. Its strength is sensitivity to nuances that rougher strategies may miss. Its limit is staying cautious too long and postponing one’s own action.'}
     },
     cat:{
-      uk:{name:'Кіт',desc:'У цьому тесті Кіт проявляється через автономність, вибірковість, власний темп і право самостійно визначати дистанцію та напрямок.'},
-      en:{name:'Cat',desc:'In this test, the Cat appears through autonomy, selectivity, one’s own pace, and the right to decide distance and direction personally.'}
+      uk:{name:'Кіт',desc:'У цьому тесті Кіт проявляється через автономність, вибірковість, власний темп і право самостійно визначати дистанцію та напрямок.',long:'Кіт сам вирішує, до кого наближатися, коли відступити й у якому темпі рухатися. Для нього важливо зберігати автономність і не віддавати зовнішньому тиску право визначати його дистанцію чи рішення. Сильна сторона — вибірковість і відчуття власних меж. Межа — закритися настільки, що контакт або корисна співпраця стають майже неможливими.'},
+      en:{name:'Cat',desc:'In this test, the Cat appears through autonomy, selectivity, one’s own pace, and the right to decide distance and direction personally.',long:'The Cat decides for itself whom to approach, when to step back, and at what pace to move. It values autonomy and does not want outside pressure to define its distance or decisions. Its strength is selectivity and a clear sense of boundaries. Its limit is closing off so much that contact or useful cooperation becomes difficult.'}
     },
     eagle:{
-      uk:{name:'Орел',desc:'У цьому тесті Орел відходить від деталей, щоб бачити ширшу картину, напрямок і наслідки різних маршрутів.'},
-      en:{name:'Eagle',desc:'In this test, the Eagle steps away from details to see the bigger picture, direction, and consequences of different routes.'}
+      uk:{name:'Орел',desc:'У цьому тесті Орел відходить від деталей, щоб бачити ширшу картину, напрямок і наслідки різних маршрутів.',long:'Орел піднімається над деталями й дивиться на систему ширше: які є варіанти, куди вони ведуть, що зміниться далі й які наслідки матиме кожен маршрут. Сильна сторона — бачити напрямок і зв’язки між окремими подіями. Межа — настільки піти у висоту, що конкретні деталі, люди або практичні обмеження залишаться непоміченими.'},
+      en:{name:'Eagle',desc:'In this test, the Eagle steps away from details to see the bigger picture, direction, and consequences of different routes.',long:'The Eagle rises above details and looks at the wider system: what options exist, where they lead, what changes next, and what consequences each route may have. Its strength is seeing direction and connections between separate events. Its limit is going so high that concrete details, people, or practical constraints disappear from view.'}
     },
     borderwalker:{
-      uk:{name:'Межовик',desc:'У цьому тесті Межовик тримає кілька систем або ракурсів одночасно, перемикається між ними й шукає зв’язки там, де інші бачать лише окремі світи.'},
-      en:{name:'Borderwalker',desc:'In this test, the Borderwalker holds several systems or perspectives at once, moves between them, and looks for connections where others see separate worlds.'}
+      uk:{name:'Межовик',desc:'У цьому тесті Межовик тримає кілька систем або ракурсів одночасно, перемикається між ними й шукає зв’язки там, де інші бачать лише окремі світи.',long:'Межовик природно працює на стику різних рамок, рівнів і способів бачення. Він може тримати кілька версій одночасно, переходити від деталей до ширшої системи й назад, не змушуючи все зводитися до одного пояснення. Сильна сторона — поєднувати те, що зазвичай розглядають окремо. Межа — ускладнити картину там, де для дії вже достатньо простішої моделі.'},
+      en:{name:'Borderwalker',desc:'In this test, the Borderwalker holds several systems or perspectives at once, moves between them, and looks for connections where others see separate worlds.',long:'The Borderwalker naturally works at the boundary between different frames, levels, and ways of seeing. It can hold several versions at once, move from detail to the wider system and back, without forcing everything into one explanation. Its strength is connecting what is usually treated separately. Its limit is making the picture more complex when a simpler model is already sufficient for action.'}
     }
   };
 
@@ -495,6 +513,41 @@
   function names(keys){return keys.map(k=>MODES[k][lang].name).join(' + ')}
   function combinedDesc(keys){return keys.map(k=>MODES[k][lang].desc).join(' ')}
 
+  function renderModeButtons(containerId,keys,detailsId){
+    const container=$(containerId);
+    container.innerHTML='';
+    keys.forEach((key,index)=>{
+      if(index>0){
+        const joiner=document.createElement('span');
+        joiner.className='joiner';
+        joiner.textContent=' + ';
+        container.appendChild(joiner);
+      }
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.textContent=MODES[key][lang].name;
+      btn.setAttribute('aria-expanded','false');
+      btn.addEventListener('click',()=>toggleModeDetail(detailsId,key,btn));
+      container.appendChild(btn);
+    });
+  }
+
+  function toggleModeDetail(detailsId,key,btn){
+    const box=$(detailsId);
+    const isSame=box.dataset.mode===key && !box.classList.contains('hidden');
+    $(`${detailsId}`).classList.add('hidden');
+    if(isSame){
+      box.dataset.mode='';
+      btn.setAttribute('aria-expanded','false');
+      return;
+    }
+    box.dataset.mode=key;
+    box.innerHTML=`<h4>${MODES[key][lang].name}</h4><p>${MODES[key][lang].long}</p>`;
+    box.classList.remove('hidden');
+    box.parentElement.querySelectorAll('.result-title button').forEach(b=>b.setAttribute('aria-expanded','false'));
+    btn.setAttribute('aria-expanded','true');
+  }
+
   function renderQuestion(){
     const q=QUESTIONS[current];
     const percent=Math.round(((current+1)/QUESTIONS.length)*100);
@@ -544,12 +597,13 @@
 
   function renderResult(result){
     const baseName=names(result.baseTop), emoName=names(result.emotionTop);
-    $('#baseTitle').textContent=baseName;
+    renderModeButtons('#baseTitle',result.baseTop,'#baseDetails');
     $('#baseText').textContent=combinedDesc(result.baseTop);
-    $('#emotionTitle').textContent=emoName;
+    renderModeButtons('#emotionTitle',result.emotionTop,'#emotionDetails');
     $('#emotionText').textContent=combinedDesc(result.emotionTop);
-    $('#secondaryTitle').textContent=MODES[result.secondary][lang].name;
+    renderModeButtons('#secondaryTitle',[result.secondary],'#secondaryDetails');
     $('#secondaryText').textContent=MODES[result.secondary][lang].desc;
+    ['#baseDetails','#emotionDetails','#secondaryDetails'].forEach(id=>{const el=$(id);el.classList.add('hidden');el.dataset.mode='';});
 
     const same=result.baseTop.length===1 && result.emotionTop.length===1 && result.baseTop[0]===result.emotionTop[0];
     if(same){
