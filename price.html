@@ -93,7 +93,17 @@
       .text-4xl{font-size:1.2rem}.text-3xl{font-size:1rem}.text-2xl{font-size:.875rem}
       .container{padding:0 .25rem}
     }
-  </style>
+  
+    /* Wide-menu fallback: collapse long navigation on laptop widths */
+    @media (min-width:769px) and (max-width:1900px){
+      .menu-toggle{display:inline-block!important}
+      #primary-nav{display:none!important;position:absolute!important;top:100%!important;left:0!important;width:100%!important;background:linear-gradient(to right,#4b0082,#800080)!important;padding:1rem!important;box-shadow:0 4px 8px rgba(0,0,0,.2)!important;flex-direction:column!important;gap:.5rem!important;z-index:50!important;max-height:calc(100vh - 88px);overflow-y:auto}
+      #primary-nav.active{display:flex!important}
+    }
+    @media (min-width:1901px){
+      .nav-wrap,nav .container{max-width:1800px!important}
+    }
+</style>
 </head>
 <body>
   <nav role="navigation">
