@@ -100,7 +100,7 @@
     .bar{height:8px;background:#eee;border-radius:999px;overflow:hidden}
     .bar > span{display:block;height:100%;background:linear-gradient(to right,var(--primary),var(--secondary));border-radius:999px}
     .feedback-box{margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1.2rem}
-    .feedback-box textarea{width:100%;min-height:110px;border:1px solid #d9d9e0;border-radius:12px;padding:.9rem;font:inherit;resize:vertical}
+    .feedback-frame{width:100%;height:520px;border:0;border-radius:14px;background:#fff;margin-top:.75rem}
     .copied{font-size:.9rem;color:#2e6d43;margin-left:.4rem;display:none}
 
     .hidden{display:none!important}
@@ -262,12 +262,11 @@
             </div>
 
             <div class="feedback-box">
-              <h3><span class="lang-section lang-uk active">Тестуємо конструкцію</span><span class="lang-section lang-en">Help test the model</span></h3>
-              <p><span class="lang-section lang-uk active">Одне питання: наскільки результат схожий на тебе? Якщо щось не збігається — що саме?</span><span class="lang-section lang-en">One question: how much does this result resemble you? If something does not fit, what exactly?</span></p>
-              <textarea id="feedbackText" placeholder="Напиши коротко, що збіглося або не збіглося..."></textarea>
+              <h3><span class="lang-section lang-uk active">Допоможи перевірити тест</span><span class="lang-section lang-en">Help test the model</span></h3>
+              <p><span class="lang-section lang-uk active">Наскільки результат схожий на тебе? Якщо щось не збіглося — напиши що саме. Відгук піде прямо автору тесту.</span><span class="lang-section lang-en">How much does the result resemble you? If something did not fit, tell me what. Your feedback will be sent directly to the test author.</span></p>
+              <iframe id="tallyFeedbackFrame" class="feedback-frame" title="Відгук про тест архетипів" loading="lazy"></iframe>
               <div class="button-row">
                 <button id="copyResultBtn" class="btn-primary"><span class="lang-section lang-uk active">Скопіювати результат</span><span class="lang-section lang-en">Copy result</span></button>
-                <button id="copyFeedbackBtn" class="btn-secondary"><span class="lang-section lang-uk active">Скопіювати фідбек</span><span class="lang-section lang-en">Copy feedback</span></button>
                 <button id="restartBtn" class="btn-secondary"><span class="lang-section lang-uk active">Пройти ще раз</span><span class="lang-section lang-en">Retake</span></button>
                 <span id="copiedMsg" class="copied"></span>
               </div>
@@ -473,7 +472,6 @@
     $$('.lang-section').forEach(el=>el.classList.remove('active'));
     $$('.lang-'+lang).forEach(el=>el.classList.add('active'));
     $('.lang-toggle').textContent=lang==='uk'?'UA / EN':'EN / UA';
-    $('#feedbackText').placeholder=lang==='uk'?'Напиши коротко, що збіглося або не збіглося...':'Write briefly what fit or did not fit...';
     if(!$('#testArea').classList.contains('hidden')) renderQuestion();
     if(!$('#resultArea').classList.contains('hidden') && lastResult) renderResult(lastResult);
     try{localStorage.setItem('lang',lang)}catch(e){}
@@ -595,6 +593,24 @@
     });
   }
 
+  function updateFeedbackForm(result){
+    const frame=$('#tallyFeedbackFrame');
+    if(!frame || !result)return;
+    const base=result.baseTop.map(k=>MODES[k].uk.name).join(' + ');
+    const emotion=result.emotionTop.map(k=>MODES[k].uk.name).join(' + ');
+    const secondary=MODES[result.secondary].uk.name;
+    const params=new URLSearchParams({
+      alignLeft:'1',
+      hideTitle:'1',
+      transparentBackground:'1',
+      base,
+      emotion,
+      secondary,
+      version:'V0.7'
+    });
+    frame.src='https://tally.so/embed/gDy1OO?'+params.toString();
+  }
+
   function renderResult(result){
     const baseName=names(result.baseTop), emoName=names(result.emotionTop);
     renderModeButtons('#baseTitle',result.baseTop,'#baseDetails');
@@ -617,6 +633,7 @@
     }
     renderBars('#baseBars',result.base);
     renderBars('#emotionBars',result.emotion);
+    updateFeedbackForm(result);
   }
 
   function finish(){
@@ -651,11 +668,6 @@
   });
   $('#restartBtn').addEventListener('click',()=>{answers=new Array(QUESTIONS.length).fill(null);lastResult=null;showTest()});
   $('#copyResultBtn').addEventListener('click',()=>copyText(resultText(),lang==='uk'?'Результат скопійовано':'Result copied'));
-  $('#copyFeedbackBtn').addEventListener('click',()=>{
-    const txt=$('#feedbackText').value.trim();
-    const prefix=lang==='uk'?'Фідбек до тесту архетипних режимів:':'Feedback for the archetypal modes test:';
-    copyText(prefix+'\n'+(txt||'—'),lang==='uk'?'Фідбек скопійовано':'Feedback copied');
-  });
   $('.lang-toggle').addEventListener('click',()=>setLang(lang==='uk'?'en':'uk'));
 
   const menuToggle=$('.menu-toggle'), nav=$('#primary-nav');
